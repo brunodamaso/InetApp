@@ -127,16 +127,16 @@ namespace INetApp.ViewModels
             IsBusy = true;
 
             // Get Catalog, Brands and Types
-            Products = await _catalogService.GetCatalogAsync ();
-            Brands = await _catalogService.GetCatalogBrandAsync ();
-            Types = await _catalogService.GetCatalogTypeAsync ();
+            //Products = await _catalogService.GetCatalogAsync ();
+            //Brands = await _catalogService.GetCatalogBrandAsync ();
+            //Types = await _catalogService.GetCatalogTypeAsync ();
 
-            var authToken = _settingsService.AuthAccessToken;
-            var userInfo = await _userService.GetUserInfoAsync (authToken);
+            //var authToken = _settingsService.AuthAccessToken;
+            //var userInfo = await _userService.GetUserInfoAsync (authToken);
 
-            var basket = await _basketService.GetBasketAsync (userInfo.UserId, authToken);
+            //var basket = await _basketService.GetBasketAsync (userInfo.UserId, authToken);
 
-            BadgeCount = basket?.Items?.Count () ?? 0;
+            //BadgeCount = basket?.Items?.Count () ?? 0;
 
             IsBusy = false;
         }

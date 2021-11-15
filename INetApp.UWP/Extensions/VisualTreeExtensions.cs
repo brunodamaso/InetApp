@@ -221,7 +221,7 @@ namespace INetApp.UWP.Extensions
                 return false;
             }
 
-            //TODO: consider making it work with Popups too.
+            // consider making it work with Popups too.
             if (Window.Current == null)
             {
                 // This may happen when a picker or CameraCaptureUI etc. is open.

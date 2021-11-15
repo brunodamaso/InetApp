@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:INetApp.Resources"
+        x:Class="INetApp.Resources.INetAppStyles">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <local:INetAppColors />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <!--<Style x:Key="AppTheme" BasedOn="Theme.AppCompat.Light.DarkActionBar">
+        <Setter Property="colorPrimary" Value="{StaticResource toolbar_color}" />
+        <Setter Property="windowBackground" Value="{StaticResource white}" />
+        <Setter Property="colorPrimaryDark" Value="{StaticResource toolbar_color}" />
+        <Setter Property="colorAccent" Value="{StaticResource app_color}" />
+        <Setter Property="textColorPrimary" Value="{StaticResource white}" />
+        <Setter Property="drawerArrowStyle">@style/DrawerArrowStyle}" />
+    </Style>
+
+    --><!-- Base application theme no titlebar. --><!--
+    <Style x:Key="AppThemeNoActionBar" BasedOn="Theme.AppCompat.Light.NoActionBar">
+        <Setter Property="colorPrimary" Value="{StaticResource toolbar_color}" />
+        <Setter Property="windowBackground" Value="{StaticResource white}" />
+        <Setter Property="colorPrimaryDark" Value="{StaticResource toolbar_color}" />
+        <Setter Property="colorAccent" Value="{StaticResource app_color}" />
+    </Style>
+
+
+    <Style x:Key="Toolbar" BasedOn="AppTheme">
+        <Setter Property="background" Value="{StaticResource toolbar_color}" />
+        <Setter Property="textColorSecondary" Value="{StaticResource white}" />
+    </Style>
+
+    <Style x:Key="NavigationMenu">
+        <Setter Property="textSize">17sp}" />
+        <Setter Property="textStyle">normal}" />
+    </Style>
+    <Style x:Key="SelectableItemTheme">
+        <Setter Property="colorControlHighlight" Value="{StaticResource ripple_color}" />
+    </Style>
+
+    <Style x:Key="SelectableItemBackground">
+        <Setter Property="theme">@style/SelectableItemTheme}" />
+        <Setter Property="background">?attr/selectableItemBackground}" />
+    </Style>
+
+    <Style x:Key="DrawerArrowStyle" BasedOn="Widget.AppCompat.DrawerArrowToggle">
+        <Setter Property="spinBars">true}" />
+        <Setter Property="color" Value="{StaticResource white}" />
+    </Style>
+
+    <Style x:Key="AppTheme.ProgressBar">
+        <Setter Property="layout_width">wrap_content}" />
+        <Setter Property="layout_height">wrap_content}" />
+        <Setter Property="layout_centerInParent">true}" />
+        <Setter Property="layout_gravity">center}" />
+        <Setter Property="visibility">visible}" />
+    </Style>
+
+    <Style x:Key="AppTheme.Button">
+        <Setter Property="layout_width">wrap_content}" />
+        <Setter Property="layout_height">wrap_content}" />
+        <Setter Property="layout_centerVertical">true}" />
+        <Setter Property="layout_centerHorizontal">true}" />
+        <Setter Property="layout_gravity">center}" />
+    </Style>
+
+    <Style x:Key="AppTheme.TextViewHeader">
+        <Setter Property="layout_width">match_parent}" />
+        <Setter Property="layout_height">wrap_content}" />
+        <Setter Property="layout_marginBottom">@dimen/header_margin}" />
+        <Setter Property="textSize">@dimen/header_text_size}" />
+        <Setter Property="textStyle">bold}" />
+        <Setter Property="gravity">left}" />
+        <Setter Property="textColor" Value="{StaticResource white}" />
+    </Style>
+
+    <Style x:Key="AppTheme.TextViewTitle">
+        <Setter Property="layout_width">match_parent}" />
+        <Setter Property="layout_height">wrap_content}" />
+        <Setter Property="layout_marginTop">@dimen/header_margin}" />
+        <Setter Property="textColor" Value="{StaticResource very_dark_grey}" />
+        <Setter Property="textStyle">bold}" />
+    </Style>
+
+    <Style x:Key="TabLayoutStyle" BasedOn="Widget.Design.TabLayout">
+        <Setter Property="tabIndicatorColor" Value="{StaticResource color_tab}" />
+        <Setter Property="tabBackground">?attr/selectableItemBackground}" />
+        <Setter Property="tabTextAppearance">@style/TabTextAppearance}" />
+        <Setter Property="tabSelectedTextColor" Value="{StaticResource white}" />
+        <Setter Property="tabIndicatorHeight">@dimen/tab_indicator_height}" />
+    </Style>
+
+    <Style x:Key="TabTextAppearance" BasedOn="TextAppearance.Design.Tab">
+        <Setter Property="textSize">14sp}" />
+        <Setter Property="textColor" Value="{StaticResource very_light_grey}" />
+        <Setter Property="textAllCaps">true}" />
+    </Style>-->
+
+    <Style x:Key="ButtonStart" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource app_Color}" />
+        <Setter Property="BorderColor" Value="{StaticResource toolbar_Color}" />
+        <Setter Property="TextColor" Value="{StaticResource white}" />
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+
+    <!--<Style x:Key="ButtonApprove" BasedOn="Theme.AppCompat.Light">
+        <Setter Property="colorControlHighlight" Value="{StaticResource favorite_ripple_dark_color}" />
+        <Setter Property="colorButtonNormal">@drawable/bck_color_button_approve}" />
+        <Setter Property="textColor">@drawable/bck_color_text_button_approve}" />
+    </Style>
+
+    <Style x:Key="ButtonRefuse" BasedOn="Theme.AppCompat.Light">
+        <Setter Property="colorControlHighlight" Value="{StaticResource favorite_ripple_light_color}" />
+        <Setter Property="colorButtonNormal">@drawable/bck_color_button_refuse}" />
+        <Setter Property="textColor">@drawable/bck_color_text_button_refuse}" />
+    </Style>-->
+
+
+</ResourceDictionary>

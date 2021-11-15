@@ -44,14 +44,23 @@
     <ProjectReference Include="..\INetApp.Model\INetApp.Model.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Resources\INetAppStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Literales.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Literales.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Compile Update="Resources\INetAppStyles.xaml.cs">
+      <DependentUpon>INetAppStyles.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Literales.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Literales.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   

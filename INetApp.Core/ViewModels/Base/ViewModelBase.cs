@@ -1,8 +1,7 @@
-﻿using INetApp.Services.Settings;
-using INetApp.Views.Templates;
-using INetApp.Services;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using INetApp.Services;
+using INetApp.Services.Settings;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels.Base
@@ -11,6 +10,7 @@ namespace INetApp.ViewModels.Base
     {
         protected readonly IDialogService DialogService;
         protected readonly INavigationService NavigationService;
+        protected readonly IRepositoryWebService RepositoryWebService;
 
         private bool _isInitialized;
 
@@ -21,7 +21,7 @@ namespace INetApp.ViewModels.Base
             set
             {
                 _isInitialized = value;
-                OnPropertyChanged(nameof(IsInitialized));
+                OnPropertyChanged(nameof(this.IsInitialized));
             }
         }
 
@@ -34,7 +34,7 @@ namespace INetApp.ViewModels.Base
             set
             {
                 _multipleInitialization = value;
-                OnPropertyChanged(nameof(MultipleInitialization));
+                OnPropertyChanged(nameof(this.MultipleInitialization));
             }
         }
 
@@ -47,7 +47,7 @@ namespace INetApp.ViewModels.Base
             set
             {
                 _isBusy = value;
-                OnPropertyChanged(nameof(IsBusy));
+                OnPropertyChanged(nameof(this.IsBusy));
             }
         }
 
@@ -55,25 +55,25 @@ namespace INetApp.ViewModels.Base
         {
             DialogService = ViewModelLocator.Resolve<IDialogService>();
             NavigationService = ViewModelLocator.Resolve<INavigationService>();
-
-            var settingsService = ViewModelLocator.Resolve<ISettingsService>();
+            RepositoryWebService = ViewModelLocator.Resolve<IRepositoryWebService>();
+            ISettingsService settingsService = ViewModelLocator.Resolve<ISettingsService>();
 
             GlobalSetting.Instance.BaseIdentityEndpoint = settingsService.IdentityEndpointBase;
             GlobalSetting.Instance.BaseGatewayShoppingEndpoint = settingsService.GatewayShoppingEndpointBase;
             GlobalSetting.Instance.BaseGatewayMarketingEndpoint = settingsService.GatewayMarketingEndpointBase;
         }
 
-        public virtual Task InitializeAsync (IDictionary<string, string> query)
+        public virtual Task InitializeAsync(IDictionary<string, string> query)
         {
-            return Task.FromResult (false);
+            return Task.FromResult(false);
         }
 
-        public async void ApplyQueryAttributes (IDictionary<string, string> query)
+        public async void ApplyQueryAttributes(IDictionary<string, string> query)
         {
-            if(!IsInitialized)
+            if (!this.IsInitialized)
             {
-                IsInitialized = true;
-                await InitializeAsync (query);
+                this.IsInitialized = true;
+                await InitializeAsync(query);
             }
         }
     }

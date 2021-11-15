@@ -7,6 +7,8 @@ namespace INetApp.Services.Settings
         string UserName { get; set; }
         string UserPass { get; set; }
         string AuthAccessToken { get; set; }
+        string NameInitial { get; set; }
+        string NameUser { get; set; }
         string AuthIdToken { get; set; }
         string IdentityEndpointBase { get; set; }
         string GatewayShoppingEndpointBase { get; set; }

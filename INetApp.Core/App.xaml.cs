@@ -1,13 +1,7 @@
-﻿using INetApp;
-using INetApp.Services.Settings;
+﻿using System.Threading.Tasks;
+using INetApp.Services;
 using INetApp.Services.Theme;
 using INetApp.ViewModels.Base;
-using INetApp.Services;
-using System;
-using System.Diagnostics;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -21,11 +15,11 @@ namespace INetApp
         {
             InitializeComponent();
 
-            Xamarin.Forms.Application.Current.On<Windows>().SetImageDirectory("Assets");
+            Current.On<Windows>().SetImageDirectory("Assets");
 
             InitApp();
 
-            MainPage = new AppShell ();
+            this.MainPage = new AppShell();
         }
 
         private void InitApp()
@@ -36,7 +30,7 @@ namespace INetApp
 
         private Task InitNavigation()
         {
-            var navigationService = ViewModelLocator.Resolve<INavigationService>();
+            INavigationService navigationService = ViewModelLocator.Resolve<INavigationService>();
             return navigationService.InitializeAsync();
         }
 
@@ -67,11 +61,11 @@ namespace INetApp
             });
         }
 
-        void SetStatusBar()
+        private void SetStatusBar()
         {
-            var nav = Current.MainPage as NavigationPage;
+            NavigationPage nav = Current.MainPage as NavigationPage;
 
-            var e = DependencyService.Get<ITheme>();
+            ITheme e = DependencyService.Get<ITheme>();
             if (Current.RequestedTheme == OSAppTheme.Dark)
             {
                 //e?.SetStatusBarColor(Color.Black, false);
@@ -79,7 +73,7 @@ namespace INetApp
                 if (nav != null)
                 {
                     nav.BarBackgroundColor = new Color(0, 156, 196); ;// Color.Black;
-                    nav.BarTextColor = new Color(0,156,196) ;
+                    nav.BarTextColor = new Color(0, 156, 196);
                 }
             }
             else

@@ -2,7 +2,10 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using IdentityModel.Client;
+using INetApp.APIWebServices.Dtos;
 using INetApp.Extensions;
+using INetApp.Models;
+using INetApp.Services;
 using INetApp.Services.Identity;
 using INetApp.Services.Settings;
 using INetApp.Validations;
@@ -19,8 +22,11 @@ namespace INetApp.ViewModels
         private bool _isLogin;
         private string _authUrl;
 
-        private readonly ISettingsService _settingsService;
-        private readonly IIdentityService _identityService;
+        private readonly ISettingsService settingsService;
+        private readonly IIdentityService identityService;
+        private readonly IRepositoryWebService repositoryWebService;
+
+        private UserLoggedModel _UserLoggedModel;
 
         #region Properties
         public ValidatableObject<string> UserName
@@ -40,6 +46,16 @@ namespace INetApp.ViewModels
             {
                 _password = value;
                 RaisePropertyChanged(() => this.Password);
+            }
+        }
+
+        public UserLoggedModel UserLoggedModel
+        {
+            get => _UserLoggedModel;
+            set
+            {
+                _UserLoggedModel = value;
+                RaisePropertyChanged(() => _UserLoggedModel);
             }
         }
 
@@ -77,18 +93,30 @@ namespace INetApp.ViewModels
 
         #region ICommand
         public ICommand LoginCommand => new Command(OnLoginClicked);
-   
+
+     
+
         #endregion
 
         public LoginViewModel()
         {
-            _settingsService = DependencyService.Get<ISettingsService>();
-            _identityService = DependencyService.Get<IIdentityService>();
+            settingsService = DependencyService.Get<ISettingsService>();
+            identityService = DependencyService.Get<IIdentityService>();
+            repositoryWebService = DependencyService.Get<IRepositoryWebService>();
 
             _userName = new ValidatableObject<string>();
             _password = new ValidatableObject<string>();
-            
+
+            GetCredenciales();
+
+
             AddValidations();
+        }
+
+        private void GetCredenciales()
+        {
+            var credenciales = identityService.GetCredentialsFromPrefs();
+            this.UserName.Value = credenciales.Key.ToString();
         }
 
 
@@ -96,7 +124,7 @@ namespace INetApp.ViewModels
         {
             (bool ContainsKeyAndValue, bool Value) logout = query.GetValueAsBool("Logout");
 
-            if (logout.ContainsKeyAndValue && logout.Value == true)
+            if (logout.ContainsKeyAndValue && logout.Value)
             {
                 Logout();
             }
@@ -104,22 +132,33 @@ namespace INetApp.ViewModels
             return Task.CompletedTask;
         }
 
-        private void OnLoginClicked(object obj)
+        private async void OnLoginClicked(object obj)
         {
             this.IsBusy = true;
             if (Validate())
             {
-                //todo preguntar por idioma
-                //todo color boton login
                 //todo quitar titulo en login
-                //
+                //todo progressbar en login
+                //boton reintentar login
 
-                //UserLoggedDto userLoggedDto = await repositoryWebService.GetUserLogged(this.Et_username, this.Et_password);
-                //if (userLoggedDto.IsOk && userLoggedDto.UserLoggedModel.permission)
-                //{
-                //    this.UserLoggedModel = userLoggedDto.UserLoggedModel;
 
-                //}
+                UserLoggedDto userLoggedDto = await repositoryWebService.GetUserLogged(this.UserName.Value, this.Password.Value);
+                if (userLoggedDto.IsOk && userLoggedDto.UserLoggedModel.permission)
+                {
+                    this.UserLoggedModel = userLoggedDto.UserLoggedModel;
+                    settingsService.AuthAccessToken = this.UserName.Value;
+                    settingsService.NameInitial= this.UserLoggedModel.nameInitial+this.UserLoggedModel.lastNameInitial;
+                    settingsService.NameUser = this.UserLoggedModel.fullName;
+                    //Application.Current.MainPage = new AppShell();
+                    await NavigationService.NavigateToAsync("//MainPage");
+                }
+                else
+                {
+                    if (!userLoggedDto.UserLoggedModel.permission)
+                    {
+
+                    }
+                }
             }
             this.IsBusy = false;
         }
@@ -130,7 +169,7 @@ namespace INetApp.ViewModels
 
             await Task.Delay(10);
 
-            this.LoginUrl = _identityService.CreateAuthorizationRequest();
+            this.LoginUrl = identityService.CreateAuthorizationRequest();
 
             this.IsValid = true;
             this.IsLogin = true;
@@ -140,14 +179,16 @@ namespace INetApp.ViewModels
 
         private void Logout()
         {
-            string authIdToken = _settingsService.AuthIdToken;
-            string logoutRequest = _identityService.CreateLogoutRequest(authIdToken);
+            settingsService.AuthAccessToken = "";
 
-            if (!string.IsNullOrEmpty(logoutRequest))
-            {
-                // Logout
-                this.LoginUrl = logoutRequest;
-            }
+            //string authIdToken = settingsService.AuthIdToken;
+            //string logoutRequest = identityService.CreateLogoutRequest(authIdToken);
+
+            //if (!string.IsNullOrEmpty(logoutRequest))
+            //{
+            //    // Logout
+            //    this.LoginUrl = logoutRequest;
+            //}
         }
 
         private async Task NavigateAsync(string url)
@@ -156,23 +197,23 @@ namespace INetApp.ViewModels
 
             if (unescapedUrl.Equals(GlobalSetting.Instance.LogoutCallback))
             {
-                _settingsService.AuthAccessToken = string.Empty;
-                _settingsService.AuthIdToken = string.Empty;
+                settingsService.AuthAccessToken = string.Empty;
+                settingsService.AuthIdToken = string.Empty;
                 this.IsLogin = false;
-                this.LoginUrl = _identityService.CreateAuthorizationRequest();
+                this.LoginUrl = identityService.CreateAuthorizationRequest();
             }
             else if (unescapedUrl.Contains(GlobalSetting.Instance.Callback))
             {
                 AuthorizeResponse authResponse = new AuthorizeResponse(url);
                 if (!string.IsNullOrWhiteSpace(authResponse.Code))
                 {
-                    Models.Token.UserToken userToken = await _identityService.GetTokenAsync(authResponse.Code);
+                    Models.Token.UserToken userToken = await identityService.GetTokenAsync(authResponse.Code);
                     string accessToken = userToken.AccessToken;
 
                     if (!string.IsNullOrWhiteSpace(accessToken))
                     {
-                        _settingsService.AuthAccessToken = accessToken;
-                        _settingsService.AuthIdToken = authResponse.IdentityToken;
+                        settingsService.AuthAccessToken = accessToken;
+                        settingsService.AuthIdToken = authResponse.IdentityToken;
                         await NavigationService.NavigateToAsync("//Main/Catalog");
                     }
                 }

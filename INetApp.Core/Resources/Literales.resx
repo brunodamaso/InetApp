@@ -132,11 +132,11 @@
   <data name="keyfullnombreuser" xml:space="preserve">
     <value>i6KvvUNxz7</value>
   </data>
-  <data name="keyPermission" xml:space="preserve">
-    <value>isPermission</value>
-  </data>
   <data name="keyfullpassuser" xml:space="preserve">
     <value>IzSkiR0nDz</value>
+  </data>
+  <data name="keyPermission" xml:space="preserve">
+    <value>isPermission</value>
   </data>
   <data name="registratiotoken" xml:space="preserve">
     <value>TokenRegsitration</value>
@@ -174,179 +174,176 @@
   <data name="app_name" xml:space="preserve">
     <value>InetApp</value>
   </data>
-  <data name="url" xml:space="preserve">
-    <value>http://www.ineco.com/</value>
+  <data name="btn_text_login" xml:space="preserve">
+    <value>Entrar</value>
   </data>
-  <data name="activity_title_main" xml:space="preserve">
-    <value>Main</value>
-  </data>
-  <data name="activity_title_message_category" xml:space="preserve">
-    <value>Inbox</value>
-  </data>
-  <data name="activity_title_message_list" xml:space="preserve">
-    <value>Messages List</value>
-  </data>
-  <data name="activity_title_message_details" xml:space="preserve">
-    <value>Message Details</value>
-  </data>
-  <data name="activity_title_lector" xml:space="preserve">
-    <value>Access Control - QR Reader</value>
-  </data>
-  <data name="drawer_open" xml:space="preserve">
-    <value>Open navigation drawer</value>
+  <data name="btn_text_retry" xml:space="preserve">
+    <value>Reintentar</value>
   </data>
   <data name="drawer_close" xml:space="preserve">
-    <value>Close navigation drawer</value>
+    <value>Cerrar menú</value>
   </data>
-  <data name="action_messages" xml:space="preserve">
-    <value>Inbox</value>
+  <data name="drawer_open" xml:space="preserve">
+    <value>Abrir menú</value>
   </data>
-  <data name="action_favorites" xml:space="preserve">
-    <value>Messages marked</value>
+  <data name="exception_message_generic" xml:space="preserve">
+    <value>Hubo un error en la aplicación</value>
   </data>
-  <data name="action_logout" xml:space="preserve">
-    <value>Logout</value>
+  <data name="exception_message_no_connection" xml:space="preserve">
+    <value>La conexión a internet parece estar desactivada</value>
   </data>
-  <data name="action_qr" xml:space="preserve">
-    <value>Control de acceso - Lector QR</value>
+  <data name="exception_message_user_not_found" xml:space="preserve">
+    <value>No es posible obtener datos de usuario. Compruebe su conexión a internet</value>
   </data>
-  <data name="version" xml:space="preserve">
-    <value>Versión InetApp Android:</value>
+  <data name="exception_message_message_not_found" xml:space="preserve">
+    <value>No es posible obtener datos de la solicitud. Compruebe su conexión a internet</value>
+  </data>
+  <data name="exception_message_login" xml:space="preserve">
+    <value>Uuario o contraseña incorrectos. Por favor inténtelo de nuevo.</value>
   </data>
   <data name="hint_text_user" xml:space="preserve">
-    <value>User</value>
+    <value>Usuario</value>
   </data>
   <data name="hint_text_email" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="hint_text_password" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="btn_text_login" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="btn_text_retry" xml:space="preserve">
-    <value>Retry</value>
-  </data>
-  <data name="empty_messages" xml:space="preserve">
-    <value>No messages to show</value>
-  </data>
-  <data name="empty_categories" xml:space="preserve">
-    <value>No categories to show</value>
-  </data>
-  <data name="username_empty_error" xml:space="preserve">
-    <value>Missing username. Please correct and try again</value>
-  </data>
-  <data name="password_empty_error" xml:space="preserve">
-    <value>Missing password. Please correct and try again</value>
-  </data>
-  <data name="view_text_update_now" xml:space="preserve">
-    <value>Update now</value>
-  </data>
-  <data name="view_text_last_updated" xml:space="preserve">
-    <value>LAST UPDATED: %1$s</value>
+    <value>Contraseña</value>
   </data>
   <data name="string_content_description" xml:space="preserve">
-    <value>Non accessible view</value>
+    <value>Vista no accesible</value>
   </data>
-  <data name="tab_text_all" xml:space="preserve">
-    <value>ALL</value>
+  <data name="url" xml:space="preserve">
+    <value>http://www.ineco.com/</value>
   </data>
-  <data name="tab_text_marked" xml:space="preserve">
-    <value>MARKED</value>
+  <data name="action_favorites" xml:space="preserve">
+    <value>Solicitudes marcadas </value>
+  </data>
+  <data name="action_messages" xml:space="preserve">
+    <value>Bandeja de entrada</value>
+  </data>
+  <data name="action_logout" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="activity_title_message_category" xml:space="preserve">
+    <value>Bandeja de entrada</value>
+  </data>
+  <data name="activity_title_main" xml:space="preserve">
+    <value>Principal</value>
+  </data>
+  <data name="activity_title_message_details" xml:space="preserve">
+    <value>Detalle de solicitud</value>
+  </data>
+  <data name="activity_title_message_list" xml:space="preserve">
+    <value>Lista de solicitudes</value>
+  </data>
+  <data name="view_text_update_now" xml:space="preserve">
+    <value>Actualizar ahora</value>
+  </data>
+  <data name="view_text_last_updated" xml:space="preserve">
+    <value>ÚLTIMA ACTUALIZACIÓN: %1$s</value>
   </data>
   <data name="btn_text_refuse" xml:space="preserve">
-    <value>REFUSE</value>
+    <value>RECHAZAR</value>
   </data>
   <data name="btn_text_approve" xml:space="preserve">
-    <value>APPROVE</value>
+    <value>APROBAR</value>
   </data>
   <data name="hint_text_label" xml:space="preserve">
-    <value>Label</value>
+    <value>Etiqueta</value>
   </data>
   <data name="text_label" xml:space="preserve">
-    <value>Label Value</value>
-  </data>
-  <data name="text_details" xml:space="preserve">
-    <value>DETAILS</value>
+    <value>Valor</value>
   </data>
   <data name="dialog_approve_title" xml:space="preserve">
-    <value>Approve the message</value>
-  </data>
-  <data name="dialog_approve_messages" xml:space="preserve">
-    <value>You have some marked messages. Would you approve?</value>
+    <value>Aprobar solicitud</value>
   </data>
   <data name="dialog_approve_message" xml:space="preserve">
-    <value>Would you approve the message?</value>
-  </data>
-  <data name="toast_approve_message" xml:space="preserve">
-    <value>Message approved correctly</value>
-  </data>
-  <data name="toast_approve_message_error" xml:space="preserve">
-    <value>Could not approve the message</value>
-  </data>
-  <data name="toast_approve_messages" xml:space="preserve">
-    <value>Messages approved correctly</value>
-  </data>
-  <data name="toast_not_all_messages_approved" xml:space="preserve">
-    <value>Any messages haven\'t been approved</value>
+    <value>¿Desea aprobar la solicitud?</value>
   </data>
   <data name="dialog_approve_install" xml:space="preserve">
-    <value>There is a new version of the application</value>
+    <value>Existe una nueva versión de la aplicación</value>
   </data>
   <data name="dialog_approve_positive_install" xml:space="preserve">
-    <value>Install</value>
+    <value>Instalar</value>
   </data>
   <data name="dialog_approve_positive" xml:space="preserve">
-    <value>Approve</value>
+    <value>Aprobar</value>
   </data>
   <data name="dialog_refuse_title" xml:space="preserve">
-    <value>Refuse the message</value>
+    <value>Rechazar solicitud</value>
   </data>
   <data name="dialog_refuse_message" xml:space="preserve">
-    <value>Would you refuse the message?</value>
-  </data>
-  <data name="dialog_refuse_messages" xml:space="preserve">
-    <value>You have some marked messages. Would you refuse?</value>
-  </data>
-  <data name="toast_refuse_message" xml:space="preserve">
-    <value>Message refused correctly</value>
-  </data>
-  <data name="toast_refuse_message_error" xml:space="preserve">
-    <value>Could not refuse the message</value>
-  </data>
-  <data name="toast_refuse_messages" xml:space="preserve">
-    <value>Messages refused correctly</value>
-  </data>
-  <data name="toast_not_all_messages_refused" xml:space="preserve">
-    <value>Any messages haven\'t been refused</value>
+    <value>¿Desea rechazar la solicitud?</value>
   </data>
   <data name="dialog_refuse_reason" xml:space="preserve">
-    <value>Reason</value>
+    <value>Motivo</value>
   </data>
   <data name="dialog_refuse_positive" xml:space="preserve">
-    <value>Refuse</value>
+    <value>Rechazar</value>
   </data>
-  <data name="exception_message_generic" xml:space="preserve">
-    <value>There was an application error</value>
+  <data name="dialog_approve_messages" xml:space="preserve">
+    <value>Tiene algunas solicitudes marcadas. ¿Desea aprobarlas?</value>
   </data>
-  <data name="exception_message_no_connection" xml:space="preserve">
-    <value>There is no internet connection</value>
+  <data name="dialog_refuse_messages" xml:space="preserve">
+    <value>Tiene algunas solicitudes marcadas. ¿Desea rechazarlas?</value>
   </data>
-  <data name="exception_message_message_not_found" xml:space="preserve">
-    <value>Cannot retrieve message data. Check your internet connection</value>
+  <data name="tab_text_all" xml:space="preserve">
+    <value>TODAS</value>
   </data>
-  <data name="exception_message_user_not_found" xml:space="preserve">
-    <value>Cannot retrieve user data. Check your internet connection</value>
+  <data name="tab_text_marked" xml:space="preserve">
+    <value>MARCADAS</value>
   </data>
-  <data name="exception_message_login" xml:space="preserve">
-    <value>Your username or password was incorrect. Please try again.</value>
+  <data name="toast_approve_message" xml:space="preserve">
+    <value>Solicitud aprobada correctamente</value>
+  </data>
+  <data name="toast_approve_message_error" xml:space="preserve">
+    <value>No ha sido posible aprobar la solicitud</value>
+  </data>
+  <data name="toast_refuse_message" xml:space="preserve">
+    <value>Solicitud rechazada correctamente</value>
+  </data>
+  <data name="toast_refuse_message_error" xml:space="preserve">
+    <value>No ha sido posible rechazar la solicitud</value>
+  </data>
+  <data name="toast_approve_messages" xml:space="preserve">
+    <value>Solicitudes aprobadas correctamente</value>
+  </data>
+  <data name="toast_refuse_messages" xml:space="preserve">
+    <value>Solicitudes rechazadas correctamente</value>
+  </data>
+  <data name="username_empty_error" xml:space="preserve">
+    <value>Usuario vacio. Por favor inténtelo de nuevo</value>
+  </data>
+  <data name="password_empty_error" xml:space="preserve">
+    <value>Contraseña vacia. Por favor inténtelo de nuevo</value>
+  </data>
+  <data name="toast_not_all_messages_approved" xml:space="preserve">
+    <value>Algunos mensajes no han sido aprobados</value>
+  </data>
+  <data name="toast_not_all_messages_refused" xml:space="preserve">
+    <value>Algunos mensajes no han sido rechazados</value>
+  </data>
+  <data name="empty_messages" xml:space="preserve">
+    <value>No existen solicitudes</value>
+  </data>
+  <data name="empty_categories" xml:space="preserve">
+    <value>No hay elementos en la bandeja de entrada</value>
+  </data>
+  <data name="text_details" xml:space="preserve">
+    <value>DETALLES</value>
   </data>
   <data name="seleccionartodos" xml:space="preserve">
-    <value>Select all</value>
+    <value>Seleccionar todos</value>
+  </data>
+  <data name="notification_title" xml:space="preserve">
+    <value>No se pudo abrir la puerta.</value>
+  </data>
+  <data name="notification_text" xml:space="preserve">
+    <value>No se pudo abrir la puerta, inténtelo de nuevo más tarde.</value>
   </data>
   <data name="alrt_noregisternotificationservice" xml:space="preserve">
-    <value>Impossible to register the Notification service</value>
+    <value>Imposible resgistrar el servicio de Notificciones</value>
   </data>
   <data name="options" xml:space="preserve">
     <value>Opciones</value>
@@ -377,9 +374,6 @@
   </data>
   <data name="dialog_search_positive" xml:space="preserve">
     <value>Ok</value>
-  </data>
-  <data name="dialog_correct_access" xml:space="preserve">
-    <value>Acceso correcto.</value>
   </data>
   <data name="toast_approve_options" xml:space="preserve">
     <value>Opciones guardadas correctamente</value>
@@ -438,20 +432,26 @@
   <data name="text_options" xml:space="preserve">
     <value>Estas son las Bandejas de solicitudes pendientes disponibles actualmente:</value>
   </data>
-  <data name="text_lector" xml:space="preserve">
-    <value>Situe el código QR en el centro del lector para verificar el acceso:</value>
-  </data>
   <data name="text_combo" xml:space="preserve">
     <value>-SELECCIONA PROYECTO-</value>
   </data>
   <data name="text_proyect_search" xml:space="preserve">
     <value>Introduce el ID o Título del proyecto</value>
   </data>
-  <data name="notification_title" xml:space="preserve">
-    <value>The door can not be opened.</value>
+  <data name="activity_title_lector" xml:space="preserve">
+    <value>Control Accceso - Lector Qr</value>
   </data>
-  <data name="notification_text" xml:space="preserve">
-    <value>No se pudo abrir la puerta, try again later please.</value>
+  <data name="action_qr" xml:space="preserve">
+    <value>Control de acceso - Lector QR</value>
+  </data>
+  <data name="dialog_correct_access" xml:space="preserve">
+    <value>Acceso correcto.</value>
+  </data>
+  <data name="text_lector" xml:space="preserve">
+    <value>Situe el código QR en el centro del lector para verificar el acceso:</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Versión InetApp Android:</value>
   </data>
   <data name="action_formation" xml:space="preserve">
     <value>Formación y Conocimiento</value>

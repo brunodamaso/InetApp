@@ -61,7 +61,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Messages marked.
+        ///   Busca una cadena traducida similar a Solicitudes marcadas .
         /// </summary>
         internal static string action_favorites {
             get {
@@ -79,7 +79,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Logout.
+        ///   Busca una cadena traducida similar a Salir.
         /// </summary>
         internal static string action_logout {
             get {
@@ -88,7 +88,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Inbox.
+        ///   Busca una cadena traducida similar a Bandeja de entrada.
         /// </summary>
         internal static string action_messages {
             get {
@@ -124,7 +124,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Access Control - QR Reader.
+        ///   Busca una cadena traducida similar a Control Accceso - Lector Qr.
         /// </summary>
         internal static string activity_title_lector {
             get {
@@ -133,7 +133,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Main.
+        ///   Busca una cadena traducida similar a Principal.
         /// </summary>
         internal static string activity_title_main {
             get {
@@ -142,7 +142,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Inbox.
+        ///   Busca una cadena traducida similar a Bandeja de entrada.
         /// </summary>
         internal static string activity_title_message_category {
             get {
@@ -151,7 +151,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Message Details.
+        ///   Busca una cadena traducida similar a Detalle de solicitud.
         /// </summary>
         internal static string activity_title_message_details {
             get {
@@ -160,7 +160,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Messages List.
+        ///   Busca una cadena traducida similar a Lista de solicitudes.
         /// </summary>
         internal static string activity_title_message_list {
             get {
@@ -169,7 +169,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Impossible to register the Notification service.
+        ///   Busca una cadena traducida similar a Imposible resgistrar el servicio de Notificciones.
         /// </summary>
         internal static string alrt_noregisternotificationservice {
             get {
@@ -223,7 +223,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a APPROVE.
+        ///   Busca una cadena traducida similar a APROBAR.
         /// </summary>
         internal static string btn_text_approve {
             get {
@@ -232,7 +232,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Login.
+        ///   Busca una cadena traducida similar a Entrar.
         /// </summary>
         internal static string btn_text_login {
             get {
@@ -241,7 +241,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a REFUSE.
+        ///   Busca una cadena traducida similar a RECHAZAR.
         /// </summary>
         internal static string btn_text_refuse {
             get {
@@ -250,7 +250,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Retry.
+        ///   Busca una cadena traducida similar a Reintentar.
         /// </summary>
         internal static string btn_text_retry {
             get {
@@ -277,7 +277,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a There is a new version of the application.
+        ///   Busca una cadena traducida similar a Existe una nueva versión de la aplicación.
         /// </summary>
         internal static string dialog_approve_install {
             get {
@@ -286,7 +286,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Would you approve the message?.
+        ///   Busca una cadena traducida similar a ¿Desea aprobar la solicitud?.
         /// </summary>
         internal static string dialog_approve_message {
             get {
@@ -295,7 +295,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a You have some marked messages. Would you approve?.
+        ///   Busca una cadena traducida similar a Tiene algunas solicitudes marcadas. ¿Desea aprobarlas?.
         /// </summary>
         internal static string dialog_approve_messages {
             get {
@@ -304,7 +304,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Approve.
+        ///   Busca una cadena traducida similar a Aprobar.
         /// </summary>
         internal static string dialog_approve_positive {
             get {
@@ -313,7 +313,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Install.
+        ///   Busca una cadena traducida similar a Instalar.
         /// </summary>
         internal static string dialog_approve_positive_install {
             get {
@@ -331,7 +331,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Approve the message.
+        ///   Busca una cadena traducida similar a Aprobar solicitud.
         /// </summary>
         internal static string dialog_approve_title {
             get {
@@ -367,7 +367,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Would you refuse the message?.
+        ///   Busca una cadena traducida similar a ¿Desea rechazar la solicitud?.
         /// </summary>
         internal static string dialog_refuse_message {
             get {
@@ -376,7 +376,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a You have some marked messages. Would you refuse?.
+        ///   Busca una cadena traducida similar a Tiene algunas solicitudes marcadas. ¿Desea rechazarlas?.
         /// </summary>
         internal static string dialog_refuse_messages {
             get {
@@ -385,7 +385,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Refuse.
+        ///   Busca una cadena traducida similar a Rechazar.
         /// </summary>
         internal static string dialog_refuse_positive {
             get {
@@ -394,7 +394,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Reason.
+        ///   Busca una cadena traducida similar a Motivo.
         /// </summary>
         internal static string dialog_refuse_reason {
             get {
@@ -412,7 +412,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Refuse the message.
+        ///   Busca una cadena traducida similar a Rechazar solicitud.
         /// </summary>
         internal static string dialog_refuse_title {
             get {
@@ -430,7 +430,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Close navigation drawer.
+        ///   Busca una cadena traducida similar a Cerrar menú.
         /// </summary>
         internal static string drawer_close {
             get {
@@ -439,7 +439,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Open navigation drawer.
+        ///   Busca una cadena traducida similar a Abrir menú.
         /// </summary>
         internal static string drawer_open {
             get {
@@ -448,7 +448,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a No categories to show.
+        ///   Busca una cadena traducida similar a No hay elementos en la bandeja de entrada.
         /// </summary>
         internal static string empty_categories {
             get {
@@ -457,7 +457,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a No messages to show.
+        ///   Busca una cadena traducida similar a No existen solicitudes.
         /// </summary>
         internal static string empty_messages {
             get {
@@ -466,7 +466,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a There was an application error.
+        ///   Busca una cadena traducida similar a Hubo un error en la aplicación.
         /// </summary>
         internal static string exception_message_generic {
             get {
@@ -475,7 +475,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Your username or password was incorrect. Please try again..
+        ///   Busca una cadena traducida similar a Uuario o contraseña incorrectos. Por favor inténtelo de nuevo..
         /// </summary>
         internal static string exception_message_login {
             get {
@@ -484,7 +484,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Cannot retrieve message data. Check your internet connection.
+        ///   Busca una cadena traducida similar a No es posible obtener datos de la solicitud. Compruebe su conexión a internet.
         /// </summary>
         internal static string exception_message_message_not_found {
             get {
@@ -493,7 +493,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a There is no internet connection.
+        ///   Busca una cadena traducida similar a La conexión a internet parece estar desactivada.
         /// </summary>
         internal static string exception_message_no_connection {
             get {
@@ -502,7 +502,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Cannot retrieve user data. Check your internet connection.
+        ///   Busca una cadena traducida similar a No es posible obtener datos de usuario. Compruebe su conexión a internet.
         /// </summary>
         internal static string exception_message_user_not_found {
             get {
@@ -520,7 +520,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Label.
+        ///   Busca una cadena traducida similar a Etiqueta.
         /// </summary>
         internal static string hint_text_label {
             get {
@@ -529,7 +529,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Password.
+        ///   Busca una cadena traducida similar a Contraseña.
         /// </summary>
         internal static string hint_text_password {
             get {
@@ -538,7 +538,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a User.
+        ///   Busca una cadena traducida similar a Usuario.
         /// </summary>
         internal static string hint_text_user {
             get {
@@ -700,7 +700,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a No se pudo abrir la puerta, try again later please..
+        ///   Busca una cadena traducida similar a No se pudo abrir la puerta, inténtelo de nuevo más tarde..
         /// </summary>
         internal static string notification_text {
             get {
@@ -709,7 +709,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a The door can not be opened..
+        ///   Busca una cadena traducida similar a No se pudo abrir la puerta..
         /// </summary>
         internal static string notification_title {
             get {
@@ -727,7 +727,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Missing password. Please correct and try again.
+        ///   Busca una cadena traducida similar a Contraseña vacia. Por favor inténtelo de nuevo.
         /// </summary>
         internal static string password_empty_error {
             get {
@@ -754,7 +754,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Select all.
+        ///   Busca una cadena traducida similar a Seleccionar todos.
         /// </summary>
         internal static string seleccionartodos {
             get {
@@ -772,7 +772,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Non accessible view.
+        ///   Busca una cadena traducida similar a Vista no accesible.
         /// </summary>
         internal static string string_content_description {
             get {
@@ -781,7 +781,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a ALL.
+        ///   Busca una cadena traducida similar a TODAS.
         /// </summary>
         internal static string tab_text_all {
             get {
@@ -790,7 +790,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a MARKED.
+        ///   Busca una cadena traducida similar a MARCADAS.
         /// </summary>
         internal static string tab_text_marked {
             get {
@@ -835,7 +835,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a DETAILS.
+        ///   Busca una cadena traducida similar a DETALLES.
         /// </summary>
         internal static string text_details {
             get {
@@ -853,7 +853,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Label Value.
+        ///   Busca una cadena traducida similar a Valor.
         /// </summary>
         internal static string text_label {
             get {
@@ -916,7 +916,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Message approved correctly.
+        ///   Busca una cadena traducida similar a Solicitud aprobada correctamente.
         /// </summary>
         internal static string toast_approve_message {
             get {
@@ -925,7 +925,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Could not approve the message.
+        ///   Busca una cadena traducida similar a No ha sido posible aprobar la solicitud.
         /// </summary>
         internal static string toast_approve_message_error {
             get {
@@ -934,7 +934,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Messages approved correctly.
+        ///   Busca una cadena traducida similar a Solicitudes aprobadas correctamente.
         /// </summary>
         internal static string toast_approve_messages {
             get {
@@ -961,7 +961,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Any messages haven\&apos;t been approved.
+        ///   Busca una cadena traducida similar a Algunos mensajes no han sido aprobados.
         /// </summary>
         internal static string toast_not_all_messages_approved {
             get {
@@ -970,7 +970,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Any messages haven\&apos;t been refused.
+        ///   Busca una cadena traducida similar a Algunos mensajes no han sido rechazados.
         /// </summary>
         internal static string toast_not_all_messages_refused {
             get {
@@ -979,7 +979,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Message refused correctly.
+        ///   Busca una cadena traducida similar a Solicitud rechazada correctamente.
         /// </summary>
         internal static string toast_refuse_message {
             get {
@@ -988,7 +988,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Could not refuse the message.
+        ///   Busca una cadena traducida similar a No ha sido posible rechazar la solicitud.
         /// </summary>
         internal static string toast_refuse_message_error {
             get {
@@ -997,7 +997,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Messages refused correctly.
+        ///   Busca una cadena traducida similar a Solicitudes rechazadas correctamente.
         /// </summary>
         internal static string toast_refuse_messages {
             get {
@@ -1051,7 +1051,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Missing username. Please correct and try again.
+        ///   Busca una cadena traducida similar a Usuario vacio. Por favor inténtelo de nuevo.
         /// </summary>
         internal static string username_empty_error {
             get {
@@ -1069,7 +1069,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a LAST UPDATED: %1$s.
+        ///   Busca una cadena traducida similar a ÚLTIMA ACTUALIZACIÓN: %1$s.
         /// </summary>
         internal static string view_text_last_updated {
             get {
@@ -1078,7 +1078,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Update now.
+        ///   Busca una cadena traducida similar a Actualizar ahora.
         /// </summary>
         internal static string view_text_update_now {
             get {

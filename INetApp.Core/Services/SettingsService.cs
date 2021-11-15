@@ -14,10 +14,11 @@ namespace INetApp.Services.Settings
 
         private const string USER_PREF = "i6KvvUNxz7";
         private const string PASS_PREF = "IzSkiR0nDz";
-     
-        
         private const string AccessToken = "access_token";
-        private const string IdToken = "id_token";
+        private const string nameInitial = "Iniciales";
+        private const string nameUser = "FullName";
+
+        private const string IdToken = "id_token";        
         private const string IdIdentityBase = "url_base";
         private const string IdGatewayMarketingBase = "url_marketing";
         private const string IdGatewayShoppingBase = "url_shopping";
@@ -47,6 +48,16 @@ namespace INetApp.Services.Settings
             get => Preferences.Get(AccessToken, AccessTokenDefault);
             set => Preferences.Set(AccessToken, value);
         }
+        public string NameInitial
+        {
+            get => Preferences.Get(nameInitial, "");
+            set => Preferences.Set(nameInitial, value);
+        }
+        public string NameUser
+        {
+            get => Preferences.Get(nameUser, "");
+            set => Preferences.Set(nameUser, value);
+        }       
 
         public string AuthIdToken
         {

@@ -2,7 +2,9 @@
 <Shell
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:INetApp.Views"
+    xmlns:views="clr-namespace:INetApp.Views" 
+    xmlns:inetapp="clr-namespace:INetApp" 
+    x:DataType="inetapp:AppShell"
     x:Class="INetApp.AppShell">
 
     <Shell.Resources>
@@ -26,12 +28,97 @@
         <BackButtonBehavior TextOverride="" />
     </Shell.BackButtonBehavior>
 
-    <FlyoutItem >
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="{x:StaticResource app_Color}" Margin="0,-40,0,0"  >
+            <Grid.Padding>
+                <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                    <Binding Source="{StaticResource menu_header_horizontal_margin}"/>
+                    <Binding Source="{StaticResource menu_header_vertical_margin}"/>
+                    <Binding Source="{StaticResource menu_header_horizontal_margin}"/>
+                    <Binding Source="{StaticResource activity_horizontal_margin}"/>
+                </MultiBinding>
+            </Grid.Padding>
+
+            <BoxView Grid.Row ="0" BackgroundColor="{StaticResource menu_header_avatar}" CornerRadius="50" 
+                     WidthRequest="{Binding Source={StaticResource menu_header_avatar_size}, Converter={StaticResource GridLengthConverter}}" 
+                     HeightRequest="{Binding Source={StaticResource menu_header_avatar_size}, Converter={StaticResource GridLengthConverter}}" 
+                     HorizontalOptions="Start" VerticalOptions="Center"/>
+            <Label Grid.Row ="0" 
+               x:Name="NameInitial"
+               TextColor="White"
+               FontSize="23" 
+               Padding="3,0,0,2"
+               HorizontalOptions="Start"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+            <Label Grid.Row ="1" 
+                x:Name="NameUser"
+               TextColor="White"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Start"
+               VerticalTextAlignment="Center" />
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <!-- 
+        When the Flyout is visible this defines the content to display in the flyout.
+        FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
+        https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
+        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage} />
+    <FlyoutItem>
+        <ShellContent  Route="PrincipalPage" ContentTemplate="{DataTemplate local:PrincipalPage}" />
+    </FlyoutItem>
+
+    -->
+
+    <FlyoutItem Route="MainPage" FlyoutItemIsVisible="False" StyleClass="FlyoutItemLayoutStyle" 
+                FlyoutDisplayOptions="AsMultipleItems" IsTabStop="False">
+        <ShellContent Route="MainPage"  
+                      IsTabStop="False"
+                  ContentTemplate="{DataTemplate views:MainPage}"
+                  Title="Home" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Bandeja de entrada" Icon="icon_feed.png" >
+        <ShellContent Route="BandejaPage" ContentTemplate="{DataTemplate views:BasketView}" />
+    </FlyoutItem>
+    <FlyoutItem     Title="Solicitudes marcadas">
+        <ShellContent Route="Catalog" ContentTemplate="{DataTemplate views:CatalogView}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Opciones">
+        <ShellContent  Route="AboutPage" ContentTemplate="{DataTemplate views:BasketView}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Partes de trabajo" Icon="icon_feed.png">
+        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate views:BasketView}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Control de acceso" Icon="icon_feed.png">
+        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate views:BasketView}" />
+    </FlyoutItem>
+
+    <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
+    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+    </MenuItem>
+
+
+    <!--
+        TabBar lets you define content that won't show up in a flyout menu. When this content is active
+        the flyout menu won't be available. This is useful for creating areas of the application where 
+        you don't want users to be able to navigate away from. If you would like to navigate to this 
+        content you can do so by calling 
+        await Shell.Current.GoToAsync("//LoginPage");
+    -->
+    <TabBar>
+        <ShellContent Route="Login" ContentTemplate="{DataTemplate views:LoginView}" />
+    </TabBar>
+
+
+    <!--<FlyoutItem >
         <ShellContent ContentTemplate="{DataTemplate views:LoginView}" Route="Login" />
     </FlyoutItem>
 
     <TabBar Route="Main">
         <ShellContent Title="CATALOG" Route="Catalog" Icon="{StaticResource CatalogIconImageSource}" ContentTemplate="{DataTemplate views:CatalogView}" />
         <ShellContent Title="PROFILE" Route="Profile" Icon="{StaticResource ProfileIconImageSource}" ContentTemplate="{DataTemplate views:ProfileView}" />
-    </TabBar>
+    </TabBar>-->
 </Shell>

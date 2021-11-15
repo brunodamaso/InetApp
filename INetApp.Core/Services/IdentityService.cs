@@ -109,124 +109,62 @@ namespace INetApp.Services.Identity
 
         public void PutCredentialsFromPrefs(string user, string pass)
         {
-            settingsService.UserName = user;
-
-            string keyString = KEY_PREFIX + this.deviceService.DispositivoID;
 
             //ISharedPreferences prefs = context.GetSharedPreferences(APP_KEY, FileCreationMode.Private); // Context.MODE_PRIVATE
             //prefs.Edit().PutString(USER_PREF, user).Apply();
             //string keyString = KEY_PREFIX + Settings.Secure.GetString(context.ContentResolver, Settings.Secure.AndroidId);
-            byte[] key = new byte[0];
             try
             {
-                key = getRawKey(Encoding.UTF8.GetBytes(keyString)); // .GetBytes("UTF8")
+                settingsService.UserName = user;
+
+                string keyString = KEY_PREFIX + this.deviceService.DispositivoID;
+
+                byte[] key = getRawKey(Encoding.UTF8.GetBytes(keyString)); // .GetBytes("UTF8")
+                var provider = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
+                var sKeySpec = provider.CreateSymmetricKey(key);
+                byte[] passEncrypted = WinRTCrypto.CryptographicEngine.Encrypt(sKeySpec, Encoding.UTF8.GetBytes(pass));
+                settingsService.UserPass = Base64Url.Encode(passEncrypted);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace);
             }
-            var provider = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesGcm);
-            var sKeySpec = provider.CreateSymmetricKey(key);
 
             //SecretKeySpec sKeySpec = new SecretKeySpec(key, "AES");
             //Cipher cipher = null;
-            //try
-            //{
             //    cipher = Cipher.GetInstance("AES");
-            //}
-            //catch (NoSuchAlgorithmException e)
-            //{
-            //    Console.WriteLine(e.StackTrace);
-            //}
-            //catch (NoSuchPaddingException e)
-            //{
-            //    Console.WriteLine(e.StackTrace);
-            //}
-            byte[] passEncrypted = new byte[0];
-            try
-            {
-                passEncrypted = WinRTCrypto.CryptographicEngine.Encrypt(sKeySpec, Encoding.UTF8.GetBytes(pass));
                 //cipher.Init(CipherMode.EncryptMode, sKeySpec); // Cipher.DecryptMode
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-            }
-            //try
-            //{                
             //    //passEncrypted = cipher.doFinal(pass.getBytes("UTF8"));
-            //}
-            //catch (IllegalBlockSizeException e)
-            //{
-            //    Console.WriteLine(e.StackTrace);
-            //}
-            //catch (BadPaddingException e)
-            //{
-            //    Console.WriteLine(e.StackTrace);
-            //}
-            //catch (Java.IO.UnsupportedEncodingException e)
-            //{
-            //    Console.WriteLine(e.StackTrace);
-            //}
-            settingsService.UserPass= Base64Url.Encode(passEncrypted);
 
             //prefs.Edit().PutString(PASS_PREF, Base64.EncodeToString(passEncrypted, Base64Flags.Default)).Apply();
         }
         public KeyValuePair<string, object> GetCredentialsFromPrefs()
         {
+            KeyValuePair<string, object> retorno = new KeyValuePair<string, object>();
             string username = settingsService.UserName;
             string password = settingsService.UserPass;
 
             string keyString = KEY_PREFIX + this.deviceService.DispositivoID;//.Settings.Secure.GetString(context.ContentResolver, Settings.Secure.AndroidId);
 
-            byte[] key = new byte[0];
             try
             {
-                key = getRawKey(Encoding.UTF8.GetBytes(keyString)); // .GetBytes("UTF8")
+                byte[] key = getRawKey(Encoding.UTF8.GetBytes(keyString)); // .GetBytes("UTF8")
+                var provider = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
+                var sKeySpec = provider.CreateSymmetricKey(key);
+                //SecretKeySpec sKeySpec = new SecretKeySpec(key, "AES");
+
+                //Cipher cipher = null;
+                //    cipher = Cipher.GetInstance("AES");
+                //    //cipher.Init(CipherMode.DecryptMode, sKeySpec); // Cipher.DecryptMode
+                byte[] passDecrypted = WinRTCrypto.CryptographicEngine.Decrypt(sKeySpec, Base64Url.Decode(password));
+                //passDecrypted = cipher.DoFinal(Base64.Decode(password, Base64Flags.Default));
+                retorno = new KeyValuePair<string, object>(username, Encoding.UTF8.GetString(passDecrypted));
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace);//Console.WriteLine(e.StackTrace);
             }
-            var provider = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesGcm);
-            var sKeySpec = provider.CreateSymmetricKey(key);
-
-            //SecretKeySpec sKeySpec = new SecretKeySpec(key, "AES");
-
-            //Cipher cipher = null;
-            //try
-            //{
-            //    cipher = Cipher.GetInstance("AES");
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.StackTrace);
-            //}
-            //try
-            //{
-            //    //cipher.Init(CipherMode.DecryptMode, sKeySpec); // Cipher.DecryptMode
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.StackTrace);
-            //}
-            byte[] passDecrypted = new byte[0];
-            try
-            {
-                passDecrypted = WinRTCrypto.CryptographicEngine.Decrypt(sKeySpec, Base64Url.Decode(password));
-                //passDecrypted = cipher.DoFinal(Base64.Decode(password, Base64Flags.Default));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-            }
-            //catch (BadPaddingException e)
-            //{
-            //    Console.WriteLine(e.StackTrace);
-            //}  
-
-            return new KeyValuePair<string, object>(username, Encoding.UTF8.GetString(passDecrypted));
-
+            return retorno;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using INetApp.ViewModels.Base;
+﻿using INetApp.ViewModels.Base;
 using Xamarin.Forms;
 
 namespace INetApp.Views
@@ -8,18 +7,18 @@ namespace INetApp.Views
     {
         public ContentPageBase()
         {
-            NavigationPage.SetBackButtonTitle (this, string.Empty);
+            NavigationPage.SetBackButtonTitle(this, string.Empty);
         }
 
-        protected override async void OnAppearing ()
+        protected override async void OnAppearing()
         {
-            base.OnAppearing ();
+            base.OnAppearing();
 
-            if (BindingContext is ViewModelBase vmb)
+            if (this.BindingContext is ViewModelBase vmb)
             {
                 if (!vmb.IsInitialized || vmb.MultipleInitialization)
                 {
-                    await vmb.InitializeAsync (null);
+                    await vmb.InitializeAsync(null);
                 }
             }
         }

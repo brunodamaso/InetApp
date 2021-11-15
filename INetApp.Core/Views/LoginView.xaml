@@ -12,27 +12,21 @@
                 xmlns:viewmodels="clr-namespace:INetApp.ViewModels"
                 viewModelBase:ViewModelLocator.AutoWireViewModel="true"
                 x:DataType="viewmodels:LoginViewModel"
-                Shell.FlyoutBehavior="Disabled"
                 Shell.NavBarIsVisible="False"
                 Shell.TabBarIsVisible="False"
+                Shell.FlyoutBehavior="Disabled"           
                 >
-    
-    <ContentPage.Title>
-        <OnPlatform x:TypeArguments="x:String">
-            <On Platform="iOS, UWP, WinRT, WinPhone" Value="INetApp" />
-        </OnPlatform>
-    </ContentPage.Title>
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <animations:StoryBoard
               x:Key="LoginAnimation"
               Target="{x:Reference LoginPanel}">
-        <animations:FadeInAnimation
+                <animations:FadeInAnimation
                     Direction="Up"
                     Duration="1500" />
-    </animations:StoryBoard>
-    </ResourceDictionary>
+            </animations:StoryBoard>
+        </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Triggers>
         <EventTrigger
@@ -48,7 +42,7 @@
             <RowDefinition Height ="0.25*"/>
             <RowDefinition Height ="auto"/>
             <RowDefinition Height ="*"/>
-            <RowDefinition Height ="{Binding Source={StaticResource button_login_height}, Converter={StaticResource GridLengthConverter}}"/> 
+            <RowDefinition Height ="{Binding Source={StaticResource button_login_height}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.RowDefinitions>
         <Image Grid.Row="0" Source="im_login_background.png"  Aspect="Fill" />
         <BoxView Grid.Row="1" Grid.RowSpan="3" BackgroundColor ="White"/>
@@ -115,9 +109,12 @@
                     HeightRequest="{Binding Source={StaticResource splash_edit_text_image_width}, Converter={StaticResource GridLengthConverter}}"
                 />
             </Grid>
-            
-            
+
+
         </Grid>
-        <Button Grid.Row="4" Text="{Binding Source={x:Static resources:Literales.btn_text_login}}" Command="{Binding LoginCommand}"/>
+        <Button Grid.Row="4" 
+            Style="{StaticResource ButtonStart}"
+            Text="{Binding Source={x:Static resources:Literales.btn_text_login}}" 
+            Command="{Binding LoginCommand}"/>
     </Grid>
 </ContentPage>

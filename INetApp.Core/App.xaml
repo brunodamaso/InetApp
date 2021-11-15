@@ -15,9 +15,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <local:INetAppDimens />
                 <local:INetAppColors />
+                <local:INetAppStyles />
             </ResourceDictionary.MergedDictionaries>
             <converters:GridLengthConverter x:Key="GridLengthConverter" />
             <converters:ThicknessConverter x:Key="ThicknessConverter" />
+
             
             <!--  COLORS  -->
             <Color x:Key="WhiteColor">#ffffff</Color>
