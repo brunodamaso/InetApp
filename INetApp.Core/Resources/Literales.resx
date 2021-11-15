@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="sender_id" xml:space="preserve">
+    <value>13164573839</value>
+  </data>
+  <data name="credenciales" xml:space="preserve">
+    <value>com.ineco.android.master</value>
+  </data>
+  <data name="keynombreuser" xml:space="preserve">
+    <value>NombreUser</value>
+  </data>
+  <data name="keynombreuserfull" xml:space="preserve">
+    <value>NombreUsuarioFull</value>
+  </data>
+  <data name="keyfullnombreuser" xml:space="preserve">
+    <value>i6KvvUNxz7</value>
+  </data>
+  <data name="keyPermission" xml:space="preserve">
+    <value>isPermission</value>
+  </data>
+  <data name="keyfullpassuser" xml:space="preserve">
+    <value>IzSkiR0nDz</value>
+  </data>
+  <data name="registratiotoken" xml:space="preserve">
+    <value>TokenRegsitration</value>
+  </data>
+  <data name="keyapp" xml:space="preserve">
+    <value>App</value>
+  </data>
+  <data name="keysol" xml:space="preserve">
+    <value>Sol</value>
+  </data>
+  <data name="keynoTipoMsg" xml:space="preserve">
+    <value>notiExterna</value>
+  </data>
+  <data name="keynoUrlMsg" xml:space="preserve">
+    <value>url</value>
+  </data>
+  <data name="keynottitle" xml:space="preserve">
+    <value>title</value>
+  </data>
+  <data name="keynotmessage" xml:space="preserve">
+    <value>message</value>
+  </data>
+  <data name="keynotidapplication" xml:space="preserve">
+    <value>idApplication</value>
+  </data>
+  <data name="keynotidsolicitud" xml:space="preserve">
+    <value>idSolicitud</value>
+  </data>
+  <data name="keynotnumsolicitudes" xml:space="preserve">
+    <value>numSolicitudes</value>
+  </data>
+  <data name="keycategoryname" xml:space="preserve">
+    <value>categoryName</value>
+  </data>
+  <data name="app_name" xml:space="preserve">
+    <value>InetApp</value>
+  </data>
+  <data name="url" xml:space="preserve">
+    <value>http://www.ineco.com/</value>
+  </data>
+  <data name="activity_title_main" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="activity_title_message_category" xml:space="preserve">
+    <value>Inbox</value>
+  </data>
+  <data name="activity_title_message_list" xml:space="preserve">
+    <value>Messages List</value>
+  </data>
+  <data name="activity_title_message_details" xml:space="preserve">
+    <value>Message Details</value>
+  </data>
+  <data name="activity_title_lector" xml:space="preserve">
+    <value>Access Control - QR Reader</value>
+  </data>
+  <data name="drawer_open" xml:space="preserve">
+    <value>Open navigation drawer</value>
+  </data>
+  <data name="drawer_close" xml:space="preserve">
+    <value>Close navigation drawer</value>
+  </data>
+  <data name="action_messages" xml:space="preserve">
+    <value>Inbox</value>
+  </data>
+  <data name="action_favorites" xml:space="preserve">
+    <value>Messages marked</value>
+  </data>
+  <data name="action_logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="action_qr" xml:space="preserve">
+    <value>Control de acceso - Lector QR</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Versión InetApp Android:</value>
+  </data>
+  <data name="hint_text_user" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="hint_text_email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="hint_text_password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="btn_text_login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="btn_text_retry" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="empty_messages" xml:space="preserve">
+    <value>No messages to show</value>
+  </data>
+  <data name="empty_categories" xml:space="preserve">
+    <value>No categories to show</value>
+  </data>
+  <data name="username_empty_error" xml:space="preserve">
+    <value>Missing username. Please correct and try again</value>
+  </data>
+  <data name="password_empty_error" xml:space="preserve">
+    <value>Missing password. Please correct and try again</value>
+  </data>
+  <data name="view_text_update_now" xml:space="preserve">
+    <value>Update now</value>
+  </data>
+  <data name="view_text_last_updated" xml:space="preserve">
+    <value>LAST UPDATED: %1$s</value>
+  </data>
+  <data name="string_content_description" xml:space="preserve">
+    <value>Non accessible view</value>
+  </data>
+  <data name="tab_text_all" xml:space="preserve">
+    <value>ALL</value>
+  </data>
+  <data name="tab_text_marked" xml:space="preserve">
+    <value>MARKED</value>
+  </data>
+  <data name="btn_text_refuse" xml:space="preserve">
+    <value>REFUSE</value>
+  </data>
+  <data name="btn_text_approve" xml:space="preserve">
+    <value>APPROVE</value>
+  </data>
+  <data name="hint_text_label" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <data name="text_label" xml:space="preserve">
+    <value>Label Value</value>
+  </data>
+  <data name="text_details" xml:space="preserve">
+    <value>DETAILS</value>
+  </data>
+  <data name="dialog_approve_title" xml:space="preserve">
+    <value>Approve the message</value>
+  </data>
+  <data name="dialog_approve_messages" xml:space="preserve">
+    <value>You have some marked messages. Would you approve?</value>
+  </data>
+  <data name="dialog_approve_message" xml:space="preserve">
+    <value>Would you approve the message?</value>
+  </data>
+  <data name="toast_approve_message" xml:space="preserve">
+    <value>Message approved correctly</value>
+  </data>
+  <data name="toast_approve_message_error" xml:space="preserve">
+    <value>Could not approve the message</value>
+  </data>
+  <data name="toast_approve_messages" xml:space="preserve">
+    <value>Messages approved correctly</value>
+  </data>
+  <data name="toast_not_all_messages_approved" xml:space="preserve">
+    <value>Any messages haven\'t been approved</value>
+  </data>
+  <data name="dialog_approve_install" xml:space="preserve">
+    <value>There is a new version of the application</value>
+  </data>
+  <data name="dialog_approve_positive_install" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="dialog_approve_positive" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="dialog_refuse_title" xml:space="preserve">
+    <value>Refuse the message</value>
+  </data>
+  <data name="dialog_refuse_message" xml:space="preserve">
+    <value>Would you refuse the message?</value>
+  </data>
+  <data name="dialog_refuse_messages" xml:space="preserve">
+    <value>You have some marked messages. Would you refuse?</value>
+  </data>
+  <data name="toast_refuse_message" xml:space="preserve">
+    <value>Message refused correctly</value>
+  </data>
+  <data name="toast_refuse_message_error" xml:space="preserve">
+    <value>Could not refuse the message</value>
+  </data>
+  <data name="toast_refuse_messages" xml:space="preserve">
+    <value>Messages refused correctly</value>
+  </data>
+  <data name="toast_not_all_messages_refused" xml:space="preserve">
+    <value>Any messages haven\'t been refused</value>
+  </data>
+  <data name="dialog_refuse_reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="dialog_refuse_positive" xml:space="preserve">
+    <value>Refuse</value>
+  </data>
+  <data name="exception_message_generic" xml:space="preserve">
+    <value>There was an application error</value>
+  </data>
+  <data name="exception_message_no_connection" xml:space="preserve">
+    <value>There is no internet connection</value>
+  </data>
+  <data name="exception_message_message_not_found" xml:space="preserve">
+    <value>Cannot retrieve message data. Check your internet connection</value>
+  </data>
+  <data name="exception_message_user_not_found" xml:space="preserve">
+    <value>Cannot retrieve user data. Check your internet connection</value>
+  </data>
+  <data name="exception_message_login" xml:space="preserve">
+    <value>Your username or password was incorrect. Please try again.</value>
+  </data>
+  <data name="seleccionartodos" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="alrt_noregisternotificationservice" xml:space="preserve">
+    <value>Impossible to register the Notification service</value>
+  </data>
+  <data name="options" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="action_parts" xml:space="preserve">
+    <value>Partes de trabajo</value>
+  </data>
+  <data name="action_search" xml:space="preserve">
+    <value>Búsqueda</value>
+  </data>
+  <data name="btn_text_accept" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="btn_reintentar" xml:space="preserve">
+    <value>Reintentar</value>
+  </data>
+  <data name="dialog_approve_title_search" xml:space="preserve">
+    <value>Aviso</value>
+  </data>
+  <data name="dialog_refuse_text" xml:space="preserve">
+    <value>Debe informar el motivo de rechazo</value>
+  </data>
+  <data name="dialog_approve_search" xml:space="preserve">
+    <value>Introduzca mínimo 4 carácteres</value>
+  </data>
+  <data name="dialog_pend_save" xml:space="preserve">
+    <value>Las horas imputadas en un día superan el máximo permitido</value>
+  </data>
+  <data name="dialog_search_positive" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="dialog_correct_access" xml:space="preserve">
+    <value>Acceso correcto.</value>
+  </data>
+  <data name="toast_approve_options" xml:space="preserve">
+    <value>Opciones guardadas correctamente</value>
+  </data>
+  <data name="toast_save_parts" xml:space="preserve">
+    <value>Parte guardado correctamente</value>
+  </data>
+  <data name="toast_sign_parts" xml:space="preserve">
+    <value>Parte firmado correctamente</value>
+  </data>
+  <data name="toast_error_icons" xml:space="preserve">
+    <value>Error al cargar iconos</value>
+  </data>
+  <data name="total_hours" xml:space="preserve">
+    <value>Horas totales</value>
+  </data>
+  <data name="pending_hours" xml:space="preserve">
+    <value>Horas pendientes</value>
+  </data>
+  <data name="table_project" xml:space="preserve">
+    <value>PROYECTO</value>
+  </data>
+  <data name="table_project_management" xml:space="preserve">
+    <value>P. GESTIÓN</value>
+  </data>
+  <data name="text_week" xml:space="preserve">
+    <value>Semana %1$s</value>
+  </data>
+  <data name="text_dedication" xml:space="preserve">
+    <value>Dedicación contrato: %1$s</value>
+  </data>
+  <data name="copy_last_week" xml:space="preserve">
+    <value />
+  </data>
+  <data name="total_week_hours" xml:space="preserve">
+    <value>Toral horas semana: %1$s</value>
+  </data>
+  <data name="btn_save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="btn_sign" xml:space="preserve">
+    <value>Firmar</value>
+  </data>
+  <data name="text_signed" xml:space="preserve">
+    <value>Firmado</value>
+  </data>
+  <data name="text_validated" xml:space="preserve">
+    <value>Validado</value>
+  </data>
+  <data name="info_inetapp" xml:space="preserve">
+    <value>Info InetApp</value>
+  </data>
+  <data name="text_info" xml:space="preserve">
+    <value>Puedes activar o desactivar las distintas bandejas de solicitudes a través del menú principal:</value>
+  </data>
+  <data name="text_options" xml:space="preserve">
+    <value>Estas son las Bandejas de solicitudes pendientes disponibles actualmente:</value>
+  </data>
+  <data name="text_lector" xml:space="preserve">
+    <value>Situe el código QR en el centro del lector para verificar el acceso:</value>
+  </data>
+  <data name="text_combo" xml:space="preserve">
+    <value>-SELECCIONA PROYECTO-</value>
+  </data>
+  <data name="text_proyect_search" xml:space="preserve">
+    <value>Introduce el ID o Título del proyecto</value>
+  </data>
+  <data name="notification_title" xml:space="preserve">
+    <value>The door can not be opened.</value>
+  </data>
+  <data name="notification_text" xml:space="preserve">
+    <value>No se pudo abrir la puerta, try again later please.</value>
+  </data>
+  <data name="action_formation" xml:space="preserve">
+    <value>Formación y Conocimiento</value>
+  </data>
+  <data name="no_permissions" xml:space="preserve">
+    <value>No dispone de permisos para acceder a este contenido</value>
+  </data>
+</root>

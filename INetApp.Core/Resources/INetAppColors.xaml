@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="INetApp.Resources.INetAppColors">
+
+    <Color x:Key="transparent">#00000000</Color>
+    <Color x:Key="white">#ffffff</Color>
+    <Color x:Key="very_light_grey">#f2f2f2</Color>
+    <Color x:Key="light_grey">#cccccc</Color>
+    <Color x:Key="medium_grey">#808080</Color>
+    <Color x:Key="dark_grey">#4d4d4d</Color>
+    <Color x:Key="very_dark_grey">#1a1a1a</Color>
+    <Color x:Key="black">#000000</Color>
+
+    <Color x:Key="accept">#45D97B</Color>
+    <Color x:Key="cancel">#db2932</Color>
+
+    <!--<Color x:Key="app_Color">#0091AB</Color>-->
+    <!--<Color x:Key="ripple_Color">#0091AB</Color>-->
+    <!--<Color x:Key="toolbar_Color">#006778</Color>-->
+    <!--<Color x:Key="menu_header_avatar">#51626F</Color>-->
+
+
+    <Color x:Key="app_Color">#009cc4</Color>
+    <Color x:Key="ripple_Color">#009cc4</Color>
+    <Color x:Key="toolbar_Color">#009cc4</Color>
+    <Color x:Key="menu_header_avatar">#51626F</Color>
+    <Color x:Key="Color_tab">#04657e</Color>
+
+    <Color x:Key="favorite_Color">#B19401</Color>
+    <Color x:Key="favorite_ripple_dark_Color">#776401</Color>
+    <Color x:Key="favorite_ripple_light_Color">#ffdd00</Color>
+    <Color x:Key="qr_scanner">#c8009cc4</Color>
+
+</ResourceDictionary>

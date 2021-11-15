@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="INetApp.Resources.INetAppDimens">
+
+    <x:String x:Key="activity_horizontal_margin">16</x:String>
+    <x:String x:Key="activity_vertical_margin">16</x:String>
+
+    <!-- Splash -->
+    <x:String x:Key="splash_vertical_margin">30</x:String>
+    <x:String x:Key="splash_btn_top_margin">30</x:String>
+    <x:String x:Key="splash_user_top_margin">20</x:String>
+    <x:String x:Key="splash_password_top_margin">10</x:String>
+    <x:String x:Key="splash_edit_text_left_padding">20</x:String>
+    <x:String x:Key="splash_edit_text_right_padding">55</x:String>
+    <x:String x:Key="splash_edit_text_image_right_padding">15</x:String>
+    <x:String x:Key="splash_edit_text_image_bottom_padding">10</x:String>
+    <x:String x:Key="splash_edit_text_image_width">50</x:String>
+
+    <x:String x:Key="tab_indicator_height">5</x:String>
+    <x:String x:Key="button_login_height">70</x:String>
+
+    <!-- Menu header -->
+    <x:String x:Key="menu_header_vertical_margin">50</x:String>
+    <x:String x:Key="menu_header_vertical_margin_bottom">10</x:String>
+    <x:String x:Key="menu_header_avatar_size">50</x:String>
+    <x:String x:Key="menu_header_text_vertical_margin">20</x:String>
+    <x:String x:Key="menu_header_text_horizontal_margin">16</x:String>
+    <x:String x:Key="menu_header_horizontal_margin">30</x:String>
+    <x:String x:Key="menu_header_text_size">25</x:String>
+
+    <!--User Header-->
+    <x:String x:Key="header_text_size">24sp</x:String>
+    <x:String x:Key="header_margin">5</x:String>
+    <x:String x:Key="iv_cover_height">140</x:String>
+    <x:String x:Key="iv_splash_cover_height">180</x:String>
+    <x:String x:Key="iv_splash_cover_top">130</x:String>
+    <x:String x:Key="iv_image_padding_bottom">15</x:String>
+    <x:String x:Key="iv_image_padding_horizontal">50</x:String>
+
+    <!--Listview rows-->
+    <x:String x:Key="lv_padding_bottom">70</x:String>
+    <x:String x:Key="row_category_circle_size">20</x:String>
+    <x:String x:Key="row_category_text_size">12sp</x:String>
+    <x:String x:Key="lv_row_padding">13</x:String>
+    <x:String x:Key="lv_row_text_padding">16</x:String>
+    <x:String x:Key="lv_row_text_size">17sp</x:String>
+    <x:String x:Key="lv_row_description_size">15sp</x:String>
+    <x:String x:Key="lv_row_icon_width">40</x:String>
+    <x:String x:Key="lv_row_icon_padding">5</x:String>
+    <x:String x:Key="row_mark_width">4</x:String>
+    <x:String x:Key="row_mark_height">30</x:String>
+
+    <!-- Update view -->
+    <x:String x:Key="updated_vertical_margin">15</x:String>
+
+    <!-- Message details -->
+    <x:String x:Key="details_image_view_padding_right">20</x:String>
+    <x:String x:Key="dialog_title_text_size">20sp</x:String>
+    <x:String x:Key="dialog_vertical_margin">20</x:String>
+    <x:String x:Key="dialog_horizontal_margin">20</x:String>
+
+</ResourceDictionary>
