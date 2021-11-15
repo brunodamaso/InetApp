@@ -4,6 +4,8 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
+using INetApp.Droid.Services;
+using INetApp.Services;
 using System;
 using Xamarin.Forms.Platform.Android;
 
@@ -33,6 +35,7 @@ namespace INetApp.Droid.Activities
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             LoadApplication(new App());
+            Xamarin.Forms.DependencyService.RegisterSingleton<IDeviceService>(new DeviceService(this));
 
             Window window = this.Window;
             window.ClearFlags(WindowManagerFlags.TranslucentStatus);

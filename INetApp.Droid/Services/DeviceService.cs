@@ -27,10 +27,13 @@ namespace INetApp.Droid.Services
         /// </summary>
         /// <param name="context">Context.</param>
         public DeviceService(Context context)
-        {
+        {           
             this.context = context;
         }
 
+        public DeviceService()
+        {
+        }
         /// <summary>
         /// Gets the phone identifier.
         /// </summary>

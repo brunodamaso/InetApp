@@ -1,4 +1,6 @@
-﻿namespace INetApp.Services
+﻿using System;
+
+namespace INetApp.Services
 {
     /// <summary>
     /// Device service.

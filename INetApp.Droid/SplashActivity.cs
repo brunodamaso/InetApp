@@ -3,6 +3,8 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using AndroidX.AppCompat.App;
+using INetApp.Droid.Services;
+using INetApp.Services;
 
 namespace INetApp.Droid.Activities
 {
@@ -20,6 +22,11 @@ namespace INetApp.Droid.Activities
             base.OnCreate(bundle);
 
             InvokeMainActivity();
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+            Xamarin.Forms.DependencyService.RegisterSingleton<IDeviceService>(new DeviceService(this));
         }
 
         private void InvokeMainActivity()
