@@ -136,8 +136,7 @@ namespace INetApp.ViewModels
         {
             this.IsBusy = true;
             if (Validate())
-            {
-                //todo quitar titulo en login
+            {              
                 //todo progressbar en login
                 //boton reintentar login
 
