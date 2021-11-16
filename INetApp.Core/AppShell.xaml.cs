@@ -7,27 +7,7 @@ using Xamarin.Forms;
 namespace INetApp
 {
     public partial class AppShell : Shell
-    {
-        //private string _nameInitial;
-        //private string _nameUser;
-        //public string NameInitial
-        //{
-        //    get => _nameInitial;
-        //    set
-        //    {
-        //        _nameInitial = value;
-        //        OnPropertyChanged(this.NameInitial);
-        //    }
-        //}
-        //public string NameUser
-        //{
-        //    get => _nameUser;
-        //    set
-        //    {
-        //        _nameUser = value;
-        //        OnPropertyChanged(this.NameUser);
-        //    }
-        //}
+    {       
         public AppShell()
         {
             InitializeRouting();

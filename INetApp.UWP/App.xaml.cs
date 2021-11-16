@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -14,7 +12,7 @@ namespace INetApp.UWP
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -22,9 +20,9 @@ namespace INetApp.UWP
         /// </summary>
         public App()
         {
-            this.InitializeComponent();          
+            InitializeComponent();
 
-            this.Suspending += OnSuspending;
+            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -46,7 +44,7 @@ namespace INetApp.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                var assembliesToInclude = new List<Assembly>()
+                List<Assembly> assembliesToInclude = new List<Assembly>()
                 {
                     typeof(INetApp.App).GetTypeInfo().Assembly,
                 };
@@ -56,13 +54,13 @@ namespace INetApp.UWP
                 //ApplicationView.PreferredLaunchViewSize = desiredSize;
                 //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-                //if (e.PreviousExecutionState != ApplicationExecutionState.Running)
-                //{
-                //    bool loadState = (e.PreviousExecutionState == ApplicationExecutionState.Terminated);
-                //    ExtendedSplash extendedSplash = new ExtendedSplash(e.SplashScreen, loadState);
-                //    rootFrame.Content = extendedSplash;
-                //    Window.Current.Content = rootFrame;
-                //}
+                if (e.PreviousExecutionState != ApplicationExecutionState.Running)
+                {
+                    bool loadState = (e.PreviousExecutionState == ApplicationExecutionState.Terminated);
+                    ExtendedSplash extendedSplash = new ExtendedSplash(e.SplashScreen, loadState);
+                    rootFrame.Content = extendedSplash;
+                    Window.Current.Content = rootFrame;
+                }
 
                 global::Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental");
 
@@ -85,6 +83,7 @@ namespace INetApp.UWP
             }
             // Ensure the current window is active
             Window.Current.Activate();
+
         }
 
         /// <summary>
@@ -92,7 +91,7 @@ namespace INetApp.UWP
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
@@ -106,7 +105,7 @@ namespace INetApp.UWP
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            var deferral = e.SuspendingOperation.GetDeferral();
+            SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
             deferral.Complete();
         }
     }

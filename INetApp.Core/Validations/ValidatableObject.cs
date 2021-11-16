@@ -1,25 +1,36 @@
-﻿using INetApp.ViewModels.Base;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using INetApp.ViewModels.Base;
 
 namespace INetApp.Validations
 {
     public class ValidatableObject<T> : ExtendedBindableObject, IValidity
     {
         private readonly List<IValidationRule<T>> _validations;
-		private List<string> _errors;
+        private List<string> _errors;
+        private string _MsgErrors;
         private T _value;
         private bool _isValid;
 
         public List<IValidationRule<T>> Validations => _validations;
 
-		public List<string> Errors
+        public List<string> Errors
         {
             get => _errors;
             set
             {
                 _errors = value;
-                RaisePropertyChanged(() => Errors);
+                RaisePropertyChanged(() => this.Errors);
+            }
+        }
+        public string MsgErrors
+        {
+            get => _MsgErrors;
+            set
+            {
+                _MsgErrors = value;
+                RaisePropertyChanged(() => this.MsgErrors);
             }
         }
 
@@ -29,7 +40,7 @@ namespace INetApp.Validations
             set
             {
                 _value = value;
-                RaisePropertyChanged(() => Value);
+                RaisePropertyChanged(() => this.Value);
             }
         }
 
@@ -39,7 +50,7 @@ namespace INetApp.Validations
             set
             {
                 _isValid = value;
-                RaisePropertyChanged(() => IsValid);
+                RaisePropertyChanged(() => this.IsValid);
             }
         }
 
@@ -52,13 +63,19 @@ namespace INetApp.Validations
 
         public bool Validate()
         {
-            Errors.Clear();
+            this.Errors.Clear();
+            this.MsgErrors = "";
 
-            IEnumerable<string> errors = _validations.Where(v => !v.Check(Value))                             
+            IEnumerable<string> errors = _validations.Where(v => !v.Check(this.Value))
                 .Select(v => v.ValidationMessage);
 
-			Errors = errors.ToList();
-            IsValid = !Errors.Any();
+            this.Errors = errors.ToList();
+            foreach (var item in errors)
+            {
+                this.MsgErrors += item +"\n";
+            }
+            
+            this.IsValid = !this.Errors.Any();
 
             return this.IsValid;
         }
