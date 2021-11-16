@@ -58,7 +58,7 @@ namespace INetApp.UWP
 
             // Restore the saved session state if necessary
             RestoreState(loadState);
-            //DismissExtendedSplash();
+            DismissExtendedSplash();
         }
 
         void RestoreState(bool loadState)
@@ -105,11 +105,13 @@ namespace INetApp.UWP
             // Complete app setup operations here...
         }
 
-        async void DismissExtendedSplash()
+         async void DismissExtendedSplash()
         {
-            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
                 rootFrame = new Frame();
-                rootFrame.Content = new MainPage(); Window.Current.Content = rootFrame;
+                rootFrame.Content = new MainPage();
+                Window.Current.Content = rootFrame;
             });
         }
 

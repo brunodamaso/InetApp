@@ -94,7 +94,7 @@ namespace INetApp.ViewModels
         #region ICommand
         public ICommand LoginCommand => new Command(OnLoginClicked);
 
-     
+
 
         #endregion
 
@@ -115,7 +115,7 @@ namespace INetApp.ViewModels
 
         private void GetCredenciales()
         {
-            var credenciales = identityService.GetCredentialsFromPrefs();
+            KeyValuePair<string, object> credenciales = identityService.GetCredentialsFromPrefs();
             this.UserName.Value = credenciales.Key.ToString();
         }
 
@@ -147,16 +147,26 @@ namespace INetApp.ViewModels
                 {
                     this.UserLoggedModel = userLoggedDto.UserLoggedModel;
                     settingsService.AuthAccessToken = this.UserName.Value;
-                    settingsService.NameInitial= this.UserLoggedModel.nameInitial+this.UserLoggedModel.lastNameInitial;
+                    settingsService.NameInitial = this.UserLoggedModel.nameInitial + this.UserLoggedModel.lastNameInitial;
                     settingsService.NameUser = this.UserLoggedModel.fullName;
                     //Application.Current.MainPage = new AppShell();
                     await NavigationService.NavigateToAsync("//MainPage");
                 }
                 else
                 {
-                    if (!userLoggedDto.UserLoggedModel.permission)
+                    if (!userLoggedDto.IsConnected)
                     {
-
+                        //todo buscar string
+                        await DialogService.ShowAlertAsync("Order sent successfully!", "Checkout", "Ok");
+                        //todo no hya conexion
+                    }
+                    else if (userLoggedDto.UserLoggedModel == null)
+                    {
+                        //todo error usuario no existe
+                    }
+                    else
+                    {
+                        //todo error usuario no tiene permisos
                     }
                 }
             }
@@ -222,9 +232,18 @@ namespace INetApp.ViewModels
 
         private bool Validate()
         {
+            //todo buscar string
             bool isValidUser = ValidateUserName();
-            bool isValidPassword = ValidatePassword();
+            if (!isValidUser)
+            {
+                DialogService.ShowAlertAsync(_userName.MsgErrors, "Revise", "Ok");
+            }
 
+            bool isValidPassword = ValidatePassword();
+            if (!isValidPassword)
+            {
+                DialogService.ShowAlertAsync(_password.MsgErrors, "Revise", "Ok");
+            }
             return isValidUser && isValidPassword;
         }
 

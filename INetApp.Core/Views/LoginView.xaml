@@ -66,9 +66,10 @@
                 <Entry Grid.Row="0"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                   Text="{Binding UserName.Value, Mode=TwoWay}"
-                   TextColor="{StaticResource dark_grey}" BackgroundColor="White" 
-                   Placeholder="{Binding Source={x:Static resources:Literales.hint_text_user}}">
+                    Text="{Binding UserName.Value, Mode=TwoWay}"
+                    TextColor="{StaticResource dark_grey}" BackgroundColor="White" 
+                    Placeholder="{Binding Source={x:Static resources:Literales.hint_text_user}}" 
+                    PlaceholderColor="{StaticResource dark_grey}">
                     <Entry.Margin>
                         <MultiBinding Converter="{StaticResource ThicknessConverter}">
                             <Binding Path="0"/>
@@ -87,12 +88,14 @@
                 />
 
                 <Entry Grid.Row="1"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   Text="{Binding Password.Value, Mode=TwoWay}"
-                   TextColor="{StaticResource dark_grey}" BackgroundColor="White" 
-                   IsPassword="True"
-                   Placeholder="{Binding Source={x:Static resources:Literales.hint_text_password}}">
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="{Binding Password.Value, Mode=TwoWay}"
+                    TextColor="{StaticResource dark_grey}" BackgroundColor="White" 
+                    IsPassword="True"
+                    Placeholder="{Binding Source={x:Static resources:Literales.hint_text_password}}"
+                    PlaceholderColor="{StaticResource dark_grey}" >
+
                     <Entry.Margin>
                         <MultiBinding Converter="{StaticResource ThicknessConverter}">
                             <Binding Path="0"/>
