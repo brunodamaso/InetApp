@@ -1,11 +1,17 @@
-﻿using System;
+﻿using Windows.Foundation;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
+
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
+using Windows.Graphics.Display;
 
 namespace INetApp.UWP
 {
@@ -49,14 +55,20 @@ namespace INetApp.UWP
                     typeof(INetApp.App).GetTypeInfo().Assembly,
                 };
 
-                //float DPI = Windows.Graphics.Display.DisplayInformation.GetForCurrentView().LogicalDpi;
-                //var desiredSize = new Size(((float)620 * 96.0f / DPI), ((float)300 * 96.0f / DPI));
-                //ApplicationView.PreferredLaunchViewSize = desiredSize;
-                //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+                DisplayInformation currentView = DisplayInformation.GetForCurrentView();
+                ApplicationView applicationView = ApplicationView.GetForCurrentView();
+                double availableHeight = applicationView.GetDisplayRegions()[0].WorkAreaSize.Height / currentView.RawPixelsPerViewPixel;
+
+                Size size = new Size { Width = 500, Height = availableHeight - 40 };
+                if (!applicationView.TryResizeView(size))
+                { }
+                ApplicationView.PreferredLaunchViewSize = size;
+                applicationView.SetPreferredMinSize(size);
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
                 if (e.PreviousExecutionState != ApplicationExecutionState.Running)
                 {
-                    bool loadState = (e.PreviousExecutionState == ApplicationExecutionState.Terminated);
+                    bool loadState = e.PreviousExecutionState == ApplicationExecutionState.Terminated;
                     ExtendedSplash extendedSplash = new ExtendedSplash(e.SplashScreen, loadState);
                     rootFrame.Content = extendedSplash;
                     Window.Current.Content = rootFrame;

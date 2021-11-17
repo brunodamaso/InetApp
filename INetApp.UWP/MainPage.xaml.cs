@@ -2,6 +2,7 @@
 using Windows.Foundation.Metadata;
 using Windows.UI;
 using Windows.UI.ViewManagement;
+using Windows.Graphics.Display;
 
 namespace INetApp.UWP
 {
@@ -9,8 +10,8 @@ namespace INetApp.UWP
     {
         public MainPage()
         {
-            this.InitializeComponent();
-           
+            InitializeComponent();
+
             LoadApplication(new INetApp.App());
 
             NativeCustomize();
@@ -21,7 +22,7 @@ namespace INetApp.UWP
             // PC Customization
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
             {
-                var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+                ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
                 if (titleBar != null)
                 {
                     titleBar.BackgroundColor = (Color)App.Current.Resources["NativeAccentColor"];
@@ -32,7 +33,7 @@ namespace INetApp.UWP
             // Mobile Customization
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
-                var statusBar = StatusBar.GetForCurrentView();
+                StatusBar statusBar = StatusBar.GetForCurrentView();
                 if (statusBar != null)
                 {
                     statusBar.BackgroundOpacity = 1;
@@ -41,7 +42,7 @@ namespace INetApp.UWP
             }
 
             // Launch in Window Mode
-            var currentView = ApplicationView.GetForCurrentView();
+            ApplicationView currentView = ApplicationView.GetForCurrentView();
             if (currentView.IsFullScreenMode)
             {
                 currentView.ExitFullScreenMode();

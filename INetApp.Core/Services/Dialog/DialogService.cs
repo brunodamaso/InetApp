@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace INetApp.Services
 {
@@ -7,7 +6,7 @@ namespace INetApp.Services
     {
         public Task ShowAlertAsync(string message, string title, string buttonLabel)
         {
-            return App.Current.MainPage.DisplayAlert (title, message, buttonLabel);
+            return App.Current.MainPage.DisplayAlert(title, message, buttonLabel);
         }
     }
 }

@@ -122,8 +122,17 @@
     <Content Include="..\INetApp.Droid\Resources\drawable-hdpi\ic_action_user.png">
       <Link>Assets\ic_action_user.png</Link>
     </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\img_bandeja_entrada.png">
+      <Link>Assets\img_bandeja_entrada.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\img_partes.png">
+      <Link>Assets\img_partes.png</Link>
+    </Content>
     <Content Include="..\INetApp.Droid\Resources\drawable\im_login_background.png">
       <Link>Assets\im_login_background.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\ineco.png">
+      <Link>Assets\ineco.png</Link>
     </Content>
     <Content Include="Assets\banner.png" />
     <Content Include="Assets\circle_button_background.png" />
@@ -137,6 +146,7 @@
     <Content Include="Assets\fake_product_03.png" />
     <Content Include="Assets\fake_product_04.png" />
     <Content Include="Assets\fake_product_05.png" />
+    <Content Include="Assets\img_formacion.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-200.png" />
     <Content Include="Assets\noimage.png" />

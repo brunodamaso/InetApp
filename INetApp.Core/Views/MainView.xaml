@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="INetApp.Views.MainView"
+             xmlns:resources="clr-namespace:INetApp.Resources"
+             xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
+             xmlns:viewmodels="clr-namespace:INetApp.ViewModels"
+             viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+             x:DataType="viewmodels:MainViewModel"
+             Shell.FlyoutBehavior="Flyout"
+             Shell.NavBarIsVisible="True"
+             Shell.TabBarIsVisible="True"
+             Title="{Binding  Source={x:Static resources:Literales.app_name}}" >
+
+    <!--<ContentPage.BindingContext>
+        <vm:MainView />
+    </ContentPage.BindingContext>-->
+
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#009cc4</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>-->
+
+    <ScrollView Orientation="Vertical" 
+                 BackgroundColor="White" 
+                 VerticalOptions="FillAndExpand" 
+                 HorizontalOptions="Fill">
+        <StackLayout Orientation="Vertical">
+            <StackLayout Margin="8,8,8,0">
+                <Image Source="ineco.png" 
+                   VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
+                <Label Text="{Binding Source={x:Static resources:Literales.action_qr}}" 
+                   FontSize="18"
+                   TextColor="Black" VerticalOptions="End" HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ControlAccesoCommand}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <BoxView HeightRequest="10" Margin="50,16" BackgroundColor="{StaticResource app_Color}"/>
+
+            <StackLayout Margin="8,8,8,0">
+                <Image Source="img_bandeja_entrada.png" 
+                   VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
+                <Label Text="{Binding Source={x:Static resources:Literales.action_messages}}" 
+                    FontSize="18"
+                    TextColor="Black" VerticalOptions="End" HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BandejaEntradaCommand}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <BoxView HeightRequest="10" Margin="50,16" BackgroundColor="{StaticResource app_Color}"/>
+
+            <StackLayout >
+                <Image Source="img_partes.png" VerticalOptions="Center"  WidthRequest="100" HeightRequest="100" />
+                <Label Text="{Binding Source={x:Static resources:Literales.action_parts}}" 
+                    FontSize="18"
+                    TextColor="Black" VerticalOptions="End" HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PartesCommand}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <BoxView HeightRequest="10" Margin="50,16" BackgroundColor="{StaticResource app_Color}"/>
+
+            <StackLayout >
+                <Image Source="img_formacion.png" VerticalOptions="Center"  WidthRequest="100" HeightRequest="100" />
+                <Label Text="{Binding Source={x:Static resources:Literales.action_formation}}" 
+                   FontSize="18"
+                   TextColor="Black" VerticalOptions="End" HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding FormacionCommand}"/>
+                </StackLayout.GestureRecognizers>
+
+            </StackLayout>
+
+            <Label Text="" HeightRequest="40"
+               TextColor="Black" VerticalOptions="End" HorizontalOptions="Center"/>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

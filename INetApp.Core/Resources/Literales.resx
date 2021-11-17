@@ -199,7 +199,7 @@
     <value>No es posible obtener datos de la solicitud. Compruebe su conexión a internet</value>
   </data>
   <data name="exception_message_login" xml:space="preserve">
-    <value>Uuario o contraseña incorrectos. Por favor inténtelo de nuevo.</value>
+    <value>Usuario o contraseña incorrectos. Por favor inténtelo de nuevo.</value>
   </data>
   <data name="hint_text_user" xml:space="preserve">
     <value>Usuario</value>

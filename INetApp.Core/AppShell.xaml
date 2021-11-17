@@ -38,7 +38,10 @@
                     <Binding Source="{StaticResource activity_horizontal_margin}"/>
                 </MultiBinding>
             </Grid.Padding>
-
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <BoxView Grid.Row ="0" BackgroundColor="{StaticResource menu_header_avatar}" CornerRadius="50" 
                      WidthRequest="{Binding Source={StaticResource menu_header_avatar_size}, Converter={StaticResource GridLengthConverter}}" 
                      HeightRequest="{Binding Source={StaticResource menu_header_avatar_size}, Converter={StaticResource GridLengthConverter}}" 
@@ -47,11 +50,12 @@
                x:Name="NameInitial"
                TextColor="White"
                FontSize="23" 
-               Padding="3,0,0,2"
-               HorizontalOptions="Start"
-               HorizontalTextAlignment="Center"
+               Padding="0"
+               HorizontalOptions="CenterAndExpand"
+               HorizontalTextAlignment="Start"
                VerticalTextAlignment="Center" />
             <Label Grid.Row ="1" 
+                   Grid.ColumnSpan="2"
                 x:Name="NameUser"
                TextColor="White"
                FontAttributes="Bold"
@@ -71,11 +75,11 @@
 
     -->
 
-    <FlyoutItem Route="MainPage" FlyoutItemIsVisible="False" StyleClass="FlyoutItemLayoutStyle" 
+    <FlyoutItem Route="MainView" FlyoutItemIsVisible="False" StyleClass="FlyoutItemLayoutStyle" 
                 FlyoutDisplayOptions="AsMultipleItems" IsTabStop="False">
-        <ShellContent Route="MainPage"  
+        <ShellContent Route="MainView"  
                       IsTabStop="False"
-                  ContentTemplate="{DataTemplate views:MainPage}"
+                  ContentTemplate="{DataTemplate views:MainView}"
                   Title="Home" />
     </FlyoutItem>
 

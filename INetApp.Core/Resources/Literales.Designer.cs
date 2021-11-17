@@ -475,7 +475,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Uuario o contraseña incorrectos. Por favor inténtelo de nuevo..
+        ///   Busca una cadena traducida similar a Usuario o contraseña incorrectos. Por favor inténtelo de nuevo..
         /// </summary>
         internal static string exception_message_login {
             get {

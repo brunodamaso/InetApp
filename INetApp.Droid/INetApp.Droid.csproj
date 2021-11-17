@@ -136,9 +136,6 @@
     <AndroidResource Include="Resources\drawable\fake_product_05.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\noimage.png" />
   </ItemGroup>
   <ItemGroup>

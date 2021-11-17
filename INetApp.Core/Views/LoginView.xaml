@@ -4,7 +4,6 @@
                 x:Class="INetApp.Views.LoginView"
                 xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
                 xmlns:animations="clr-namespace:INetApp.Animations;assembly=INetApp"
-                xmlns:converters="clr-namespace:INetApp.Converters;assembly=INetApp"
                 xmlns:triggers="clr-namespace:INetApp.Triggers;assembly=INetApp"
                 xmlns:behaviors="clr-namespace:INetApp.Behaviors;assembly=INetApp"
                 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
@@ -13,7 +12,7 @@
                 viewModelBase:ViewModelLocator.AutoWireViewModel="true"
                 x:DataType="viewmodels:LoginViewModel"
                 Shell.NavBarIsVisible="False"
-                Shell.TabBarIsVisible="False"
+                Shell.TabBarIsVisible="False" 
                 Shell.FlyoutBehavior="Disabled"           
                 >
 
@@ -36,7 +35,7 @@
         </EventTrigger>
     </ContentPage.Triggers>
 
-    <Grid  x:Name="LoginPanel" RowSpacing="0" >
+    <Grid  x:Name="LoginPanel" RowSpacing="0" xct:SafeAreaEffect.SafeArea="true" >
         <Grid.RowDefinitions>
             <RowDefinition Height ="{Binding Source={StaticResource iv_splash_cover_height}, Converter={StaticResource GridLengthConverter}}"/>
             <RowDefinition Height ="0.25*"/>

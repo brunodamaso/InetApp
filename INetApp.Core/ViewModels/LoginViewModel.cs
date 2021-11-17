@@ -5,6 +5,7 @@ using IdentityModel.Client;
 using INetApp.APIWebServices.Dtos;
 using INetApp.Extensions;
 using INetApp.Models;
+using INetApp.Resources;
 using INetApp.Services;
 using INetApp.Services.Identity;
 using INetApp.Services.Settings;
@@ -149,23 +150,21 @@ namespace INetApp.ViewModels
                     settingsService.NameInitial = this.UserLoggedModel.nameInitial + this.UserLoggedModel.lastNameInitial;
                     settingsService.NameUser = this.UserLoggedModel.fullName;
                     //Application.Current.MainPage = new AppShell();
-                    await NavigationService.NavigateToAsync("//MainPage");
+                    await NavigationService.NavigateToAsync("//MainView");
                 }
                 else
                 {
                     if (!userLoggedDto.IsConnected)
                     {
-                        //todo buscar string
-                        await DialogService.ShowAlertAsync("Order sent successfully!", "Checkout", "Ok");
-                        //todo no hya conexion
+                        await DialogService.ShowAlertAsync(Literales.exception_message_no_connection, "", Literales.btn_text_accept);
                     }
                     else if (userLoggedDto.UserLoggedModel == null)
                     {
-                        //todo error usuario no existe
+                        await DialogService.ShowAlertAsync(Literales.exception_message_login, "", Literales.btn_text_accept);
                     }
                     else
                     {
-                        //todo error usuario no tiene permisos
+                        await DialogService.ShowAlertAsync(Literales.no_permissions, "", Literales.btn_text_accept);
                     }
                 }
             }
@@ -232,16 +231,19 @@ namespace INetApp.ViewModels
         private bool Validate()
         {
             //todo buscar string
+            bool isValidPassword = false;
             bool isValidUser = ValidateUserName();
             if (!isValidUser)
             {
-                DialogService.ShowAlertAsync(_userName.MsgErrors, "Revise", "Ok");
+                DialogService.ShowAlertAsync(_userName.MsgErrors, "", Literales.btn_text_accept);
             }
-
-            bool isValidPassword = ValidatePassword();
-            if (!isValidPassword)
+            else
             {
-                DialogService.ShowAlertAsync(_password.MsgErrors, "Revise", "Ok");
+                isValidPassword = ValidatePassword();
+                if (!isValidPassword)
+                {
+                    DialogService.ShowAlertAsync(_password.MsgErrors, "", Literales.btn_text_accept);
+                }
             }
             return isValidUser && isValidPassword;
         }
@@ -258,8 +260,8 @@ namespace INetApp.ViewModels
 
         private void AddValidations()
         {
-            _userName.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A username is required." });
-            _password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A password is required." });
+            _userName.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = Literales.username_empty_error });
+            _password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = Literales.password_empty_error });
         }
     }
 }

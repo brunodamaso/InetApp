@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 
 namespace INetApp.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class MainView : ContentPage
     {
-        public MainPage()
+        public MainView()
         {
             InitializeComponent();
         }

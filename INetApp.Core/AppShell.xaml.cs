@@ -7,7 +7,7 @@ using Xamarin.Forms;
 namespace INetApp
 {
     public partial class AppShell : Shell
-    {       
+    {
         public AppShell()
         {
             InitializeRouting();
@@ -19,19 +19,15 @@ namespace INetApp
             {
                 GoToAsync("//Login");
             }
-            else
-            {
-                NameInitial.Text = settingsService.NameInitial;
-                NameUser.Text = settingsService.NameUser;
-            }
 
-
+            NameInitial.Text = settingsService.NameInitial;
+            NameUser.Text = settingsService.NameUser;
         }
 
         private void InitializeRouting()
         {
             Routing.RegisterRoute("Basket", typeof(BasketView));
-            Routing.RegisterRoute("MainPage", typeof(MainPage));
+            Routing.RegisterRoute("MainView", typeof(MainView));
             Routing.RegisterRoute("OrderDetail", typeof(OrderDetailView));
             Routing.RegisterRoute("CampaignDetails", typeof(CampaignDetailsView));
             Routing.RegisterRoute("Checkout", typeof(CheckoutView));
