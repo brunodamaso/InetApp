@@ -11,9 +11,20 @@ namespace INetApp.ViewModels.Base
         protected readonly IDialogService DialogService;
         protected readonly INavigationService NavigationService;
         protected readonly IRepositoryWebService RepositoryWebService;
+        protected readonly ISettingsService settingsService;
+
+        private string text_last_update;
+        public string Text_last_update
+        {
+            get => text_last_update;
+            set
+            {
+                text_last_update = value;
+                RaisePropertyChanged(() => this.Text_last_update);
+            }
+        }
 
         private bool _isInitialized;
-
         public bool IsInitialized
         {
             get => _isInitialized;
@@ -56,7 +67,7 @@ namespace INetApp.ViewModels.Base
             DialogService = ViewModelLocator.Resolve<IDialogService>();
             NavigationService = ViewModelLocator.Resolve<INavigationService>();
             RepositoryWebService = ViewModelLocator.Resolve<IRepositoryWebService>();
-            ISettingsService settingsService = ViewModelLocator.Resolve<ISettingsService>();
+            settingsService = ViewModelLocator.Resolve<ISettingsService>();
 
             GlobalSetting.Instance.BaseIdentityEndpoint = settingsService.IdentityEndpointBase;
             GlobalSetting.Instance.BaseGatewayShoppingEndpoint = settingsService.GatewayShoppingEndpointBase;

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
+using INetApp.APIWebServices.Dtos;
 using INetApp.Services.Settings;
+using INetApp.Services.User;
 using INetApp.ViewModels.Base;
 using INetApp.Views;
 using Xamarin.Forms;
@@ -8,25 +11,57 @@ namespace INetApp
 {
     public partial class AppShell : Shell
     {
+        private ISettingsService settingsService;
+
         public AppShell()
         {
             InitializeRouting();
             InitializeComponent();
+            settingsService = ViewModelLocator.Resolve<ISettingsService>();
 
-            ISettingsService settingsService = ViewModelLocator.Resolve<ISettingsService>();
+            bool isLogin = Login().Result;
 
-            if (string.IsNullOrEmpty(settingsService.AuthAccessToken))
+            if (!isLogin)
             {
                 GoToAsync("//Login");
+                NameInitial.Text = settingsService.NameInitial;
+                NameUser.Text = settingsService.NameFull;
             }
+        }
 
-            NameInitial.Text = settingsService.NameInitial;
-            NameUser.Text = settingsService.NameUser;
+        private Task<bool> Login()
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                bool islogin;
+                IUserService userService = ViewModelLocator.Resolve<IUserService>();
+
+                if (string.IsNullOrEmpty(settingsService.AuthAccessToken))
+                {
+                    islogin = false;
+                }
+                else
+                {
+                    UserLoggedDto userLoggedDto = userService.GetUserLoggedDto().Result;
+                    if (userLoggedDto.IsOk) // && userLoggedDto.UserLoggedModel.permission)
+                    {
+                        islogin = true;
+                        NameInitial.Text = settingsService.NameInitial;
+                        NameUser.Text = settingsService.NameFull;
+                    }
+                    else
+                    {
+                        islogin = false;
+                    }
+                }
+
+                return islogin;
+            });
         }
 
         private void InitializeRouting()
         {
-            Routing.RegisterRoute("Basket", typeof(BasketView));
+            Routing.RegisterRoute("Bandeja", typeof(BandejaView));
             Routing.RegisterRoute("MainView", typeof(MainView));
             Routing.RegisterRoute("OrderDetail", typeof(OrderDetailView));
             Routing.RegisterRoute("CampaignDetails", typeof(CampaignDetailsView));

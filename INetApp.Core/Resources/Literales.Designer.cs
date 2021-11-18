@@ -826,7 +826,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Dedicación contrato: %1$s.
+        ///   Busca una cadena traducida similar a Dedicación contrato: {0}.
         /// </summary>
         internal static string text_dedication {
             get {
@@ -907,7 +907,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Semana %1$s.
+        ///   Busca una cadena traducida similar a Semana {0}.
         /// </summary>
         internal static string text_week {
             get {
@@ -1033,7 +1033,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Toral horas semana: %1$s.
+        ///   Busca una cadena traducida similar a Toral horas semana: {0}.
         /// </summary>
         internal static string total_week_hours {
             get {
@@ -1069,7 +1069,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a ÚLTIMA ACTUALIZACIÓN: %1$s.
+        ///   Busca una cadena traducida similar a ÚLTIMA ACTUALIZACIÓN: {0}.
         /// </summary>
         internal static string view_text_last_updated {
             get {

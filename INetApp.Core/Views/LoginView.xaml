@@ -44,7 +44,7 @@
             <RowDefinition Height ="{Binding Source={StaticResource button_login_height}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.RowDefinitions>
         <Image Grid.Row="0" Source="im_login_background.png"  Aspect="Fill" />
-        <BoxView Grid.Row="1" Grid.RowSpan="3" BackgroundColor ="White"/>
+        <BoxView Grid.Row="1" Grid.RowSpan="3" BackgroundColor ="{StaticResource white}"/>
         <Grid Grid.Row="2" >
             <Grid.Padding>
                 <MultiBinding Converter="{StaticResource ThicknessConverter}">
@@ -66,7 +66,7 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Text="{Binding UserName.Value, Mode=TwoWay}"
-                    TextColor="{StaticResource dark_grey}" BackgroundColor="White" 
+                    TextColor="{StaticResource dark_grey}" BackgroundColor="{StaticResource white}" 
                     Placeholder="{Binding Source={x:Static resources:Literales.hint_text_user}}" 
                     PlaceholderColor="{StaticResource dark_grey}">
                     <Entry.Margin>
@@ -90,7 +90,7 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Text="{Binding Password.Value, Mode=TwoWay}"
-                    TextColor="{StaticResource dark_grey}" BackgroundColor="White" 
+                    TextColor="{StaticResource dark_grey}" BackgroundColor="{StaticResource white}" 
                     IsPassword="True"
                     Placeholder="{Binding Source={x:Static resources:Literales.hint_text_password}}"
                     PlaceholderColor="{StaticResource dark_grey}" >

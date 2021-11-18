@@ -138,7 +138,7 @@ namespace INetApp.ViewModels
                 await _basketService.ClearBasketAsync(_shippingAddress.Id.ToString(), authToken);
 
                 // Reset Basket badge
-                var basketViewModel = ViewModelLocator.Resolve<BasketViewModel>();
+                var basketViewModel = ViewModelLocator.Resolve<BandejaViewModel>();
                 basketViewModel.BadgeCount = 0;
 
                 // Navigate to Orders

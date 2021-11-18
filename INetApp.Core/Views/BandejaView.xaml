@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase
+    x:Class="INetApp.Views.BandejaView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:templates="clr-namespace:INetApp.Views.Templates;assembly=INetApp"
+    xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
+    xmlns:viewmodels="clr-namespace:INetApp.ViewModels"
+    xmlns:views="clr-namespace:INetApp.Views"
+    xmlns:xtc="http://xamarin.com/schemas/2020/toolkit" 
+    xmlns:components="clr-namespace:INetApp.Views.Components"
+    Title="{Binding  Source={x:Static resources:Literales.activity_title_message_category}}"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    x:DataType="viewmodels:BandejaViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="CartTotalStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
+                <Setter Property="FontSize" Value="{StaticResource LargerSize}" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+
+            <Style x:Key="CheckoutButtonStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="ShoppingCartStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
+                <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 12" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--IsRefreshing="{Binding IsRefreshing ,Mode=OneWay}"
+                    Command="{Binding RefreshCommand}"-->
+    <RefreshView  >
+        <ScrollView Orientation="Vertical" 
+                 BackgroundColor="{StaticResource white}" 
+                 VerticalOptions="FillAndExpand" 
+                 HorizontalOptions="Fill">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid  Grid.Row="0" IsVisible="{Binding BasketItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+                    <ListView>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <components:BandejaItem/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+                <Grid  Grid.Row="0" IsVisible="{Binding BasketItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="BANDEJA VACIA"
+                        VerticalOptions="Center" 
+                        TextColor="{StaticResource dark_grey}"/>
+                </Grid>
+                <components:View_Update Grid.Row="1" x:Name="tv_last_update" />
+            </Grid>
+            
+        </ScrollView>
+    </RefreshView>
+</views:ContentPageBase>

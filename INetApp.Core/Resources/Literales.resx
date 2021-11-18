@@ -241,7 +241,7 @@
     <value>Actualizar ahora</value>
   </data>
   <data name="view_text_last_updated" xml:space="preserve">
-    <value>ÚLTIMA ACTUALIZACIÓN: %1$s</value>
+    <value>ÚLTIMA ACTUALIZACIÓN: {0}</value>
   </data>
   <data name="btn_text_refuse" xml:space="preserve">
     <value>RECHAZAR</value>
@@ -400,16 +400,16 @@
     <value>P. GESTIÓN</value>
   </data>
   <data name="text_week" xml:space="preserve">
-    <value>Semana %1$s</value>
+    <value>Semana {0}</value>
   </data>
   <data name="text_dedication" xml:space="preserve">
-    <value>Dedicación contrato: %1$s</value>
+    <value>Dedicación contrato: {0}</value>
   </data>
   <data name="copy_last_week" xml:space="preserve">
     <value />
   </data>
   <data name="total_week_hours" xml:space="preserve">
-    <value>Toral horas semana: %1$s</value>
+    <value>Toral horas semana: {0}</value>
   </data>
   <data name="btn_save" xml:space="preserve">
     <value>Guardar</value>

@@ -9,6 +9,7 @@ using INetApp.Resources;
 using INetApp.Services;
 using INetApp.Services.Identity;
 using INetApp.Services.Settings;
+using INetApp.Services.User;
 using INetApp.Validations;
 using INetApp.ViewModels.Base;
 using Xamarin.Forms;
@@ -23,10 +24,8 @@ namespace INetApp.ViewModels
         private bool _isLogin;
         private string _authUrl;
 
-        private readonly ISettingsService settingsService;
         private readonly IIdentityService identityService;
-        private readonly IRepositoryWebService repositoryWebService;
-
+        private IUserService userService;
         private UserLoggedModel _UserLoggedModel;
 
         #region Properties
@@ -101,15 +100,13 @@ namespace INetApp.ViewModels
 
         public LoginViewModel()
         {
-            settingsService = DependencyService.Get<ISettingsService>();
             identityService = DependencyService.Get<IIdentityService>();
-            repositoryWebService = DependencyService.Get<IRepositoryWebService>();
+            userService = DependencyService.Get<IUserService>();
 
             _userName = new ValidatableObject<string>();
             _password = new ValidatableObject<string>();
 
             GetCredenciales();
-
 
             AddValidations();
         }
@@ -137,19 +134,14 @@ namespace INetApp.ViewModels
         {
             this.IsBusy = true;
             if (Validate())
-            {              
+            {
                 //todo progressbar en login
                 //boton reintentar login
 
-
-                UserLoggedDto userLoggedDto = await repositoryWebService.GetUserLogged(this.UserName.Value, this.Password.Value);
-                if (userLoggedDto.IsOk && userLoggedDto.UserLoggedModel.permission)
+                UserLoggedDto userLoggedDto = await userService.GetUserLoggedDto(this.UserName.Value, this.Password.Value);
+                if (userLoggedDto.IsOk) // && userLoggedDto.UserLoggedModel.permission)
                 {
                     this.UserLoggedModel = userLoggedDto.UserLoggedModel;
-                    settingsService.AuthAccessToken = this.UserName.Value;
-                    settingsService.NameInitial = this.UserLoggedModel.nameInitial + this.UserLoggedModel.lastNameInitial;
-                    settingsService.NameUser = this.UserLoggedModel.fullName;
-                    //Application.Current.MainPage = new AppShell();
                     await NavigationService.NavigateToAsync("//MainView");
                 }
                 else

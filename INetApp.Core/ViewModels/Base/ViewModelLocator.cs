@@ -50,11 +50,12 @@ namespace INetApp.ViewModels.Base
             Xamarin.Forms.DependencyService.RegisterSingleton<IRepositoryWebService>(new RepositoryWebService(restapi, new IdentityService(requestProvider, settingsService, deviceService)));
 
             // View models - by default, TinyIoC will register concrete classes as multi-instance.
-            Xamarin.Forms.DependencyService.Register<BasketViewModel>();
-            Xamarin.Forms.DependencyService.Register<CatalogViewModel>();
-            Xamarin.Forms.DependencyService.Register<CheckoutViewModel>();
             Xamarin.Forms.DependencyService.Register<LoginViewModel>();
             Xamarin.Forms.DependencyService.Register<MainViewModel>();
+            Xamarin.Forms.DependencyService.Register<BandejaViewModel>();
+
+            Xamarin.Forms.DependencyService.Register<CatalogViewModel>();
+            Xamarin.Forms.DependencyService.Register<CheckoutViewModel>();
             Xamarin.Forms.DependencyService.Register<OrderDetailViewModel>();
             Xamarin.Forms.DependencyService.Register<ProfileViewModel>();
             Xamarin.Forms.DependencyService.Register<CampaignViewModel>();

@@ -1,15 +1,12 @@
 using System.Threading.Tasks;
 using INetApp.APIWebServices.Dtos;
-using INetApp.APIWebServices.Entity;
 //using INetApp.Models;
 using INetApp.APIWebServices.Helpers;
-using INetApp.APIWebServices.Requests;
 using INetApp.APIWebServices.Responses;
-using Mapster;
 
 namespace INetApp.APIWebServices
 {
-    public class RestApi : APIWebService ,IAPIWebService
+    public class RestApi : APIWebService, IAPIWebService
     {
         public RestApi()
         {
@@ -20,7 +17,7 @@ namespace INetApp.APIWebServices
 
         private static readonly string https = "https://";
         //pre
-        private static readonly string restService ="inet-pre.ineco.es/WS/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
+        private static readonly string restService = "inet-pre.ineco.es/WS/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
         //local
         // string restService = "192.168.1.33/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
         //private static readonly string restService = "localhost:62173/WSAppMovilAprobacion.svc/rest/";
@@ -148,10 +145,10 @@ namespace INetApp.APIWebServices
             {
                 //var json = ServiceHelper.ToJson(request);
 
-                HttpResponse httpResponse = Get(API_URL_GET_USER_LOGGED, Usuario ,Password).Result;
+                HttpResponse httpResponse = Get(API_URL_GET_USER_LOGGED, Usuario, Password).Result;
 
                 ServiceResponse<UserLoggedEntity> response = ServiceHelper.CreateResponse<UserLoggedEntity>(httpResponse);
-                
+
                 return Mappers.ServiceMapper.ConvertToBusiness<UserLoggedDto, UserLoggedEntity>(response);
             });
         }
@@ -162,11 +159,15 @@ namespace INetApp.APIWebServices
             {
                 HttpResponse httpResponse = Get(API_URL_GET_USER_PERMISSION, Usuario, Password).Result;
                 if (httpResponse.IsOk)
+                {
                     return httpResponse.Content;
+                }
                 else
+                {
                     return "false";
+                }
             });
-        }        
+        }
 
         public Task<UserLoggedDto> GetVersion(string Usuario, string Password)
         {

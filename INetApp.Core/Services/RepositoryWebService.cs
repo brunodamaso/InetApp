@@ -40,7 +40,9 @@ namespace INetApp.Services
                     if (userLoggedDto.IsOk)
                     {
                         if (!userLoggedDto.UserLoggedModel.username.Equals(""))
-{
+                        {
+                            //todo comparar version para pedir upgrade
+                            //todo nfc
                             string responseUserPermission = await apiWebService.GetUserLoggedPermission(Usuario, Password);
                             UserLoggedDto responseVersion = await apiWebService.GetVersion(Usuario, Password);
                             userLoggedDto.UserLoggedModel.permission = responseUserPermission == "true";
@@ -56,6 +58,8 @@ namespace INetApp.Services
                         }
                         else
                         {
+                            userLoggedDto.IsOk = false;
+                            userLoggedDto.ErrorCode = "UserNotFound";
                             //subscriber.OnError(new UserLoggedNotFoundException());
                         }
                     }
@@ -67,6 +71,7 @@ namespace INetApp.Services
                 else
                 {
                     userLoggedDto.IsOk = false;
+                    userLoggedDto.IsConnected = false;
                     //subscriber.OnError(new NetworkConnectionException());
                 }
 

@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using INetApp.Services;
-using INetApp.Services.RequestProvider;
-using INetApp.Models.Token;
-using INetApp.Helpers;
 using IdentityModel;
+using INetApp.Helpers;
+using INetApp.Models.Token;
+using INetApp.Services.RequestProvider;
+using INetApp.Services.Settings;
 using PCLCrypto;
 using static PCLCrypto.WinRTCrypto;
-using INetApp.Services.Settings;
-using INetApp;
 
 namespace INetApp.Services.Identity
 {
@@ -19,7 +17,7 @@ namespace INetApp.Services.Identity
     {
         private const string APP_KEY = "com.ineco.android.master";
         private const string KEY_PREFIX = "8RYmvH71oMqnofee0Be9";
-        
+
         private readonly IRequestProvider requestProvider;
         private readonly ISettingsService settingsService;
         private readonly IDeviceService deviceService;
@@ -35,24 +33,26 @@ namespace INetApp.Services.Identity
         public string CreateAuthorizationRequest()
         {
             // Create URI to authorization endpoint
-            var authorizeRequest = new AuthorizeRequest(GlobalSetting.Instance.AuthorizeEndpoint);
+            AuthorizeRequest authorizeRequest = new AuthorizeRequest(GlobalSetting.Instance.AuthorizeEndpoint);
 
             // Dictionary with values for the authorize request
-            var dic = new Dictionary<string, string>();
-            dic.Add("client_id", GlobalSetting.Instance.ClientId);
-            dic.Add("client_secret", GlobalSetting.Instance.ClientSecret);
-            dic.Add("response_type", "code id_token");
-            dic.Add("scope", "openid profile basket orders offline_access");
-            dic.Add("redirect_uri", GlobalSetting.Instance.Callback);
-            dic.Add("nonce", Guid.NewGuid().ToString("N"));
-            dic.Add("code_challenge", CreateCodeChallenge());
-            dic.Add("code_challenge_method", "S256");
+            Dictionary<string, string> dic = new Dictionary<string, string>
+            {
+                { "client_id", GlobalSetting.Instance.ClientId },
+                { "client_secret", GlobalSetting.Instance.ClientSecret },
+                { "response_type", "code id_token" },
+                { "scope", "openid profile basket orders offline_access" },
+                { "redirect_uri", GlobalSetting.Instance.Callback },
+                { "nonce", Guid.NewGuid().ToString("N") },
+                { "code_challenge", CreateCodeChallenge() },
+                { "code_challenge_method", "S256" }
+            };
 
             // Add CSRF token to protect against cross-site request forgery attacks.
-            var currentCSRFToken = Guid.NewGuid().ToString("N");
+            string currentCSRFToken = Guid.NewGuid().ToString("N");
             dic.Add("state", currentCSRFToken);
 
-            var authorizeUri = authorizeRequest.Create(dic);
+            string authorizeUri = authorizeRequest.Create(dic);
             return authorizeUri;
         }
 
@@ -72,17 +72,16 @@ namespace INetApp.Services.Identity
         public async Task<UserToken> GetTokenAsync(string code)
         {
             string data = string.Format("grant_type=authorization_code&code={0}&redirect_uri={1}&code_verifier={2}", code, WebUtility.UrlEncode(GlobalSetting.Instance.Callback), _codeVerifier);
-            var token = await requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint, data, GlobalSetting.Instance.ClientId, GlobalSetting.Instance.ClientSecret);
+            UserToken token = await requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint, data, GlobalSetting.Instance.ClientId, GlobalSetting.Instance.ClientSecret);
             return token;
         }
 
         private string CreateCodeChallenge()
         {
             _codeVerifier = RandomNumberGenerator.CreateUniqueId();
-            var sha256 = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Sha256);
-            var challengeBuffer = sha256.HashData(CryptographicBuffer.CreateFromByteArray(Encoding.UTF8.GetBytes(_codeVerifier)));
-            byte[] challengeBytes;
-            CryptographicBuffer.CopyToByteArray(challengeBuffer, out challengeBytes);
+            IHashAlgorithmProvider sha256 = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Sha256);
+            byte[] challengeBuffer = sha256.HashData(CryptographicBuffer.CreateFromByteArray(Encoding.UTF8.GetBytes(_codeVerifier)));
+            CryptographicBuffer.CopyToByteArray(challengeBuffer, out byte[] challengeBytes);
             return Base64Url.Encode(challengeBytes);
         }
         private static byte[] getRawKey(byte[] seed)
@@ -117,12 +116,12 @@ namespace INetApp.Services.Identity
             {
                 settingsService.UserName = user;
 
-                string keyString = KEY_PREFIX + this.deviceService.DispositivoID;
+                string keyString = KEY_PREFIX + deviceService.DispositivoID;
 
                 byte[] key = getRawKey(Encoding.UTF8.GetBytes(keyString)); // .GetBytes("UTF8")
-                var provider = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
-                var sKeySpec = provider.CreateSymmetricKey(key);
-                byte[] passEncrypted = WinRTCrypto.CryptographicEngine.Encrypt(sKeySpec, Encoding.UTF8.GetBytes(pass));
+                ISymmetricKeyAlgorithmProvider provider = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
+                ICryptographicKey sKeySpec = provider.CreateSymmetricKey(key);
+                byte[] passEncrypted = CryptographicEngine.Encrypt(sKeySpec, Encoding.UTF8.GetBytes(pass));
                 settingsService.UserPass = Base64Url.Encode(passEncrypted);
             }
             catch (Exception e)
@@ -133,7 +132,7 @@ namespace INetApp.Services.Identity
             //SecretKeySpec sKeySpec = new SecretKeySpec(key, "AES");
             //Cipher cipher = null;
             //    cipher = Cipher.GetInstance("AES");
-                //cipher.Init(CipherMode.EncryptMode, sKeySpec); // Cipher.DecryptMode
+            //cipher.Init(CipherMode.EncryptMode, sKeySpec); // Cipher.DecryptMode
             //    //passEncrypted = cipher.doFinal(pass.getBytes("UTF8"));
 
             //prefs.Edit().PutString(PASS_PREF, Base64.EncodeToString(passEncrypted, Base64Flags.Default)).Apply();
@@ -144,19 +143,19 @@ namespace INetApp.Services.Identity
             string username = settingsService.UserName;
             string password = settingsService.UserPass;
 
-            string keyString = KEY_PREFIX + this.deviceService.DispositivoID;//.Settings.Secure.GetString(context.ContentResolver, Settings.Secure.AndroidId);
+            string keyString = KEY_PREFIX + deviceService.DispositivoID;//.Settings.Secure.GetString(context.ContentResolver, Settings.Secure.AndroidId);
 
             try
             {
                 byte[] key = getRawKey(Encoding.UTF8.GetBytes(keyString)); // .GetBytes("UTF8")
-                var provider = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
-                var sKeySpec = provider.CreateSymmetricKey(key);
+                ISymmetricKeyAlgorithmProvider provider = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
+                ICryptographicKey sKeySpec = provider.CreateSymmetricKey(key);
                 //SecretKeySpec sKeySpec = new SecretKeySpec(key, "AES");
 
                 //Cipher cipher = null;
                 //    cipher = Cipher.GetInstance("AES");
                 //    //cipher.Init(CipherMode.DecryptMode, sKeySpec); // Cipher.DecryptMode
-                byte[] passDecrypted = WinRTCrypto.CryptographicEngine.Decrypt(sKeySpec, Base64Url.Decode(password));
+                byte[] passDecrypted = CryptographicEngine.Decrypt(sKeySpec, Base64Url.Decode(password));
                 //passDecrypted = cipher.DoFinal(Base64.Decode(password, Base64Flags.Default));
                 retorno = new KeyValuePair<string, object>(username, Encoding.UTF8.GetString(passDecrypted));
             }

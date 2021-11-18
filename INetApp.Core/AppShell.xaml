@@ -48,7 +48,7 @@
                      HorizontalOptions="Start" VerticalOptions="Center"/>
             <Label Grid.Row ="0" 
                x:Name="NameInitial"
-               TextColor="White"
+               TextColor="{StaticResource white}"
                FontSize="23" 
                Padding="0"
                HorizontalOptions="CenterAndExpand"
@@ -57,7 +57,7 @@
             <Label Grid.Row ="1" 
                    Grid.ColumnSpan="2"
                 x:Name="NameUser"
-               TextColor="White"
+               TextColor="{StaticResource white}"
                FontAttributes="Bold"
                HorizontalTextAlignment="Start"
                VerticalTextAlignment="Center" />
@@ -84,7 +84,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Bandeja de entrada" Icon="icon_feed.png" >
-        <ShellContent Route="BandejaPage" ContentTemplate="{DataTemplate views:BasketView}" />
+        <ShellContent Route="Bandeja" ContentTemplate="{DataTemplate views:BandejaView}" />
     </FlyoutItem>
     <FlyoutItem     Title="Solicitudes marcadas">
         <ShellContent Route="Catalog" ContentTemplate="{DataTemplate views:CatalogView}" />

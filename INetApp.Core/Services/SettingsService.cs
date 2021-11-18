@@ -17,6 +17,7 @@ namespace INetApp.Services.Settings
         private const string AccessToken = "access_token";
         private const string nameInitial = "Iniciales";
         private const string nameUser = "FullName";
+        private const string keyPermission = "isPermission";
 
         private const string IdToken = "id_token";        
         private const string IdIdentityBase = "url_base";
@@ -53,12 +54,19 @@ namespace INetApp.Services.Settings
             get => Preferences.Get(nameInitial, "");
             set => Preferences.Set(nameInitial, value);
         }
-        public string NameUser
+        public string NameFull
         {
             get => Preferences.Get(nameUser, "");
             set => Preferences.Set(nameUser, value);
-        }       
+        }
 
+        public bool Permission
+        {
+            get => Preferences.Get(keyPermission, false);
+            set => Preferences.Set(keyPermission, value);
+        }
+
+        
         public string AuthIdToken
         {
             get => Preferences.Get(IdToken, IdTokenDefault);

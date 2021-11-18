@@ -134,6 +134,9 @@
     <Content Include="..\INetApp.Droid\Resources\drawable\ineco.png">
       <Link>Assets\ineco.png</Link>
     </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\info.png">
+      <Link>Assets\info.png</Link>
+    </Content>
     <Content Include="Assets\banner.png" />
     <Content Include="Assets\circle_button_background.png" />
     <AndroidResource Include="Assets\default_campaign.png" />
