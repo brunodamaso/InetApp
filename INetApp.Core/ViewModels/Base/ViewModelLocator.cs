@@ -67,7 +67,7 @@ namespace INetApp.ViewModels.Base
             // Change injected dependencies
             IRequestProvider requestProvider = Xamarin.Forms.DependencyService.Get<IRequestProvider>();
             IFixUriService fixUriService = Xamarin.Forms.DependencyService.Get<IFixUriService>();
-            Xamarin.Forms.DependencyService.RegisterSingleton<IBasketService>(new BasketService(requestProvider, fixUriService));
+            Xamarin.Forms.DependencyService.RegisterSingleton<IBandejaService>(new BasketService(requestProvider, fixUriService));
             Xamarin.Forms.DependencyService.RegisterSingleton<ICampaignService>(new CampaignService(requestProvider, fixUriService));
             Xamarin.Forms.DependencyService.RegisterSingleton<ICatalogService>(new CatalogService(requestProvider, fixUriService));
             Xamarin.Forms.DependencyService.RegisterSingleton<IOrderService>(new OrderService(requestProvider));

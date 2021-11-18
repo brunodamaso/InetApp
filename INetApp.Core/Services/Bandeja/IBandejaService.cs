@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace INetApp.Services.Basket
+namespace INetApp.Services.Bandeja
 {
     public interface IBandejaService
     {

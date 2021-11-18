@@ -20,14 +20,12 @@ namespace INetApp.ViewModels
         private ObservableCollection<BasketItem> _basketItems;
         private decimal _total;
 
-        private IBasketService _basketService;
-        private ISettingsService _settingsService;
+        private IBandejaService BandejaService;
         private IUserService _userService;
 
         public BandejaViewModel()
         {
-            _basketService = DependencyService.Get<IBasketService> ();
-            _settingsService = DependencyService.Get<ISettingsService>();
+            BandejaService = DependencyService.Get<IBandejaService> ();
             _userService = DependencyService.Get<IUserService> ();
         }
 
@@ -72,7 +70,8 @@ namespace INetApp.ViewModels
             if (BasketItems == null)
                 BasketItems = new ObservableCollection<BasketItem> ();
 
-            this.Text_last_update = string.Format(Literales.view_text_last_updated, "xxx");
+
+            this.Text_last_update = string.Format(Literales.view_text_last_updated, "-");
             
             RaisePropertyChanged (() => BasketItems);
         }

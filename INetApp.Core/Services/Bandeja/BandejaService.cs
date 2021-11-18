@@ -6,7 +6,7 @@ using INetApp.Services.FixUri;
 using INetApp.Helpers;
 using System.Collections.Generic;
 
-namespace INetApp.Services.Basket
+namespace INetApp.Services.Bandeja
 {
     public class BandejaService : IBandejaService
     {

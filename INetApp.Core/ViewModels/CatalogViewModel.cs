@@ -24,7 +24,7 @@ namespace INetApp.ViewModels
         private CatalogType _type;
         private int _badgeCount;
         private ICatalogService _catalogService;
-        private IBasketService _basketService;
+        private IBandejaService _basketService;
         private ISettingsService _settingsService;
         private IUserService _userService;
 
@@ -33,7 +33,7 @@ namespace INetApp.ViewModels
             this.MultipleInitialization = true;
 
             _catalogService = DependencyService.Get<ICatalogService> ();
-            _basketService = DependencyService.Get<IBasketService> ();
+            _basketService = DependencyService.Get<IBandejaService> ();
             _settingsService = DependencyService.Get<ISettingsService> ();
             _userService = DependencyService.Get<IUserService> ();
         }

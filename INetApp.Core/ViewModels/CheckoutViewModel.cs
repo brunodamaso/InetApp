@@ -23,14 +23,14 @@ namespace INetApp.ViewModels
         private Address _shippingAddress;
 
         private ISettingsService _settingsService;
-        private IBasketService _basketService;
+        private IBandejaService _basketService;
         private IOrderService _orderService;
         private IUserService _userService;
 
         public CheckoutViewModel()
         {
             _settingsService = DependencyService.Get<ISettingsService> ();
-            _basketService = DependencyService.Get<IBasketService> ();
+            _basketService = DependencyService.Get<IBandejaService> ();
             _orderService = DependencyService.Get<IOrderService> ();
             _userService = DependencyService.Get<IUserService> ();
         }

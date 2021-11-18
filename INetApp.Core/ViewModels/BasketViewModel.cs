@@ -19,13 +19,13 @@ namespace INetApp.ViewModels
         private ObservableCollection<BasketItem> _basketItems;
         private decimal _total;
 
-        private IBasketService _basketService;
+        private IBandejaService _basketService;
         private ISettingsService _settingsService;
         private IUserService _userService;
 
         public BasketViewModel()
         {
-            _basketService = DependencyService.Get<IBasketService> ();
+            _basketService = DependencyService.Get<IBandejaService> ();
             _settingsService = DependencyService.Get<ISettingsService>();
             _userService = DependencyService.Get<IUserService> ();
         }
