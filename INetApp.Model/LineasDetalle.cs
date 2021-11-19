@@ -1,4 +1,4 @@
-using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace INetApp.Models
 {
@@ -7,7 +7,7 @@ namespace INetApp.Models
      * Class that represents a LinesDetail in the domain layer.
      */
 
-    public class LineasDetalle : ObservableObject
+    public class LineasDetalle : BindableObject
     {
 
         private string fechaImputacion;

@@ -1,4 +1,4 @@
-using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace INetApp.Models
 {
@@ -6,7 +6,7 @@ namespace INetApp.Models
     /**
      * Class that represents a user in the presentation layer.
      */
-    public class SendSaveDataModel : ObservableObject
+    public class SendSaveDataModel : BindableObject
     {
 
         private int accion { get; set; }

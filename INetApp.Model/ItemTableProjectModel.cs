@@ -1,4 +1,4 @@
-using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace INetApp.Models
 {
@@ -6,7 +6,7 @@ namespace INetApp.Models
      * Created by BIZAALOI on 14/03/2018.
      */
 
-    public class ItemTableProjectModel : ObservableObject
+    public class ItemTableProjectModel : BindableObject
     {
 
         private string protitulo { get; set; }

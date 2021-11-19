@@ -1,12 +1,12 @@
 using System.Text;
-using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace INetApp.Models
 {
     /**
      * Class that represents a user logged in the presentation layer.
      */
-    public class UserLoggedModel : ObservableObject
+    public class UserLoggedModel : BindableObject
     {
         public UserLoggedModel() { }
         public UserLoggedModel(string username)

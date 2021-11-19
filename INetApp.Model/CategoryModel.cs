@@ -1,5 +1,5 @@
 using System.Text;
-using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace INetApp.Models
 {
@@ -7,7 +7,7 @@ namespace INetApp.Models
     /**
      * Class that represents a user in the presentation layer.
      */
-    public class CategoryModel : ObservableObject
+    public class CategoryModel : BindableObject
     {
 
         private readonly string LABEL_TRAVEL = "VIAJES";

@@ -4,40 +4,40 @@
     {
         protected BaseResponse()
         {
-            IsOk = true;
-            ErrorCode = string.Empty;
-            Description = string.Empty;
+            this.IsOk = true;
+            this.ErrorCode = string.Empty;
+            this.Description = string.Empty;
         }
 
         protected BaseResponse(T value)
         {
-            IsOk = true;
-            IsConnected = true;
-            ErrorCode = string.Empty;
-            Description = string.Empty;
-            Content = value;
+            this.IsOk = true;
+            this.IsConnected = true;
+            this.ErrorCode = string.Empty;
+            this.Description = string.Empty;
+            this.Resultado = value;
         }
 
         protected BaseResponse(string errorCode, string description)
         {
-            IsOk = false;
-            IsConnected = true;
-            ErrorCode = errorCode;
-            Description = description;
+            this.IsOk = false;
+            this.IsConnected = true;
+            this.ErrorCode = errorCode;
+            this.Description = description;
         }
 
         protected BaseResponse(string errorCode, string description, bool isConnected)
         {
-            IsOk = false;
-            IsConnected = isConnected;
-            ErrorCode = errorCode;
-            Description = description;
+            this.IsOk = false;
+            this.IsConnected = isConnected;
+            this.ErrorCode = errorCode;
+            this.Description = description;
         }
 
         public bool IsOk { get; set; }
         public bool IsConnected { get; set; }
         public string ErrorCode { get; set; }
         public string Description { get; set; }
-        public T Content { get; set; }
+        public T Resultado { get; set; }
     }
 }

@@ -1,29 +1,28 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 
 namespace INetApp.APIWebServices.Responses
-{ 
+{
     public class HttpResponse
     {
         private HttpResponse()
         {
-            StatusCode = HttpStatusCode.OK;
-            Content = string.Empty;
-            Description = string.Empty;
+            this.StatusCode = HttpStatusCode.OK;
+            this.Resultado = string.Empty;
+            this.Description = string.Empty;
         }
 
         public HttpStatusCode StatusCode { get; set; }
-        public bool IsOk => StatusCode == HttpStatusCode.OK && string.IsNullOrEmpty(Description);
-        public bool IsConnected => StatusCode != HttpStatusCode.NotFound;
+        public bool IsOk => this.StatusCode == HttpStatusCode.OK && string.IsNullOrEmpty(this.Description);
+        public bool IsConnected => this.StatusCode != HttpStatusCode.NotFound;
         public string Description { get; set; }
-        public string Content { get; set; }
+        public string Resultado { get; set; }
 
         internal static HttpResponse CreateOk(string content)
         {
             return new HttpResponse
             {
                 StatusCode = HttpStatusCode.OK,
-                Content = content,
+                Resultado = content,
                 Description = string.Empty
             };
         }
@@ -33,7 +32,7 @@ namespace INetApp.APIWebServices.Responses
             return new HttpResponse
             {
                 StatusCode = statusCode,
-                Content = string.Empty,
+                Resultado = string.Empty,
                 Description = description
             };
         }

@@ -1,5 +1,5 @@
 using System.Text;
-using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace INetApp.Models
 {
@@ -7,7 +7,7 @@ namespace INetApp.Models
     /**
      * Class that represents a user logged in the presentation layer.
      */
-    public class UserAccessModel : ObservableObject
+    public class UserAccessModel : BindableObject
     {
 
 

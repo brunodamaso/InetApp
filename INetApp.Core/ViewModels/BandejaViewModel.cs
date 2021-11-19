@@ -107,15 +107,7 @@ namespace INetApp.ViewModels
         {
             BasketItems.Remove (item);
 
-            var authToken = _settingsService.AuthAccessToken;
-            var userInfo = await _userService.GetUserInfoAsync (authToken);
-            var basket = await _basketService.GetBasketAsync (userInfo.UserId, authToken);
-            if (basket != null)
-            {
-                basket.Items.Remove (item);
-                await _basketService.UpdateBasketAsync (basket, authToken);
-                BadgeCount = basket.Items.Count ();
-            }
+           
 
             await ReCalculateTotalAsync ();
         }
@@ -139,7 +131,6 @@ namespace INetApp.ViewModels
         {
             if (BasketItems?.Any() ?? false)
             {
-                _basketService.LocalBasketItems = BasketItems;
                 await NavigationService.NavigateToAsync ("Checkout");
             }
         }

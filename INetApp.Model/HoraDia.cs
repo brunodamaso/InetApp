@@ -1,4 +1,4 @@
-using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace INetApp.Models
 {
@@ -7,7 +7,7 @@ namespace INetApp.Models
  * Class that represents a HourDay in the domain layer.
  */
 
-    public class HoraDia : ObservableObject
+    public class HoraDia : BindableObject
     {
 
         private double lunes;

@@ -1,12 +1,12 @@
 using System.Text;
-using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace INetApp.Models
 {
     /**
      * Class that represents a user in the presentation layer.
      */
-    public class PeriodoActivoModel : ObservableObject
+    public class PeriodoActivoModel : BindableObject
     {
 
         public PeriodoActivoModel()

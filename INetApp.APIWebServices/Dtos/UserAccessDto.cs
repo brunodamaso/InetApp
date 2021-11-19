@@ -9,6 +9,6 @@ namespace INetApp.APIWebServices.Dtos
     {
         public UserAccessDto() : base() { }
         public UserAccessDto(bool isOk, string errorCode, string errorDescription, bool isConnected) : base(isOk, errorCode, errorDescription, isConnected) { }
-        public string Content { get; set; }
+        public string Resultado { get; set; }
     }
 }

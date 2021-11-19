@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace INetApp.Models
 {
@@ -11,7 +11,7 @@ namespace INetApp.Models
     /**
      * Class that represents a user in the presentation layer.
      */
-    public class MessageModel : ObservableObject
+    public class MessageModel : BindableObject
     {
         public static readonly string URL_LABEL = "URL";
 

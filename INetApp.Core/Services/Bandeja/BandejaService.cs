@@ -23,7 +23,7 @@ namespace INetApp.Services.Bandeja
             _fixUriService = fixUriService;
         }
 
-        public async Task<CustomerBasket> GetBasketAsync(string guidUser, string token)
+        public async Task<CustomerBasket> GetBandejaAsync(string guidUser, string token)
         {
             var uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewayShoppingEndpoint, $"{ApiUrlBase}/{guidUser}");
 

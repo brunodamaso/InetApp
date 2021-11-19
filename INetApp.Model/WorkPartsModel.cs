@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Text;
-using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace INetApp.Models
 {
@@ -12,7 +12,7 @@ namespace INetApp.Models
     /**
      * Class that represents a user in the presentation layer.
      */
-    public class WorkPartsModel : ObservableObject
+    public class WorkPartsModel : BindableObject
     {
 
         private int idParte { get; set; }
