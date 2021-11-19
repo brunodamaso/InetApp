@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using INetApp.APIWebServices.Dtos;
+using INetApp.APIWebServices.Entity;
 using INetApp.APIWebServices.Responses;
 using INetApp.Models;
 using Mapster;
@@ -20,14 +21,39 @@ namespace INetApp.APIWebServices.Mappers
                 IsConnected = serviceResponse.IsConnected
             };
 
-            if (serviceResponse.IsOk && serviceResponse.Content != null)
+            if (serviceResponse.IsOk && serviceResponse.Resultado != null)
             {
-                dto = serviceResponse.Content.Adapt<TDto>();                
+                dto = serviceResponse.Resultado.Adapt<TDto>();
             }
 
             return dto;
         }
-         
+
+        public static CategoryDto ConvertToBusiness(ServiceResponse<CategoryEntitys> serviceResponse)
+        {
+            CategoryDto dto = new CategoryDto()
+            {
+                IsOk = serviceResponse.IsOk,
+                ErrorCode = serviceResponse.ErrorCode,
+                ErrorDescription = serviceResponse.Description,
+                IsConnected = serviceResponse.IsConnected
+            };
+
+            if (serviceResponse.IsOk && serviceResponse.Resultado != null)
+            {
+                foreach (var item in serviceResponse.Resultado.CategoryEntity)
+                {
+                    CategoryModel aa = item.Adapt<CategoryModel>();
+                    dto.CategoryModels.Add(aa);
+                }
+                //dto = serviceResponse.Resultado.Adapt<CategoryDto>();
+            }
+
+            return dto;
+        }
+
+
+
         //public static CategoriasDto ConvertToBusiness(ServiceResponse<ChkLicenciaResponse> serviceResponse)
         //{
         //    CategoriasDto dto = new CategoriasDto(serviceResponse.IsOk, serviceResponse.ErrorCode, serviceResponse.Description, serviceResponse.IsConnected);

@@ -1,5 +1,6 @@
 ﻿using INetApp.APIWebServices.Dtos;
-using INetApp.APIWebServices.Responses;
+using INetApp.APIWebServices.Entity;
+using INetApp.Models;
 using Mapster;
 using MapsterMapper;
 using System;
@@ -21,13 +22,17 @@ namespace INetApp.APIWebServices.Mappers
                .Map(dest => dest.UserLoggedModel.nameInitial, src => string.IsNullOrEmpty(src.name) ? "" : $"{src.name.Substring(0, 1)}")
                .Map(dest => dest.UserLoggedModel.lastNameInitial, src => string.IsNullOrEmpty(src.lastname) ? "" : $"{src.lastname.Substring(0, 1)}");
 
-          
-            //TypeAdapterConfig<GetParametrosResponse, ParametrosDto>
-            //  .NewConfig()
-            //  .Map(dest => dest.Configs,
-            //      src => src.Parametros)
-            //      .IgnoreNullValues(true);
 
+            TypeAdapterConfig<CategoryEntitys, CategoryDto>
+               .NewConfig()
+               .EnableNonPublicMembers(true)
+               .Map(dest => dest.CategoryModels, src => src.CategoryEntity)
+               .IgnoreNullValues(true);
+
+            TypeAdapterConfig<CategoryEntity, CategoryModel>
+                .NewConfig()
+                .EnableNonPublicMembers(true)              
+                .IgnoreNullValues(true);
         }
     }
 }

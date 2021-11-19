@@ -1,14 +1,16 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using INetApp.APIWebServices.Dtos;
+using INetApp.APIWebServices.Entity;
 //using INetApp.Models;
 using INetApp.APIWebServices.Helpers;
 using INetApp.APIWebServices.Responses;
 
 namespace INetApp.APIWebServices
 {
-    public class RestApi : APIWebService, IAPIWebService
+    public class RestApiImpl : APIWebService, IRestApi
     {
-        public RestApi()
+        public RestApiImpl()
         {
             Mappers.ServiceMapster.CreateMapper();
         }
@@ -160,7 +162,7 @@ namespace INetApp.APIWebServices
                 HttpResponse httpResponse = Get(API_URL_GET_USER_PERMISSION, Usuario, Password).Result;
                 if (httpResponse.IsOk)
                 {
-                    return httpResponse.Content;
+                    return httpResponse.Resultado;
                 }
                 else
                 {
@@ -181,6 +183,23 @@ namespace INetApp.APIWebServices
 
             });
         }
+
+        public Task<CategoryDto> GetCategoryFromApi(string Usuario, string Password)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                HttpResponse httpResponse = Get(API_URL_GET_CATEGORY_LIST, Usuario, Password).Result;
+
+                httpResponse.Resultado = $"{{CategoryEntity:{httpResponse.Resultado}}}";
+
+                ServiceResponse<CategoryEntitys> response = ServiceHelper.CreateResponse<CategoryEntitys>(httpResponse);
+
+                return Mappers.ServiceMapper.ConvertToBusiness<CategoryDto, CategoryEntitys>(response);
+
+            });
+        }
+
+        
 
         //public Task<CategoriasDto> ResetPassword(string Mail, string Usuario, string Password)
         //{

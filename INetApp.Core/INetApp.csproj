@@ -63,11 +63,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Literales.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\BandejaView.xaml.cs">
-      <DependentUpon>BandejaView.xaml</DependentUpon>
+    <Compile Update="Views\CategoryView.xaml.cs">
+      <DependentUpon>CategoryView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Components\BandejaItem.xaml.cs">
-      <DependentUpon>BandejaItem.xaml</DependentUpon>
+    <Compile Update="Views\Components\CategoryItem.xaml.cs">
+      <DependentUpon>CategoryItem.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

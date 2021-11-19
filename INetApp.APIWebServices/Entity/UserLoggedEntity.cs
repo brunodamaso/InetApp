@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Text;
 
-namespace INetApp.APIWebServices.Responses
+namespace INetApp.APIWebServices.Entity
 {
-
     public class UserLoggedEntity : Response
     {
         [JsonProperty(PropertyName = "usuarioIneco")]

@@ -12,15 +12,16 @@ namespace INetApp.Services.Basket
     {
         private readonly IRequestProvider _requestProvider;
         private readonly IFixUriService _fixUriService;
-
+        private readonly IRepositoryWebService repositoryWebService;
         private const string ApiUrlBase = "b/api/v1/basket";
 
         public IEnumerable<BasketItem> LocalBasketItems { get; set; }
 
-        public BandejaService(IRequestProvider requestProvider, IFixUriService fixUriService)
+        public BandejaService(IRepositoryWebService _repositoryWebService, IRequestProvider requestProvider, IFixUriService fixUriService)
         {
             _requestProvider = requestProvider;
             _fixUriService = fixUriService;
+            repositoryWebService = _repositoryWebService;
         }
 
         public async Task<CustomerBasket> GetBasketAsync(string guidUser, string token)

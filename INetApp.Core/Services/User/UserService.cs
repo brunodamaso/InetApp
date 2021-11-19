@@ -17,16 +17,17 @@ namespace INetApp.Services.User
         private readonly IRequestProvider _requestProvider;
         private readonly ISettingsService settingsService;
         private readonly IRepositoryWebService repositoryWebService;
-        protected readonly IIdentityService identityService;
+        private protected readonly IIdentityService identityService;
 
-        public UserService(IRequestProvider requestProvider)
+        public UserService(IRepositoryWebService _repositoryWebService, IRequestProvider requestProvider)
         {
             _requestProvider = requestProvider;
             settingsService = ViewModelLocator.Resolve<ISettingsService>();
-            repositoryWebService = ViewModelLocator.Resolve<IRepositoryWebService>();
+            repositoryWebService = _repositoryWebService;
             identityService = ViewModelLocator.Resolve<IIdentityService>();
         }
 
+        //todo quitar
         public async Task<UserInfo> GetUserInfoAsync(string authToken)
         {
             var uri = UriHelper.CombineUri(GlobalSetting.Instance.UserInfoEndpoint);
@@ -49,9 +50,10 @@ namespace INetApp.Services.User
         public async Task<UserLoggedDto> GetUserLoggedDto()
         {
             KeyValuePair<string, object> credenciales = identityService.GetCredentialsFromPrefs();
+
             string userName = credenciales.Key.ToString();
             string userPass = credenciales.Value.ToString();
             return await GetUserLoggedDto(userName, userPass);
-        }
+        }        
     }
 }

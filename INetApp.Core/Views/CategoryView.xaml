@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <views:ContentPageBase
-    x:Class="INetApp.Views.BandejaView"
+    x:Class="INetApp.Views.CategoryView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:templates="clr-namespace:INetApp.Views.Templates;assembly=INetApp"
     xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
     xmlns:viewmodels="clr-namespace:INetApp.ViewModels"
     xmlns:views="clr-namespace:INetApp.Views"
-    xmlns:xtc="http://xamarin.com/schemas/2020/toolkit" 
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
     xmlns:components="clr-namespace:INetApp.Views.Components"
+    xmlns:resources="clr-namespace:INetApp.Resources"
     Title="{Binding  Source={x:Static resources:Literales.activity_title_message_category}}"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
-    x:DataType="viewmodels:BandejaViewModel">
+    x:DataType="viewmodels:CategoryViewModel">
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -40,17 +41,18 @@
 
     <!--IsRefreshing="{Binding IsRefreshing ,Mode=OneWay}"
                     Command="{Binding RefreshCommand}"-->
-    <RefreshView  >
+    <RefreshView xct:SafeAreaEffect.SafeArea="true" >
         <ScrollView Orientation="Vertical" 
-                 BackgroundColor="{StaticResource white}" 
-                 VerticalOptions="FillAndExpand" 
-                 HorizontalOptions="Fill">
-            <Grid>
+                BackgroundColor="{StaticResource white}" 
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="Fill"
+                 >
+            <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
-                <Grid  Grid.Row="0" IsVisible="{Binding BasketItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
+                <Grid  Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="60" />
@@ -59,16 +61,16 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <components:BandejaItem/>
+                                    <components:CategoryItem/>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
-                <Grid  Grid.Row="0" IsVisible="{Binding BasketItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
+                <Grid  Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
                     <Label
                         HorizontalOptions="Center"
-                        Text="BANDEJA VACIA"
+                        Text="Category VACIA"
                         VerticalOptions="Center" 
                         TextColor="{StaticResource dark_grey}"/>
                 </Grid>

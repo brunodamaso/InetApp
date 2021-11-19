@@ -2,9 +2,9 @@
 
 namespace INetApp.Views.Components
 {
-    public partial class BandejaItem
+    public partial class CategoryItem
     {
-        public BandejaItem()
+        public CategoryItem()
         {
             InitializeComponent();
         }

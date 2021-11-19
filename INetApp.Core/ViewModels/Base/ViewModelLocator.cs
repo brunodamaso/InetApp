@@ -5,6 +5,7 @@ using INetApp.APIWebServices;
 using INetApp.Services;
 using INetApp.Services.Basket;
 using INetApp.Services.Catalog;
+using INetApp.Services.Category;
 using INetApp.Services.Dependency;
 using INetApp.Services.FixUri;
 using INetApp.Services.Identity;
@@ -38,7 +39,7 @@ namespace INetApp.ViewModels.Base
             SettingsService settingsService = new SettingsService();
             RequestProvider requestProvider = new RequestProvider();
             IDeviceService deviceService = Xamarin.Forms.DependencyService.Get<IDeviceService>();
-            RestApi restapi = new RestApi();
+            RestApiImpl restapi = new RestApiImpl();
             Xamarin.Forms.DependencyService.RegisterSingleton<ISettingsService>(settingsService);
             Xamarin.Forms.DependencyService.RegisterSingleton<INavigationService>(new NavigationService(settingsService));
             Xamarin.Forms.DependencyService.RegisterSingleton<IDialogService>(new DialogService());
@@ -52,7 +53,7 @@ namespace INetApp.ViewModels.Base
             // View models - by default, TinyIoC will register concrete classes as multi-instance.
             Xamarin.Forms.DependencyService.Register<LoginViewModel>();
             Xamarin.Forms.DependencyService.Register<MainViewModel>();
-            Xamarin.Forms.DependencyService.Register<BandejaViewModel>();
+            Xamarin.Forms.DependencyService.Register<CategoryViewModel>();
 
             Xamarin.Forms.DependencyService.Register<CatalogViewModel>();
             Xamarin.Forms.DependencyService.Register<CheckoutViewModel>();
@@ -67,12 +68,15 @@ namespace INetApp.ViewModels.Base
             // Change injected dependencies
             IRequestProvider requestProvider = Xamarin.Forms.DependencyService.Get<IRequestProvider>();
             IFixUriService fixUriService = Xamarin.Forms.DependencyService.Get<IFixUriService>();
-            Xamarin.Forms.DependencyService.RegisterSingleton<IBandejaService>(new BandejaService(requestProvider, fixUriService));
+            IRepositoryWebService repositoryWebService = Xamarin.Forms.DependencyService.Get<IRepositoryWebService>();
+            
+            Xamarin.Forms.DependencyService.RegisterSingleton<IUserService>(new UserService(repositoryWebService, requestProvider));
+            Xamarin.Forms.DependencyService.RegisterSingleton<ICategoryService>(new CategoryService(repositoryWebService));
+
             Xamarin.Forms.DependencyService.RegisterSingleton<ICampaignService>(new CampaignService(requestProvider, fixUriService));
             Xamarin.Forms.DependencyService.RegisterSingleton<ICatalogService>(new CatalogService(requestProvider, fixUriService));
             Xamarin.Forms.DependencyService.RegisterSingleton<IOrderService>(new OrderService(requestProvider));
-            Xamarin.Forms.DependencyService.RegisterSingleton<IUserService>(new UserService(requestProvider));
-
+            
         }
 
         public static T Resolve<T>() where T : class

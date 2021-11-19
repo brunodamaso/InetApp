@@ -48,7 +48,7 @@ namespace INetApp.ViewModels
         }
         private async Task BandejaEntrada()
         {
-            await NavigationService.NavigateToAsync("Bandeja");
+            await NavigationService.NavigateToAsync("Category");
         }
 
 

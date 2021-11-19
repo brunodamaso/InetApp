@@ -84,7 +84,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Bandeja de entrada" Icon="icon_feed.png" >
-        <ShellContent Route="Bandeja" ContentTemplate="{DataTemplate views:BandejaView}" />
+        <ShellContent Route="Category" ContentTemplate="{DataTemplate views:CategoryView}" />
     </FlyoutItem>
     <FlyoutItem     Title="Solicitudes marcadas">
         <ShellContent Route="Catalog" ContentTemplate="{DataTemplate views:CatalogView}" />

@@ -15,7 +15,7 @@ namespace INetApp.APIWebServices.Helpers
 
             var dto = DeserializeJSON<T>(response, response.IsOk);
 
-            if (response.IsOk && (dto != null || response.Content.ToLower().Equals("true")))
+            if (response.IsOk && (dto != null || response.Resultado.ToLower().Equals("true")))
             {
                 result = ServiceResponse<T>.CreateOk(dto);
             }
@@ -37,7 +37,7 @@ namespace INetApp.APIWebServices.Helpers
 
                 if (isOk)
                 {
-                    json = HttpUtility.HtmlDecode(response.Content);
+                    json = HttpUtility.HtmlDecode(response.Resultado);
                 }
                 else
                 {

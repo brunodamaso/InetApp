@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -25,28 +26,19 @@ namespace INetApp.APIWebServices
 
         private void CreateAppHeaders(ref HttpClient httpClient, string Usuario = null, string Password = null)
         {
-            string authenticationString;
-            if (Usuario == null)
-            {
-                //bd
-                //buscar en storage
-                //authenticationString = $"{Settings.UserId}:{Settings.Token}";
-                authenticationString = $"{Usuario}:{Password}";
-            }
-            else
-            {
-                authenticationString = $"{Usuario}:{Password}";
-            }
-
-            string base64EncodedAuthenticationString = Convert.ToBase64String(Encoding.ASCII.GetBytes(authenticationString));
-
+            string authenticationString;          
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Add("Accept", "application/json;odata=verbose");
             //httpClient.DefaultRequestHeaders.Add(AUTHORIZATION_LABEL, base64EncodedAuthenticationString);
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(CONTENT_TYPE));
-            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", base64EncodedAuthenticationString);
-            //httpClient.DefaultRequestHeaders.Add("UserID", this.Settings.UserId);
-            //httpClient.DefaultRequestHeaders.Add("Token", this.Settings.Token);         
+            if (Usuario != null)
+            {
+                authenticationString = $"{Usuario}:{Password}";
+                string base64EncodedAuthenticationString = Convert.ToBase64String(Encoding.ASCII.GetBytes(authenticationString));
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64EncodedAuthenticationString);
+            }
+
+
         }
 
         public async Task<HttpResponse> Get(string url, string Usuario = null, string Password = null)

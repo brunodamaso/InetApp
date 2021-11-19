@@ -61,7 +61,7 @@ namespace INetApp
 
         private void InitializeRouting()
         {
-            Routing.RegisterRoute("Bandeja", typeof(BandejaView));
+            Routing.RegisterRoute("Category", typeof(CategoryView));
             Routing.RegisterRoute("MainView", typeof(MainView));
             Routing.RegisterRoute("OrderDetail", typeof(OrderDetailView));
             Routing.RegisterRoute("CampaignDetails", typeof(CampaignDetailsView));

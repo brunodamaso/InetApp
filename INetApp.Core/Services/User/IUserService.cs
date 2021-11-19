@@ -1,5 +1,6 @@
 ﻿using INetApp.APIWebServices.Dtos;
 using INetApp.Models.User;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace INetApp.Services.User

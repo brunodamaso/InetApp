@@ -13,6 +13,8 @@ namespace INetApp.Services
     public interface IRepositoryWebService
     {
         Task<UserLoggedDto> GetUserLogged(string usuario, string password);
+        Task<CategoryDto> GetCategory();
+
         //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
 
     }

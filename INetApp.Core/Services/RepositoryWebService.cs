@@ -1,12 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using INetApp.APIWebServices;
 using INetApp.APIWebServices.Dtos;
-using INetApp.APIWebServices.Responses;
 using INetApp.Services.Identity;
-using INetApp.Services.Settings;
-using INetApp.Models;
-using INetApp.Services;
 
 namespace INetApp.Services
 {
@@ -14,20 +11,23 @@ namespace INetApp.Services
     public class RepositoryWebService : IRepositoryWebService
     {
         #region Variables
-        protected readonly IAPIWebService apiWebService;
+        protected readonly IRestApi RestApiImpl;
         //protected readonly AppNavigationService Navigation;
         //protected readonly AppSettingsService settings;
         protected readonly ConnectivityService connectivityService;
         //protected readonly IDeviceService deviceService;
         protected readonly IIdentityService identityService;
+        private string userName;
+        private string userPass;
 
         #endregion
-        public RepositoryWebService(IAPIWebService _apiWebService , IIdentityService _identityService)
+        public RepositoryWebService(IRestApi _apiWebService, IIdentityService _identityService)
         {
             connectivityService = new ConnectivityService();
-            apiWebService = _apiWebService;
+            RestApiImpl = _apiWebService;
             identityService = _identityService;
         }
+        #region public
         public async Task<UserLoggedDto> GetUserLogged(string Usuario, string Password)
         {
             UserLoggedDto userLoggedDto = new UserLoggedDto();
@@ -35,7 +35,7 @@ namespace INetApp.Services
             {
                 if (connectivityService.CheckConnectivity())
                 {
-                    userLoggedDto = await apiWebService.GetUserLoggedFromApi(Usuario, Password);
+                    userLoggedDto = await RestApiImpl.GetUserLoggedFromApi(Usuario, Password);
 
                     if (userLoggedDto.IsOk)
                     {
@@ -43,8 +43,8 @@ namespace INetApp.Services
                         {
                             //todo comparar version para pedir upgrade
                             //todo nfc
-                            string responseUserPermission = await apiWebService.GetUserLoggedPermission(Usuario, Password);
-                            UserLoggedDto responseVersion = await apiWebService.GetVersion(Usuario, Password);
+                            string responseUserPermission = await RestApiImpl.GetUserLoggedPermission(Usuario, Password);
+                            UserLoggedDto responseVersion = await RestApiImpl.GetVersion(Usuario, Password);
                             userLoggedDto.UserLoggedModel.permission = responseUserPermission == "true";
                             userLoggedDto.UserLoggedModel.version = responseVersion.UserLoggedModel.version;
                             userLoggedDto.UserLoggedModel.url = responseVersion.UserLoggedModel.url;
@@ -84,6 +84,35 @@ namespace INetApp.Services
             return userLoggedDto;
         }
 
+        public async Task<CategoryDto> GetCategory()
+        {
+            CategoryDto categoryDto = new CategoryDto();
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    GetUser();
+                    categoryDto = await RestApiImpl.GetCategoryFromApi(userName, userPass);
+
+                    if (categoryDto.IsOk)
+                    {
+                    }
+                }
+                else
+                {
+                    categoryDto.IsOk = false;
+                    categoryDto.IsConnected = false;
+                    //subscriber.OnError(new NetworkConnectionException());
+                }
+            }
+            catch (Exception)
+            {
+                categoryDto.IsOk = false;
+            }
+
+            return categoryDto;
+        }
+
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()
         //{
         //    //BaseDto dto =new BaseDto(true, string.Empty, string.Empty, true);
@@ -103,8 +132,15 @@ namespace INetApp.Services
         //    return dto;
         //}
 
+        #endregion
 
         #region private
+        private void GetUser()
+        {
+            KeyValuePair<string, object> credenciales = identityService.GetCredentialsFromPrefs();
+            userName = credenciales.Key.ToString();
+            userPass = credenciales.Value.ToString();
+        }
 
         #endregion
     }
