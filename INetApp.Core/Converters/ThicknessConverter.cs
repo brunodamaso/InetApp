@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
-using System.Text;
 using Xamarin.Forms;
-using System.Linq;
-using Newtonsoft.Json.Linq;
 
 namespace INetApp.Converters
 {
@@ -20,14 +15,21 @@ namespace INetApp.Converters
                 {
                     double[] valores = new double[4];
                     int posicion = 0;
-                    foreach (var value in values)
+                    foreach (object value in values)
                     {
                         if (value is double _double)
+                        {
                             valores[posicion] = _double;
+                        }
                         else if (value is int _int)
+                        {
                             valores[posicion] = _int;
+                        }
                         else if (value is string _string)
+                        {
                             valores[posicion] = double.Parse(_string);
+                        }
+
                         posicion++;
                     }
                     switch (posicion)

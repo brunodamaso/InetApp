@@ -122,6 +122,9 @@
     <Content Include="..\INetApp.Droid\Resources\drawable-hdpi\ic_action_user.png">
       <Link>Assets\ic_action_user.png</Link>
     </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\right_arrow.png">
+      <Link>Assets\right_arrow.png</Link>
+    </Content>
     <Content Include="..\INetApp.Droid\Resources\drawable\img_bandeja_entrada.png">
       <Link>Assets\img_bandeja_entrada.png</Link>
     </Content>

@@ -94,8 +94,6 @@ namespace INetApp.ViewModels
         #region ICommand
         public ICommand LoginCommand => new Command(OnLoginClicked);
 
-
-
         #endregion
 
         public LoginViewModel()

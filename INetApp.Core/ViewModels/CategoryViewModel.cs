@@ -10,20 +10,19 @@ using INetApp.Services.Category;
 using INetApp.Services.User;
 using INetApp.ViewModels.Base;
 using Xamarin.Forms;
+using System.Linq;
+using System;
 
 namespace INetApp.ViewModels
 {
     public class CategoryViewModel : ViewModelBase
     {
         private ObservableCollection<CategoryModel> _categoryItems;
-        
+        private string _mensajeListView;        
         private readonly ICategoryService CategoryService;
-
-        public CategoryViewModel()
-        {
-            CategoryService = DependencyService.Get<ICategoryService>();
-        }
-
+        private bool _IsRefreshing;
+        
+        #region Properties
         public ObservableCollection<CategoryModel> CategoryItems
         {
             get => _categoryItems;
@@ -34,8 +33,43 @@ namespace INetApp.ViewModels
             }
         }
 
+        public string MensajeListView
+        {
+            get => _mensajeListView;
+            set
+            {
+                _mensajeListView = value;
+                RaisePropertyChanged(() => this.MensajeListView);
+            }
+        }
+        public bool IsRefreshing
+        {
+            get => _IsRefreshing;
+            set
+            {
+                _IsRefreshing = value;
+                RaisePropertyChanged(() => this.IsRefreshing);
+            }
+        }
+        #endregion
+
+        public ICommand RefreshCommand => new Command(async () => await OnRefreshCommand());
+        public ICommand SelectCategoryCommand => new Command<CategoryModel>(OnSelectCategory);
+
+        public CategoryViewModel()
+        {
+            CategoryService = DependencyService.Get<ICategoryService>();
+        }
+
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
+            await Sincroniza();
+            //RaisePropertyChanged(() => this.CategoryItems);
+        }
+
+        private async Task Sincroniza()
+        {
+            this.MensajeListView = "Cargando Datos";
             CategoryDto categoryDto = await CategoryService.GetCategoryAsync();
             if (categoryDto.IsOk)
             {
@@ -46,11 +80,36 @@ namespace INetApp.ViewModels
                 this.CategoryItems = new ObservableCollection<CategoryModel>();
             }
 
-            this.Text_last_update = string.Format(Literales.view_text_last_updated, "-");
+            this.MensajeListView = Literales.empty_categories;
+            this.Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now);
 
-            RaisePropertyChanged(() => this.CategoryItems);
         }
 
+        private async Task OnRefreshCommand()
+        {
+            if (this.IsRefreshing)
+            {
+                return;
+            }
+            this.IsRefreshing = true;
+            this.IsBusy = true;
+            await Sincroniza();
+            this.IsRefreshing = false;
+            this.IsBusy = false;
+        }
+
+        private async void OnSelectCategory(CategoryModel categoryModel)
+        {
+            if (this.IsRefreshing)
+            {
+                return;
+            }
+            this.IsRefreshing = true;
+            this.IsBusy = true;
+            await Sincroniza();
+            this.IsRefreshing = false;
+            this.IsBusy = false;
+        }
 
         //private async Task CheckoutAsync()
         //{

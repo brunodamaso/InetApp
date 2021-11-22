@@ -2,10 +2,6 @@
 using INetApp.APIWebServices.Entity;
 using INetApp.Models;
 using Mapster;
-using MapsterMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace INetApp.APIWebServices.Mappers
 {
@@ -31,8 +27,9 @@ namespace INetApp.APIWebServices.Mappers
 
             TypeAdapterConfig<CategoryEntity, CategoryModel>
                 .NewConfig()
-                .EnableNonPublicMembers(true)              
-                .IgnoreNullValues(true);
+                .EnableNonPublicMembers(true)
+                .IgnoreNullValues(true)
+                 .Map(dest => dest.urIcon, src => src.UrlIcono);
         }
     }
 }

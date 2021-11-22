@@ -9,16 +9,16 @@ namespace INetApp.APIWebServices.Entity
         public CategoryEntity() { }
 
         [JsonProperty(PropertyName = "IdAplicacion")]
-        private int categoryId;
+        public int categoryId;
 
         [JsonProperty(PropertyName = "NombreBandeja")]
-        private string name;
+        public string name;
 
         [JsonProperty(PropertyName = "Pendientes")]
-        private int pendingMessages;
+        public int pendingMessages;
 
         [JsonProperty(PropertyName = "UrlIcono")]
-        private string UrlIcono;
+        public string UrlIcono;
 
         public int getCategoryId()
         {
