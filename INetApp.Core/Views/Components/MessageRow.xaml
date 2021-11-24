@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"     
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:INetApp.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+    xmlns:models="clr-namespace:INetApp.Models;assembly=INetApp.Model"
+    x:DataType="models:CategoryModel"
+    x:Class="INetApp.Views.Components.MessageRow">
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+        </Grid.RowDefinitions>
+        <Grid.Padding>
+            <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                <Binding Source="{StaticResource lv_row_padding}"/>
+                <Binding Path="0"/>
+                <Binding Path="0"/>
+                <Binding Source="{StaticResource lv_row_padding}"/>
+            </MultiBinding>
+        </Grid.Padding>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+        <CheckBox Grid.Column="0" 
+                Grid.Row ="0"  
+                
+                HeightRequest="{Binding Source={StaticResource lv_row_icon_width}, Converter={StaticResource StringToDoubleConverter}}" 
+                Color="{StaticResource app_Color}"
+                HorizontalOptions="Center">
+            <CheckBox.Margin>
+                <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                    <Binding Source="{StaticResource lv_row_padding}"/>
+                    <Binding Path="0"/>
+                </MultiBinding>
+            </CheckBox.Margin>
+
+        </CheckBox>
+        <Label Grid.Column="1" 
+               Grid.Row ="0"  
+               VerticalTextAlignment="Center"
+               VerticalOptions="Center"
+               LineBreakMode="WordWrap"
+               MaxLines="5"
+               Text="{Binding name}"
+               TextColor="{StaticResource black}"
+               FontSize="{Binding Source={StaticResource lv_row_text_size}, Converter={StaticResource StringToDoubleConverter}}" />
+
+        <Label Grid.Column="2" 
+               Grid.Row ="0"  
+               VerticalTextAlignment="Center"
+               VerticalOptions="Center"
+               HorizontalTextAlignment="End"
+               LineBreakMode="NoWrap"
+               Text="{Binding name}"
+               TextColor="{StaticResource app_Color}"
+               FontSize="{Binding Source={StaticResource lv_row_description_size}, Converter={StaticResource StringToDoubleConverter}}" >
+            <Label.Padding>
+                <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                    <Binding Path="0"/>
+                    <Binding Path="0"/>
+                    <Binding Source="{StaticResource lv_row_padding}"/>
+                    <Binding Path="0"/>
+                </MultiBinding>
+            </Label.Padding>
+        </Label>
+        <BoxView Grid.Row ="1" 
+            Grid.ColumnSpan="3"     
+            BackgroundColor="{StaticResource very_light_grey}" Margin="25,0" />
+    </Grid>
+</ContentView>

@@ -66,8 +66,17 @@
     <Compile Update="Views\CategoryView.xaml.cs">
       <DependentUpon>CategoryView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Components\CategoryItem.xaml.cs">
-      <DependentUpon>CategoryItem.xaml</DependentUpon>
+    <Compile Update="Views\Components\MessageRow.xaml.cs">
+      <DependentUpon>MessageRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Components\CategoryRow.xaml.cs">
+      <DependentUpon>CategoryRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Components\SelectAll.xaml.cs">
+      <DependentUpon>SelectAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Components\toolbar_main.xaml.cs">
+      <DependentUpon>Toolbar_main.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -80,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\INetAppDimens.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MessageView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

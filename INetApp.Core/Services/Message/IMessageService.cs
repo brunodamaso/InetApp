@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace INetApp.Services
 {
-    public interface ICategoryService
+    public interface IMessageService
     {
-        Task<CategoryDto> GetCategoryAsync();
+        Task<MessageDto> GetMessageAsync();
        
     }
 }

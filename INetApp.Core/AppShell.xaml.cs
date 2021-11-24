@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using INetApp.APIWebServices.Dtos;
 using INetApp.Services.Settings;
-using INetApp.Services.User;
+using INetApp.Services;
 using INetApp.ViewModels.Base;
 using INetApp.Views;
 using Xamarin.Forms;
@@ -63,6 +63,8 @@ namespace INetApp
         {
             Routing.RegisterRoute("Category", typeof(CategoryView));
             Routing.RegisterRoute("MainView", typeof(MainView));
+            Routing.RegisterRoute("Message", typeof(MessageView));
+
             Routing.RegisterRoute("OrderDetail", typeof(OrderDetailView));
             Routing.RegisterRoute("CampaignDetails", typeof(CampaignDetailsView));
             Routing.RegisterRoute("Checkout", typeof(CheckoutView));

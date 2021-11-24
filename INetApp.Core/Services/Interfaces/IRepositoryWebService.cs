@@ -14,6 +14,7 @@ namespace INetApp.Services
     {
         Task<UserLoggedDto> GetUserLogged(string usuario, string password);
         Task<CategoryDto> GetCategory();
+        Task<MessageDto> GetMessage();
 
         //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
 

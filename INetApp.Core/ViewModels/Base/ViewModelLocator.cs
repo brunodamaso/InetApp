@@ -5,7 +5,6 @@ using INetApp.APIWebServices;
 using INetApp.Services;
 using INetApp.Services.Basket;
 using INetApp.Services.Catalog;
-using INetApp.Services.Category;
 using INetApp.Services.Dependency;
 using INetApp.Services.FixUri;
 using INetApp.Services.Identity;
@@ -13,7 +12,6 @@ using INetApp.Services.Marketing;
 using INetApp.Services.Order;
 using INetApp.Services.RequestProvider;
 using INetApp.Services.Settings;
-using INetApp.Services.User;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels.Base
@@ -54,6 +52,7 @@ namespace INetApp.ViewModels.Base
             Xamarin.Forms.DependencyService.Register<LoginViewModel>();
             Xamarin.Forms.DependencyService.Register<MainViewModel>();
             Xamarin.Forms.DependencyService.Register<CategoryViewModel>();
+            Xamarin.Forms.DependencyService.Register<MessageViewModel>();
 
             Xamarin.Forms.DependencyService.Register<CatalogViewModel>();
             Xamarin.Forms.DependencyService.Register<CheckoutViewModel>();

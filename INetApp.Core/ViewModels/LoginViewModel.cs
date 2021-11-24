@@ -9,7 +9,6 @@ using INetApp.Resources;
 using INetApp.Services;
 using INetApp.Services.Identity;
 using INetApp.Services.Settings;
-using INetApp.Services.User;
 using INetApp.Validations;
 using INetApp.ViewModels.Base;
 using Xamarin.Forms;
@@ -118,7 +117,7 @@ namespace INetApp.ViewModels
 
         public override Task InitializeAsync(IDictionary<string, string> query)
         {
-            (bool ContainsKeyAndValue, bool Value) logout = query.GetValueAsBool("Logout");
+            var logout = query.GetValueAsBool("Logout");
 
             if (logout.ContainsKeyAndValue && logout.Value)
             {

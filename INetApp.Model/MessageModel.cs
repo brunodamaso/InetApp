@@ -15,7 +15,7 @@ namespace INetApp.Models
     {
         public static readonly string URL_LABEL = "URL";
 
-        private readonly int messageId;
+        public readonly int messageId;
 
         public MessageModel(int messageId)
         {
@@ -23,12 +23,12 @@ namespace INetApp.Models
             this.checkeado = false;
         }
 
-        private int categoryId { get; set; }
-        private string name { get; set; }
-        private DateTime date { get; set; }
-        private bool favorite { get; set; }
-        private Dictionary<string, string> fields { get; set; }
-        private bool checkeado { get; set; }
+        public int categoryId { get; set; }
+        public string name { get; set; }
+        public DateTime date { get; set; }
+        public bool favorite { get; set; }
+        public Dictionary<string, string> fields { get; set; }
+        public bool checkeado { get; set; }
 
         public int getMessageId()
         {

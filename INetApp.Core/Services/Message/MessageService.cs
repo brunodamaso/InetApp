@@ -13,25 +13,25 @@ using INetApp.Services;
 
 namespace INetApp.Services
 {
-    public class CategoryService : ICategoryService
+    public class MessageService : IMessageService
     {
         private readonly IRepositoryWebService repositoryWebService;
         private protected readonly IUserService userService;
 
-        public CategoryService(IRepositoryWebService _repositoryWebService)
-        {
+        public MessageService(IRepositoryWebService _repositoryWebService)
+        {           
             repositoryWebService = _repositoryWebService;
             userService = ViewModelLocator.Resolve<IUserService>();
         }
 
-        public async Task<CategoryDto> GetCategoryAsync()
+        public async Task<MessageDto> GetMessageAsync()
         {
-            CategoryDto categoryDto = await repositoryWebService.GetCategory();
-            if (categoryDto.IsOk)
+            MessageDto messageDto = await repositoryWebService.GetMessage();
+            if (messageDto.IsOk)
             {
               
             }
-            return categoryDto;
+            return messageDto;
         }
     }
 }

@@ -2,7 +2,7 @@
 using INetApp.Models.Catalog;
 using INetApp.Services.Basket;
 using INetApp.Services.Settings;
-using INetApp.Services.User;
+using INetApp.Services;
 using INetApp.ViewModels.Base;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

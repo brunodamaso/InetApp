@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace INetApp.Services.User
+namespace INetApp.Services
 {
     public class UserService : IUserService
     {

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:ContentPageBase
+    xmlns:views="clr-namespace:INetApp.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:components="clr-namespace:INetApp.Views.Components" 
+    xmlns:viewmodels="clr-namespace:INetApp.ViewModels" 
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+    x:DataType="viewmodels:MessageViewModel"
+    x:Class="INetApp.Views.MessageView"
+    xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    Title="{Binding Title}"
+    >
+
+    <Grid  BackgroundColor="{StaticResource white}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/> <!-- tabs-->
+            <RowDefinition Height="auto"/> <!-- select all -->
+            <RowDefinition Height="*"/> <!-- registros -->
+            <RowDefinition Height="auto"/> <!-- acciones botones -->
+            <RowDefinition Height="auto"/> <!-- progreso -->
+            <RowDefinition Height="auto"/> <!-- reintentar -->
+        </Grid.RowDefinitions>
+        <components:Toolbar_main Grid.Row="0" SelectedTab ="{Binding SelectecTab}" />
+        <components:SelectAll Grid.Row="1" IsCheched="{Binding SelectAll}"/>
+        <ScrollView Grid.Row="2"
+            Orientation="Vertical" 
+            BackgroundColor="{StaticResource white}" 
+            VerticalOptions="FillAndExpand" 
+            HorizontalOptions="Fill" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid  Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ListView CachingStrategy="RecycleElement"
+                        HasUnevenRows="True"
+                        SeparatorVisibility="None"
+                        VerticalOptions="FillAndExpand"
+                        ItemsSource="{Binding CategoryItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <components:MessageRow/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Behaviors>
+                            <xct:EventToCommandBehavior
+                            Command="{Binding SelectCategoryCommand}"
+                            EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
+                            EventName="ItemTapped" />
+                        </ListView.Behaviors>
+                    </ListView>
+                </Grid>
+                <Grid  Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="{Binding MensajeListView}"
+                        VerticalOptions="Center" 
+                        TextColor="{StaticResource dark_grey}"/>
+                </Grid>
+            </Grid>
+
+        </ScrollView>
+        <ActivityIndicator Grid.Row="3"                 
+                    HorizontalOptions="Center"
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}"
+                    VerticalOptions="Center"
+                    Color="{StaticResource LightGreenColor}">
+            <ActivityIndicator.WidthRequest>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS, Android" Value="100" />
+                    <On Platform="UWP, WinRT, WinPhone" Value="400" />
+                </OnPlatform>
+            </ActivityIndicator.WidthRequest>
+        </ActivityIndicator>
+
+        <components:View_Update Grid.Row="4"
+            x:Name="tv_last_update" />
+        
+    </Grid>
+</views:ContentPageBase>

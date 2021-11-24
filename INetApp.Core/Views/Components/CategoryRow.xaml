@@ -6,7 +6,7 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
     xmlns:models="clr-namespace:INetApp.Models;assembly=INetApp.Model"
     x:DataType="models:CategoryModel"
-    x:Class="INetApp.Views.Components.CategoryItem">
+    x:Class="INetApp.Views.Components.CategoryRow">
     <ContentView.Resources>
         <ResourceDictionary>
             <Style x:Key="OrderItemUnitPriceStyle" 
@@ -89,6 +89,7 @@
             <Label Grid.Column="1"
                    Text="{Binding name}"
                    VerticalOptions="Center"   
+                   LineBreakMode="NoWrap"
                    Margin="-10,0"
                     FontSize="{Binding Source={StaticResource lv_row_text_size}, Converter={StaticResource StringToDoubleConverter}}" 
                    TextColor ="{StaticResource medium_grey}">

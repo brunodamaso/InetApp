@@ -9,11 +9,11 @@ namespace INetApp.Models
     public class OptionsModel : BindableObject
     {
 
-        private readonly string LABEL_TRAVEL = "VIAJES";
-        private readonly string LABEL_INFO = "VENTANILLA";
-        private readonly string LABEL_PROFILE = "PERFIL";
-        private readonly string LABEL_EPI = "EPIs";
-        private readonly string LABEL_EMPLOYEE = "PortalEmpleado";
+        //private readonly string LABEL_TRAVEL = "VIAJES";
+        //private readonly string LABEL_INFO = "VENTANILLA";
+        //private readonly string LABEL_PROFILE = "PERFIL";
+        //private readonly string LABEL_EPI = "EPIs";
+        //private readonly string LABEL_EMPLOYEE = "PortalEmpleado";
 
         public OptionsModel(int optionsId)
         {

@@ -5,7 +5,7 @@ using INetApp.Models.User;
 using INetApp.Services.Basket;
 using INetApp.Services.Order;
 using INetApp.Services.Settings;
-using INetApp.Services.User;
+using INetApp.Services;
 using INetApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;

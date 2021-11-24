@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using INetApp.APIWebServices.Dtos;
@@ -11,16 +13,22 @@ using INetApp.ViewModels.Base;
 using Xamarin.Forms;
 using System.Linq;
 using System;
+using INetApp.Views.Components;
+using INetApp.Extensions;
+using INetApp.Models.Marketing;
 
 namespace INetApp.ViewModels
 {
-    public class CategoryViewModel : ViewModelBase
+    public class MessageViewModel : ViewModelBase
     {
         private ObservableCollection<CategoryModel> _categoryItems;
         private string _mensajeListView;        
         private readonly ICategoryService CategoryService;
-        private bool _IsRefreshing;
-        
+        private int selectecTab;
+        private bool _SelectAll;
+        private string _Title;
+
+
         #region Properties
         public ObservableCollection<CategoryModel> CategoryItems
         {
@@ -41,27 +49,51 @@ namespace INetApp.ViewModels
                 RaisePropertyChanged(() => this.MensajeListView);
             }
         }
-        public bool IsRefreshing
+        public string Title
         {
-            get => _IsRefreshing;
+            get => _Title;
             set
             {
-                _IsRefreshing = value;
-                RaisePropertyChanged(() => this.IsRefreshing);
+                _Title = value;
+                RaisePropertyChanged(() => this.Title);
             }
         }
+        public bool SelectAll
+        {
+            get => _SelectAll;
+set
+{
+                _SelectAll = value;
+                RaisePropertyChanged(() => this.SelectAll);
+            }
+        }
+        public int SelectecTab
+        {
+            get => selectecTab;
+            set
+            {
+                selectecTab = value;
+                RaisePropertyChanged(() => this.SelectecTab);
+            }
+        }
+
         #endregion
 
         public ICommand RefreshCommand => new Command(async () => await OnRefreshCommand());
         public ICommand SelectCategoryCommand => new Command<CategoryModel>(OnSelectCategory);
 
-        public CategoryViewModel()
+        public MessageViewModel()
         {
             CategoryService = DependencyService.Get<ICategoryService>();
         }
 
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
+            if (query.TryGetValue("Name", out string title))
+            {
+                Title = title;
+            }
+//Todo aceptar parametro categoryId para traer solo esos mensajes
             await Sincroniza();
         }
 
@@ -85,30 +117,18 @@ namespace INetApp.ViewModels
 
         private async Task OnRefreshCommand()
         {
-            if (this.IsRefreshing)
-            {
-                return;
-            }
-            this.IsRefreshing = true;
+            
             this.IsBusy = true;
             await Sincroniza();
-            this.IsRefreshing = false;
-            this.IsBusy = false;
+                        this.IsBusy = false;
         }
 
         private async void OnSelectCategory(CategoryModel categoryModel)
         {
-            if (categoryModel.pendingMessages > 0)
-            {
-                this.IsBusy = true;
-                var Parametro = new Dictionary<string, string>
-                {
-                    { "Name", categoryModel.name },
-                    { "CategoryId", categoryModel.categoryId.ToString() }
-                };
-                await NavigationService.NavigateToAsync("Message" ,Parametro);
-                this.IsRefreshing = false;
-            }
+            
+            this.IsBusy = true;
+            await Sincroniza();
+            this.IsBusy = false;
         }
 
         //private async Task CheckoutAsync()

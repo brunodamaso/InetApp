@@ -2,9 +2,9 @@
 
 namespace INetApp.Views.Components
 {
-    public partial class CategoryItem
+    public partial class MessageRow : ContentView
     {
-        public CategoryItem()
+        public MessageRow()
         {
             InitializeComponent();
         }

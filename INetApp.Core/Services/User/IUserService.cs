@@ -3,7 +3,7 @@ using INetApp.Models.User;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace INetApp.Services.User
+namespace INetApp.Services
 {
     public interface IUserService
     {

@@ -63,7 +63,7 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <components:CategoryItem/>
+                                        <components:CategoryRow/>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

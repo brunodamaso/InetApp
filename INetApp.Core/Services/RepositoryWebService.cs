@@ -27,7 +27,7 @@ namespace INetApp.Services
             RestApiImpl = _apiWebService;
             identityService = _identityService;
         }
-        #region public
+        #region user
         public async Task<UserLoggedDto> GetUserLogged(string Usuario, string Password)
         {
             UserLoggedDto userLoggedDto = new UserLoggedDto();
@@ -83,7 +83,8 @@ namespace INetApp.Services
 
             return userLoggedDto;
         }
-
+        #endregion
+        #region Category
         public async Task<CategoryDto> GetCategory()
         {
             CategoryDto categoryDto = new CategoryDto();
@@ -112,6 +113,37 @@ namespace INetApp.Services
 
             return categoryDto;
         }
+        #endregion
+        #region Message
+        public async Task<MessageDto> GetMessage()
+        {
+            MessageDto messageDto = new MessageDto();
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    GetUser();
+                    messageDto = await RestApiImpl.GetCategoryFromApi(userName, userPass);
+
+                    if (messageDto.IsOk)
+                    {
+                    }
+                }
+                else
+                {
+                    messageDto.IsOk = false;
+                    messageDto.IsConnected = false;
+                    //subscriber.OnError(new NetworkConnectionException());
+                }
+            }
+            catch (Exception)
+            {
+                messageDto.IsOk = false;
+            }
+
+            return messageDto;
+        }
+        #endregion
 
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()
         //{
@@ -132,7 +164,6 @@ namespace INetApp.Services
         //    return dto;
         //}
 
-        #endregion
 
         #region private
         private void GetUser()

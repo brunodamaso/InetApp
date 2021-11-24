@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+    xmlns:components="clr-namespace:INetApp.Views.Components" 
+    xmlns:resources="clr-namespace:INetApp.Resources"
+    x:DataType="components:SelectAll"
+    x:Class="INetApp.Views.Components.SelectAll"
+    x:Name="ViewSelectAll">
+
+    <Grid >
+        <Grid.Padding>
+            <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                <Binding Source="{StaticResource lv_row_padding}"/>
+                <Binding Path="0"/>
+                <Binding Path="0"/>
+                <Binding Source="{StaticResource lv_row_padding}"/>
+            </MultiBinding>
+        </Grid.Padding>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.8*"/>
+        </Grid.ColumnDefinitions>
+        <CheckBox Grid.Column="0" IsChecked="{Binding IsCheched}"
+                Color="{StaticResource app_Color}"
+                HeightRequest="{Binding Source={StaticResource lv_row_icon_width}, Converter={StaticResource StringToDoubleConverter}}" 
+                HorizontalOptions="Center">
+            <CheckBox.Margin>
+                <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                    <Binding Source="{StaticResource lv_row_padding}"/>
+                    <Binding Path="0"/>
+                </MultiBinding>
+            </CheckBox.Margin>
+
+        </CheckBox>
+        <Label Grid.Column="1" 
+               VerticalTextAlignment="Center"
+               VerticalOptions="Center"
+               Text="{Binding Source={x:Static resources:Literales.seleccionartodos}}" 
+               TextColor="{StaticResource black}"
+               FontSize="18">
+        </Label>
+    </Grid>
+
+
+
+    <!--<ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TabItemView.Label" TargetType="Label" >
+                <Setter Property="CharacterSpacing" Value="-0.08" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Opacity" Value="1" />
+            </Style>
+            <Style x:Key="TabItemView.Label.Checked" TargetType="Label"
+                    BasedOn="{StaticResource TabItemView.Label}">
+                <Setter Property="TextColor" Value="{StaticResource Color.Miel}" />
+                <Setter Property="Opacity" Value="1" />
+            </Style>
+            <Style x:Key="TabItemView.BoxView" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{StaticResource Color.Transparent}" />
+            </Style>
+            <Style x:Key="TabItemView.BoxView.Checked"
+                TargetType="BoxView"
+                BasedOn="{StaticResource TabItemView.BoxView}">
+                <Setter Property="BackgroundColor" Value="{StaticResource Color.Miel}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="16" />
+            <RowDefinition Height="3" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="{Binding Text, Source={Reference ViewToolbar_main}}"            
+            Style="{Binding IsChecked, Converter={StaticResource ValueToStyleConverter}, ConverterParameter=TabItemView.Label.Checked|TabItemView.Label, Source={Reference ViewToolbar_main}}"
+            />
+        <BoxView
+            Grid.Column="0"
+            Grid.Row="3"
+            Style="{Binding IsChecked, Converter={StaticResource ValueToStyleConverter}, ConverterParameter=TabItemView.BoxView.Checked|TabItemView.BoxView, Source={Reference ViewToolbar_main}}"
+            />
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Handle_Tapped" />
+        </Grid.GestureRecognizers>
+    </Grid>-->
+</ContentView>

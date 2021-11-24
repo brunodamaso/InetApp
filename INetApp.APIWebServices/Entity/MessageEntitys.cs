@@ -3,8 +3,8 @@ using INetApp.APIWebServices.Responses;
 
 namespace INetApp.APIWebServices.Entity
 {
-    public class CategoryEntitys : Response
+    public class MessageEntitys : Response
     {
-        public List<CategoryEntity> CategoryEntity;
+        public List<MessageEntity> MessageEntity;
     }
 }
