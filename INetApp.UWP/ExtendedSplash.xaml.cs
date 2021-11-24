@@ -54,7 +54,6 @@ namespace INetApp.UWP
         {
             if (loadState)
             {
-                // TODO: write code to load state
             }
         }
 

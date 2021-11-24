@@ -199,7 +199,23 @@ namespace INetApp.APIWebServices
             });
         }
 
-        
+        public Task<MessageDto> GetMessageFromApi(string Usuario, string Password)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                //todo cambiar url
+                HttpResponse httpResponse = Get(API_URL_GET_CATEGORY_LIST, Usuario, Password).Result;
+
+                httpResponse.Resultado = $"{{MessageEntity:{httpResponse.Resultado}}}";
+
+                ServiceResponse<MessageEntitys> response = ServiceHelper.CreateResponse<MessageEntitys>(httpResponse);
+
+                return Mappers.ServiceMapper.ConvertToBusiness<MessageDto, MessageEntitys>(response);
+
+            });
+        }
+
+
 
         //public Task<CategoriasDto> ResetPassword(string Mail, string Usuario, string Password)
         //{

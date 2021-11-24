@@ -219,7 +219,6 @@ namespace INetApp.ViewModels
 
         private bool Validate()
         {
-            //todo buscar string
             bool isValidPassword = false;
             bool isValidUser = ValidateUserName();
             if (!isValidUser)

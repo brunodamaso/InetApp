@@ -123,7 +123,7 @@ namespace INetApp.Services
                 if (connectivityService.CheckConnectivity())
                 {
                     GetUser();
-                    messageDto = await RestApiImpl.GetCategoryFromApi(userName, userPass);
+                    messageDto = await RestApiImpl.GetMessageFromApi(userName, userPass);
 
                     if (messageDto.IsOk)
                     {
