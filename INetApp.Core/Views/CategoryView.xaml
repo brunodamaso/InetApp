@@ -85,19 +85,22 @@
                 </Grid>
 
             </ScrollView>
-            <ActivityIndicator
-                 
+            <ActivityIndicator       
+                WidthRequest="450"
                     HorizontalOptions="Center"
                     IsRunning="{Binding IsBusy}"
                     IsVisible="{Binding IsBusy}"
                     VerticalOptions="Center"
-                    Color="{StaticResource LightGreenColor}">
-                <ActivityIndicator.WidthRequest>
+                Margin="0"
+                    Background="transparent"
+                    BackgroundColor="transparent"
+                    Color="{StaticResource app_Color}">
+                <!--<ActivityIndicator.WidthRequest>
                     <OnPlatform x:TypeArguments="x:Double">
                         <On Platform="iOS, Android" Value="100" />
                         <On Platform="UWP, WinRT, WinPhone" Value="400" />
                     </OnPlatform>
-                </ActivityIndicator.WidthRequest>
+                </ActivityIndicator.WidthRequest>-->
             </ActivityIndicator>
             
             <components:View_Update x:Name="tv_last_update" />

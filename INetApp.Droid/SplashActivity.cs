@@ -10,7 +10,7 @@ namespace INetApp.Droid.Activities
 {
     [Activity(
          Label = "INetApp",
-         Icon = "@drawable/icon",
+         Icon = "@drawable/notif_large_icon",
          Theme = "@style/Theme.Splash",
          NoHistory = true,
          MainLauncher = true,

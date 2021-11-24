@@ -66,32 +66,33 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Padding="{Binding Source={StaticResource lv_row_padding}, Converter={StaticResource StringToDoubleConverter}}" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <xct:BadgeView Grid.Column="0"
+            <!--FontSize="{Binding Source={StaticResource row_category_text_size}, Converter={StaticResource StringToDoubleConverter}}"-->
+            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                <xct:BadgeView Grid.Column="0"
                     BackgroundColor="{StaticResource app_Color}"
                     TextColor="{StaticResource white}"
-                    FontSize="{Binding Source={StaticResource row_category_text_size}, Converter={StaticResource StringToDoubleConverter}}" 
                     Text="{Binding pendingMessages}">
-
-                <Image Source="{Binding urIcon}"    
+                    <Image Source="{Binding urIcon}"    
                         Aspect="AspectFit"
-                        VerticalOptions="Start"
+                        VerticalOptions="StartAndExpand"
                         HeightRequest="{Binding  Source={StaticResource lv_row_icon_width} ,Converter={StaticResource StringToDoubleConverter}}"
-                        WidthRequest="{Binding  Source={StaticResource lv_row_icon_width} ,Converter={StaticResource StringToDoubleConverter}}"
-                           />
-                
-            </xct:BadgeView>
+                        WidthRequest="{Binding  Source={StaticResource lv_row_icon_width} ,Converter={StaticResource StringToDoubleConverter}}" 
+                    />
+                    <!--                        
 
+                -->
+                </xct:BadgeView>
+               
+            </StackLayout>
             <Label Grid.Column="1"
                    Text="{Binding name}"
                    VerticalOptions="Center"   
-                   LineBreakMode="NoWrap"
-                   Margin="-10,0"
-                    FontSize="{Binding Source={StaticResource lv_row_text_size}, Converter={StaticResource StringToDoubleConverter}}" 
+                   FontSize="{Binding Source={StaticResource lv_row_text_size}, Converter={StaticResource StringToDoubleConverter}}" 
                    TextColor ="{StaticResource medium_grey}">
                 <Label.Padding>
                     <MultiBinding Converter="{StaticResource ThicknessConverter}">
@@ -108,6 +109,7 @@
                     HeightRequest="{Binding  Source={StaticResource lv_row_icon_width} ,Converter={StaticResource StringToDoubleConverter}}"
                     WidthRequest="{Binding  Source={StaticResource lv_row_icon_width} ,Converter={StaticResource StringToDoubleConverter}}"
                        />
+
         </Grid>
         <BoxView Grid.Row ="1"  BackgroundColor="{StaticResource very_light_grey}" Margin="25,0" />
     </Grid>

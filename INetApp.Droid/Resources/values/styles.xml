@@ -24,7 +24,7 @@
 	<style name="Theme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="windowNoTitle">true</item>
 		<item name="android:windowFullscreen">true</item>
-		<item name="android:windowBackground">@drawable/background</item>
+		<item name="android:windowBackground">@drawable/bck_launcher</item>
 	</style>
 	<style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
 		<item name="colorAccent">#00857D</item>

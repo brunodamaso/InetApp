@@ -29,7 +29,13 @@
     </Shell.BackButtonBehavior>
 
     <Shell.FlyoutHeader>
-        <Grid BackgroundColor="{x:StaticResource app_Color}" Margin="0,-40,0,0"  >
+        <Grid BackgroundColor="{x:StaticResource app_Color}" >
+            <Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS, Android" Value="0,0,0,0" />
+                    <On Platform="UWP, WinRT, WinPhone" Value="0,-40,0,0" />
+                </OnPlatform>
+            </Grid.Margin>
             <Grid.Padding>
                 <MultiBinding Converter="{StaticResource ThicknessConverter}">
                     <Binding Source="{StaticResource menu_header_horizontal_margin}"/>

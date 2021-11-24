@@ -67,7 +67,8 @@ namespace INetApp.ViewModels
 
         private async Task Sincroniza()
         {
-            this.MensajeListView = "Cargando Datos";
+            MensajeListView = "Cargando Datos";
+            IsBusy = true;
             CategoryDto categoryDto = await CategoryService.GetCategoryAsync();
             if (categoryDto.IsOk)
             {
@@ -78,9 +79,9 @@ namespace INetApp.ViewModels
                 this.CategoryItems = new ObservableCollection<CategoryModel>();
             }
 
-            this.MensajeListView = Literales.empty_categories;
-            this.Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now);
-
+            MensajeListView = Literales.empty_categories;
+            Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now);
+            IsBusy = false;
         }
 
         private async Task OnRefreshCommand()
@@ -107,7 +108,7 @@ namespace INetApp.ViewModels
                     { "CategoryId", categoryModel.categoryId.ToString() }
                 };
                 await NavigationService.NavigateToAsync("Message" ,Parametro);
-                this.IsRefreshing = false;
+                this.IsBusy = false;
             }
         }
 
