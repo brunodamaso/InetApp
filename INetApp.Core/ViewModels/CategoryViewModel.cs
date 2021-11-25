@@ -1,26 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using INetApp.APIWebServices.Dtos;
 using INetApp.Models;
-using INetApp.Models.Basket;
 using INetApp.Resources;
 using INetApp.Services;
 using INetApp.ViewModels.Base;
 using Xamarin.Forms;
-using System.Linq;
-using System;
 
 namespace INetApp.ViewModels
 {
     public class CategoryViewModel : ViewModelBase
     {
         private ObservableCollection<CategoryModel> _categoryItems;
-        private string _mensajeListView;        
+        private string _mensajeListView;
         private readonly ICategoryService CategoryService;
         private bool _IsRefreshing;
-        
+
         #region Properties
         public ObservableCollection<CategoryModel> CategoryItems
         {
@@ -67,8 +65,8 @@ namespace INetApp.ViewModels
 
         private async Task Sincroniza()
         {
-            MensajeListView = "Cargando Datos";
-            IsBusy = true;
+            this.MensajeListView = "Cargando Datos";
+            this.IsBusy = true;
             CategoryDto categoryDto = await CategoryService.GetCategoryAsync();
             if (categoryDto.IsOk)
             {
@@ -79,9 +77,9 @@ namespace INetApp.ViewModels
                 this.CategoryItems = new ObservableCollection<CategoryModel>();
             }
 
-            MensajeListView = Literales.empty_categories;
-            Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now);
-            IsBusy = false;
+            this.MensajeListView = Literales.empty_categories;
+            this.Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            this.IsBusy = false;
         }
 
         private async Task OnRefreshCommand()
@@ -107,7 +105,7 @@ namespace INetApp.ViewModels
                     { "Name", categoryModel.name },
                     { "CategoryId", categoryModel.categoryId.ToString() }
                 };
-                await NavigationService.NavigateToAsync("Message" ,Parametro);
+                await NavigationService.NavigateToAsync("Message", Parametro);
                 this.IsBusy = false;
             }
         }

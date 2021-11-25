@@ -1,4 +1,6 @@
-﻿using INetApp.APIWebServices.Dtos;
+﻿using System;
+using System.Globalization;
+using INetApp.APIWebServices.Dtos;
 using INetApp.APIWebServices.Entity;
 using INetApp.Models;
 using Mapster;
@@ -30,6 +32,19 @@ namespace INetApp.APIWebServices.Mappers
                 .EnableNonPublicMembers(true)
                 .IgnoreNullValues(true)
                  .Map(dest => dest.urIcon, src => src.UrlIcono);
+
+            TypeAdapterConfig<MessageEntitys, MessageDto>
+               .NewConfig()
+               .EnableNonPublicMembers(true)
+               .Map(dest => dest.MessageModels, src => src.MessageEntity)
+               .IgnoreNullValues(true);
+
+            TypeAdapterConfig<MessageEntity, MessageModel>
+                .NewConfig()
+                .EnableNonPublicMembers(true)
+                .IgnoreNullValues(true)
+                 .Map(dest => dest.date, src => DateTime.ParseExact(src.date, "yyyyMMdd", CultureInfo.InvariantCulture));
+
         }
     }
 }

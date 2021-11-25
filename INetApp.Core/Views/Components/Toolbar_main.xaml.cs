@@ -12,18 +12,13 @@ namespace INetApp.Views.Components
             InitializeComponent();
         }
 
-        public static readonly BindableProperty SelectedTabProperty = BindableProperty.Create("SelectedTab", typeof(int), typeof(int), 0);
+        public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TabView), 0, BindingMode.TwoWay);
 
-        public int SelectedTab
+        public int SelectedIndex
         {
-            get => (int)GetValue(SelectedTabProperty);
-            set => SetValue(SelectedTabProperty, value);
+            get => (int)GetValue(SelectedIndexProperty);
+            set => SetValue(SelectedIndexProperty, value);
         }
 
-        private void TabView_SelectionChanged(object sender, Xamarin.CommunityToolkit.UI.Views.TabSelectionChangedEventArgs e)
-        {
-            TabView tabselected = (TabView)sender;
-            this.SelectedTab = tabselected.SelectedIndex;
-        }
     }
 }

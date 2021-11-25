@@ -7,9 +7,8 @@
     x:DataType="components:Toolbar_main"
     x:Class="INetApp.Views.Components.Toolbar_main"
     x:Name="ViewToolbar_main">
-    
-    <xct:TabView 
-        SelectionChanged="TabView_SelectionChanged"
+
+    <xct:TabView SelectedIndex="{Binding SelectedIndex ,Source={Reference ViewToolbar_main}}"
         TabStripPlacement="Bottom"
         TabIndicatorHeight="{Binding Source={StaticResource tab_indicator_height}, Converter={StaticResource StringToDoubleConverter}}"
         TabStripBackgroundColor="{StaticResource app_Color}"

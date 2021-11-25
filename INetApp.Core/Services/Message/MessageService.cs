@@ -24,9 +24,9 @@ namespace INetApp.Services
             userService = ViewModelLocator.Resolve<IUserService>();
         }
 
-        public async Task<MessageDto> GetMessageAsync()
+        public async Task<MessageDto> GetMessageAsync(int categoryId)
         {
-            MessageDto messageDto = await repositoryWebService.GetMessage();
+            MessageDto messageDto = await repositoryWebService.GetMessage(categoryId);
             if (messageDto.IsOk)
             {
               

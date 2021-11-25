@@ -22,8 +22,8 @@
             <RowDefinition Height="auto"/> <!-- progreso -->
             <RowDefinition Height="auto"/> <!-- reintentar -->
         </Grid.RowDefinitions>
-        <components:Toolbar_main Grid.Row="0" SelectedTab ="{Binding SelectecTab}" />
-        <components:SelectAll Grid.Row="1" IsCheched="{Binding SelectAll}"/>
+        <components:Toolbar_main Grid.Row="0" SelectedIndex ="{Binding SelectecTab}"/>
+        <components:SelectAll Grid.Row="1" IsChecked="{Binding SelectAll}"/>
         <ScrollView Grid.Row="2"
             Orientation="Vertical" 
             BackgroundColor="{StaticResource white}" 
@@ -33,7 +33,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Grid  Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
+                <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
@@ -41,7 +41,7 @@
                         HasUnevenRows="True"
                         SeparatorVisibility="None"
                         VerticalOptions="FillAndExpand"
-                        ItemsSource="{Binding CategoryItems}">
+                        ItemsSource="{Binding MessageItems}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -51,13 +51,13 @@
                         </ListView.ItemTemplate>
                         <ListView.Behaviors>
                             <xct:EventToCommandBehavior
-                            Command="{Binding SelectCategoryCommand}"
+                            Command="{Binding SelectMessageCommand}"
                             EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
                             EventName="ItemTapped" />
                         </ListView.Behaviors>
                     </ListView>
                 </Grid>
-                <Grid  Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
+                <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
                     <Label
                         HorizontalOptions="Center"
                         Text="{Binding MensajeListView}"

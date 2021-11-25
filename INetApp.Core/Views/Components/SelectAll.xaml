@@ -21,7 +21,9 @@
             <ColumnDefinition Width="0.1*"/>
             <ColumnDefinition Width="0.8*"/>
         </Grid.ColumnDefinitions>
-        <CheckBox Grid.Column="0" IsChecked="{Binding IsCheched}"
+        <!--  CheckedChanged="CheckBox_CheckedChanged"-->
+        <CheckBox Grid.Column="0" 
+                IsChecked="{Binding IsChecked, Source={Reference ViewSelectAll}}"
                 Color="{StaticResource app_Color}"
                 HeightRequest="{Binding Source={StaticResource lv_row_icon_width}, Converter={StaticResource StringToDoubleConverter}}" 
                 HorizontalOptions="Center">

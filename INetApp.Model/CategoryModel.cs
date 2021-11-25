@@ -16,14 +16,13 @@ namespace INetApp.Models
         //private readonly string LABEL_EPI = "EPIs";
         //private readonly string LABEL_EMPLOYEE = "PortalEmpleado";
 
-        public int categoryId { get; set; }
-
+     
         public CategoryModel() { }
         public CategoryModel(int categoryId)
         {
             this.categoryId = categoryId;
         }
-
+        public int categoryId { get; set; }
         public string name { get; set; }
         public int pendingMessages { get; set; }
         public string urIcon { get; set; }

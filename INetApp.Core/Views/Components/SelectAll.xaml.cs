@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,12 +12,12 @@ namespace INetApp.Views.Components
             InitializeComponent();
         }
 
-        public static readonly BindableProperty IsChechedProperty = BindableProperty.Create("IsCheched", typeof(bool), typeof(bool), false);
+        public static readonly BindableProperty IsCheckedProperty = BindableProperty.Create(nameof(IsChecked), typeof(bool), typeof(CheckBox), false, BindingMode.TwoWay);
 
-        public bool IsCheched
+        public bool IsChecked
         {
-            get => (bool)GetValue(IsChechedProperty);
-            set => SetValue(IsChechedProperty, value);
+            get => (bool)GetValue(IsCheckedProperty);
+            set => SetValue(IsCheckedProperty, value);
         }
     }
 }

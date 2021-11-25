@@ -141,6 +141,7 @@ namespace INetApp.APIWebServices
 
         #endregion
 
+        #region user
         public Task<UserLoggedDto> GetUserLoggedFromApi(string Usuario, string Password)
         {
             return Task.Factory.StartNew(() =>
@@ -183,6 +184,7 @@ namespace INetApp.APIWebServices
 
             });
         }
+        #endregion
 
         public Task<CategoryDto> GetCategoryFromApi(string Usuario, string Password)
         {
@@ -199,12 +201,11 @@ namespace INetApp.APIWebServices
             });
         }
 
-        public Task<MessageDto> GetMessageFromApi(string Usuario, string Password)
+        public Task<MessageDto> GetMessageFromApi(string Usuario, string Password, int categoryId)
         {
             return Task.Factory.StartNew(() =>
             {
-                //todo cambiar url
-                HttpResponse httpResponse = Get(API_URL_GET_CATEGORY_LIST, Usuario, Password).Result;
+                HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_LIST_BY_CATEGORY + categoryId, Usuario, Password).Result;
 
                 httpResponse.Resultado = $"{{MessageEntity:{httpResponse.Resultado}}}";
 

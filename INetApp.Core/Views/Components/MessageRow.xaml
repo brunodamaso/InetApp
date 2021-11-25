@@ -5,7 +5,7 @@
     xmlns:vm="clr-namespace:INetApp.ViewModels"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
     xmlns:models="clr-namespace:INetApp.Models;assembly=INetApp.Model"
-    x:DataType="models:CategoryModel"
+    x:DataType="models:MessageModel"
     x:Class="INetApp.Views.Components.MessageRow">
 
     <Grid >
@@ -27,8 +27,8 @@
             <ColumnDefinition Width="0.2*"/>
         </Grid.ColumnDefinitions>
         <CheckBox Grid.Column="0" 
-                Grid.Row ="0"  
-                
+                Grid.Row ="0"
+                  IsChecked="{Binding checkeado}"
                 HeightRequest="{Binding Source={StaticResource lv_row_icon_width}, Converter={StaticResource StringToDoubleConverter}}" 
                 Color="{StaticResource app_Color}"
                 HorizontalOptions="Center">
@@ -56,7 +56,7 @@
                VerticalOptions="Center"
                HorizontalTextAlignment="End"
                LineBreakMode="NoWrap"
-               Text="{Binding name}"
+               Text="{Binding date ,StringFormat='{0:dd/MM/yyyy}'}"
                TextColor="{StaticResource app_Color}"
                FontSize="{Binding Source={StaticResource lv_row_description_size}, Converter={StaticResource StringToDoubleConverter}}" >
             <Label.Padding>

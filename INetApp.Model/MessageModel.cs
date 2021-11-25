@@ -13,16 +13,16 @@ namespace INetApp.Models
      */
     public class MessageModel : BindableObject
     {
-        public static readonly string URL_LABEL = "URL";
-
-        public readonly int messageId;
-
+        public MessageModel() { }
         public MessageModel(int messageId)
         {
             this.messageId = messageId;
             this.checkeado = false;
         }
 
+        public static readonly string URL_LABEL = "URL";
+
+        public int messageId;        
         public int categoryId { get; set; }
         public string name { get; set; }
         public DateTime date { get; set; }

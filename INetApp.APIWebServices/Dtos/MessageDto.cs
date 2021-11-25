@@ -10,6 +10,6 @@ namespace INetApp.APIWebServices.Dtos
     {
         public MessageDto() : base() { }
         public MessageDto(bool isOk, string errorCode, string errorDescription, bool isConnected) : base(isOk, errorCode, errorDescription, isConnected) { }
-        public List<MessageModel> MessageModel { get; set; }
+        public List<MessageModel> MessageModels { get; set; }
     }
 }

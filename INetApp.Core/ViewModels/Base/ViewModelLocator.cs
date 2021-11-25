@@ -71,6 +71,7 @@ namespace INetApp.ViewModels.Base
             
             Xamarin.Forms.DependencyService.RegisterSingleton<IUserService>(new UserService(repositoryWebService, requestProvider));
             Xamarin.Forms.DependencyService.RegisterSingleton<ICategoryService>(new CategoryService(repositoryWebService));
+            Xamarin.Forms.DependencyService.RegisterSingleton<IMessageService>(new MessageService(repositoryWebService));
 
             Xamarin.Forms.DependencyService.RegisterSingleton<ICampaignService>(new CampaignService(requestProvider, fixUriService));
             Xamarin.Forms.DependencyService.RegisterSingleton<ICatalogService>(new CatalogService(requestProvider, fixUriService));

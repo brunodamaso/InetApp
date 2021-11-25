@@ -115,7 +115,7 @@ namespace INetApp.Services
         }
         #endregion
         #region Message
-        public async Task<MessageDto> GetMessage()
+        public async Task<MessageDto> GetMessage(int categoryId)
         {
             MessageDto messageDto = new MessageDto();
             try
@@ -123,7 +123,7 @@ namespace INetApp.Services
                 if (connectivityService.CheckConnectivity())
                 {
                     GetUser();
-                    messageDto = await RestApiImpl.GetMessageFromApi(userName, userPass);
+                    messageDto = await RestApiImpl.GetMessageFromApi(userName, userPass, categoryId);
 
                     if (messageDto.IsOk)
                     {
