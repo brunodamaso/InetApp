@@ -51,9 +51,13 @@
                         </ListView.ItemTemplate>
                         <ListView.Behaviors>
                             <xct:EventToCommandBehavior
-                            Command="{Binding SelectMessageCommand}"
-                            EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
-                            EventName="ItemTapped" />
+                                Command="{Binding SelectMessageCommand}"
+                                EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
+                                EventName="ItemTapped" />
+                            <xct:EventToCommandBehavior
+                                Command="{Binding SelectMessageCommand}"
+                                EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
+                                EventName="CheckTapped" />
                         </ListView.Behaviors>
                     </ListView>
                 </Grid>

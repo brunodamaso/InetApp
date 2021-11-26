@@ -28,7 +28,7 @@
         </Grid.ColumnDefinitions>
         <CheckBox Grid.Column="0" 
                 Grid.Row ="0"
-                  IsChecked="{Binding checkeado}"
+                IsChecked="{Binding checkeado}"
                 HeightRequest="{Binding Source={StaticResource lv_row_icon_width}, Converter={StaticResource StringToDoubleConverter}}" 
                 Color="{StaticResource app_Color}"
                 HorizontalOptions="Center">
@@ -38,8 +38,8 @@
                     <Binding Path="0"/>
                 </MultiBinding>
             </CheckBox.Margin>
-
         </CheckBox>
+        
         <Label Grid.Column="1" 
                Grid.Row ="0"  
                VerticalTextAlignment="Center"

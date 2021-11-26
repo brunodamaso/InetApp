@@ -6,53 +6,8 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
     xmlns:models="clr-namespace:INetApp.Models;assembly=INetApp.Model"
     x:DataType="models:CategoryModel"
-    x:Class="INetApp.Views.Components.CategoryRow">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <Style x:Key="OrderItemUnitPriceStyle" 
-               TargetType="{x:Type Label}">
-                <Setter Property="FontFamily"
-                        Value="{StaticResource MontserratRegular}" />
-                <Setter Property="FontSize" 
-                        Value="{StaticResource MidMediumSize}" />
-                <Setter Property="HorizontalOptions" 
-                        Value="Start" />
-            </Style>
-
-            <Style x:Key="OrderItemQuantityStyle" 
-               TargetType="{x:Type Label}">
-                <Setter Property="FontFamily"
-                        Value="{StaticResource MontserratRegular}" />
-                <Setter Property="FontSize" 
-                        Value="{StaticResource MidMediumSize}" />
-                <Setter Property="HorizontalOptions" 
-                        Value="End" />
-            </Style>
-
-            <Style x:Key="OrderTotalStyle" 
-               TargetType="{x:Type Label}">
-                <Setter Property="FontFamily"
-                        Value="{StaticResource MontserratRegular}" />
-                <Setter Property="FontSize" 
-                        Value="{StaticResource LargerSize}" />
-                <Setter Property="TextColor" 
-                        Value="{StaticResource GreenColor}" />
-                <Setter Property="HorizontalOptions" 
-                        Value="End" />
-            </Style>
-
-            <Style x:Key="QuantityStyle"  
-             TargetType="{x:Type Label}">
-                <Setter Property="FontFamily"
-                        Value="{StaticResource MontserratRegular}" />
-                <Setter Property="HorizontalOptions"
-                        Value="End" />
-                <Setter Property="VerticalOptions"
-                        Value="Fill" />
-            </Style>
-
-        </ResourceDictionary>
-    </ContentView.Resources>
+    x:Class="INetApp.Views.Components.CategoryRow"
+    >
 
     <!--BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackgroundColor}, Light={StaticResource LightBackgroundColor}}"
     Padding ="{Binding  Source={StaticResource lv_row_padding} ,Converter={StaticResource ThicknessConverter}}"
