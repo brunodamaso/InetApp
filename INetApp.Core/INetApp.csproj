@@ -83,6 +83,9 @@
     <Compile Update="Views\Components\toolbar_main.xaml.cs">
       <DependentUpon>Toolbar_main.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Components\view_actions.xaml.cs">
+      <DependentUpon>View_Actions.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>

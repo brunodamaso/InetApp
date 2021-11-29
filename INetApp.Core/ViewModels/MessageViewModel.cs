@@ -22,7 +22,7 @@ namespace INetApp.ViewModels
         private bool _SelectAll, IsChangeTab;
         private string _Title;
         private int CategoryID;
-
+        private bool _RowChecked =false;
         #region Properties
 
         public List<MessageModel> MessageList;
@@ -83,6 +83,15 @@ namespace INetApp.ViewModels
 
             }
         }
+        public bool IsRowChecked
+        {
+            get => _RowChecked;
+            set
+            {
+                _RowChecked = value;
+                RaisePropertyChanged(() => this.IsRowChecked);
+            }
+        }
 
         #endregion
 
@@ -104,10 +113,8 @@ namespace INetApp.ViewModels
                 CategoryID = int.Parse(category);
             }
 
-            //Todo aceptar parametro categoryId para traer solo esos mensajes
             await Sincroniza();
         }
-
         private async Task Sincroniza()
         {
             this.IsBusy = true;
@@ -144,7 +151,13 @@ namespace INetApp.ViewModels
         {
             this.MessageItems = selectedTab == 0
                 ? new ObservableCollection<MessageModel>(MessageList)
-                : new ObservableCollection<MessageModel>(MessageList.Where(a => a.checkeado));         
+                : new ObservableCollection<MessageModel>(MessageList.Where(a => a.checkeado));
+        }
+
+        public bool IsRowSelect()
+        {
+            this.IsRowChecked = this.MessageItems.Any(a => a.checkeado);
+            return this.IsRowChecked;
         }
     }
 }

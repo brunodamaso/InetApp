@@ -30,6 +30,7 @@
             <converters:ThicknessConverter x:Key="ThicknessConverter" />
             <converters:DoubleConverter x:Key="DoubleConverter" />
             <converters:StringToDoubleConverter x:Key="StringToDoubleConverter" />
+            <converters:ValueToBooleanConverter x:Key="ValueToBooleanConverter" />            
             
             <x:String x:Key="DateTimeFormat">{0:MMMM dd yyyy}</x:String>
 

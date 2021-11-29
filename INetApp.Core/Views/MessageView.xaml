@@ -13,7 +13,7 @@
     Title="{Binding Title}"
     >
 
-    <Grid  BackgroundColor="{StaticResource white}" >
+    <Grid  BackgroundColor="{StaticResource white}" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/> <!-- tabs-->
             <RowDefinition Height="auto"/> <!-- select all -->
@@ -37,15 +37,16 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <ListView CachingStrategy="RecycleElement"
+                    <ListView
+                        CachingStrategy="RecycleElement"
                         HasUnevenRows="True"
                         SeparatorVisibility="None"
                         VerticalOptions="FillAndExpand"
                         ItemsSource="{Binding MessageItems}">
                         <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <components:MessageRow/>
+                            <DataTemplate  x:Name="MessageRowListView">
+                                <ViewCell  x:Name="MessageRowListView">
+                                    <components:MessageRow />
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -54,10 +55,6 @@
                                 Command="{Binding SelectMessageCommand}"
                                 EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
                                 EventName="ItemTapped" />
-                            <xct:EventToCommandBehavior
-                                Command="{Binding SelectMessageCommand}"
-                                EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
-                                EventName="CheckTapped" />
                         </ListView.Behaviors>
                     </ListView>
                 </Grid>
@@ -71,7 +68,8 @@
             </Grid>
 
         </ScrollView>
-        <ActivityIndicator Grid.Row="3"                 
+        
+        <ActivityIndicator Grid.Row="4"                 
                     HorizontalOptions="Center"
                     IsRunning="{Binding IsBusy}"
                     IsVisible="{Binding IsBusy}"
@@ -83,10 +81,15 @@
                     <On Platform="UWP, WinRT, WinPhone" Value="400" />
                 </OnPlatform>
             </ActivityIndicator.WidthRequest>
-        </ActivityIndicator>
-
-        <components:View_Update Grid.Row="4"
-            x:Name="tv_last_update" />
+        </ActivityIndicator>       
         
+        <components:View_Actions Grid.Row="5"
+            IsVisible="{Binding IsRowChecked}"
+            x:Name="tv_View_Actions" />
+
+        <components:View_Update Grid.Row="5"
+            IsVisible ="{Binding IsRowChecked, Converter={StaticResource ValueToBooleanConverter}, ConverterParameter='Not'}"
+            x:Name="tv_last_update" />
+
     </Grid>
 </views:ContentPageBase>
