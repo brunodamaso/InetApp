@@ -105,6 +105,15 @@
         <Setter Property="HorizontalOptions" Value="Center"/>
     </Style>
 
+    <Style x:Key="BoxButtonApprove" TargetType="BoxView">
+        <Setter Property="BackgroundColor" Value="{StaticResource toolbar_Color}"/>
+    </Style>
+
+    <Style x:Key="BoxButtonRefuse" TargetType="BoxView">
+        <Setter Property="BackgroundColor" Value="{StaticResource very_light_grey}"/>
+    </Style>
+
+    
     <Style x:Key="ButtonApprove" TargetType="Button">
         <!--<Setter Property="ColorControlHighlight" Value="{StaticResource favorite_ripple_dark_Color}" />-->
         <Setter Property="BackgroundColor" Value="{StaticResource toolbar_Color}"/>

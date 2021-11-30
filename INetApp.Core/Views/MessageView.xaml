@@ -13,7 +13,7 @@
     Title="{Binding Title}"
     >
 
-    <Grid  BackgroundColor="{StaticResource white}" RowSpacing="0">
+    <Grid  xct:SafeAreaEffect.SafeArea="true"  BackgroundColor="{StaticResource white}" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/> <!-- tabs-->
             <RowDefinition Height="auto"/> <!-- select all -->
@@ -23,13 +23,13 @@
             <RowDefinition Height="auto"/> <!-- reintentar -->
         </Grid.RowDefinitions>
         <components:Toolbar_main Grid.Row="0" SelectedIndex ="{Binding SelectecTab}"/>
-        <components:SelectAll Grid.Row="1" IsChecked="{Binding SelectAll}"/>
-        <ScrollView Grid.Row="2"
+        <components:SelectAll Grid.Row="1" x:Name ="SelectAll" IsChecked="{Binding SelectAll}"/>
+        <!--<ScrollView Grid.Row="2"
             Orientation="Vertical" 
             BackgroundColor="{StaticResource white}" 
             VerticalOptions="FillAndExpand" 
-            HorizontalOptions="Fill" >
-            <Grid >
+            HorizontalOptions="Fill" >-->
+            <Grid Grid.Row="2" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -38,15 +38,15 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <ListView
-                        CachingStrategy="RecycleElement"
+                        CachingStrategy="RetainElement"
                         HasUnevenRows="True"
                         SeparatorVisibility="None"
                         VerticalOptions="FillAndExpand"
                         ItemsSource="{Binding MessageItems}">
                         <ListView.ItemTemplate>
-                            <DataTemplate  x:Name="MessageRowListView">
-                                <ViewCell  x:Name="MessageRowListView">
-                                    <components:MessageRow />
+                            <DataTemplate >
+                                <ViewCell >
+                                    <components:MessageRow/>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -67,7 +67,7 @@
                 </Grid>
             </Grid>
 
-        </ScrollView>
+        <!--</ScrollView>-->
         
         <ActivityIndicator Grid.Row="4"                 
                     HorizontalOptions="Center"

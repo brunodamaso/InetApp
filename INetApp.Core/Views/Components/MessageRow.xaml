@@ -24,9 +24,9 @@
             </MultiBinding>
         </Grid.Padding>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.1*" />
-            <ColumnDefinition Width="0.7*" />
-            <ColumnDefinition Width="0.2*" />
+            <ColumnDefinition Width="0.15*" />
+            <ColumnDefinition Width="0.55*" />
+            <ColumnDefinition Width="0.25*" />
         </Grid.ColumnDefinitions>
         <CheckBox x:DataType="models:MessageModel" Grid.Column="0" 
                 Grid.Row ="0"

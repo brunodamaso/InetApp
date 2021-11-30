@@ -1,14 +1,14 @@
-﻿using System;
+﻿using INetApp.APIWebServices.Dtos;
+using INetApp.Models;
+using INetApp.Resources;
+using INetApp.Services;
+using INetApp.ViewModels.Base;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using INetApp.APIWebServices.Dtos;
-using INetApp.Models;
-using INetApp.Resources;
-using INetApp.Services;
-using INetApp.ViewModels.Base;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels
@@ -22,7 +22,7 @@ namespace INetApp.ViewModels
         private bool _SelectAll, IsChangeTab;
         private string _Title;
         private int CategoryID;
-        private bool _RowChecked =false;
+        private bool _RowChecked = false;
         #region Properties
 
         public List<MessageModel> MessageList;
@@ -33,7 +33,7 @@ namespace INetApp.ViewModels
             set
             {
                 _MessageItems = value;
-                RaisePropertyChanged(() => this.MessageItems);
+                RaisePropertyChanged(() => MessageItems);
             }
         }
 
@@ -43,7 +43,7 @@ namespace INetApp.ViewModels
             set
             {
                 _mensajeListView = value;
-                RaisePropertyChanged(() => this.MensajeListView);
+                RaisePropertyChanged(() => MensajeListView);
             }
         }
         public string Title
@@ -52,7 +52,7 @@ namespace INetApp.ViewModels
             set
             {
                 _Title = value;
-                RaisePropertyChanged(() => this.Title);
+                RaisePropertyChanged(() => Title);
             }
         }
         public bool SelectAll
@@ -61,7 +61,7 @@ namespace INetApp.ViewModels
             set
             {
                 _SelectAll = value;
-                RaisePropertyChanged(() => this.SelectAll);
+                RaisePropertyChanged(() => SelectAll);
                 if (!IsChangeTab)
                 {
                     OnSelectAll(value);
@@ -75,10 +75,10 @@ namespace INetApp.ViewModels
             set
             {
                 _selectecTab = value;
-                RaisePropertyChanged(() => this.SelectecTab);
+                RaisePropertyChanged(() => SelectecTab);
                 OnSelectTab(value);
                 IsChangeTab = true;
-                this.SelectAll = MessageList.Where(a => a.checkeado).Count() == this.MessageItems.Count;
+                SelectAll = MessageList.Where(a => a.checkeado).Count() == MessageItems.Count;
                 IsChangeTab = false;
 
             }
@@ -89,7 +89,7 @@ namespace INetApp.ViewModels
             set
             {
                 _RowChecked = value;
-                RaisePropertyChanged(() => this.IsRowChecked);
+                RaisePropertyChanged(() => IsRowChecked);
             }
         }
 
@@ -106,7 +106,7 @@ namespace INetApp.ViewModels
         {
             if (query.TryGetValue("Name", out string title))
             {
-                this.Title = title;
+                Title = title;
             }
             if (query.TryGetValue("CategoryId", out string category))
             {
@@ -117,26 +117,26 @@ namespace INetApp.ViewModels
         }
         private async Task Sincroniza()
         {
-            this.IsBusy = true;
+            IsBusy = true;
 
-            this.MensajeListView = "Cargando Datos";
+            MensajeListView = "Cargando Datos";
             MessageDto messageDto = await MessageService.GetMessageAsync(CategoryID);
 
             MessageList = messageDto.IsOk ? messageDto.MessageModels : new List<MessageModel>();
 
             OnSelectTab(_selectecTab);
 
-            this.MensajeListView = Literales.empty_categories;
-            this.Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            MensajeListView = Literales.empty_categories;
+            Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
 
-            this.IsBusy = false;
+            IsBusy = false;
         }
 
         private async void OnSelectMessage(MessageModel messageModel)
         {
-            this.IsBusy = true;
+            IsBusy = true;
             await Sincroniza();
-            this.IsBusy = false;
+            IsBusy = false;
         }
 
         private void OnSelectAll(bool TrueFalse)
@@ -146,18 +146,21 @@ namespace INetApp.ViewModels
                 item.checkeado = TrueFalse;
             }
             OnSelectTab(_selectecTab);
+            //todo activar view_action si es true
         }
         private void OnSelectTab(int selectedTab)
         {
-            this.MessageItems = selectedTab == 0
+            MessageItems = selectedTab == 0
                 ? new ObservableCollection<MessageModel>(MessageList)
                 : new ObservableCollection<MessageModel>(MessageList.Where(a => a.checkeado));
         }
 
         public bool IsRowSelect()
         {
-            this.IsRowChecked = this.MessageItems.Any(a => a.checkeado);
-            return this.IsRowChecked;
+            //todo marcar o desmarcar allcheck
+            //todo refrescar pantalla si estoy en tab marcadas
+            IsRowChecked = MessageItems.Any(a => a.checkeado);
+            return IsRowChecked;
         }
     }
 }

@@ -18,7 +18,7 @@
             </MultiBinding>
         </Grid.Padding>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.15*"/>
             <ColumnDefinition Width="0.8*"/>
         </Grid.ColumnDefinitions>
         <!--  CheckedChanged="CheckBox_CheckedChanged"-->
