@@ -22,6 +22,7 @@
             <RowDefinition Height="auto"/> <!-- progreso -->
             <RowDefinition Height="auto"/> <!-- reintentar -->
         </Grid.RowDefinitions>
+        
         <components:Toolbar_main Grid.Row="0" SelectedIndex ="{Binding SelectecTab}"/>
         <components:SelectAll Grid.Row="1" x:Name ="SelectAll" IsChecked="{Binding SelectAll}"/>
         <!--<ScrollView Grid.Row="2"
@@ -44,19 +45,19 @@
                         VerticalOptions="FillAndExpand"
                         ItemsSource="{Binding MessageItems}">
                         <ListView.ItemTemplate>
-                            <DataTemplate >
-                                <ViewCell >
-                                    <components:MessageRow/>
+                            <DataTemplate>
+                                <ViewCell>
+                                <components:MessageRow/>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                        <ListView.Behaviors>
-                            <xct:EventToCommandBehavior
+                    <ListView.Behaviors>
+                        <xct:EventToCommandBehavior
                                 Command="{Binding SelectMessageCommand}"
                                 EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
                                 EventName="ItemTapped" />
-                        </ListView.Behaviors>
-                    </ListView>
+                    </ListView.Behaviors>
+                </ListView>
                 </Grid>
                 <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
                     <Label

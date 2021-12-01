@@ -1,14 +1,10 @@
-﻿using INetApp.Services.Settings;
-using INetApp.ViewModels;
-using INetApp.ViewModels.Base;
-using INetApp.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
+using INetApp.Services.Settings;
 using Xamarin.Forms;
 
 namespace INetApp.Services
@@ -25,35 +21,39 @@ namespace INetApp.Services
         public Task InitializeAsync()
         {
             if (string.IsNullOrEmpty(_settingsService.AuthAccessToken))
+            {
                 return NavigateToAsync("//Login");
+            }
             else
+            {
                 return NavigateToAsync("//Main/Catalog");
+            }
         }
 
-        public Task NavigateToAsync (string route, IDictionary<string, string> routeParameters = null)
+        public Task NavigateToAsync(string route, IDictionary<string, string> routeParameters = null)
         {
-            var uri = new StringBuilder (route);
+            StringBuilder uri = new StringBuilder(route);
 
             if (routeParameters != null)
             {
-                uri.Append ('?');
+                uri.Append('?');
 
-                foreach (var routeParameter in routeParameters)
+                foreach (KeyValuePair<string, string> routeParameter in routeParameters)
                 {
-                    uri.Append ($"{routeParameter.Key}={Uri.EscapeDataString (routeParameter.Value)}&");
+                    uri.Append($"{routeParameter.Key}={Uri.EscapeDataString(routeParameter.Value)}&");
                 }
-                uri.Remove (uri.Length - 1, 1);
+                uri.Remove(uri.Length - 1, 1);
             }
 
-            return Shell.Current.GoToAsync (uri.ToString ());
+            return Shell.Current.GoToAsync(uri.ToString());
         }
 
         private Type GetPageTypeForViewModel(Type viewModelType)
         {
-            var viewName = viewModelType.FullName.Replace("Model", string.Empty);
-            var viewModelAssemblyName = viewModelType.GetTypeInfo().Assembly.FullName;
-            var viewAssemblyName = string.Format(CultureInfo.InvariantCulture, "{0}, {1}", viewName, viewModelAssemblyName);
-            var viewType = Type.GetType(viewAssemblyName);
+            string viewName = viewModelType.FullName.Replace("Model", string.Empty);
+            string viewModelAssemblyName = viewModelType.GetTypeInfo().Assembly.FullName;
+            string viewAssemblyName = string.Format(CultureInfo.InvariantCulture, "{0}, {1}", viewName, viewModelAssemblyName);
+            Type viewType = Type.GetType(viewAssemblyName);
             return viewType;
         }
 

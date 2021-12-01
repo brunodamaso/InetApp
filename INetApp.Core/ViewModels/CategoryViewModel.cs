@@ -26,7 +26,7 @@ namespace INetApp.ViewModels
             set
             {
                 _categoryItems = value;
-                RaisePropertyChanged(() => this.CategoryItems);
+                RaisePropertyChanged(() => CategoryItems);
             }
         }
 
@@ -36,7 +36,7 @@ namespace INetApp.ViewModels
             set
             {
                 _mensajeListView = value;
-                RaisePropertyChanged(() => this.MensajeListView);
+                RaisePropertyChanged(() => MensajeListView);
             }
         }
         public bool IsRefreshing
@@ -45,7 +45,7 @@ namespace INetApp.ViewModels
             set
             {
                 _IsRefreshing = value;
-                RaisePropertyChanged(() => this.IsRefreshing);
+                RaisePropertyChanged(() => IsRefreshing);
             }
         }
         #endregion
@@ -65,48 +65,48 @@ namespace INetApp.ViewModels
 
         private async Task Sincroniza()
         {
-            this.MensajeListView = "Cargando Datos";
-            this.IsBusy = true;
+            MensajeListView = "Cargando Datos";
+            IsBusy = true;
             CategoryDto categoryDto = await CategoryService.GetCategoryAsync();
             if (categoryDto.IsOk)
             {
-                this.CategoryItems = new ObservableCollection<CategoryModel>(categoryDto.CategoryModels);
+                CategoryItems = new ObservableCollection<CategoryModel>(categoryDto.CategoryModels);
             }
             else
             {
-                this.CategoryItems = new ObservableCollection<CategoryModel>();
+                CategoryItems = new ObservableCollection<CategoryModel>();
             }
 
-            this.MensajeListView = Literales.empty_categories;
-            this.Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
-            this.IsBusy = false;
+            MensajeListView = Literales.empty_categories;
+            Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            IsBusy = false;
         }
 
         private async Task OnRefreshCommand()
         {
-            if (this.IsRefreshing)
+            if (IsRefreshing)
             {
                 return;
             }
-            this.IsRefreshing = true;
-            this.IsBusy = true;
+            IsRefreshing = true;
+            IsBusy = true;
             await Sincroniza();
-            this.IsRefreshing = false;
-            this.IsBusy = false;
+            IsRefreshing = false;
+            IsBusy = false;
         }
 
         private async void OnSelectCategory(CategoryModel categoryModel)
         {
             if (categoryModel.pendingMessages > 0)
             {
-                this.IsBusy = true;
-                var Parametro = new Dictionary<string, string>
+                IsBusy = true;
+                Dictionary<string, string> Parametro = new Dictionary<string, string>
                 {
                     { "Name", categoryModel.name },
                     { "CategoryId", categoryModel.categoryId.ToString() }
                 };
                 await NavigationService.NavigateToAsync("Message", Parametro);
-                this.IsBusy = false;
+                IsBusy = false;
             }
         }
 

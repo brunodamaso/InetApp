@@ -1,14 +1,14 @@
-﻿using INetApp.APIWebServices.Dtos;
-using INetApp.Models;
-using INetApp.Resources;
-using INetApp.Services;
-using INetApp.ViewModels.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using INetApp.APIWebServices.Dtos;
+using INetApp.Models;
+using INetApp.Resources;
+using INetApp.Services;
+using INetApp.ViewModels.Base;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels
@@ -78,7 +78,7 @@ namespace INetApp.ViewModels
                 RaisePropertyChanged(() => SelectecTab);
                 OnSelectTab(value);
                 IsChangeTab = true;
-                SelectAll = MessageList.Where(a => a.checkeado).Count() == MessageItems.Count;
+                SelectAll = MessageList.Count(a => a.checkeado) == MessageItems.Count;
                 IsChangeTab = false;
 
             }
@@ -106,7 +106,7 @@ namespace INetApp.ViewModels
         {
             if (query.TryGetValue("Name", out string title))
             {
-                Title = title;
+                Title = Uri.UnescapeDataString(title);
             }
             if (query.TryGetValue("CategoryId", out string category))
             {
@@ -114,6 +114,7 @@ namespace INetApp.ViewModels
             }
 
             await Sincroniza();
+            await base.InitializeAsync(query);
         }
         private async Task Sincroniza()
         {
@@ -141,12 +142,15 @@ namespace INetApp.ViewModels
 
         private void OnSelectAll(bool TrueFalse)
         {
+            IsBusy = true;
             foreach (MessageModel item in MessageList.Where(a => _selectecTab != 1 || a.checkeado))
             {
                 item.checkeado = TrueFalse;
             }
             OnSelectTab(_selectecTab);
-            //todo activar view_action si es true
+
+            IsRowChecked = TrueFalse;
+            IsBusy = false;
         }
         private void OnSelectTab(int selectedTab)
         {
@@ -157,8 +161,10 @@ namespace INetApp.ViewModels
 
         public bool IsRowSelect()
         {
-            //todo marcar o desmarcar allcheck
-            //todo refrescar pantalla si estoy en tab marcadas
+            IsChangeTab = true;
+            SelectAll = MessageItems.Count == MessageItems.Count(a => a.checkeado);
+            IsChangeTab = false;
+
             IsRowChecked = MessageItems.Any(a => a.checkeado);
             return IsRowChecked;
         }

@@ -19,7 +19,7 @@
         </Grid.Padding>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.15*"/>
-            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="0.85*"/>
         </Grid.ColumnDefinitions>
         <!--  CheckedChanged="CheckBox_CheckedChanged"-->
         <CheckBox Grid.Column="0" 
@@ -27,12 +27,12 @@
                 Color="{StaticResource app_Color}"
                 HeightRequest="{Binding Source={StaticResource lv_row_icon_width}, Converter={StaticResource StringToDoubleConverter}}" 
                 HorizontalOptions="Center">
-            <CheckBox.Margin>
+            <!--CheckBox.Margin>
                 <MultiBinding Converter="{StaticResource ThicknessConverter}">
                     <Binding Source="{StaticResource lv_row_padding}"/>
                     <Binding Path="0"/>
                 </MultiBinding>
-            </CheckBox.Margin>
+            </CheckBox.Margin>-->
 
         </CheckBox>
         <Label Grid.Column="1" 

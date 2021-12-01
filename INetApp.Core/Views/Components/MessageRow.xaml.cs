@@ -11,7 +11,7 @@ namespace INetApp.Views.Components
 
         }
 
-        public static readonly BindableProperty IsRowCheckedProperty = BindableProperty.Create(nameof(IsRowChecked), typeof(bool), typeof(CheckBox), null, BindingMode.TwoWay);
+        public static readonly BindableProperty IsRowCheckedProperty = BindableProperty.Create(nameof(IsRowChecked), typeof(bool), typeof(bool), false, BindingMode.TwoWay);
 
         public bool IsRowChecked
         {
@@ -23,9 +23,10 @@ namespace INetApp.Views.Components
         {
             try
             {
-                CheckBox aa = (CheckBox)sender;
-                MessageViewModel vm = aa.Parent.Parent.Parent.Parent.BindingContext as MessageViewModel;
-                IsRowChecked = vm.IsRowSelect();
+                if (Parent?.Parent?.BindingContext is MessageViewModel vm)
+                {
+                    IsRowChecked = vm.IsRowSelect();
+                }
             }
             catch
             {
