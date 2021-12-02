@@ -142,6 +142,7 @@ namespace INetApp.ViewModels
 
         private void OnSelectAll(bool TrueFalse)
         {
+            //todo cambiar a favoritos en vez de marcados @-)
             IsBusy = true;
             foreach (MessageModel item in MessageList.Where(a => _selectecTab != 1 || a.checkeado))
             {

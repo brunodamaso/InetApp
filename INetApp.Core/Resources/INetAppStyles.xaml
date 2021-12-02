@@ -116,6 +116,7 @@
     
     <Style x:Key="ButtonApprove" TargetType="Button">
         <!--<Setter Property="ColorControlHighlight" Value="{StaticResource favorite_ripple_dark_Color}" />-->
+        <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="CornerRadius" Value="7"/>
         <Setter Property="BackgroundColor" Value="{StaticResource toolbar_Color}"/>
         <Setter Property="TextColor" Value="{StaticResource white}" />
@@ -123,6 +124,7 @@
 
     <Style x:Key="ButtonRefuse" TargetType="Button">
         <!--<Setter Property="ColorControlHighlight" Value="{StaticResource favorite_ripple_light_Color}" />-->
+        <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="CornerRadius" Value="7"/>
         <Setter Property="BackgroundColor" Value="{StaticResource very_light_grey}"/>
         <Setter Property="TextColor" Value="{StaticResource toolbar_Color}"/>

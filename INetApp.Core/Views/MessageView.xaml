@@ -16,9 +16,9 @@
     <Grid  xct:SafeAreaEffect.SafeArea="true"  BackgroundColor="{StaticResource white}" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/> <!-- tabs-->
-            <RowDefinition Height="auto"/> <!-- select all -->
+            <RowDefinition Height="0.1*"/> <!-- select all -->
             <RowDefinition Height="*"/> <!-- registros -->
-            <RowDefinition Height="auto"/> <!-- acciones botones -->
+            <RowDefinition Height="0.1*"/> <!-- acciones botones -->
             <RowDefinition Height="auto"/> <!-- progreso -->
             <RowDefinition Height="auto"/> <!-- reintentar -->
         </Grid.RowDefinitions>
@@ -86,7 +86,8 @@
         
         <components:View_Actions Grid.Row="5"
             IsVisible="{Binding IsRowChecked}"
-            x:Name="tv_View_Actions" />
+            x:Name="tv_View_Actions" 
+            />
 
         <components:View_Update Grid.Row="5"
             IsVisible ="{Binding IsRowChecked, Converter={StaticResource ValueToBooleanConverter}, ConverterParameter='Not'}"
