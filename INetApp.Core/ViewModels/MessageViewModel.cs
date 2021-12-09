@@ -157,16 +157,17 @@ namespace INetApp.ViewModels
         {
             MessageItems = selectedTab == 0
                 ? new ObservableCollection<MessageModel>(MessageList)
-                : new ObservableCollection<MessageModel>(MessageList.Where(a => a.checkeado));
+                : new ObservableCollection<MessageModel>(MessageList.Where(a => a.favorite));
         }
 
         public bool IsRowSelect()
         {
             IsChangeTab = true;
-            SelectAll = MessageItems.Count == MessageItems.Count(a => a.checkeado);
+            int canti = MessageItems.Count(a => a.checkeado);
+            SelectAll = MessageItems.Count == canti;
             IsChangeTab = false;
 
-            IsRowChecked = MessageItems.Any(a => a.checkeado);
+            IsRowChecked = canti > 0;
             return IsRowChecked;
         }
     }
