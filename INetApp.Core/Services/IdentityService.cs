@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using IdentityModel;
-using INetApp.Helpers;
-using INetApp.Models.Token;
-using INetApp.Services.RequestProvider;
 using INetApp.Services.Settings;
 using PCLCrypto;
 using static PCLCrypto.WinRTCrypto;
@@ -18,72 +13,17 @@ namespace INetApp.Services.Identity
         private const string APP_KEY = "com.ineco.android.master";
         private const string KEY_PREFIX = "8RYmvH71oMqnofee0Be9";
 
-        private readonly IRequestProvider requestProvider;
         private readonly ISettingsService settingsService;
         private readonly IDeviceService deviceService;
-        private string _codeVerifier;
+        private readonly string _codeVerifier;
 
-        public IdentityService(IRequestProvider _requestProvider, ISettingsService _settingsService, IDeviceService _deviceService)
+        public IdentityService(ISettingsService _settingsService, IDeviceService _deviceService)
         {
-            requestProvider = _requestProvider;
             settingsService = _settingsService;
             deviceService = _deviceService;
         }
 
-        public string CreateAuthorizationRequest()
-        {
-            // Create URI to authorization endpoint
-            AuthorizeRequest authorizeRequest = new AuthorizeRequest(GlobalSetting.Instance.AuthorizeEndpoint);
 
-            // Dictionary with values for the authorize request
-            Dictionary<string, string> dic = new Dictionary<string, string>
-            {
-                { "client_id", GlobalSetting.Instance.ClientId },
-                { "client_secret", GlobalSetting.Instance.ClientSecret },
-                { "response_type", "code id_token" },
-                { "scope", "openid profile basket orders offline_access" },
-                { "redirect_uri", GlobalSetting.Instance.Callback },
-                { "nonce", Guid.NewGuid().ToString("N") },
-                { "code_challenge", CreateCodeChallenge() },
-                { "code_challenge_method", "S256" }
-            };
-
-            // Add CSRF token to protect against cross-site request forgery attacks.
-            string currentCSRFToken = Guid.NewGuid().ToString("N");
-            dic.Add("state", currentCSRFToken);
-
-            string authorizeUri = authorizeRequest.Create(dic);
-            return authorizeUri;
-        }
-
-        public string CreateLogoutRequest(string token)
-        {
-            if (string.IsNullOrEmpty(token))
-            {
-                return string.Empty;
-            }
-
-            return string.Format("{0}?id_token_hint={1}&post_logout_redirect_uri={2}",
-                GlobalSetting.Instance.LogoutEndpoint,
-                token,
-                GlobalSetting.Instance.LogoutCallback);
-        }
-
-        public async Task<UserToken> GetTokenAsync(string code)
-        {
-            string data = string.Format("grant_type=authorization_code&code={0}&redirect_uri={1}&code_verifier={2}", code, WebUtility.UrlEncode(GlobalSetting.Instance.Callback), _codeVerifier);
-            UserToken token = await requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint, data, GlobalSetting.Instance.ClientId, GlobalSetting.Instance.ClientSecret);
-            return token;
-        }
-
-        private string CreateCodeChallenge()
-        {
-            _codeVerifier = RandomNumberGenerator.CreateUniqueId();
-            IHashAlgorithmProvider sha256 = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Sha256);
-            byte[] challengeBuffer = sha256.HashData(CryptographicBuffer.CreateFromByteArray(Encoding.UTF8.GetBytes(_codeVerifier)));
-            CryptographicBuffer.CopyToByteArray(challengeBuffer, out byte[] challengeBytes);
-            return Base64Url.Encode(challengeBytes);
-        }
         private static byte[] getRawKey(byte[] seed)
         {
             try

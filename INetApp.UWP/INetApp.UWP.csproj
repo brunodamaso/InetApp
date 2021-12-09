@@ -140,30 +140,15 @@
     <Content Include="..\INetApp.Droid\Resources\drawable\info.png">
       <Link>Assets\info.png</Link>
     </Content>
-    <Content Include="Assets\banner.png" />
-    <Content Include="Assets\circle_button_background.png" />
-    <AndroidResource Include="Assets\default_campaign.png" />
-    <Content Include="Assets\default_product.png" />
-    <Content Include="Assets\eshop_logo.png" />
-    <Content Include="Assets\fake_campaign_01.png" />
-    <Content Include="Assets\fake_campaign_02.png" />
-    <Content Include="Assets\fake_product_01.png" />
-    <Content Include="Assets\fake_product_02.png" />
-    <Content Include="Assets\fake_product_03.png" />
-    <Content Include="Assets\fake_product_04.png" />
-    <Content Include="Assets\fake_product_05.png" />
     <Content Include="Assets\img_formacion.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-200.png" />
-    <Content Include="Assets\noimage.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-400.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

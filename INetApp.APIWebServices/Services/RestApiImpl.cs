@@ -193,7 +193,7 @@ namespace INetApp.APIWebServices
             {
                 HttpResponse httpResponse = Get(API_URL_GET_CATEGORY_LIST, Usuario, Password).Result;
 
-                httpResponse.Resultado = $"{{CategoryEntity:{httpResponse.Resultado}}}";
+                httpResponse.Resultado = $"{{CategorysEntities:{httpResponse.Resultado}}}";
 
                 ServiceResponse<CategorysEntity> response = ServiceHelper.CreateResponse<CategorysEntity>(httpResponse);
 
@@ -209,7 +209,7 @@ namespace INetApp.APIWebServices
             {
                 HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_LIST_BY_CATEGORY + categoryId, Usuario, Password).Result;
 
-                httpResponse.Resultado = $"{{MessagesEntitys:{httpResponse.Resultado}}}";
+                httpResponse.Resultado = $"{{MessagesEntities:{httpResponse.Resultado}}}";
 
                 ServiceResponse<MessagesEntity> response = ServiceHelper.CreateResponse<MessagesEntity>(httpResponse);
 

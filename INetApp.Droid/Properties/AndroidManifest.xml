@@ -8,5 +8,5 @@
 	<uses-permission android:name="android.permission.NFC" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<application android:label="INetApp" android:icon="@drawable/notif_large_icon" android:largeHeap="true" android:networkSecurityConfig="@xml/network_security_config"></application>
+	<application android:label="INetApp" android:icon="@drawable/icon" android:largeHeap="true" android:networkSecurityConfig="@xml/network_security_config"></application>
 </manifest>

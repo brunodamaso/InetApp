@@ -65,9 +65,6 @@ namespace INetApp
             Routing.RegisterRoute("MainView", typeof(MainView));
             Routing.RegisterRoute("Message", typeof(MessageView));
 
-            Routing.RegisterRoute("OrderDetail", typeof(OrderDetailView));
-            Routing.RegisterRoute("CampaignDetails", typeof(CampaignDetailsView));
-            Routing.RegisterRoute("Checkout", typeof(CheckoutView));
         }
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {

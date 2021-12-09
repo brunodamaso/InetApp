@@ -158,21 +158,7 @@ namespace INetApp.ViewModels
                 }
             }
             this.IsBusy = false;
-        }
-
-        private async Task SignInAsync()
-        {
-            this.IsBusy = true;
-
-            await Task.Delay(10);
-
-            this.LoginUrl = identityService.CreateAuthorizationRequest();
-
-            this.IsValid = true;
-            this.IsLogin = true;
-            this.IsBusy = false;
-        }
-
+        }    
 
         private void Logout()
         {
@@ -187,36 +173,7 @@ namespace INetApp.ViewModels
             //    this.LoginUrl = logoutRequest;
             //}
         }
-
-        private async Task NavigateAsync(string url)
-        {
-            string unescapedUrl = System.Net.WebUtility.UrlDecode(url);
-
-            if (unescapedUrl.Equals(GlobalSetting.Instance.LogoutCallback))
-            {
-                settingsService.AuthAccessToken = string.Empty;
-                settingsService.AuthIdToken = string.Empty;
-                this.IsLogin = false;
-                this.LoginUrl = identityService.CreateAuthorizationRequest();
-            }
-            else if (unescapedUrl.Contains(GlobalSetting.Instance.Callback))
-            {
-                AuthorizeResponse authResponse = new AuthorizeResponse(url);
-                if (!string.IsNullOrWhiteSpace(authResponse.Code))
-                {
-                    Models.Token.UserToken userToken = await identityService.GetTokenAsync(authResponse.Code);
-                    string accessToken = userToken.AccessToken;
-
-                    if (!string.IsNullOrWhiteSpace(accessToken))
-                    {
-                        settingsService.AuthAccessToken = accessToken;
-                        settingsService.AuthIdToken = authResponse.IdentityToken;
-                        await NavigationService.NavigateToAsync("//Main/Catalog");
-                    }
-                }
-            }
-        }
-
+     
         private bool Validate()
         {
             bool isValidPassword = false;

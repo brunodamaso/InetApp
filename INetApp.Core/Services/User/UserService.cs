@@ -1,40 +1,25 @@
-﻿using INetApp.APIWebServices.Dtos;
-using INetApp.Helpers;
-using INetApp.Models.User;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using INetApp.APIWebServices.Dtos;
 using INetApp.Services.Identity;
-using INetApp.Services.RequestProvider;
 using INetApp.Services.Settings;
 using INetApp.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace INetApp.Services
 {
     public class UserService : IUserService
     {
-        private readonly IRequestProvider _requestProvider;
         private readonly ISettingsService settingsService;
         private readonly IRepositoryWebService repositoryWebService;
         private protected readonly IIdentityService identityService;
 
-        public UserService(IRepositoryWebService _repositoryWebService, IRequestProvider requestProvider)
+        public UserService(IRepositoryWebService _repositoryWebService)
         {
-            _requestProvider = requestProvider;
             settingsService = ViewModelLocator.Resolve<ISettingsService>();
             repositoryWebService = _repositoryWebService;
             identityService = ViewModelLocator.Resolve<IIdentityService>();
         }
 
-        //todo quitar
-        public async Task<UserInfo> GetUserInfoAsync(string authToken)
-        {
-            var uri = UriHelper.CombineUri(GlobalSetting.Instance.UserInfoEndpoint);
-
-            var userInfo = await _requestProvider.GetAsync<UserInfo>(uri, authToken);
-            return userInfo;
-        }
         public async Task<UserLoggedDto> GetUserLoggedDto(string userName, string userPass)
         {
             UserLoggedDto userLoggedDto = await repositoryWebService.GetUserLogged(userName, userPass);
@@ -54,6 +39,6 @@ namespace INetApp.Services
             string userName = credenciales.Key.ToString();
             string userPass = credenciales.Value.ToString();
             return await GetUserLoggedDto(userName, userPass);
-        }        
+        }
     }
 }

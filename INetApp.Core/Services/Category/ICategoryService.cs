@@ -1,14 +1,11 @@
-﻿using INetApp.APIWebServices.Dtos;
-using INetApp.Models.Basket;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using INetApp.APIWebServices.Dtos;
 
 namespace INetApp.Services
 {
     public interface ICategoryService
     {
         Task<CategorysDto> GetCategoryAsync();
-       
+
     }
 }

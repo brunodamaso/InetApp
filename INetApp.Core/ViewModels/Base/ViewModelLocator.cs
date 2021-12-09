@@ -3,14 +3,8 @@ using System.Globalization;
 using System.Reflection;
 using INetApp.APIWebServices;
 using INetApp.Services;
-using INetApp.Services.Basket;
-using INetApp.Services.Catalog;
 using INetApp.Services.Dependency;
-using INetApp.Services.FixUri;
 using INetApp.Services.Identity;
-using INetApp.Services.Marketing;
-using INetApp.Services.Order;
-using INetApp.Services.RequestProvider;
 using INetApp.Services.Settings;
 using Xamarin.Forms;
 
@@ -35,48 +29,33 @@ namespace INetApp.ViewModels.Base
         {
             // Services - by default, TinyIoC will register interface registrations as singletons.
             SettingsService settingsService = new SettingsService();
-            RequestProvider requestProvider = new RequestProvider();
             IDeviceService deviceService = Xamarin.Forms.DependencyService.Get<IDeviceService>();
             RestApiImpl restapi = new RestApiImpl();
             Xamarin.Forms.DependencyService.RegisterSingleton<ISettingsService>(settingsService);
             Xamarin.Forms.DependencyService.RegisterSingleton<INavigationService>(new NavigationService(settingsService));
             Xamarin.Forms.DependencyService.RegisterSingleton<IDialogService>(new DialogService());
-            Xamarin.Forms.DependencyService.RegisterSingleton<IRequestProvider>(requestProvider);
-            Xamarin.Forms.DependencyService.RegisterSingleton<IIdentityService>(new IdentityService(requestProvider, settingsService, deviceService));
+            Xamarin.Forms.DependencyService.RegisterSingleton<IIdentityService>(new IdentityService(settingsService, deviceService));
             Xamarin.Forms.DependencyService.RegisterSingleton<IDependencyService>(new Services.Dependency.DependencyService());
-            Xamarin.Forms.DependencyService.RegisterSingleton<IFixUriService>(new FixUriService(settingsService));
 
-            Xamarin.Forms.DependencyService.RegisterSingleton<IRepositoryWebService>(new RepositoryWebService(restapi, new IdentityService(requestProvider, settingsService, deviceService)));
+            Xamarin.Forms.DependencyService.RegisterSingleton<IRepositoryWebService>(new RepositoryWebService(restapi, new IdentityService(settingsService, deviceService)));
 
             // View models - by default, TinyIoC will register concrete classes as multi-instance.
             Xamarin.Forms.DependencyService.Register<LoginViewModel>();
             Xamarin.Forms.DependencyService.Register<MainViewModel>();
             Xamarin.Forms.DependencyService.Register<CategoryViewModel>();
             Xamarin.Forms.DependencyService.Register<MessageViewModel>();
-
-            Xamarin.Forms.DependencyService.Register<CatalogViewModel>();
-            Xamarin.Forms.DependencyService.Register<CheckoutViewModel>();
-            Xamarin.Forms.DependencyService.Register<OrderDetailViewModel>();
-            Xamarin.Forms.DependencyService.Register<ProfileViewModel>();
-            Xamarin.Forms.DependencyService.Register<CampaignViewModel>();
-            Xamarin.Forms.DependencyService.Register<CampaignDetailsViewModel>();
+         
         }
 
         public static void UpdateDependencies()
         {
             // Change injected dependencies
-            IRequestProvider requestProvider = Xamarin.Forms.DependencyService.Get<IRequestProvider>();
-            IFixUriService fixUriService = Xamarin.Forms.DependencyService.Get<IFixUriService>();
             IRepositoryWebService repositoryWebService = Xamarin.Forms.DependencyService.Get<IRepositoryWebService>();
-            
-            Xamarin.Forms.DependencyService.RegisterSingleton<IUserService>(new UserService(repositoryWebService, requestProvider));
+
+            Xamarin.Forms.DependencyService.RegisterSingleton<IUserService>(new UserService(repositoryWebService));
             Xamarin.Forms.DependencyService.RegisterSingleton<ICategoryService>(new CategoryService(repositoryWebService));
             Xamarin.Forms.DependencyService.RegisterSingleton<IMessageService>(new MessageService(repositoryWebService));
 
-            Xamarin.Forms.DependencyService.RegisterSingleton<ICampaignService>(new CampaignService(requestProvider, fixUriService));
-            Xamarin.Forms.DependencyService.RegisterSingleton<ICatalogService>(new CatalogService(requestProvider, fixUriService));
-            Xamarin.Forms.DependencyService.RegisterSingleton<IOrderService>(new OrderService(requestProvider));
-            
         }
 
         public static T Resolve<T>() where T : class

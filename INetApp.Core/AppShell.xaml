@@ -93,17 +93,17 @@
         <ShellContent Route="Category" ContentTemplate="{DataTemplate views:CategoryView}" />
     </FlyoutItem>
     <FlyoutItem     Title="Solicitudes marcadas">
-        <ShellContent Route="Catalog" ContentTemplate="{DataTemplate views:CatalogView}" />
+        <ShellContent Route="Message" ContentTemplate="{DataTemplate views:MessageView}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Opciones">
-        <ShellContent  Route="AboutPage" ContentTemplate="{DataTemplate views:BasketView}" />
+        <ShellContent  Route="Message" ContentTemplate="{DataTemplate views:MessageView}" />
     </FlyoutItem>
     <FlyoutItem Title="Partes de trabajo" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate views:BasketView}" />
+        <ShellContent Route="Message" ContentTemplate="{DataTemplate views:MessageView}" />
     </FlyoutItem>
     <FlyoutItem Title="Control de acceso" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate views:BasketView}" />
+        <ShellContent Route="Message" ContentTemplate="{DataTemplate views:MessageView}" />
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

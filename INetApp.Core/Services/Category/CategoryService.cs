@@ -1,15 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using INetApp.Services.RequestProvider;
-using INetApp.Models.Basket;
-using INetApp.Services.FixUri;
-using INetApp.Helpers;
-using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using INetApp.APIWebServices.Dtos;
-using INetApp.Services.Settings;
 using INetApp.ViewModels.Base;
-using INetApp.Services.Identity;
-using INetApp.Services;
 
 namespace INetApp.Services
 {
@@ -29,7 +20,7 @@ namespace INetApp.Services
             CategorysDto categoryDto = await repositoryWebService.GetCategory();
             if (categoryDto.IsOk)
             {
-              
+
             }
             return categoryDto;
         }
