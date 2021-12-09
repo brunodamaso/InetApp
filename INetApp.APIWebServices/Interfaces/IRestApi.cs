@@ -9,8 +9,9 @@ namespace INetApp.APIWebServices
         Task<UserLoggedDto> GetUserLoggedFromApi(string usuario, string password);
         Task<string> GetUserLoggedPermission(string usuario, string password);
         Task<UserLoggedDto> GetVersion(string usuario, string password);
-        Task<CategoryDto> GetCategoryFromApi(string usuario, string password);
-        Task<MessageDto> GetMessageFromApi(string usuario, string password, int categoryId);
+        Task<CategorysDto> GetCategoriesFromApi(string usuario, string password);
+        Task<MessagesDto> GetMessagesFromApi(string usuario, string password, int categoryId);
+        Task<MessageDto> GetMessageDetailsFromApi(string usuario, string password, int categoryId, int messageId);
 
 
         //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();

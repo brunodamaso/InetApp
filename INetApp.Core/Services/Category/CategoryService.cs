@@ -24,9 +24,9 @@ namespace INetApp.Services
             userService = ViewModelLocator.Resolve<IUserService>();
         }
 
-        public async Task<CategoryDto> GetCategoryAsync()
+        public async Task<CategorysDto> GetCategoryAsync()
         {
-            CategoryDto categoryDto = await repositoryWebService.GetCategory();
+            CategorysDto categoryDto = await repositoryWebService.GetCategory();
             if (categoryDto.IsOk)
             {
               

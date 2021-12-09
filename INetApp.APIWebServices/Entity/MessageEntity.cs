@@ -1,9 +1,10 @@
 ﻿using System.Text;
+using INetApp.APIWebServices.Responses;
 using Newtonsoft.Json;
 
 namespace INetApp.APIWebServices.Entity
 {
-    public class MessageEntity
+    public class MessageEntity : Response
     {
         public static readonly string _ID = "_id";
         public static readonly string ID = "id";

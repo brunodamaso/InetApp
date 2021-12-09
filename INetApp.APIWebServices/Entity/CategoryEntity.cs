@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace INetApp.APIWebServices.Entity
 {
-    public class CategoryEntity
+    public class CategoryEntity : Response
     {
         public CategoryEntity() { }
 

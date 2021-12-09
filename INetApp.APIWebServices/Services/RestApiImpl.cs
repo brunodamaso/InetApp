@@ -186,7 +186,8 @@ namespace INetApp.APIWebServices
         }
         #endregion
 
-        public Task<CategoryDto> GetCategoryFromApi(string Usuario, string Password)
+        #region Category
+        public Task<CategorysDto> GetCategoriesFromApi(string Usuario, string Password)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -194,29 +195,44 @@ namespace INetApp.APIWebServices
 
                 httpResponse.Resultado = $"{{CategoryEntity:{httpResponse.Resultado}}}";
 
-                ServiceResponse<CategoryEntitys> response = ServiceHelper.CreateResponse<CategoryEntitys>(httpResponse);
+                ServiceResponse<CategorysEntity> response = ServiceHelper.CreateResponse<CategorysEntity>(httpResponse);
 
-                return Mappers.ServiceMapper.ConvertToBusiness<CategoryDto, CategoryEntitys>(response);
+                return Mappers.ServiceMapper.ConvertToBusiness<CategorysDto, CategorysEntity>(response);
 
             });
         }
-
-        public Task<MessageDto> GetMessageFromApi(string Usuario, string Password, int categoryId)
+        #endregion
+        #region message
+        public Task<MessagesDto> GetMessagesFromApi(string Usuario, string Password, int categoryId)
         {
             return Task.Factory.StartNew(() =>
             {
                 HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_LIST_BY_CATEGORY + categoryId, Usuario, Password).Result;
 
-                httpResponse.Resultado = $"{{MessageEntity:{httpResponse.Resultado}}}";
+                httpResponse.Resultado = $"{{MessagesEntitys:{httpResponse.Resultado}}}";
 
-                ServiceResponse<MessageEntitys> response = ServiceHelper.CreateResponse<MessageEntitys>(httpResponse);
+                ServiceResponse<MessagesEntity> response = ServiceHelper.CreateResponse<MessagesEntity>(httpResponse);
 
-                return Mappers.ServiceMapper.ConvertToBusiness<MessageDto, MessageEntitys>(response);
+                return Mappers.ServiceMapper.ConvertToBusiness<MessagesDto, MessagesEntity>(response);
 
             });
         }
 
+        public Task<MessageDto> GetMessageDetailsFromApi(string Usuario, string Password, int categoryId, int messageId)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_DETAILS + categoryId + "/" + messageId, Usuario, Password).Result;
 
+                httpResponse.Resultado = $"{{MessagesEntitys:{httpResponse.Resultado}}}";
+
+                ServiceResponse<MessageEntity> response = ServiceHelper.CreateResponse<MessageEntity>(httpResponse);
+
+                return Mappers.ServiceMapper.ConvertToBusiness<MessageDto, MessageEntity>(response);
+
+            });
+        }
+        #endregion
 
         //public Task<CategoriasDto> ResetPassword(string Mail, string Usuario, string Password)
         //{

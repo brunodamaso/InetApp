@@ -85,37 +85,66 @@ namespace INetApp.Services
         }
         #endregion
         #region Category
-        public async Task<CategoryDto> GetCategory()
+        public async Task<CategorysDto> GetCategory()
         {
-            CategoryDto categoryDto = new CategoryDto();
+            CategorysDto categorysDto = new CategorysDto();
             try
             {
                 if (connectivityService.CheckConnectivity())
                 {
                     GetUser();
-                    categoryDto = await RestApiImpl.GetCategoryFromApi(userName, userPass);
+                    categorysDto = await RestApiImpl.GetCategoriesFromApi(userName, userPass);
 
-                    if (categoryDto.IsOk)
+                    if (categorysDto.IsOk)
                     {
                     }
                 }
                 else
                 {
-                    categoryDto.IsOk = false;
-                    categoryDto.IsConnected = false;
+                    categorysDto.IsOk = false;
+                    categorysDto.IsConnected = false;
                     //subscriber.OnError(new NetworkConnectionException());
                 }
             }
             catch (Exception)
             {
-                categoryDto.IsOk = false;
+                categorysDto.IsOk = false;
             }
 
-            return categoryDto;
+            return categorysDto;
         }
         #endregion
         #region Message
-        public async Task<MessageDto> GetMessage(int categoryId)
+        public async Task<MessagesDto> GetMessages(int categoryId)
+        {
+            MessagesDto messagesDto = new MessagesDto();
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    GetUser();
+                    messagesDto = await RestApiImpl.GetMessagesFromApi(userName, userPass, categoryId);
+
+                    if (messagesDto.IsOk)
+                    {
+                    }
+                }
+                else
+                {
+                    messagesDto.IsOk = false;
+                    messagesDto.IsConnected = false;
+                    //subscriber.OnError(new NetworkConnectionException());
+                }
+            }
+            catch (Exception)
+            {
+                messagesDto.IsOk = false;
+            }
+
+            return messagesDto;
+        }
+
+        public async Task<MessageDto> GetMessageDetails(int categoryId, int messageId)
         {
             MessageDto messageDto = new MessageDto();
             try
@@ -123,7 +152,7 @@ namespace INetApp.Services
                 if (connectivityService.CheckConnectivity())
                 {
                     GetUser();
-                    messageDto = await RestApiImpl.GetMessageFromApi(userName, userPass, categoryId);
+                    messageDto = await RestApiImpl.GetMessageDetailsFromApi(userName, userPass, categoryId, messageId);
 
                     if (messageDto.IsOk)
                     {
@@ -143,6 +172,7 @@ namespace INetApp.Services
 
             return messageDto;
         }
+
         #endregion
 
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()

@@ -8,7 +8,7 @@ namespace INetApp.Services
 {
     public interface ICategoryService
     {
-        Task<CategoryDto> GetCategoryAsync();
+        Task<CategorysDto> GetCategoryAsync();
        
     }
 }

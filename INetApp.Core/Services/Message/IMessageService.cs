@@ -8,7 +8,7 @@ namespace INetApp.Services
 {
     public interface IMessageService
     {
-        Task<MessageDto> GetMessageAsync(int categoryId);
-       
+        Task<MessagesDto> GetMessageAsync(int categoryId);
+        Task<MessageDto> GetMessageDetailsAsync(int categoryId, int messageId);
     }
 }

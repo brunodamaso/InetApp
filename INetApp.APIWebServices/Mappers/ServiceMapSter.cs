@@ -21,10 +21,10 @@ namespace INetApp.APIWebServices.Mappers
                .Map(dest => dest.UserLoggedModel.lastNameInitial, src => string.IsNullOrEmpty(src.lastname) ? "" : $"{src.lastname.Substring(0, 1)}");
 
 
-            TypeAdapterConfig<CategoryEntitys, CategoryDto>
+            TypeAdapterConfig<CategorysEntity, CategorysDto>
                .NewConfig()
                .EnableNonPublicMembers(true)
-               .Map(dest => dest.CategoryModels, src => src.CategoryEntity)
+               .Map(dest => dest.CategorysModel, src => src.CategorysEntities)
                .IgnoreNullValues(true);
 
             TypeAdapterConfig<CategoryEntity, CategoryModel>
@@ -33,10 +33,10 @@ namespace INetApp.APIWebServices.Mappers
                 .IgnoreNullValues(true)
                  .Map(dest => dest.urIcon, src => src.UrlIcono);
 
-            TypeAdapterConfig<MessageEntitys, MessageDto>
+            TypeAdapterConfig<MessagesEntity, MessagesDto>
                .NewConfig()
                .EnableNonPublicMembers(true)
-               .Map(dest => dest.MessageModels, src => src.MessageEntity)
+               .Map(dest => dest.MessagesModel, src => src.MessagesEntities)
                .IgnoreNullValues(true);
 
             TypeAdapterConfig<MessageEntity, MessageModel>

@@ -67,10 +67,10 @@ namespace INetApp.ViewModels
         {
             MensajeListView = "Cargando Datos";
             IsBusy = true;
-            CategoryDto categoryDto = await CategoryService.GetCategoryAsync();
+            CategorysDto categoryDto = await CategoryService.GetCategoryAsync();
             if (categoryDto.IsOk)
             {
-                CategoryItems = new ObservableCollection<CategoryModel>(categoryDto.CategoryModels);
+                CategoryItems = new ObservableCollection<CategoryModel>(categoryDto.CategorysModel);
             }
             else
             {

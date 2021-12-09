@@ -121,9 +121,9 @@ namespace INetApp.ViewModels
             IsBusy = true;
 
             MensajeListView = "Cargando Datos";
-            MessageDto messageDto = await MessageService.GetMessageAsync(CategoryID);
+            MessagesDto messagesDto = await MessageService.GetMessageAsync(CategoryID);
 
-            MessageList = messageDto.IsOk ? messageDto.MessageModels : new List<MessageModel>();
+            MessageList = messagesDto.IsOk ? messagesDto.MessagesModel : new List<MessageModel>();
 
             OnSelectTab(_selectecTab);
 
@@ -136,7 +136,12 @@ namespace INetApp.ViewModels
         private async void OnSelectMessage(MessageModel messageModel)
         {
             IsBusy = true;
-            await Sincroniza();
+            Dictionary<string, string> Parametro = new Dictionary<string, string>
+                {
+                    { "CategoryId", messageModel.categoryId.ToString() },
+                    { "MessageId", messageModel.messageId.ToString() }
+                };
+            await NavigationService.NavigateToAsync("MessageDetails", Parametro);
             IsBusy = false;
         }
 

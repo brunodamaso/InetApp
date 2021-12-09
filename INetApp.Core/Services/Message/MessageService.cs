@@ -24,12 +24,22 @@ namespace INetApp.Services
             userService = ViewModelLocator.Resolve<IUserService>();
         }
 
-        public async Task<MessageDto> GetMessageAsync(int categoryId)
+        public async Task<MessagesDto> GetMessageAsync(int categoryId)
         {
-            MessageDto messageDto = await repositoryWebService.GetMessage(categoryId);
+            MessagesDto messagesDto = await repositoryWebService.GetMessages(categoryId);
+            if (messagesDto.IsOk)
+            {
+
+            }
+            return messagesDto;
+        }
+
+        public async Task<MessageDto> GetMessageDetailsAsync(int categoryId, int messageId)
+        {
+            MessageDto messageDto = await repositoryWebService.GetMessageDetails(categoryId , messageId);
             if (messageDto.IsOk)
             {
-              
+
             }
             return messageDto;
         }

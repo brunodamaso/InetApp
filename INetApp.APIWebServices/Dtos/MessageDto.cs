@@ -5,11 +5,11 @@ using INetApp.Models;
 using Xamarin.Forms;
 
 namespace INetApp.APIWebServices.Dtos
-{    
+{
     public class MessageDto : BaseDto
     {
         public MessageDto() : base() { }
         public MessageDto(bool isOk, string errorCode, string errorDescription, bool isConnected) : base(isOk, errorCode, errorDescription, isConnected) { }
-        public List<MessageModel> MessageModels { get; set; }
+        public MessageModel MessageModel { get; set; }
     }
 }
