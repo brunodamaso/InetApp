@@ -133,6 +133,8 @@ namespace INetApp.ViewModels
             if (Validate())
             {
                 //todo progressbar en login
+                //todo progressbar en category
+                //todo progressbar en message
                 //boton reintentar login
 
                 UserLoggedDto userLoggedDto = await userService.GetUserLoggedDto(this.UserName.Value, this.Password.Value);

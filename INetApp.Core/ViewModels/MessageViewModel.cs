@@ -16,7 +16,6 @@ namespace INetApp.ViewModels
     public class MessageViewModel : ViewModelBase
     {
         private ObservableCollection<MessageModel> _MessageItems;
-        private string _mensajeListView;
         private readonly IMessageService MessageService;
         private int _selectecTab;
         private bool _SelectAll, IsChangeTab;
@@ -34,16 +33,6 @@ namespace INetApp.ViewModels
             {
                 _MessageItems = value;
                 RaisePropertyChanged(() => MessageItems);
-            }
-        }
-
-        public string MensajeListView
-        {
-            get => _mensajeListView;
-            set
-            {
-                _mensajeListView = value;
-                RaisePropertyChanged(() => MensajeListView);
             }
         }
         public string Title
@@ -120,14 +109,12 @@ namespace INetApp.ViewModels
         {
             IsBusy = true;
 
-            MensajeListView = "Cargando Datos";
             MessagesDto messagesDto = await MessageService.GetMessageAsync(CategoryID);
 
             MessageList = messagesDto.IsOk ? messagesDto.MessagesModel : new List<MessageModel>();
 
             OnSelectTab(_selectecTab);
 
-            MensajeListView = Literales.empty_categories;
             Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
 
             IsBusy = false;
@@ -147,7 +134,6 @@ namespace INetApp.ViewModels
 
         private void OnSelectAll(bool TrueFalse)
         {
-            //todo cambiar a favoritos en vez de marcados @-)
             IsBusy = true;
             foreach (MessageModel item in MessageList.Where(a => _selectecTab != 1 || a.checkeado))
             {

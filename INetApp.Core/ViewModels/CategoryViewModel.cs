@@ -15,7 +15,6 @@ namespace INetApp.ViewModels
     public class CategoryViewModel : ViewModelBase
     {
         private ObservableCollection<CategoryModel> _categoryItems;
-        private string _mensajeListView;
         private readonly ICategoryService CategoryService;
         private bool _IsRefreshing;
 
@@ -27,16 +26,6 @@ namespace INetApp.ViewModels
             {
                 _categoryItems = value;
                 RaisePropertyChanged(() => CategoryItems);
-            }
-        }
-
-        public string MensajeListView
-        {
-            get => _mensajeListView;
-            set
-            {
-                _mensajeListView = value;
-                RaisePropertyChanged(() => MensajeListView);
             }
         }
         public bool IsRefreshing
@@ -65,7 +54,6 @@ namespace INetApp.ViewModels
 
         private async Task Sincroniza()
         {
-            MensajeListView = "Cargando Datos";
             IsBusy = true;
             CategorysDto categoryDto = await CategoryService.GetCategoryAsync();
             if (categoryDto.IsOk)
@@ -77,7 +65,6 @@ namespace INetApp.ViewModels
                 CategoryItems = new ObservableCollection<CategoryModel>();
             }
 
-            MensajeListView = Literales.empty_categories;
             Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
             IsBusy = false;
         }
