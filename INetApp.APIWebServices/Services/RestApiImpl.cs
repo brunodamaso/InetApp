@@ -202,6 +202,7 @@ namespace INetApp.APIWebServices
             });
         }
         #endregion
+
         #region message
         public Task<MessagesDto> GetMessagesFromApi(string Usuario, string Password, int categoryId)
         {
@@ -224,7 +225,7 @@ namespace INetApp.APIWebServices
             {
                 HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_DETAILS + categoryId + "/" + messageId, Usuario, Password).Result;
 
-                httpResponse.Resultado = $"{{MessagesEntitys:{httpResponse.Resultado}}}";
+                httpResponse.Resultado = $"{{data:{httpResponse.Resultado}}}";
 
                 ServiceResponse<MessageEntity> response = ServiceHelper.CreateResponse<MessageEntity>(httpResponse);
 

@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="INetApp.Views.MainView"
-             xmlns:resources="clr-namespace:INetApp.Resources"
-             xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
-             xmlns:viewmodels="clr-namespace:INetApp.ViewModels"
-             xmlns:components="clr-namespace:INetApp.Views.Components;assembly=INetApp"
-             viewModelBase:ViewModelLocator.AutoWireViewModel="true"
-             x:DataType="viewmodels:MainViewModel"
-             Shell.FlyoutBehavior="Flyout"
-             Shell.NavBarIsVisible="True"
-             Shell.TabBarIsVisible="True"
-             Title="{Binding  Source={x:Static resources:Literales.app_name}}" >
-    <Grid BackgroundColor="{StaticResource white}">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="INetApp.Views.MainView"
+            xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+            xmlns:resources="clr-namespace:INetApp.Resources"
+            xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
+            xmlns:viewmodels="clr-namespace:INetApp.ViewModels"
+            xmlns:components="clr-namespace:INetApp.Views.Components;assembly=INetApp"
+            viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+            x:DataType="viewmodels:MainViewModel"
+            Shell.FlyoutBehavior="Flyout"
+            Shell.NavBarIsVisible="True"
+            Shell.TabBarIsVisible="True"
+            Title="{Binding  Source={x:Static resources:Literales.app_name}}" >
+    <Grid xct:SafeAreaEffect.SafeArea="true" BackgroundColor="{StaticResource white}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>

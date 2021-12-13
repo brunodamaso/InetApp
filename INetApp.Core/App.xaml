@@ -91,16 +91,7 @@
                 <On Platform="Android" Value="{StaticResource AndroidListViewBackgroundColor}" />
             </OnPlatform>
 
-            <!--  Theme Colors 
-            <Color x:Key="LightBackgroundColor">#FFFFFF</Color>
-            <Color x:Key="DarkBackgroundColor">#222222</Color>
-            <Color x:Key="LightForegroundColor">#222222</Color>
-            <Color x:Key="DarkForegroundColor">#FFFFFF</Color>
-            <Color x:Key="LightFontColor">#222222</Color>
-            <Color x:Key="DarkFontColor">#E7E7E7</Color>
-            <Color x:Key="LightSeparatorColor">#222222</Color>
-            <Color x:Key="DarkSeparatorColor">#E7E7E7</Color>
- -->
+            <!--  Theme Colors  -->
             <Color x:Key="LightBackgroundColor">#009cc4</Color>
             <Color x:Key="DarkBackgroundColor">#009cc4</Color>
             <Color x:Key="LightForegroundColor">#FFFFFF</Color>
@@ -134,7 +125,7 @@
                 <On Platform="UWP" Value="Assets/Fonts/Font_Awesome_5_Free-Solid-900.otf#Font Awesome 5 Free" />
             </OnPlatform>
 
-            <x:String x:Key="SettingsIcon">&#xf013;</x:String>
+            <!--<x:String x:Key="SettingsIcon">&#xf013;</x:String>
             <x:String x:Key="CatalogIcon">&#xf03a;</x:String>
             <x:String x:Key="ProfileIcon">&#xf2bd;</x:String>
             <x:String x:Key="BasketIcon">&#xf07a;</x:String>
@@ -143,9 +134,9 @@
             <x:String x:Key="AddIcon">&#xf067;</x:String>
             <x:String x:Key="CircleIcon">&#xf111;</x:String>
             <x:String x:Key="ToggleOffIcon">&#xf204;</x:String>
-            <x:String x:Key="ToggleOnIcon">&#xf205;</x:String>
+            <x:String x:Key="ToggleOnIcon">&#xf205;</x:String>-->
 
-            <FontImageSource
+            <!--<FontImageSource
                 x:Key="SettingsIconImageSource"
                 FontFamily="{StaticResource FontAwesomeSolid}"
                 Glyph="{StaticResource SettingsIcon}" />
@@ -221,18 +212,19 @@
                 x:Key="ToggleOnImageSource"
                 FontFamily="{StaticResource FontAwesomeSolid}"
                 Glyph="{StaticResource ToggleOnIcon}"
-                Color="{StaticResource AccentColor}" />
-
-            <OnPlatform x:Key="BaseButtonFontSize" x:TypeArguments="x:Double">
-                <On Platform="iOS" Value="18" />
-                <On Platform="Android" Value="16" />
-            </OnPlatform>
+                Color="{StaticResource AccentColor}" />-->
 
             <OnPlatform x:Key="BaseFontSize" x:TypeArguments="x:Double">
                 <On Platform="iOS" Value="16" />
                 <On Platform="Android" Value="15" />
             </OnPlatform>
 
+            <OnPlatform x:Key="BaseButtonFontSize" x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="18" />
+                <On Platform="Android" Value="16" />
+            </OnPlatform>
+
+<!--
             <OnPlatform x:Key="LittleSize" x:TypeArguments="x:Double">
                 <On Platform="iOS" Value="11" />
                 <On Platform="Android, UWP, WinRT, WinPhone" Value="12" />
@@ -272,6 +264,7 @@
                 <On Platform="iOS" Value="32" />
                 <On Platform="Android, UWP, WinRT, WinPhone" Value="48" />
             </OnPlatform>
+-->
 
             <OnPlatform x:Key="BaseButtonFontAttributes" x:TypeArguments="FontAttributes">
                 <On Platform="iOS" Value="Bold" />
@@ -280,14 +273,15 @@
 
 
             <!--  EXPLICIT STYLES  -->
-            <Style x:Key="ValidationErrorLabelStyle" TargetType="{x:Type Label}">
-                <Setter Property="TextColor" Value="{StaticResource ErrorColor}" />
-                <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
-            </Style>
 
-            <Style x:Key="EntryStyle" TargetType="{x:Type Entry}">
+            <!--<Style x:Key="ValidationErrorLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
+                <Setter Property="TextColor" Value="{StaticResource ErrorColor}" />
+            </Style>-->
+
+            <!--<Setter Property="FontSize" Value="{StaticResource LargeSize}" />-->
+            <!--<Style x:Key="EntryStyle" TargetType="{x:Type Entry}">
                 <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
-                <Setter Property="FontSize" Value="{StaticResource LargeSize}" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Opacity" Value="0.6" />
@@ -298,19 +292,19 @@
                         <Setter Property="Opacity" Value="1" />
                     </Trigger>
                 </Style.Triggers>
-            </Style>
+            </Style>-->
 
-            <Style x:Key="MediumSizeFontStyle" TargetType="{x:Type Label}">
+            <!--<Style x:Key="MediumSizeFontStyle" TargetType="{x:Type Label}">
                 <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
                 <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
-            </Style>
+            </Style>-->
 
-            <Style x:Key="LittleSizeFontStyle" TargetType="{x:Type Label}">
+            <!--<Style x:Key="LittleSizeFontStyle" TargetType="{x:Type Label}">
                 <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
                 <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
-            </Style>
+            </Style>-->
 
-            <Style x:Key="UwpEntryStyle" TargetType="{x:Type Entry}">
+            <!--<Style x:Key="UwpEntryStyle" TargetType="{x:Type Entry}">
                 <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="PlaceholderColor" Value="{StaticResource BlackColor}" />
@@ -327,9 +321,11 @@
                         <Setter Property="behaviors:LineColorBehavior.LineColor" Value="{StaticResource GreenColor}" />
                     </Trigger>
                 </Style.Triggers>
-            </Style>
+            </Style>-->
 
-            <!--  IMPLICIT STYLES  -->
+            <!--  IMPLICIT STYLES 
+                            
+-->
             <Style
                 ApplyToDerivedTypes="True"
                 CanCascade="True"

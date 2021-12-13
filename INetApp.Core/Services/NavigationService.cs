@@ -26,7 +26,7 @@ namespace INetApp.Services
             }
             else
             {
-                return NavigateToAsync("//Main/Catalog");
+                return NavigateToAsync("//Main");
             }
         }
 

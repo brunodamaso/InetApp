@@ -3,17 +3,16 @@
     x:Class="INetApp.Views.CategoryView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:templates="clr-namespace:INetApp.Views.Templates;assembly=INetApp"
     xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
     xmlns:viewmodels="clr-namespace:INetApp.ViewModels"
     xmlns:views="clr-namespace:INetApp.Views"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
     xmlns:components="clr-namespace:INetApp.Views.Components"
     xmlns:resources="clr-namespace:INetApp.Resources"
-    Title="{Binding  Source={x:Static resources:Literales.activity_title_message_category}}"
+    Title="{Binding Source={x:Static resources:Literales.activity_title_message_category}}"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
     x:DataType="viewmodels:CategoryViewModel">
-    <ContentPage.Resources>
+    <!--<ContentPage.Resources>
         <ResourceDictionary>
 
             <Style x:Key="CartTotalStyle" TargetType="{x:Type Label}">
@@ -37,10 +36,10 @@
             </Style>
 
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentPage.Resources>-->
 
     <!---->
-    <RefreshView xct:SafeAreaEffect.SafeArea="true" IsRefreshing="{Binding IsRefreshing ,Mode=OneWay}"
+    <RefreshView IsRefreshing="{Binding IsRefreshing ,Mode=OneWay}"
                     Command="{Binding RefreshCommand}">
         <StackLayout Orientation="Vertical" Spacing="0" >
             <ScrollView Orientation="Vertical" 
@@ -78,7 +77,7 @@
                     <Grid  Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
                         <Label
                             HorizontalOptions="Center"
-                            Text="{Binding MensajeListView}"
+                            Text="{Binding Source={x:Static resources:Literales.empty_categories}}"
                             VerticalOptions="Center" 
                             TextColor="{StaticResource dark_grey}"/>
                     </Grid>

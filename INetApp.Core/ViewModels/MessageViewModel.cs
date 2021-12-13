@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -123,10 +124,14 @@ namespace INetApp.ViewModels
         private async void OnSelectMessage(MessageModel messageModel)
         {
             IsBusy = true;
+
             Dictionary<string, string> Parametro = new Dictionary<string, string>
                 {
                     { "CategoryId", messageModel.categoryId.ToString() },
-                    { "MessageId", messageModel.messageId.ToString() }
+                    { "MessageId", messageModel.messageId.ToString() },
+                    { "Name", messageModel.name },
+                    { "Date", messageModel.date.Day +" de " +messageModel.date.ToString("MMMM") +" de " +messageModel.date.Year },
+                    { "Favorite", messageModel.favorite.ToString() }
                 };
             await NavigationService.NavigateToAsync("MessageDetails", Parametro);
             IsBusy = false;

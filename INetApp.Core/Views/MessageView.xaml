@@ -6,6 +6,7 @@
     xmlns:components="clr-namespace:INetApp.Views.Components" 
     xmlns:viewmodels="clr-namespace:INetApp.ViewModels" 
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+    xmlns:resources="clr-namespace:INetApp.Resources"
     x:DataType="viewmodels:MessageViewModel"
     x:Class="INetApp.Views.MessageView"
     xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
@@ -13,7 +14,7 @@
     Title="{Binding Title}"
     >
 
-    <Grid  xct:SafeAreaEffect.SafeArea="true"  BackgroundColor="{StaticResource white}" RowSpacing="0">
+    <Grid BackgroundColor="{StaticResource white}" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/> <!-- tabs-->
             <RowDefinition Height="0.1*"/> <!-- select all -->
@@ -62,7 +63,7 @@
                 <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
                     <Label
                         HorizontalOptions="Center"
-                        Text="{Binding MensajeListView}"
+                        Text="{Binding Source={x:Static resources:Literales.empty_messages}}"
                         VerticalOptions="Center" 
                         TextColor="{StaticResource dark_grey}"/>
                 </Grid>
@@ -70,7 +71,7 @@
 
         <!--</ScrollView>-->
         
-        <ActivityIndicator Grid.Row="4"                 
+        <ActivityIndicator Grid.Row="3" 
                     HorizontalOptions="Center"
                     IsRunning="{Binding IsBusy}"
                     IsVisible="{Binding IsBusy}"
@@ -84,12 +85,12 @@
             </ActivityIndicator.WidthRequest>
         </ActivityIndicator>       
         
-        <components:View_Actions Grid.Row="5"
+        <components:View_Actions Grid.Row="3"
             IsVisible="{Binding IsRowChecked}"
             x:Name="tv_View_Actions" 
             />
 
-        <components:View_Update Grid.Row="5"
+        <components:View_Update Grid.Row="4"
             IsVisible ="{Binding IsBusy, Converter={StaticResource ValueToBooleanConverter}, ConverterParameter='Not'}"
             x:Name="tv_last_update" />
 

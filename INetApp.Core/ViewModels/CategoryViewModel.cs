@@ -96,13 +96,5 @@ namespace INetApp.ViewModels
                 IsBusy = false;
             }
         }
-
-        //private async Task CheckoutAsync()
-        //{
-        //    if (this.BasketItems?.Any() ?? false)
-        //    {
-        //        await NavigationService.NavigateToAsync("Checkout");
-        //    }
-        //}
     }
 }

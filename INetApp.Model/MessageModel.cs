@@ -22,12 +22,13 @@ namespace INetApp.Models
 
         public static readonly string URL_LABEL = "URL";
 
-        public int messageId;        
+        public int messageId { get; set; }
         public int categoryId { get; set; }
         public string name { get; set; }
         public DateTime date { get; set; }
         public bool favorite { get; set; }
-        public Dictionary<string, string> fields { get; set; }
+        public MessageDetails fields { get; set; }
+        public string data { get; set; }
         public bool checkeado { get; set; }
 
         public int getMessageId()
@@ -77,15 +78,15 @@ namespace INetApp.Models
             this.date = date;
         }
 
-        public Dictionary<string, string> getFields()
-        {
-            return fields;
-        }
+        //public Dictionary<string, string> getFields()
+        //{
+        //    return fields;
+        //}
 
-        public void setFields(Dictionary<string, string> fields)
-        {
-            this.fields = fields;
-        }
+        //public void setFields(Dictionary<string, string> fields)
+        //{
+        //    this.fields = fields;
+        //}
 
         public bool isChecked()
         {
@@ -108,7 +109,7 @@ namespace INetApp.Models
             stringBuilder.Append("name=" + this.getName() + "\n");
             stringBuilder.Append("date=" + this.getDate() + "\n");
             stringBuilder.Append("favorite=" + this.isFavorite() + "\n");
-            stringBuilder.Append("fields size=" + this.getFields() + "\n");
+            //stringBuilder.Append("fields size=" + this.getFields() + "\n");
             stringBuilder.Append("*******************************");
 
             return stringBuilder.ToString();

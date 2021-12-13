@@ -39,11 +39,18 @@ namespace INetApp.APIWebServices.Mappers
                .Map(dest => dest.MessagesModel, src => src.MessagesEntities)
                .IgnoreNullValues(true);
 
+            TypeAdapterConfig<MessageEntity, MessageDto>
+               .NewConfig()
+               .EnableNonPublicMembers(true)
+               .Map(dest => dest.MessageModel, src => src)
+               .IgnoreNullValues(true);
+
+
             TypeAdapterConfig<MessageEntity, MessageModel>
                 .NewConfig()
                 .EnableNonPublicMembers(true)
                 .IgnoreNullValues(true)
-                 .Map(dest => dest.date, src => DateTime.ParseExact(src.date, "yyyyMMdd", CultureInfo.InvariantCulture));
+                 .Map(dest => dest.date, src => DateTime.ParseExact(string.IsNullOrEmpty(src.date) ? DateTime.Now.ToString("yyyyMMdd") : src.date, "yyyyMMdd", CultureInfo.InvariantCulture));
 
         }
     }

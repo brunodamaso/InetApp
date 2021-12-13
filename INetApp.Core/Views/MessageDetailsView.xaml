@@ -10,47 +10,88 @@
     x:Class="INetApp.Views.MessageDetailsView"
     xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
-    Title="{Binding Title}"
+    xmlns:resources="clr-namespace:INetApp.Resources"
+    Title="{Binding Source={x:Static resources:Literales.activity_title_message_details}}" 
     >
 
-    <Grid  xct:SafeAreaEffect.SafeArea="true"  BackgroundColor="{StaticResource white}" RowSpacing="0">
+    <Grid BackgroundColor="{StaticResource white}" RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/> <!-- tabs-->
-            <RowDefinition Height="0.1*"/> <!-- select all -->
+            <RowDefinition Height="auto" /> <!-- tabs-->
             <RowDefinition Height="*"/> <!-- registros -->
             <RowDefinition Height="0.1*"/> <!-- acciones botones -->
             <RowDefinition Height="auto"/> <!-- progreso -->
             <RowDefinition Height="auto"/> <!-- reintentar -->
         </Grid.RowDefinitions>
-        
-        <components:Toolbar_main Grid.Row="0" SelectedIndex ="{Binding SelectecTab}"/>
-        <components:SelectAll Grid.Row="1" x:Name ="SelectAll" IsChecked="{Binding SelectAll}"/>
-        <!--<ScrollView Grid.Row="2"
-            Orientation="Vertical" 
-            BackgroundColor="{StaticResource white}" 
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="Fill" >-->
-            <Grid Grid.Row="2" >
+        <BoxView Grid.Row="0" BackgroundColor="{StaticResource toolbar_Color}"/>
+        <Label Grid.Row="0" x:Name="tv_name"
+               Text="{Binding Name}"
+               Style="{StaticResource TextViewHeader}">
+            <Label.Padding>
+                <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                    <Binding Source="{StaticResource activity_horizontal_margin}"/>
+                    <Binding Source="{StaticResource activity_vertical_margin}"/>
+                </MultiBinding>
+            </Label.Padding>
+        </Label>
+
+
+        <ScrollView Grid.Row="1" >
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height ="50" />
+                    <RowDefinition Height ="*" />
                 </Grid.RowDefinitions>
-                <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <ListView
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="0.15*" />
+                </Grid.ColumnDefinitions>
+                <Grid.Padding>
+                    <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                        <Binding Source="{StaticResource activity_horizontal_margin}"/>
+                        <Binding Path ="0"/>
+                        <Binding Source="{StaticResource details_image_view_padding_right}"/>
+                        <Binding Path ="0"/>
+                    </MultiBinding>
+                </Grid.Padding>
+                <Label Grid.Column="0" Grid.Row="0"
+                       x:Name="tv_date"
+                       VerticalOptions="Center"
+                       Text="{Binding Date}"
+                       MaxLines="1"
+                       TextColor="{StaticResource dark_grey}"
+                       FontSize="{Binding Source={StaticResource lv_row_description_size},Converter={StaticResource StringToDoubleConverter}}">
+                    <Label.Padding>
+                        <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                            <Binding Path ="0"/>
+                            <Binding Source="{StaticResource activity_vertical_margin}"/>
+                        </MultiBinding>
+                    </Label.Padding>
+                </Label>
+
+                <Image Grid.Column="1" Grid.Row="0"
+                       IsVisible="{Binding Favorite}"
+                       Aspect="AspectFit"
+                       Source="mark_icon_yellow.png"/>
+
+                <Image Grid.Column="1" Grid.Row="0"
+                       Aspect="AspectFit"
+                       IsVisible="{Binding Favorite, Converter={StaticResource ValueToBooleanConverter} ,ConverterParameter='not'}"
+                       Source="mark_icon_white.png"/>
+
+                <ListView Grid.Column="0" 
+                       Grid.Row="1"
                         CachingStrategy="RetainElement"
                         HasUnevenRows="True"
                         SeparatorVisibility="None"
                         VerticalOptions="FillAndExpand"
-                        ItemsSource="{Binding MessageItems}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
+                        ItemsSource="{Binding MessageDetail}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
                                 <components:MessageRow/>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                     <ListView.Behaviors>
                         <xct:EventToCommandBehavior
                                 Command="{Binding SelectMessageCommand}"
@@ -58,19 +99,38 @@
                                 EventName="ItemTapped" />
                     </ListView.Behaviors>
                 </ListView>
-                </Grid>
-                <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
-                    <Label
-                        HorizontalOptions="Center"
-                        Text="{Binding MensajeListView}"
-                        VerticalOptions="Center" 
-                        TextColor="{StaticResource dark_grey}"/>
-                </Grid>
-            </Grid>
 
+                
+                <Label Grid.Column="0" 
+                       Grid.Row="1"
+                       x:Name="et_label"
+                       VerticalOptions="StartAndExpand"
+                       Text="bllalalaaa"
+                       TextColor="{StaticResource dark_grey}"
+                       FontSize="{Binding Source={StaticResource lv_row_description_size},Converter={StaticResource StringToDoubleConverter}}">
+                    
+                    <!--<Label.Padding>
+                        <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                            <Binding Source="{StaticResource splash_edit_text_left_padding}"/>
+                            <Binding Source="{StaticResource splash_user_top_margin}"/>
+                            <Binding Source="{StaticResource splash_edit_text_right_padding}"/>
+                            <Binding Path="0"/>
+                        </MultiBinding>
+                    </Label.Padding>
+                    <Label.Margin>
+                        <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                            <Binding Path="0"/>
+                            <Binding Source="{StaticResource splash_vertical_margin}"/>
+                            <Binding Path="0"/>
+                            <Binding Path="0"/>
+                        </MultiBinding>
+                    </Label.Margin>-->
+                </Label>
+            </Grid>
+        </ScrollView>
         <!--</ScrollView>-->
         
-        <ActivityIndicator Grid.Row="4"                 
+        <ActivityIndicator Grid.Row="2"
                     HorizontalOptions="Center"
                     IsRunning="{Binding IsBusy}"
                     IsVisible="{Binding IsBusy}"
@@ -82,16 +142,13 @@
                     <On Platform="UWP, WinRT, WinPhone" Value="400" />
                 </OnPlatform>
             </ActivityIndicator.WidthRequest>
-        </ActivityIndicator>       
-        
-        <components:View_Actions Grid.Row="5"
-            IsVisible="{Binding IsRowChecked}"
+        </ActivityIndicator>
+
+        <!--IsVisible="{Binding IsRowChecked}"-->
+        <components:View_Actions Grid.Row="2"
+            
             x:Name="tv_View_Actions" 
             />
-
-        <components:View_Update Grid.Row="5"
-            IsVisible ="{Binding IsBusy, Converter={StaticResource ValueToBooleanConverter}, ConverterParameter='Not'}"
-            x:Name="tv_last_update" />
 
     </Grid>
 </views:ContentPageBase>

@@ -18,6 +18,8 @@ namespace INetApp.ViewModels
         private MessageModel _MessageDetails;
         private readonly IMessageService MessageService;
         private int CategoryID, MessageId;
+        private string _Date,_Name;
+        private bool _Favorite;
         #region Properties
 
         public MessageModel MessageDetail
@@ -27,6 +29,34 @@ namespace INetApp.ViewModels
             {
                 _MessageDetails = value;
                 RaisePropertyChanged(() => MessageDetail);
+            }
+        }
+
+        public string Date
+        {
+            get => _Date;
+            set
+            {
+                _Date = value;
+                RaisePropertyChanged(() => Date);
+            }
+        }
+        public string Name
+        {
+            get => _Name;
+            set
+            {
+                _Name = value;
+                RaisePropertyChanged(() => Name);
+            }
+        }
+        public bool Favorite
+        {
+            get => _Favorite;
+            set
+            {
+                _Favorite = value;
+                RaisePropertyChanged(() => Favorite);
             }
         }
 
@@ -48,6 +78,18 @@ namespace INetApp.ViewModels
             if (query.TryGetValue("CategoryId", out string category))
             {
                 CategoryID = int.Parse(category);
+            }
+            if (query.TryGetValue("Date", out string date))
+            {
+                Date = Uri.UnescapeDataString(date);
+            }
+            if (query.TryGetValue("Name", out string name))
+            {
+                Name = Uri.UnescapeDataString(name);
+            }
+            if (query.TryGetValue("Favorite", out string favorite))
+            {
+                Favorite = favorite == "True";
             }
 
             await Sincroniza();

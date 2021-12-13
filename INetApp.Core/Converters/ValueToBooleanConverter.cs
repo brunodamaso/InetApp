@@ -80,12 +80,7 @@ namespace INetApp.Converters
 
         private object Converter(bool value, object parameter)
         {
-            if ("Not".Equals(parameter))
-            {
-                return !value;
-            }
-
-            return value;
+            return "NOT".Equals(parameter.ToString().ToUpper()) ? !value : (object)value;
         }
 
         private bool GetBool(int valInt, object parameter)

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using INetApp.APIWebServices;
 using INetApp.APIWebServices.Dtos;
+using INetApp.Models;
 using INetApp.Services.Identity;
+using Newtonsoft.Json;
 
 namespace INetApp.Services
 {
@@ -49,11 +51,6 @@ namespace INetApp.Services
                             userLoggedDto.UserLoggedModel.version = responseVersion.UserLoggedModel.version;
                             userLoggedDto.UserLoggedModel.url = responseVersion.UserLoggedModel.url;
                             userLoggedDto.UserLoggedModel.requerido = responseVersion.UserLoggedModel.requerido;
-                            //responseUserLogged.Result = responseUserLogged.Result.Replace("}", "," + '\u0022' + "permiso" + '\u0022' + ":" + responseUserPermission + ",");
-                            //responseVersion.Result = responseVersion.Replace("{", responseUserLogged.Result);
-                            //Console.WriteLine("PRUEBAAAAAA", responseUserLogged);
-                            //Console.WriteLine("PRUEBAAAAAA", responseVersion);
-                            //subscriber.OnNext(userLoggedEntityJsonMapper.transformUserLoggedEntity(responseVersion));
                             identityService.PutCredentialsFromPrefs(Usuario, Password);
                         }
                         else
@@ -84,6 +81,7 @@ namespace INetApp.Services
             return userLoggedDto;
         }
         #endregion
+
         #region Category
         public async Task<CategorysDto> GetCategory()
         {
@@ -114,6 +112,7 @@ namespace INetApp.Services
             return categorysDto;
         }
         #endregion
+
         #region Message
         public async Task<MessagesDto> GetMessages(int categoryId)
         {
@@ -127,13 +126,14 @@ namespace INetApp.Services
 
                     if (messagesDto.IsOk)
                     {
+                        //BD viene categoryId vacio
+                        messagesDto.MessagesModel.ForEach(a => a.categoryId = categoryId);
                     }
                 }
                 else
                 {
                     messagesDto.IsOk = false;
                     messagesDto.IsConnected = false;
-                    //subscriber.OnError(new NetworkConnectionException());
                 }
             }
             catch (Exception)
@@ -156,13 +156,13 @@ namespace INetApp.Services
 
                     if (messageDto.IsOk)
                     {
+                        messageDto.MessageModel.fields = JsonConvert.DeserializeObject<MessageDetails>(messageDto.MessageModel.data);
                     }
                 }
                 else
                 {
                     messageDto.IsOk = false;
                     messageDto.IsConnected = false;
-                    //subscriber.OnError(new NetworkConnectionException());
                 }
             }
             catch (Exception)

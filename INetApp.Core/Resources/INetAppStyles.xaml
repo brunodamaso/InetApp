@@ -64,18 +64,17 @@
         <Setter Property="layout_centerHorizontal">true}" />
         <Setter Property="layout_gravity">center}" />
     </Style>
-
-    <Style x:Key="AppTheme.TextViewHeader">
-        <Setter Property="layout_width">match_parent}" />
-        <Setter Property="layout_height">wrap_content}" />
-        <Setter Property="layout_marginBottom">@dimen/header_margin}" />
-        <Setter Property="textSize">@dimen/header_text_size}" />
-        <Setter Property="textStyle">bold}" />
-        <Setter Property="gravity">left}" />
-        <Setter Property="textColor" Value="{StaticResource white}" />
+-->
+    <Style x:Key="TextViewHeader" TargetType="Label">
+        <Setter Property="Margin" Value="0,0,0,5" />
+        <Setter Property="FontSize" Value="{Binding header_text_size}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="TextColor" Value="{StaticResource white}" />
     </Style>
 
-    <Style x:Key="AppTheme.TextViewTitle">
+    <!--
+       <Style x:Key="AppTheme.TextViewTitle">
         <Setter Property="layout_width">match_parent}" />
         <Setter Property="layout_height">wrap_content}" />
         <Setter Property="layout_marginTop">@dimen/header_margin}" />
@@ -101,8 +100,8 @@
         <Setter Property="BackgroundColor" Value="{StaticResource app_Color}" />
         <Setter Property="BorderColor" Value="{StaticResource toolbar_Color}" />
         <Setter Property="TextColor" Value="{StaticResource white}" />
-        <Setter Property="VerticalOptions" Value="Center"/>
-        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
     </Style>
 
     <Style x:Key="BoxButtonApprove" TargetType="BoxView">

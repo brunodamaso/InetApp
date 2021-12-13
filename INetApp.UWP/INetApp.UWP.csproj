@@ -122,8 +122,71 @@
     <Content Include="..\INetApp.Droid\Resources\drawable-hdpi\ic_action_user.png">
       <Link>Assets\ic_action_user.png</Link>
     </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-hdpi\mark_icon_white.png">
+      <Link>Assets\mark_icon_white.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-hdpi\mark_icon_yellow.png">
+      <Link>Assets\mark_icon_yellow.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxhdpi\img_formacion.png">
+      <Link>Assets\img_formacion.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\bck_launcher.png">
+      <Link>Assets\bck_launcher.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_action_turned_in.png">
+      <Link>Assets\ic_action_turned_in.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_action_turned_in_not.png">
+      <Link>Assets\ic_action_turned_in_not.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_bottom_splash.png">
+      <Link>Assets\ic_bottom_splash.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_editor_insert_comment.png">
+      <Link>Assets\ic_editor_insert_comment.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_employee.png">
+      <Link>Assets\ic_employee.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_epi.png">
+      <Link>Assets\ic_epi.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_ineco.png">
+      <Link>Assets\ic_ineco.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_message.png">
+      <Link>Assets\ic_message.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_octopush.png">
+      <Link>Assets\ic_octopush.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_plane.png">
+      <Link>Assets\ic_plane.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_profile.png">
+      <Link>Assets\ic_profile.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_social_person.png">
+      <Link>Assets\ic_social_person.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_windows.png">
+      <Link>Assets\ic_windows.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\notif_large_icon.png">
+      <Link>Assets\notif_large_icon.png</Link>
+    </Content>
     <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\right_arrow.png">
       <Link>Assets\right_arrow.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\icon.png">
+      <Link>Assets\icon.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\icon_about.png">
+      <Link>Assets\icon_about.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\icon_feed.png">
+      <Link>Assets\icon_feed.png</Link>
     </Content>
     <Content Include="..\INetApp.Droid\Resources\drawable\img_bandeja_entrada.png">
       <Link>Assets\img_bandeja_entrada.png</Link>
@@ -140,7 +203,6 @@
     <Content Include="..\INetApp.Droid\Resources\drawable\info.png">
       <Link>Assets\info.png</Link>
     </Content>
-    <Content Include="Assets\img_formacion.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-200.png" />
     <Content Include="Assets\SplashScreen.png" />

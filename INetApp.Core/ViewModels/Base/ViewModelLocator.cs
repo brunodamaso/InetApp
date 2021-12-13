@@ -44,7 +44,7 @@ namespace INetApp.ViewModels.Base
             Xamarin.Forms.DependencyService.Register<MainViewModel>();
             Xamarin.Forms.DependencyService.Register<CategoryViewModel>();
             Xamarin.Forms.DependencyService.Register<MessageViewModel>();
-         
+            Xamarin.Forms.DependencyService.Register<MessageDetailsViewModel>();
         }
 
         public static void UpdateDependencies()

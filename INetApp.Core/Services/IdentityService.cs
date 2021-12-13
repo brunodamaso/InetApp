@@ -15,7 +15,6 @@ namespace INetApp.Services.Identity
 
         private readonly ISettingsService settingsService;
         private readonly IDeviceService deviceService;
-        private readonly string _codeVerifier;
 
         public IdentityService(ISettingsService _settingsService, IDeviceService _deviceService)
         {
