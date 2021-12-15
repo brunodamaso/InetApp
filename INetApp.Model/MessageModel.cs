@@ -28,7 +28,6 @@ namespace INetApp.Models
         public DateTime date { get; set; }
         public bool favorite { get; set; }
         public MessageDetails fields { get; set; }
-        public string data { get; set; }
         public bool checkeado { get; set; }
 
         public int getMessageId()

@@ -24,25 +24,34 @@
                  VerticalOptions="FillAndExpand" 
                  HorizontalOptions="Fill">
             <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <StackLayout Grid.Row="0" Margin="8,8,8,0"  x:Name="cl_qr">
                     <Image Source="ineco.png" 
                         VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
                     <Label Text="{Binding Source={x:Static resources:Literales.action_qr}}" 
                         FontSize="18"
                         TextColor="{StaticResource black}" VerticalOptions="End" HorizontalOptions="Center"/>
-                    <BoxView HeightRequest="10" Margin="25,16" BackgroundColor="{StaticResource very_light_grey}"/>
+                    <BoxView HeightRequest="5" Margin="25,0" BackgroundColor="{StaticResource very_light_grey}"/>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ControlAccesoCommand}"/>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
 
-                <StackLayout Grid.Row="1" Margin="8,8,8,0" x:Name="cl_inbox" IsVisible="{Binding IspermissionApp}" >
+                <StackLayout Grid.Row="1" 
+                             Margin="8,8,8,0" 
+                             x:Name="cl_inbox" 
+                             IsVisible="{Binding IspermissionApp}" >
                     <Image Source="img_bandeja_entrada.png" 
-                   VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
+                        VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
                     <Label Text="{Binding Source={x:Static resources:Literales.action_messages}}" 
-                    FontSize="18"
-                    TextColor="{StaticResource black}" VerticalOptions="End" HorizontalOptions="Center"/>
-                    <BoxView HeightRequest="10" Margin="25,16" BackgroundColor="{StaticResource very_light_grey}"/>
+                        FontSize="18"
+                        TextColor="{StaticResource black}" VerticalOptions="End" HorizontalOptions="Center"/>
+                    <BoxView HeightRequest="5" Margin="25,0" BackgroundColor="{StaticResource very_light_grey}"/>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding BandejaEntradaCommand}"/>
                     </StackLayout.GestureRecognizers>
@@ -54,7 +63,7 @@
                     <Label Text="{Binding Source={x:Static resources:Literales.action_parts}}" 
                         FontSize="18"
                         TextColor="{StaticResource black}" VerticalOptions="End" HorizontalOptions="Center"/>
-                    <BoxView HeightRequest="10" Margin="25,16" BackgroundColor="{StaticResource very_light_grey}"/>
+                    <BoxView HeightRequest="5" Margin="25,0" BackgroundColor="{StaticResource very_light_grey}"/>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PartesCommand}"/>
                     </StackLayout.GestureRecognizers>
@@ -68,7 +77,6 @@
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding FormacionCommand}"/>
                     </StackLayout.GestureRecognizers>
-
                 </StackLayout>
 
                 

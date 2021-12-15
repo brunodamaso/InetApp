@@ -34,5 +34,13 @@ namespace INetApp.Services
             }
             return messageDto;
         }
+        public async Task<bool?> MarkMessageFavoriteAsync(int categoryId, int messageId, bool IsFavorite)
+        {
+            bool? resultado = null;
+            MessageDto messageDto = await repositoryWebService.GetMessageDetails(categoryId, messageId);
+
+            return resultado;
+        }
+
     }
 }

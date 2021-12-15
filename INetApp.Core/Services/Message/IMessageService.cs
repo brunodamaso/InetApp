@@ -9,5 +9,6 @@ namespace INetApp.Services
     {
         Task<MessagesDto> GetMessageAsync(int categoryId);
         Task<MessageDto> GetMessageDetailsAsync(int categoryId, int messageId);
+        Task<bool?> MarkMessageFavoriteAsync(int CategoryID, int MessageId, bool IsFavorite);
     }
 }

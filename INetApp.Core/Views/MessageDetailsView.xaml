@@ -39,93 +39,85 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height ="50" />
+                    <RowDefinition Height ="1" />
                     <RowDefinition Height ="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="0.15*" />
                 </Grid.ColumnDefinitions>
-                <Grid.Padding>
-                    <MultiBinding Converter="{StaticResource ThicknessConverter}">
-                        <Binding Source="{StaticResource activity_horizontal_margin}"/>
-                        <Binding Path ="0"/>
-                        <Binding Source="{StaticResource details_image_view_padding_right}"/>
-                        <Binding Path ="0"/>
-                    </MultiBinding>
-                </Grid.Padding>
-                <Label Grid.Column="0" Grid.Row="0"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.15*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Padding>
+                        <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                            <Binding Source="{StaticResource activity_horizontal_margin}"/>
+                            <Binding Path ="0"/>
+                            <Binding Source="{StaticResource details_image_view_padding_right}"/>
+                            <Binding Path ="0"/>
+                        </MultiBinding>
+                    </Grid.Padding>
+                    <Label Grid.Column="0" Grid.Row="0"
                        x:Name="tv_date"
                        VerticalOptions="Center"
                        Text="{Binding Date}"
                        MaxLines="1"
                        TextColor="{StaticResource dark_grey}"
                        FontSize="{Binding Source={StaticResource lv_row_description_size},Converter={StaticResource StringToDoubleConverter}}">
-                    <Label.Padding>
-                        <MultiBinding Converter="{StaticResource ThicknessConverter}">
-                            <Binding Path ="0"/>
-                            <Binding Source="{StaticResource activity_vertical_margin}"/>
-                        </MultiBinding>
-                    </Label.Padding>
-                </Label>
+                        <Label.Padding>
+                            <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                                <Binding Path ="0"/>
+                                <Binding Source="{StaticResource activity_vertical_margin}"/>
+                            </MultiBinding>
+                        </Label.Padding>
+                    </Label>
 
-                <Image Grid.Column="1" Grid.Row="0"
+                    <Image Grid.Column="1" Grid.Row="0"
                        IsVisible="{Binding Favorite}"
                        Aspect="AspectFit"
-                       Source="mark_icon_yellow.png"/>
+                       Source="mark_icon_yellow.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectFavoriteCommand}" CommandParameter="{Binding Favorite}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
 
-                <Image Grid.Column="1" Grid.Row="0"
+                    <Image Grid.Column="1" Grid.Row="0"
                        Aspect="AspectFit"
                        IsVisible="{Binding Favorite, Converter={StaticResource ValueToBooleanConverter} ,ConverterParameter='not'}"
-                       Source="mark_icon_white.png"/>
-
+                       Source="mark_icon_white.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectFavoriteCommand}" CommandParameter="{Binding Favorite}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                
+                <BoxView Grid.Row ="1" 
+                    Grid.Column="0"   
+                    BackgroundColor="{StaticResource very_light_grey}" Margin="0,0" />
+                
                 <ListView Grid.Column="0" 
-                       Grid.Row="1"
+                       Grid.Row="2"
                         CachingStrategy="RetainElement"
                         HasUnevenRows="True"
+                        SelectionMode="None"
                         SeparatorVisibility="None"
                         VerticalOptions="FillAndExpand"
-                        ItemsSource="{Binding MessageDetail}">
+                        ItemsSource="{Binding MessageDetail.Details}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <components:MessageRow/>
+                                <components:MessageDetailsRow/>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    <ListView.Behaviors>
+                    <!--<ListView.Behaviors>
                         <xct:EventToCommandBehavior
                                 Command="{Binding SelectMessageCommand}"
                                 EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
                                 EventName="ItemTapped" />
-                    </ListView.Behaviors>
-                </ListView>
-
-                
-                <Label Grid.Column="0" 
-                       Grid.Row="1"
-                       x:Name="et_label"
-                       VerticalOptions="StartAndExpand"
-                       Text="bllalalaaa"
-                       TextColor="{StaticResource dark_grey}"
-                       FontSize="{Binding Source={StaticResource lv_row_description_size},Converter={StaticResource StringToDoubleConverter}}">
-                    
-                    <!--<Label.Padding>
-                        <MultiBinding Converter="{StaticResource ThicknessConverter}">
-                            <Binding Source="{StaticResource splash_edit_text_left_padding}"/>
-                            <Binding Source="{StaticResource splash_user_top_margin}"/>
-                            <Binding Source="{StaticResource splash_edit_text_right_padding}"/>
-                            <Binding Path="0"/>
-                        </MultiBinding>
-                    </Label.Padding>
-                    <Label.Margin>
-                        <MultiBinding Converter="{StaticResource ThicknessConverter}">
-                            <Binding Path="0"/>
-                            <Binding Source="{StaticResource splash_vertical_margin}"/>
-                            <Binding Path="0"/>
-                            <Binding Path="0"/>
-                        </MultiBinding>
-                    </Label.Margin>-->
-                </Label>
+                    </ListView.Behaviors>-->
+                </ListView>              
             </Grid>
         </ScrollView>
         <!--</ScrollView>-->

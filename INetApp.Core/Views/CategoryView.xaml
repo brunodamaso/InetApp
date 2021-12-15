@@ -41,12 +41,12 @@
     <!---->
     <RefreshView IsRefreshing="{Binding IsRefreshing ,Mode=OneWay}"
                     Command="{Binding RefreshCommand}">
-        <StackLayout Orientation="Vertical" Spacing="0" >
-            <ScrollView Orientation="Vertical" 
+        <StackLayout Orientation="Vertical" Spacing="0">
+            <ScrollView Orientation="Vertical"
                 BackgroundColor="{StaticResource white}" 
                 VerticalOptions="FillAndExpand" 
                 HorizontalOptions="Fill" >
-                <Grid >
+                <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>

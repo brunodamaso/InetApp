@@ -18,7 +18,7 @@ namespace INetApp.ViewModels
             set
             {
                 ispermissionApp = value;
-                RaisePropertyChanged(() => this.IspermissionApp);
+                RaisePropertyChanged(() => IspermissionApp);
             }
         }
 
@@ -33,11 +33,11 @@ namespace INetApp.ViewModels
         }
         public override Task InitializeAsync(IDictionary<string, string> query)
         {
-            this.IsBusy = true;
+            IsBusy = true;
 
             //todo buscar fecha ult actualziacion
-            this.Text_last_update = string.Format(Literales.view_text_last_updated, "xxx");
-            this.IspermissionApp = settingsService.Permission;
+            Text_last_update = string.Format(Literales.view_text_last_updated, "xxx");
+            IspermissionApp = settingsService.Permission;
 
             return base.InitializeAsync(query);
         }

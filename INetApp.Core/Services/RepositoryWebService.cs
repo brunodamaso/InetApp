@@ -156,7 +156,36 @@ namespace INetApp.Services
 
                     if (messageDto.IsOk)
                     {
-                        messageDto.MessageModel.fields = JsonConvert.DeserializeObject<MessageDetails>(messageDto.MessageModel.data);
+                        int campo = 0;
+                        messageDto.MessageModel.fields.Details = new List<Detail>();
+                        foreach (var item in messageDto.MessageModel.fields.Cabecera)
+                        {
+                            Detail detail = new Detail();
+                            detail.Nombre = item.Nombre;
+                            switch (campo)
+                            {
+                                case 0:
+                                    detail.Campo = messageDto.MessageModel.fields.Datos[0].Campo1;
+                                    break;
+                                case 1:
+                                    detail.Campo = messageDto.MessageModel.fields.Datos[0].Campo2;
+                                    break;
+                                case 2:
+                                    detail.Campo = messageDto.MessageModel.fields.Datos[0].Campo3;
+                                    break;
+                                case 3:
+                                    detail.Campo = messageDto.MessageModel.fields.Datos[0].Campo4;
+                                    break;
+                                case 4:
+                                    detail.Campo = messageDto.MessageModel.fields.Datos[0].Campo5;
+                                    break;
+                                default:
+                                    break;
+                            }
+                            campo++;
+                            messageDto.MessageModel.fields.Details.Add(detail);
+                        }
+                        //messageDto.MessageModel.fields = JsonConvert.DeserializeObject<MessageDetails>(messageDto.MessageModel.data);
                     }
                 }
                 else

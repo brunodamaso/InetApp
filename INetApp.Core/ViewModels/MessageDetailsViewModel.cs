@@ -15,14 +15,14 @@ namespace INetApp.ViewModels
 {
     public class MessageDetailsViewModel : ViewModelBase
     {
-        private MessageModel _MessageDetails;
+        private MessageDetails _MessageDetails;
         private readonly IMessageService MessageService;
         private int CategoryID, MessageId;
         private string _Date,_Name;
         private bool _Favorite;
         #region Properties
 
-        public MessageModel MessageDetail
+        public MessageDetails MessageDetail
         {
             get => _MessageDetails;
             set
@@ -62,7 +62,7 @@ namespace INetApp.ViewModels
 
         #endregion
 
-        public ICommand SelectMessageCommand => new Command<MessageModel>(OnSelectMessage);
+        public ICommand SelectFavoriteCommand => new Command<bool>(OnSelectFavorite);
 
         public MessageDetailsViewModel()
         {
@@ -101,22 +101,21 @@ namespace INetApp.ViewModels
 
             MessageDto messageDto = await MessageService.GetMessageDetailsAsync(CategoryID, MessageId);
 
-            MessageDetail = messageDto.IsOk ? messageDto.MessageModel : new MessageModel();
-
+            MessageDetail = messageDto.IsOk ? messageDto.MessageModel.fields : new MessageDetails();
+            //Todo comportamiento para generar el boton de detalle
             Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
 
             IsBusy = false;
         }
 
-        private async void OnSelectMessage(MessageModel messageModel)
+        private async void OnSelectFavorite(bool IsFavorite)
         {
             IsBusy = true;
-            Dictionary<string, string> Parametro = new Dictionary<string, string>
-                {
-                    { "CategoryId", messageModel.categoryId.ToString() },
-                    { "MessageId", messageModel.messageId.ToString() }
-                };
-            await NavigationService.NavigateToAsync("MessageDetails", Parametro);
+            bool? resultado = await MessageService.MarkMessageFavoriteAsync(CategoryID, MessageId, IsFavorite);
+            if (resultado != null)
+            {
+                Favorite = (bool)resultado;
+            }
             IsBusy = false;
         }
     }

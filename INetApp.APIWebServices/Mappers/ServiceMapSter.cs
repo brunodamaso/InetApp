@@ -4,6 +4,7 @@ using INetApp.APIWebServices.Dtos;
 using INetApp.APIWebServices.Entity;
 using INetApp.Models;
 using Mapster;
+using Newtonsoft.Json;
 
 namespace INetApp.APIWebServices.Mappers
 {
@@ -50,7 +51,8 @@ namespace INetApp.APIWebServices.Mappers
                 .NewConfig()
                 .EnableNonPublicMembers(true)
                 .IgnoreNullValues(true)
-                 .Map(dest => dest.date, src => DateTime.ParseExact(string.IsNullOrEmpty(src.date) ? DateTime.Now.ToString("yyyyMMdd") : src.date, "yyyyMMdd", CultureInfo.InvariantCulture));
+                 .Map(dest => dest.date, src => DateTime.ParseExact(string.IsNullOrEmpty(src.date) ? DateTime.Now.ToString("yyyyMMdd") : src.date, "yyyyMMdd", CultureInfo.InvariantCulture))
+                 .Map(dest => dest.fields, src => src.data == null ? null : JsonConvert.DeserializeObject<MessageDetails>(src.data));
 
         }
     }

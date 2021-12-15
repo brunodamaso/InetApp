@@ -70,6 +70,9 @@
     <Compile Update="Views\CategoryView.xaml.cs">
       <DependentUpon>CategoryView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Components\MessageDetailsRow.xaml.cs">
+      <DependentUpon>MessageDetailsRow.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Components\MessageRow.xaml.cs">
       <DependentUpon>MessageRow.xaml</DependentUpon>
     </Compile>

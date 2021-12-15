@@ -9,8 +9,21 @@ namespace INetApp.Models
     {
         public List<Cabecera> Cabecera { get; set; }
         public List<Datos> Datos { get; set; }
+        public List<Detail> Details { get; set; }
     }
 
+
+    public class Detail
+    {
+        //public Detail (string nombre, string campo)
+        //{
+        //    Nombre = nombre;
+        //    Campo = campo;
+        //}
+        public string Nombre { get; set; }
+        public string Campo { get; set; }
+
+    }
     public class Cabecera
     {
         public string Nombre { get; set; }
