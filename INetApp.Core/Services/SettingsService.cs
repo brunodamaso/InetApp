@@ -19,15 +19,11 @@ namespace INetApp.Services.Settings
         private const string nameUser = "FullName";
         private const string keyPermission = "isPermission";
 
-        private const string IdToken = "id_token";        
-        private const string IdIdentityBase = "url_base";
-        private const string IdGatewayMarketingBase = "url_marketing";
-        private const string IdGatewayShoppingBase = "url_shopping";
+        //private const string IdToken = "id_token";        
+        //private const string IdIdentityBase = "url_base";
         private readonly string AccessTokenDefault = string.Empty;
         private readonly string IdTokenDefault = string.Empty;
-        private readonly string UrlIdentityDefault = GlobalSetting.Instance.BaseIdentityEndpoint;
-        private readonly string UrlGatewayMarketingDefault = GlobalSetting.Instance.BaseGatewayMarketingEndpoint;
-        private readonly string UrlGatewayShoppingDefault = GlobalSetting.Instance.BaseGatewayShoppingEndpoint;
+        
         #endregion
 
         #region Settings Properties
@@ -66,32 +62,6 @@ namespace INetApp.Services.Settings
             set => Preferences.Set(keyPermission, value);
         }
 
-        
-        public string AuthIdToken
-        {
-            get => Preferences.Get(IdToken, IdTokenDefault);
-            set => Preferences.Set(IdToken, value);
-        }
-
-        public string IdentityEndpointBase
-        {
-            get => Preferences.Get(IdIdentityBase, UrlIdentityDefault);
-            set => Preferences.Set(IdIdentityBase, value);
-        }
-
-        public string GatewayShoppingEndpointBase
-        {
-            get => Preferences.Get(IdGatewayShoppingBase, UrlGatewayShoppingDefault);
-            set => Preferences.Set(IdGatewayShoppingBase, value);
-        }
-
-        public string GatewayMarketingEndpointBase
-        {
-            get => Preferences.Get(IdGatewayMarketingBase, UrlGatewayMarketingDefault);
-            set => Preferences.Set(IdGatewayMarketingBase, value);
-        }
-
-     
         #endregion
     }
 }

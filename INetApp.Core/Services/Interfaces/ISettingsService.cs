@@ -10,9 +10,5 @@ namespace INetApp.Services.Settings
         string NameInitial { get; set; }
         string NameFull { get; set; }
         bool Permission { get; set; }
-        string AuthIdToken { get; set; }
-        string IdentityEndpointBase { get; set; }
-        string GatewayShoppingEndpointBase { get; set; }
-        string GatewayMarketingEndpointBase { get; set; }
     }
 }
