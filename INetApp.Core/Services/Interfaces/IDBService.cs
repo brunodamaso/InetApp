@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 
-namespace INetApp.Services.Interfaces
+namespace INetApp.Services
 {
     public interface IDBService
     {

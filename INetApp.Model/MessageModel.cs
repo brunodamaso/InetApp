@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SQLite;
 using Xamarin.Forms;
 
 namespace INetApp.Models
@@ -22,6 +23,7 @@ namespace INetApp.Models
 
         public static readonly string URL_LABEL = "URL";
 
+        [PrimaryKey]
         public int messageId { get; set; }
         public int categoryId { get; set; }
         public string name { get; set; }

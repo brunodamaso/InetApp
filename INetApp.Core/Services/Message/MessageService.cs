@@ -7,11 +7,13 @@ namespace INetApp.Services
     public class MessageService : IMessageService
     {
         private readonly IRepositoryWebService repositoryWebService;
+        private readonly IRepositoryService repositoryService;
         private protected readonly IUserService userService;
 
-        public MessageService(IRepositoryWebService _repositoryWebService)
+        public MessageService(IRepositoryWebService _repositoryWebService, IRepositoryService _repositoryService)
         {
             repositoryWebService = _repositoryWebService;
+            repositoryService = _repositoryService;
             userService = ViewModelLocator.Resolve<IUserService>();
         }
 
@@ -36,10 +38,9 @@ namespace INetApp.Services
         }
         public async Task<bool?> MarkMessageFavoriteAsync(int categoryId, int messageId, bool IsFavorite)
         {
-            bool? resultado = null;
-            MessageDto messageDto = await repositoryWebService.GetMessageDetails(categoryId, messageId);
+            return await repositoryService.MarkMessageFavoriteAsync(categoryId, messageId, !IsFavorite);
 
-            return resultado;
+            //return resultado;
         }
 
     }

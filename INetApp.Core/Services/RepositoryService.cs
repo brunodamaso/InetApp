@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using System.Text;
-using INetApp.Services.Interfaces;
 using System.Threading.Tasks;
+using INetApp.Models;
 
 namespace INetApp.Services
 {
@@ -12,31 +12,13 @@ namespace INetApp.Services
     {
         #region Variables
 
-
-        //protected readonly AppNavigationService Navigation;
-        //protected readonly AppSettingsService settings;
         protected readonly IDBService dbService;
-        //protected readonly ConnectivityService connectivityService;
-        //protected readonly IDeviceService deviceService;
-        //protected readonly IRepositoryWebService repositoryWebService;
 
         #endregion
 
         public RepositoryService(IDBService dbService)
-            //AppSettingsService settings,
-            //AppNavigationService navigation,
-            //                    IDBService dbService,
-            //                    ConnectivityService connectivityService,
-            //                    IDeviceService deviceService,
-            //                    IRepositoryWebService repositoryWebService)
         {
-            //this.Navigation = navigation;
-            //this.settings = settings;
             this.dbService = dbService;
-            //this.connectivityService = connectivityService;
-            //this.deviceService = deviceService;
-            //this.repositoryWebService = repositoryWebService;
-
         }
 
         #region Generico
@@ -45,7 +27,24 @@ namespace INetApp.Services
         {
             return await dbService.Get<T>(codigo);
         }
-        
+
+        public async Task<bool> MarkMessageFavoriteAsync(int categoryId, int messageId, bool IsFavorite)
+        {
+            bool retorno = IsFavorite;
+            //todo si es true IsFavorite lo debo insertarORupdate, marcar isfavorite, si no puedo retorno false
+            //todo si es false IsFavorite lo debo borrar 
+            if (await Get<MessageModel>(messageId) is MessageModel messageModel)
+            {
+                // lo encontre y debo cambiar favorite
+            }
+            else
+            {
+                //no lo encontre insert si isfavorite es false
+            }
+
+            return retorno;
+        }
+
         #endregion
     }
 }

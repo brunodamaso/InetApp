@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using INetApp.Models;
-using INetApp.Services.Interfaces;
 using SQLite;
 using Xamarin.Essentials;
 
@@ -19,7 +18,7 @@ namespace INetApp.Services
         public DBService()
         {
             db = GetConnection();
-            db.CreateTableAsync<MessageDetails>();
+            db.CreateTableAsync<MessageModel>();
         }
 
         public SQLiteAsyncConnection GetConnection()

@@ -11,6 +11,8 @@ namespace INetApp.ViewModels.Base
         protected readonly IDialogService DialogService;
         protected readonly INavigationService NavigationService;
         protected readonly IRepositoryWebService RepositoryWebService;
+        protected readonly IRepositoryService RepositoryService;
+        protected readonly IDBService DBService;
         protected readonly ISettingsService settingsService;
 
         private string text_last_update;
@@ -67,6 +69,8 @@ namespace INetApp.ViewModels.Base
             DialogService = ViewModelLocator.Resolve<IDialogService>();
             NavigationService = ViewModelLocator.Resolve<INavigationService>();
             RepositoryWebService = ViewModelLocator.Resolve<IRepositoryWebService>();
+            DBService = ViewModelLocator.Resolve<IDBService>();
+            RepositoryService = ViewModelLocator.Resolve<IRepositoryService>();
             settingsService = ViewModelLocator.Resolve<ISettingsService>();
         }
 
