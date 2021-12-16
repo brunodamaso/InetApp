@@ -87,5 +87,9 @@ namespace INetApp.ViewModels.Base
                 await InitializeAsync(query);
             }
         }
+        public virtual Task OnPageBack()
+        {
+            return Task.FromResult(true);
+        }
     }
 }

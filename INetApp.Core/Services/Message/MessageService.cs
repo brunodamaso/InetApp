@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using INetApp.APIWebServices.Dtos;
+using INetApp.Models;
 using INetApp.ViewModels.Base;
 
 namespace INetApp.Services
@@ -22,9 +25,26 @@ namespace INetApp.Services
             MessagesDto messagesDto = await repositoryWebService.GetMessages(categoryId);
             if (messagesDto.IsOk)
             {
-
+                List<MessageModel> messagemodelapi = messagesDto.MessagesModel;
+                MarkFavorite(categoryId, ref messagemodelapi);
             }
             return messagesDto;
+        }
+
+        public void MarkFavorite(int categoryId, ref List<MessageModel> messagesModelApi)
+        {
+            List<MessageModel> messagesModel = repositoryService.GetItemsWhere<MessageModel>(a => a.categoryId == categoryId).Result;
+            if (messagesModel.Count > 0)
+            {
+                foreach (MessageModel item in messagesModelApi)
+                {
+                    MessageModel messageModel = messagesModel.FirstOrDefault(a => a.messageId == item.messageId);
+                    if (messageModel != null)
+                    {
+                        item.favorite = messageModel.favorite;
+                    }
+                }
+            }
         }
 
         public async Task<MessageDto> GetMessageDetailsAsync(int categoryId, int messageId)
@@ -36,9 +56,9 @@ namespace INetApp.Services
             }
             return messageDto;
         }
-        public async Task<bool?> MarkMessageFavoriteAsync(int categoryId, int messageId, bool IsFavorite)
+        public async Task<bool?> MarkMessageFavoriteAsync(MessageModel messageModel, bool IsFavorite)
         {
-            return await repositoryService.MarkMessageFavoriteAsync(categoryId, messageId, !IsFavorite);
+            return await repositoryService.MarkMessageFavoriteAsync(messageModel, IsFavorite);
 
             //return resultado;
         }

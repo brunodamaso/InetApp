@@ -9,6 +9,7 @@ using INetApp.Models;
 using INetApp.Resources;
 using INetApp.Services;
 using INetApp.ViewModels.Base;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels
@@ -16,10 +17,9 @@ namespace INetApp.ViewModels
     public class MessageDetailsViewModel : ViewModelBase
     {
         private MessageDetails _MessageDetails;
+        private MessageModel _messageModel;
         private readonly IMessageService MessageService;
-        private int CategoryID, MessageId;
-        private string _Date,_Name;
-        private bool _Favorite;
+        private string _Date;
         #region Properties
 
         public MessageDetails MessageDetail
@@ -31,7 +31,15 @@ namespace INetApp.ViewModels
                 RaisePropertyChanged(() => MessageDetail);
             }
         }
-
+        public MessageModel MessageModel
+        {
+            get => _messageModel;
+            set
+            {
+                _messageModel = value;
+                RaisePropertyChanged(() => MessageModel);
+            }
+        }
         public string Date
         {
             get => _Date;
@@ -39,24 +47,6 @@ namespace INetApp.ViewModels
             {
                 _Date = value;
                 RaisePropertyChanged(() => Date);
-            }
-        }
-        public string Name
-        {
-            get => _Name;
-            set
-            {
-                _Name = value;
-                RaisePropertyChanged(() => Name);
-            }
-        }
-        public bool Favorite
-        {
-            get => _Favorite;
-            set
-            {
-                _Favorite = value;
-                RaisePropertyChanged(() => Favorite);
             }
         }
 
@@ -71,25 +61,10 @@ namespace INetApp.ViewModels
 
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
-            if (query.TryGetValue("MessageId", out string messageid))
+            if (query.TryGetValue("MessageModel", out string _messageModel))
             {
-                MessageId = int.Parse(messageid);
-            }
-            if (query.TryGetValue("CategoryId", out string category))
-            {
-                CategoryID = int.Parse(category);
-            }
-            if (query.TryGetValue("Date", out string date))
-            {
-                Date = Uri.UnescapeDataString(date);
-            }
-            if (query.TryGetValue("Name", out string name))
-            {
-                Name = Uri.UnescapeDataString(name);
-            }
-            if (query.TryGetValue("Favorite", out string favorite))
-            {
-                Favorite = favorite == "True";
+                MessageModel = JsonConvert.DeserializeObject<MessageModel>(Uri.UnescapeDataString(_messageModel));
+                Date = MessageModel.date.Day + " de " + MessageModel.date.ToString("MMMM") + " de " + MessageModel.date.Year;
             }
 
             await Sincroniza();
@@ -99,10 +74,10 @@ namespace INetApp.ViewModels
         {
             IsBusy = true;
 
-            MessageDto messageDto = await MessageService.GetMessageDetailsAsync(CategoryID, MessageId);
+            MessageDto messageDto = await MessageService.GetMessageDetailsAsync(MessageModel.categoryId, MessageModel.messageId);
 
             MessageDetail = messageDto.IsOk ? messageDto.MessageModel.fields : new MessageDetails();
-            //Todo comportamiento para generar el boton de detalle
+            //Todo comportamiento para generar el boton que llama a una pagina de detalle
             Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
 
             IsBusy = false;
@@ -111,10 +86,11 @@ namespace INetApp.ViewModels
         private async void OnSelectFavorite(bool IsFavorite)
         {
             IsBusy = true;
-            bool? resultado = await MessageService.MarkMessageFavoriteAsync(CategoryID, MessageId, IsFavorite);
+            bool? resultado = await MessageService.MarkMessageFavoriteAsync(MessageModel, !IsFavorite);
             if (resultado != null)
             {
-                Favorite = (bool)resultado;
+                MessageModel.favorite = (bool)resultado;
+                RaisePropertyChanged(() => MessageModel);
             }
             IsBusy = false;
         }

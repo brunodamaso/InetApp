@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
         <BoxView Grid.Row="0" BackgroundColor="{StaticResource toolbar_Color}"/>
         <Label Grid.Row="0" x:Name="tv_name"
-               Text="{Binding Name}"
+               Text="{Binding MessageModel.name}"
                Style="{StaticResource TextViewHeader}">
             <Label.Padding>
                 <MultiBinding Converter="{StaticResource ThicknessConverter}">
@@ -74,20 +74,20 @@
                     </Label>
 
                     <Image Grid.Column="1" Grid.Row="0"
-                       IsVisible="{Binding Favorite}"
+                       IsVisible="{Binding MessageModel.favorite}"
                        Aspect="AspectFit"
                        Source="mark_icon_yellow.png">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SelectFavoriteCommand}" CommandParameter="{Binding Favorite}"/>
+                            <TapGestureRecognizer Command="{Binding SelectFavoriteCommand}" CommandParameter="{Binding MessageModel.favorite}"/>
                         </Image.GestureRecognizers>
                     </Image>
 
                     <Image Grid.Column="1" Grid.Row="0"
                        Aspect="AspectFit"
-                       IsVisible="{Binding Favorite, Converter={StaticResource ValueToBooleanConverter} ,ConverterParameter='not'}"
+                       IsVisible="{Binding MessageModel.favorite, Converter={StaticResource ValueToBooleanConverter} ,ConverterParameter='not'}"
                        Source="mark_icon_white.png">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SelectFavoriteCommand}" CommandParameter="{Binding Favorite}"/>
+                            <TapGestureRecognizer Command="{Binding SelectFavoriteCommand}" CommandParameter="{Binding MessageModel.favorite}"/>
                         </Image.GestureRecognizers>
                     </Image>
                 </Grid>

@@ -10,6 +10,7 @@ using INetApp.Models;
 using INetApp.Resources;
 using INetApp.Services;
 using INetApp.ViewModels.Base;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels
@@ -23,9 +24,9 @@ namespace INetApp.ViewModels
         private string _Title;
         private int CategoryID;
         private bool _RowChecked = false;
-        #region Properties
-
         public List<MessageModel> MessageList;
+
+        #region Properties
 
         public ObservableCollection<MessageModel> MessageItems
         {
@@ -106,6 +107,11 @@ namespace INetApp.ViewModels
             await Sincroniza();
             await base.InitializeAsync(query);
         }
+        public override async Task OnPageBack()
+        {
+            MessageService.MarkFavorite(CategoryID, ref MessageList);
+        }
+
         private async Task Sincroniza()
         {
             IsBusy = true;
@@ -124,14 +130,11 @@ namespace INetApp.ViewModels
         private async void OnSelectMessage(MessageModel messageModel)
         {
             IsBusy = true;
+            string StringParametro = JsonConvert.SerializeObject(messageModel);
 
             Dictionary<string, string> Parametro = new Dictionary<string, string>
                 {
-                    { "CategoryId", messageModel.categoryId.ToString() },
-                    { "MessageId", messageModel.messageId.ToString() },
-                    { "Name", messageModel.name },
-                    { "Date", messageModel.date.Day +" de " +messageModel.date.ToString("MMMM") +" de " +messageModel.date.Year },
-                    { "Favorite", messageModel.favorite.ToString() }
+                    { "MessageModel", StringParametro }
                 };
             await NavigationService.NavigateToAsync("MessageDetails", Parametro);
             IsBusy = false;

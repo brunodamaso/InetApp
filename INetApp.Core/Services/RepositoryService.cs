@@ -22,24 +22,27 @@ namespace INetApp.Services
         }
 
         #region Generico
-        
+
         public async Task<T> Get<T>(object codigo, bool withChildren = true) where T : new()
         {
             return await dbService.Get<T>(codigo);
         }
-
-        public async Task<bool> MarkMessageFavoriteAsync(int categoryId, int messageId, bool IsFavorite)
+        public async Task<List<T>> GetItemsWhere<T>(Expression<Func<T, bool>> whereClause, bool withChildren = true) where T : new()
         {
-            bool retorno = IsFavorite;
-            //todo si es true IsFavorite lo debo insertarORupdate, marcar isfavorite, si no puedo retorno false
-            //todo si es false IsFavorite lo debo borrar 
-            if (await Get<MessageModel>(messageId) is MessageModel messageModel)
+            return await dbService.GetItemsWhere<T>(whereClause);
+        }
+
+        public async Task<bool> MarkMessageFavoriteAsync(MessageModel messageModel, bool IsFavorite)
+        {
+            bool retorno;
+            if (IsFavorite)
             {
-                // lo encontre y debo cambiar favorite
+                messageModel.favorite = IsFavorite;
+                retorno = await dbService.InsertOrReplace(messageModel);
             }
             else
             {
-                //no lo encontre insert si isfavorite es false
+                retorno = !await dbService.DeleteItem(messageModel);
             }
 
             return retorno;

@@ -3,117 +3,118 @@ using System.Collections.Generic;
 using System.Text;
 using SQLite;
 using Xamarin.Forms;
+using Xamarin.CommunityToolkit;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace INetApp.Models
-{
-    //using java.util.Date;
-    //using java.util.HashMap;
-
+{    
     /**
      * Class that represents a user in the presentation layer.
      */
-    public class MessageModel : BindableObject
+    public class MessageModel : ObservableObject
     {
-        public MessageModel() { }
-        public MessageModel(int messageId)
-        {
-            this.messageId = messageId;
-            this.checkeado = false;
-        }
+        //public MessageModel() { }
+        //public MessageModel(int messageId)
+        //{
+        //    this.messageId = messageId;
+        //    this.checkeado = false;
+        //}
 
         public static readonly string URL_LABEL = "URL";
 
         [PrimaryKey]
         public int messageId { get; set; }
+        [Indexed]
         public int categoryId { get; set; }
         public string name { get; set; }
         public DateTime date { get; set; }
         public bool favorite { get; set; }
+        [Ignore]
         public MessageDetails fields { get; set; }
         public bool checkeado { get; set; }
 
-        public int getMessageId()
-        {
-            return messageId;
-        }
-
-
-        public string getName()
-        {
-            return name;
-        }
-
-        public void setName(string name)
-        {
-            this.name = name;
-        }
-
-
-        public bool isFavorite()
-        {
-            return favorite;
-        }
-
-        public void setFavorite(bool favorite)
-        {
-            this.favorite = favorite;
-        }
-
-        public int getCategoryId()
-        {
-            return categoryId;
-        }
-
-        public void setCategoryId(int categoryId)
-        {
-            this.categoryId = categoryId;
-        }
-
-        public DateTime getDate()
-        {
-            return date;
-        }
-
-        public void setDate(DateTime date)
-        {
-            this.date = date;
-        }
-
-        //public Dictionary<string, string> getFields()
+        //public int getMessageId()
         //{
-        //    return fields;
+        //    return messageId;
         //}
 
-        //public void setFields(Dictionary<string, string> fields)
+
+        //public string getName()
         //{
-        //    this.fields = fields;
+        //    return name;
         //}
 
-        public bool isChecked()
-        {
-            return checkeado;
-        }
+        //public void setName(string name)
+        //{
+        //    this.name = name;
+        //}
 
-        public void setChecked(bool checkeado)
-        {
-            this.checkeado = checkeado;
-        }
 
-        override
-        public string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //public bool isFavorite()
+        //{
+        //    return favorite;
+        //}
 
-            stringBuilder.Append("***** Message Model Details *****\n");
-            stringBuilder.Append("id=" + this.getMessageId() + "\n");
-            stringBuilder.Append("category id=" + this.getCategoryId() + "\n");
-            stringBuilder.Append("name=" + this.getName() + "\n");
-            stringBuilder.Append("date=" + this.getDate() + "\n");
-            stringBuilder.Append("favorite=" + this.isFavorite() + "\n");
-            //stringBuilder.Append("fields size=" + this.getFields() + "\n");
-            stringBuilder.Append("*******************************");
+        //public void setFavorite(bool favorite)
+        //{
+        //    this.favorite = favorite;
+        //}
 
-            return stringBuilder.ToString();
-        }
+        //public int getCategoryId()
+        //{
+        //    return categoryId;
+        //}
+
+        //public void setCategoryId(int categoryId)
+        //{
+        //    this.categoryId = categoryId;
+        //}
+
+        //public DateTime getDate()
+        //{
+        //    return date;
+        //}
+
+        //public void setDate(DateTime date)
+        //{
+        //    this.date = date;
+        //}
+
+        ////public Dictionary<string, string> getFields()
+        ////{
+        ////    return fields;
+        ////}
+
+        ////public void setFields(Dictionary<string, string> fields)
+        ////{
+        ////    this.fields = fields;
+        ////}
+
+        //public bool isChecked()
+        //{
+        //    return checkeado;
+        //}
+
+        //public void setChecked(bool checkeado)
+        //{
+        //    this.checkeado = checkeado;
+        //}
+
+        //override
+        //public string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
+
+        //    stringBuilder.Append("***** Message Model Details *****\n");
+        //    stringBuilder.Append("id=" + this.getMessageId() + "\n");
+        //    stringBuilder.Append("category id=" + this.getCategoryId() + "\n");
+        //    stringBuilder.Append("name=" + this.getName() + "\n");
+        //    stringBuilder.Append("date=" + this.getDate() + "\n");
+        //    stringBuilder.Append("favorite=" + this.isFavorite() + "\n");
+        //    //stringBuilder.Append("fields size=" + this.getFields() + "\n");
+        //    stringBuilder.Append("*******************************");
+
+        //    return stringBuilder.ToString();
+        //}
     }
 }

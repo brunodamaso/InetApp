@@ -18,7 +18,13 @@ namespace INetApp.Services
         public DBService()
         {
             db = GetConnection();
-            db.CreateTableAsync<MessageModel>();
+            CrearTablaAsync();
+        }
+
+        private async void CrearTablaAsync()
+        {
+            await db.DropTableAsync<MessageModel>();
+            await db.CreateTableAsync<MessageModel>();
         }
 
         public SQLiteAsyncConnection GetConnection()
