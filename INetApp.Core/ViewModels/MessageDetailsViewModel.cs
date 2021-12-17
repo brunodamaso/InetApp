@@ -61,14 +61,11 @@ namespace INetApp.ViewModels
 
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
-            if (query.TryGetValue("MessageModel", out string _messageModel))
-            {
-                MessageModel = JsonConvert.DeserializeObject<MessageModel>(Uri.UnescapeDataString(_messageModel));
-                Date = MessageModel.date.Day + " de " + MessageModel.date.ToString("MMMM") + " de " + MessageModel.date.Year;
-            }
+            MessageModel = JsonConvert.DeserializeObject<MessageModel>(Uri.UnescapeDataString(query["MessageModel"]));
+            Date = MessageModel.date.Day + " de " + MessageModel.date.ToString("MMMM") + " de " + MessageModel.date.Year;
 
             await Sincroniza();
-            await base.InitializeAsync(query);
+            //await base.InitializeAsync(query);
         }
         private async Task Sincroniza()
         {

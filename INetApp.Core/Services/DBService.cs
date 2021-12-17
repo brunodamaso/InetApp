@@ -23,7 +23,6 @@ namespace INetApp.Services
 
         private async void CrearTablaAsync()
         {
-            await db.DropTableAsync<MessageModel>();
             await db.CreateTableAsync<MessageModel>();
         }
 

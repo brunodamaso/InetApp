@@ -95,21 +95,11 @@ namespace INetApp.ViewModels
 
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
-            if (query.TryGetValue("Name", out string title))
-            {
-                Title = Uri.UnescapeDataString(title);
-            }
-            if (query.TryGetValue("CategoryId", out string category))
-            {
-                CategoryID = int.Parse(category);
-            }
+            Title = Uri.UnescapeDataString(query["Name"]);
+            CategoryID = int.Parse(query["CategoryId"]);
 
             await Sincroniza();
-            await base.InitializeAsync(query);
-        }
-        public override async Task OnPageBack()
-        {
-            MessageService.MarkFavorite(CategoryID, ref MessageList);
+            //await base.InitializeAsync(query);
         }
 
         private async Task Sincroniza()
@@ -137,6 +127,11 @@ namespace INetApp.ViewModels
                     { "MessageModel", StringParametro }
                 };
             await NavigationService.NavigateToAsync("MessageDetails", Parametro);
+            //Todo obliga a refrescar la pantalla al regresar
+            //pudiera optimizarse llenando la tabla localmente y hacerle acciones a la misma
+            //borrar o cambiar favorite
+            //https://theconfuzedsourcecode.wordpress.com/2020/06/09/overriding-back-button-in-xamarin-forms-shell/
+            this.IsInitialized = false;
             IsBusy = false;
         }
 

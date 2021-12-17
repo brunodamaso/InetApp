@@ -6,6 +6,7 @@
     
     <ResourceDictionary.MergedDictionaries>
         <local:INetAppColors />
+        <local:INetAppDimens />
     </ResourceDictionary.MergedDictionaries>
     
     <!--<Style x:Key="AppTheme" BasedOn="Theme.AppCompat.Light.DarkActionBar">
@@ -67,7 +68,7 @@
 -->
     <Style x:Key="TextViewHeader" TargetType="Label">
         <Setter Property="Margin" Value="0,0,0,5" />
-        <Setter Property="FontSize" Value="{Binding header_text_size}" />
+        <Setter Property="FontSize" Value="{StaticResource header_text_size}" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="TextColor" Value="{StaticResource white}" />

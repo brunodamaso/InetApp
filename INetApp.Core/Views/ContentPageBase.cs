@@ -20,12 +20,6 @@ namespace INetApp.Views
                 {
                     await vmb.InitializeAsync(null);
                 }
-                else if (vmb.IsInitialized)
-                {
-                    await vmb.OnPageBack() ;
-                }
-
-
             }
         }
     }

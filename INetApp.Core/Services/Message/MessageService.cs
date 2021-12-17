@@ -12,6 +12,7 @@ namespace INetApp.Services
         private readonly IRepositoryWebService repositoryWebService;
         private readonly IRepositoryService repositoryService;
         private protected readonly IUserService userService;
+        private List<MessageModel> messageModelApi;
 
         public MessageService(IRepositoryWebService _repositoryWebService, IRepositoryService _repositoryService)
         {
@@ -25,18 +26,23 @@ namespace INetApp.Services
             MessagesDto messagesDto = await repositoryWebService.GetMessages(categoryId);
             if (messagesDto.IsOk)
             {
-                List<MessageModel> messagemodelapi = messagesDto.MessagesModel;
-                MarkFavorite(categoryId, ref messagemodelapi);
+                messageModelApi = messagesDto.MessagesModel;
+                await MarkFavoriteAsync(categoryId);
             }
             return messagesDto;
         }
 
-        public void MarkFavorite(int categoryId, ref List<MessageModel> messagesModelApi)
+        public void MarkFavorite(int categoryId, ref List<MessageModel> _messagesModelApi)
         {
-            List<MessageModel> messagesModel = repositoryService.GetItemsWhere<MessageModel>(a => a.categoryId == categoryId).Result;
+            messageModelApi = _messagesModelApi;
+            MarkFavoriteAsync(categoryId);
+        }
+        public async Task MarkFavoriteAsync(int categoryId)
+        {
+            List<MessageModel> messagesModel = await repositoryService.GetItemsWhere<MessageModel>(a => a.categoryId == categoryId);
             if (messagesModel.Count > 0)
             {
-                foreach (MessageModel item in messagesModelApi)
+                foreach (MessageModel item in messageModelApi)
                 {
                     MessageModel messageModel = messagesModel.FirstOrDefault(a => a.messageId == item.messageId);
                     if (messageModel != null)
@@ -59,9 +65,15 @@ namespace INetApp.Services
         public async Task<bool?> MarkMessageFavoriteAsync(MessageModel messageModel, bool IsFavorite)
         {
             return await repositoryService.MarkMessageFavoriteAsync(messageModel, IsFavorite);
-
-            //return resultado;
         }
+
+        //public async Task<bool> ApproveMessageAsync(int categoryId, int messageId)
+        //{
+        //    return await repositoryService.ApproveMessageAsync(categoryId, messageId);
+        //}
+
+        
+
 
     }
 }

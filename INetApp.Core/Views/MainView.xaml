@@ -13,7 +13,8 @@
             Shell.NavBarIsVisible="True"
             Shell.TabBarIsVisible="True"
             Title="{Binding  Source={x:Static resources:Literales.app_name}}" >
-    <Grid xct:SafeAreaEffect.SafeArea="true" BackgroundColor="{StaticResource white}">
+    
+    <Grid BackgroundColor="{StaticResource white}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>

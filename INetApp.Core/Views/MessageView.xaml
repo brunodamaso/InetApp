@@ -17,9 +17,9 @@
     <Grid BackgroundColor="{StaticResource white}" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/> <!-- tabs-->
-            <RowDefinition Height="0.1*"/> <!-- select all -->
+            <RowDefinition Height="50"/> <!-- select all -->
             <RowDefinition Height="*"/> <!-- registros -->
-            <RowDefinition Height="0.1*"/> <!-- acciones botones -->
+            <RowDefinition Height="auto"/> <!-- acciones botones -->
             <RowDefinition Height="auto"/> <!-- progreso -->
             <RowDefinition Height="auto"/> <!-- reintentar -->
         </Grid.RowDefinitions>
