@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -87,6 +86,9 @@ namespace INetApp.ViewModels
         #endregion
 
         public ICommand SelectMessageCommand => new Command<MessageModel>(OnSelectMessage);
+        public ICommand AproveCommand => new Command(OnAproveMessages);
+        public ICommand RefuseCommand => new Command(OnRefuseMessages);
+        public ICommand IsCheckedChanged => new Command(OnCheckedChanged);
 
         public MessageViewModel()
         {
@@ -131,7 +133,7 @@ namespace INetApp.ViewModels
             //pudiera optimizarse llenando la tabla localmente y hacerle acciones a la misma
             //borrar o cambiar favorite
             //https://theconfuzedsourcecode.wordpress.com/2020/06/09/overriding-back-button-in-xamarin-forms-shell/
-            this.IsInitialized = false;
+            IsInitialized = false;
             IsBusy = false;
         }
 
@@ -163,6 +165,53 @@ namespace INetApp.ViewModels
 
             IsRowChecked = canti > 0;
             return IsRowChecked;
+        }
+        private async void OnAproveMessages()
+        {
+            IsBusy = true;
+            
+            if (await DialogService.ShowAlertAsync(Literales.dialog_approve_messages, Literales.dialog_approve_title, Literales.dialog_approve_positive, Literales.cancel))
+            {
+                List<MessageModel> messageModels = MessageItems.Where(a => a.checkeado).ToList();
+            
+                if (await MessageService.ApproveMessagesAsync(messageModels))
+                {
+                    await Sincroniza();
+                    await DialogService.ShowAlertAsync(Literales.toast_approve_messages, "", Literales.btn_text_accept);
+                    IsInitialized = false;
+                }
+                else
+                {
+                    await DialogService.ShowAlertAsync(Literales.toast_not_all_messages_approved, "", Literales.btn_text_accept);
+                }
+            }
+            IsBusy = false;
+        }
+
+        private async void OnRefuseMessages()
+        {
+            IsBusy = true;
+            if (await DialogService.ShowPromptAsync(Literales.dialog_refuse_messages, Literales.dialog_refuse_title, Literales.dialog_refuse_positive, Literales.cancel) is string cause 
+                    && !string.IsNullOrEmpty(cause))
+            {
+                List<MessageModel> messageModels = MessageItems.Where(a => a.checkeado).ToList();
+                if (await MessageService.RefuseMessagesAsync(messageModels, cause))
+                {
+                    await Sincroniza();
+                    await DialogService.ShowAlertAsync(Literales.toast_refuse_messages, "", Literales.btn_text_accept);
+                    IsInitialized = false;
+                }
+                else
+                {
+                    await DialogService.ShowAlertAsync(Literales.toast_not_all_messages_refused, "", Literales.btn_text_accept);
+                }
+            }
+            IsBusy = false;
+        }
+
+
+        private void OnCheckedChanged()
+        {
         }
     }
 }

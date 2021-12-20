@@ -27,6 +27,8 @@
                 <Binding Source="{StaticResource lv_row_padding}" />
             </MultiBinding>
         </Grid.Padding>
+        <!--IsCheckedChanged="{Binding IsCheckedChanged ,Source={Reference ViewMessageRow}}"-->
+
         <CheckBox x:DataType="models:MessageModel" Grid.Column="0" 
                 Grid.Row ="0"
                 CheckedChanged="CheckBox_CheckedChanged"

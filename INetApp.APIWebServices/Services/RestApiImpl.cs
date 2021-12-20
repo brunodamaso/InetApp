@@ -5,6 +5,7 @@ using INetApp.APIWebServices.Entity;
 //using INetApp.Models;
 using INetApp.APIWebServices.Helpers;
 using INetApp.APIWebServices.Responses;
+using System.Web;
 
 namespace INetApp.APIWebServices
 {
@@ -161,14 +162,7 @@ namespace INetApp.APIWebServices
             return Task.Factory.StartNew(() =>
             {
                 HttpResponse httpResponse = Get(API_URL_GET_USER_PERMISSION, Usuario, Password).Result;
-                if (httpResponse.IsOk)
-                {
-                    return httpResponse.Resultado;
-                }
-                else
-                {
-                    return "false";
-                }
+                return httpResponse.IsOk ? httpResponse.Resultado : "false";
             });
         }
 
@@ -204,11 +198,11 @@ namespace INetApp.APIWebServices
         #endregion
 
         #region message
-        public Task<MessagesDto> GetMessagesFromApi(string Usuario, string Password, int categoryId)
+        public Task<MessagesDto> GetMessagesFromApi(string Usuario, string Password, int CategoryId)
         {
             return Task.Factory.StartNew(() =>
             {
-                HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_LIST_BY_CATEGORY + categoryId, Usuario, Password).Result;
+                HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_LIST_BY_CATEGORY + CategoryId, Usuario, Password).Result;
 
                 httpResponse.Resultado = $"{{MessagesEntities:{httpResponse.Resultado}}}";
 
@@ -219,11 +213,11 @@ namespace INetApp.APIWebServices
             });
         }
 
-        public Task<MessageDto> GetMessageDetailsFromApi(string Usuario, string Password, int categoryId, int messageId)
+        public Task<MessageDto> GetMessageDetailsFromApi(string Usuario, string Password, int CategoryId, int MessageId)
         {
             return Task.Factory.StartNew(() =>
             {
-                HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_DETAILS + categoryId + "/" + messageId, Usuario, Password).Result;
+                HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_DETAILS + CategoryId + "/" + MessageId, Usuario, Password).Result;
 
                 httpResponse.Resultado = $"{{data:{httpResponse.Resultado}}}";
 
@@ -233,6 +227,31 @@ namespace INetApp.APIWebServices
 
             });
         }
+
+        public Task<bool> ApproveMessageFromApi(string Usuario, string Password, int CategoryId, int MessageId)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                HttpResponse httpResponse = Get(API_URL_APPROVE_MESSAGE + CategoryId + "/" + MessageId, Usuario, Password).Result;
+                //todo existe la posibilidad de que el retorno sea distinto de 0?
+                return httpResponse.IsOk;
+
+            });
+        }
+        public Task<bool> RefuseMessageFromApi(string Usuario, string Password, int CategoryId, int MessageId ,string Cause)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                string causeEncoded = HttpUtility.UrlEncode(Cause,System.Text.Encoding.UTF8);
+                causeEncoded = causeEncoded.Replace("+", "%20");
+
+                HttpResponse httpResponse = Get(API_URL_REFUSE_MESSAGE + CategoryId + "/" + MessageId +"/" + Cause, Usuario, Password).Result;
+
+                return httpResponse.IsOk;
+
+            });
+        }
+
         #endregion
 
         //public Task<CategoriasDto> ResetPassword(string Mail, string Usuario, string Password)

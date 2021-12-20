@@ -53,6 +53,8 @@ namespace INetApp.ViewModels
         #endregion
 
         public ICommand SelectFavoriteCommand => new Command<bool>(OnSelectFavorite);
+        public ICommand AproveCommand => new Command(OnAproveMessage);
+        public ICommand RefuseCommand => new Command(OnRefuseMessage);
 
         public MessageDetailsViewModel()
         {
@@ -90,6 +92,46 @@ namespace INetApp.ViewModels
                 RaisePropertyChanged(() => MessageModel);
             }
             IsBusy = false;
+        }
+
+        private async void OnAproveMessage()
+        {
+            IsBusy = true;
+            if (await DialogService.ShowAlertAsync(Literales.dialog_approve_message, Literales.dialog_approve_title, Literales.dialog_approve_positive, Literales.cancel))
+            {
+                if (await MessageService.ApproveMessageAsync(MessageModel))
+                {
+                    await DialogService.ShowAlertAsync(Literales.toast_approve_message, "", Literales.btn_text_accept);
+                    IsInitialized = false;
+                    await NavigationService.NavigateToAsync("..");
+                }
+                else
+                {
+                    await DialogService.ShowAlertAsync(Literales.toast_approve_message_error, "", Literales.btn_text_accept);
+
+                }
+            }
+            IsBusy = false;
+        }
+
+        private async void OnRefuseMessage()
+        {
+            IsBusy = true;
+            if (await DialogService.ShowPromptAsync(Literales.dialog_refuse_message, Literales.dialog_refuse_title, Literales.dialog_refuse_positive, Literales.cancel) is string cause
+                             && !string.IsNullOrEmpty(cause))
+            {            
+                if (await MessageService.RefuseMessageAsync(MessageModel, cause))
+                {
+                    await DialogService.ShowAlertAsync(Literales.toast_refuse_message, "", Literales.btn_text_accept);
+                    IsInitialized = false;
+                    await NavigationService.NavigateToAsync("..");
+                }
+                else
+                {
+                    await DialogService.ShowAlertAsync(Literales.toast_refuse_message_error, "", Literales.btn_text_accept);
+                }
+            }
+            IsBusy = true;
         }
     }
 }

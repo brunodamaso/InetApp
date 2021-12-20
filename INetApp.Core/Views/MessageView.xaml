@@ -72,7 +72,7 @@
 
         <!--</ScrollView>-->
         
-        <ActivityIndicator Grid.Row="3" 
+        <ActivityIndicator Grid.Row="2" 
                     HorizontalOptions="Center"
                     IsRunning="{Binding IsBusy}"
                     IsVisible="{Binding IsBusy}"
@@ -88,6 +88,8 @@
         
         <components:View_Actions Grid.Row="3"
             IsVisible="{Binding IsRowChecked}"
+            Approve="{Binding AproveCommand}"
+            Refuse="{Binding RefuseCommand}"
             x:Name="tv_View_Actions" 
             />
 

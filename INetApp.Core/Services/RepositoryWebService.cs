@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using INetApp.APIWebServices;
@@ -158,7 +159,7 @@ namespace INetApp.Services
                     {
                         int campo = 0;
                         messageDto.MessageModel.fields.Details = new List<Detail>();
-                        foreach (var item in messageDto.MessageModel.fields.Cabecera)
+                        foreach (Cabecera item in messageDto.MessageModel.fields.Cabecera)
                         {
                             Detail detail = new Detail();
                             detail.Nombre = item.Nombre;
@@ -202,6 +203,119 @@ namespace INetApp.Services
             return messageDto;
         }
 
+        public async Task<bool> ApproveMessage(MessageModel messageModel , bool isList = false)
+        {
+            bool resultado;
+            try
+            {
+                if (isList || connectivityService.CheckConnectivity())
+                {
+                    if (!isList)
+                    {
+                        GetUser();
+                    }
+                    resultado = await RestApiImpl.ApproveMessageFromApi(userName, userPass, messageModel.categoryId, messageModel.messageId);
+
+                    if (resultado)
+                    {
+                    }
+                }
+                else
+                {
+                    resultado = false;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
+        }
+
+        public async Task<bool> ApproveMessages(List<MessageModel> messageModels)
+        {
+            bool resultado = true;
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    GetUser();
+                    foreach (var item in messageModels)
+                    {
+                        if (!await ApproveMessage(item, true))
+                        {
+                            resultado = false;
+                        }
+                    }
+                }
+                else
+                {
+                    resultado = false;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
+        }
+
+        public async Task<bool> RefuseMessage(MessageModel messageModel, string cause, bool isList = false)
+        {
+            bool resultado = true;
+            try
+            {
+                if (isList || connectivityService.CheckConnectivity())
+                {
+                    if (!isList)
+                    {
+                        GetUser();
+                    }
+                    resultado = await RestApiImpl.RefuseMessageFromApi(userName, userPass, messageModel.categoryId, messageModel.messageId, cause);
+
+                    if (resultado)
+                    {
+                    }
+                }
+                else
+                {
+                    resultado = false;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
+        }
+
+        public async Task<bool> RefuseMessages(List<MessageModel> messageModels, string cause)
+        {
+            bool resultado = true;
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    GetUser();
+                    foreach (var item in messageModels)
+                    {
+                        if (!await RefuseMessage(item, cause, true))
+                        {
+                            resultado = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
+        }
         #endregion
 
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()

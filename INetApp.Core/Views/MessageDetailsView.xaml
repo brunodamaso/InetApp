@@ -138,7 +138,8 @@
 
         <!--IsVisible="{Binding IsRowChecked}"-->
         <components:View_Actions Grid.Row="2"
-            
+            Approve="{Binding AproveCommand}"
+            Refuse="{Binding RefuseCommand}"
             x:Name="tv_View_Actions" 
             />
 

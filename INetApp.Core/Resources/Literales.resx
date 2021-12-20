@@ -459,4 +459,7 @@
   <data name="no_permissions" xml:space="preserve">
     <value>No dispone de permisos para acceder a este contenido</value>
   </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
 </root>

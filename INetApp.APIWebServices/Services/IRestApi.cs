@@ -6,13 +6,14 @@ namespace INetApp.APIWebServices
 {
     public interface IRestApi
     {
-        Task<UserLoggedDto> GetUserLoggedFromApi(string usuario, string password);
-        Task<string> GetUserLoggedPermission(string usuario, string password);
-        Task<UserLoggedDto> GetVersion(string usuario, string password);
-        Task<CategorysDto> GetCategoriesFromApi(string usuario, string password);
-        Task<MessagesDto> GetMessagesFromApi(string usuario, string password, int categoryId);
-        Task<MessageDto> GetMessageDetailsFromApi(string usuario, string password, int categoryId, int messageId);
-
+        Task<UserLoggedDto> GetUserLoggedFromApi(string Usuario, string Password);
+        Task<string> GetUserLoggedPermission(string Usuario, string Password);
+        Task<UserLoggedDto> GetVersion(string Usuario, string Password);
+        Task<CategorysDto> GetCategoriesFromApi(string Usuario, string Password);
+        Task<MessagesDto> GetMessagesFromApi(string Usuario, string Password, int CategoryId);
+        Task<MessageDto> GetMessageDetailsFromApi(string Usuario, string Password, int CategoryId, int MessageId);
+        Task<bool> ApproveMessageFromApi(string Usuario, string Password, int CategoryId, int MessageId);
+        Task<bool> RefuseMessageFromApi(string Usuario, string Password, int CategoryId, int MessageId, string cause);
 
         //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
 

@@ -2,7 +2,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:resources="clr-namespace:INetApp.Resources"
-            x:Class="INetApp.Views.Components.View_Actions">
+            x:Class="INetApp.Views.Components.View_Actions"
+            x:Name="ViewActions">
   <ContentView.Content>
         <Grid x:Name="tv_last_update" 
              BackgroundColor="{StaticResource very_light_grey}" >
@@ -17,9 +18,11 @@
             </Grid.Padding>
             <Button Grid.Column="0" x:Name="btn_refuse"
                     Text="{Binding Source={x:Static resources:Literales.btn_text_refuse}}"
+                    Command="{Binding Refuse ,Source={Reference ViewActions}}"
                     Style="{StaticResource ButtonRefuse}"/>
             <Button Grid.Column="1" x:Name="btn_approve"
                     Text="{Binding Source={x:Static resources:Literales.btn_text_approve}}"
+                    Command="{Binding Approve,Source={Reference ViewActions}}"
                     Style="{StaticResource ButtonApprove}"/>
         </Grid>
     </ContentView.Content>

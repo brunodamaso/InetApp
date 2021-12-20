@@ -16,6 +16,10 @@ namespace INetApp.Services
         Task<CategorysDto> GetCategory();
         Task<MessagesDto> GetMessages(int categoryId);
         Task<MessageDto> GetMessageDetails(int categoryId, int messageId);
+        Task<bool> ApproveMessage(MessageModel messageModel, bool isList = false);
+        Task<bool> ApproveMessages(List<MessageModel> messageModels);
+        Task<bool> RefuseMessage(MessageModel messageModel, string cause, bool isList = false);
+        Task<bool> RefuseMessages(List<MessageModel> messageModels, string cause);
 
         //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
 

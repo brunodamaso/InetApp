@@ -67,12 +67,32 @@ namespace INetApp.Services
             return await repositoryService.MarkMessageFavoriteAsync(messageModel, IsFavorite);
         }
 
+        public async Task<bool> ApproveMessageAsync(MessageModel messageModel)
+        {
+            return await repositoryWebService.ApproveMessage (messageModel);
+        }
+
+        public async Task<bool> ApproveMessagesAsync(List<MessageModel> messageModels)
+        {
+            return await repositoryWebService.ApproveMessages(messageModels);
+        }
+
+        public async Task<bool> RefuseMessageAsync(MessageModel messageModels, string cause)
+        {
+            return await repositoryWebService.RefuseMessage(messageModels, cause);
+        }
+
+        public async Task<bool> RefuseMessagesAsync(List<MessageModel> messageModels, string cause)
+        {
+            return await repositoryWebService.RefuseMessages(messageModels, cause);
+        }
+
         //public async Task<bool> ApproveMessageAsync(int categoryId, int messageId)
         //{
-        //    return await repositoryService.ApproveMessageAsync(categoryId, messageId);
+        //    return await repositoryWebService.ApproveMessageAsync(categoryId, messageId);
         //}
 
-        
+
 
 
     }
