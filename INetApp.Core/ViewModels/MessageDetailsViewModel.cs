@@ -119,7 +119,7 @@ namespace INetApp.ViewModels
             IsBusy = true;
             if (await DialogService.ShowPromptAsync(Literales.dialog_refuse_message, Literales.dialog_refuse_title, Literales.dialog_refuse_positive, Literales.cancel) is string cause
                              && !string.IsNullOrEmpty(cause))
-            {            
+            {
                 if (await MessageService.RefuseMessageAsync(MessageModel, cause))
                 {
                     await DialogService.ShowAlertAsync(Literales.toast_refuse_message, "", Literales.btn_text_accept);

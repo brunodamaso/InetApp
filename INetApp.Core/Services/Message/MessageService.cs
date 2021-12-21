@@ -32,11 +32,11 @@ namespace INetApp.Services
             return messagesDto;
         }
 
-        public void MarkFavorite(int categoryId, ref List<MessageModel> _messagesModelApi)
-        {
-            messageModelApi = _messagesModelApi;
-            MarkFavoriteAsync(categoryId);
-        }
+        //public void MarkFavorite(int categoryId, ref List<MessageModel> _messagesModelApi)
+        //{
+        //    messageModelApi = _messagesModelApi;
+        //    MarkFavoriteAsync(categoryId);
+        //}
         public async Task MarkFavoriteAsync(int categoryId)
         {
             List<MessageModel> messagesModel = await repositoryService.GetItemsWhere<MessageModel>(a => a.categoryId == categoryId);
@@ -69,31 +69,48 @@ namespace INetApp.Services
 
         public async Task<bool> ApproveMessageAsync(MessageModel messageModel)
         {
-            return await repositoryWebService.ApproveMessage (messageModel);
+            bool retorno = await repositoryWebService.ApproveMessage(messageModel);
+            if (retorno)
+            {
+                await repositoryService.MarkMessageFavoriteAsync(messageModel, false);
+            }
+            return retorno;
         }
 
         public async Task<bool> ApproveMessagesAsync(List<MessageModel> messageModels)
         {
-            return await repositoryWebService.ApproveMessages(messageModels);
+            bool retorno = await repositoryWebService.ApproveMessages(messageModels);
+            if (retorno)
+            {
+                foreach (var item in messageModels)
+                {
+                    await repositoryService.MarkMessageFavoriteAsync(item, false);
+                }
+            }
+            return retorno;
         }
 
-        public async Task<bool> RefuseMessageAsync(MessageModel messageModels, string cause)
+        public async Task<bool> RefuseMessageAsync(MessageModel messageModel, string cause)
         {
-            return await repositoryWebService.RefuseMessage(messageModels, cause);
+            bool retorno = await repositoryWebService.RefuseMessage(messageModel, cause);
+            if (retorno)
+            {
+                await repositoryService.MarkMessageFavoriteAsync(messageModel, false);
+            }
+            return retorno;
         }
 
         public async Task<bool> RefuseMessagesAsync(List<MessageModel> messageModels, string cause)
         {
-            return await repositoryWebService.RefuseMessages(messageModels, cause);
+            bool retorno = await repositoryWebService.RefuseMessages(messageModels, cause);
+            if (retorno)
+            {
+                foreach (var item in messageModels)
+                {
+                    await repositoryService.MarkMessageFavoriteAsync(item, false);
+                }
+            }
+            return retorno;
         }
-
-        //public async Task<bool> ApproveMessageAsync(int categoryId, int messageId)
-        //{
-        //    return await repositoryWebService.ApproveMessageAsync(categoryId, messageId);
-        //}
-
-
-
-
     }
 }
