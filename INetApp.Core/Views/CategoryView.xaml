@@ -12,37 +12,11 @@
     Title="{Binding Source={x:Static resources:Literales.activity_title_message_category}}"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
     x:DataType="viewmodels:CategoryViewModel">
-    <!--<ContentPage.Resources>
-        <ResourceDictionary>
-
-            <Style x:Key="CartTotalStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
-                <Setter Property="FontSize" Value="{StaticResource LargerSize}" />
-                <Setter Property="HorizontalOptions" Value="End" />
-            </Style>
-
-            <Style x:Key="CheckoutButtonStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
-                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
-
-            <Style x:Key="ShoppingCartStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
-                <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="Margin" Value="0, 12" />
-            </Style>
-
-        </ResourceDictionary>
-    </ContentPage.Resources>-->
-
-    <!---->
+    
     <RefreshView IsRefreshing="{Binding IsRefreshing ,Mode=OneWay}"
                     Command="{Binding RefreshCommand}">
         <StackLayout Orientation="Vertical" Spacing="0">
-            <ScrollView Orientation="Vertical"
+            <ScrollView Orientation="Vertical" Margin="0" Padding="0"
                 BackgroundColor="{StaticResource white}" 
                 VerticalOptions="FillAndExpand" 
                 HorizontalOptions="Fill" >
@@ -81,26 +55,27 @@
                             VerticalOptions="Center" 
                             TextColor="{StaticResource dark_grey}"/>
                     </Grid>
+        
+                    <BoxView Grid.Row="0"
+                        IsVisible="{Binding IsBusy}"
+                        BackgroundColor="Black" 
+                        Opacity="0.3"/>
+                    <ActivityIndicator Grid.Row="0" 
+                        HorizontalOptions="Center"
+                        IsRunning="{Binding IsBusy}"
+                        IsVisible="{Binding IsBusy}"
+                        VerticalOptions="Center"                  
+                        Color="{StaticResource app_Color}">
+                        <ActivityIndicator.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="iOS, Android" Value="100" />
+                                <On Platform="UWP, WinRT, WinPhone" Value="400" />
+                            </OnPlatform>
+                        </ActivityIndicator.WidthRequest>
+                    </ActivityIndicator>
                 </Grid>
 
             </ScrollView>
-            <ActivityIndicator       
-                WidthRequest="450"
-                    HorizontalOptions="Center"
-                    IsRunning="{Binding IsBusy}"
-                    IsVisible="{Binding IsBusy}"
-                    VerticalOptions="Center"
-                Margin="0"
-                    Background="transparent"
-                    BackgroundColor="transparent"
-                    Color="{StaticResource app_Color}">
-                <!--<ActivityIndicator.WidthRequest>
-                    <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="iOS, Android" Value="100" />
-                        <On Platform="UWP, WinRT, WinPhone" Value="400" />
-                    </OnPlatform>
-                </ActivityIndicator.WidthRequest>-->
-            </ActivityIndicator>
             
             <components:View_Update x:Name="tv_last_update" />
         </StackLayout>

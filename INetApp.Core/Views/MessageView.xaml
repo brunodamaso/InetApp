@@ -26,66 +26,49 @@
         
         <components:Toolbar_main Grid.Row="0" SelectedIndex ="{Binding SelectecTab}"/>
         <components:SelectAll Grid.Row="1" x:Name ="SelectAll" IsChecked="{Binding SelectAll}"/>
-        <!--<ScrollView Grid.Row="2"
-            Orientation="Vertical" 
-            BackgroundColor="{StaticResource white}" 
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="Fill" >-->
-            <Grid Grid.Row="2" >
+        <Grid Grid.Row="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <ListView
-                        CachingStrategy="RetainElement"
-                        HasUnevenRows="True"
-                        SelectionMode="None"
-                        SeparatorVisibility="None"
-                        VerticalOptions="FillAndExpand"
-                        ItemsSource="{Binding MessageItems}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                <components:MessageRow/>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    <ListView.Behaviors>
-                        <xct:EventToCommandBehavior
-                                Command="{Binding SelectMessageCommand}"
-                                EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
-                                EventName="ItemTapped" />
-                    </ListView.Behaviors>
-                </ListView>
-                </Grid>
-                <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
-                    <Label
-                        HorizontalOptions="Center"
-                        Text="{Binding Source={x:Static resources:Literales.empty_messages}}"
-                        VerticalOptions="Center" 
-                        TextColor="{StaticResource dark_grey}"/>
-                </Grid>
+                <ListView
+                    CachingStrategy="RetainElement"
+                    HasUnevenRows="True"
+                    SelectionMode="None"
+                    SeparatorVisibility="None"
+                    VerticalOptions="FillAndExpand"
+                    ItemsSource="{Binding MessageItems}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                            <components:MessageRow/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <xct:EventToCommandBehavior
+                            Command="{Binding SelectMessageCommand}"
+                            EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
+                            EventName="ItemTapped" />
+                </ListView.Behaviors>
+            </ListView>
             </Grid>
-
-        <!--</ScrollView>-->
-        
-        <ActivityIndicator Grid.Row="2" 
+            <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
+                <Label
                     HorizontalOptions="Center"
-                    IsRunning="{Binding IsBusy}"
-                    IsVisible="{Binding IsBusy}"
-                    VerticalOptions="Center"
-                    Color="{StaticResource LightGreenColor}">
-            <ActivityIndicator.WidthRequest>
-                <OnPlatform x:TypeArguments="x:Double">
-                    <On Platform="iOS, Android" Value="100" />
-                    <On Platform="UWP, WinRT, WinPhone" Value="400" />
-                </OnPlatform>
-            </ActivityIndicator.WidthRequest>
-        </ActivityIndicator>       
-        
+                    Text="{Binding Source={x:Static resources:Literales.empty_messages}}"
+                    VerticalOptions="Center" 
+                    TextColor="{StaticResource dark_grey}"/>
+            </Grid>
+        </Grid>
+
+        <components:View_Update Grid.Row="3"
+            IsVisible ="{Binding IsBusy, Converter={StaticResource ValueToBooleanConverter}, ConverterParameter='Not'}"
+            x:Name="tv_last_update" />
+
         <components:View_Actions Grid.Row="3"
             IsVisible="{Binding IsRowChecked}"
             Approve="{Binding AproveCommand}"
@@ -93,9 +76,24 @@
             x:Name="tv_View_Actions" 
             />
 
-        <components:View_Update Grid.Row="4"
-            IsVisible ="{Binding IsBusy, Converter={StaticResource ValueToBooleanConverter}, ConverterParameter='Not'}"
-            x:Name="tv_last_update" />
-
+        <BoxView Grid.Row="0"
+            Grid.RowSpan="4"
+            IsVisible="{Binding IsBusy}"
+            BackgroundColor="Black" 
+            Opacity="0.3"/>
+        <ActivityIndicator Grid.Row="1" 
+                           Grid.RowSpan="4"
+                    HorizontalOptions="Center"
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}"
+                    VerticalOptions="Center"                  
+                    Color="{StaticResource app_Color}">
+            <ActivityIndicator.WidthRequest>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS, Android" Value="100" />
+                    <On Platform="UWP, WinRT, WinPhone" Value="400" />
+                </OnPlatform>
+            </ActivityIndicator.WidthRequest>
+        </ActivityIndicator>
     </Grid>
 </views:ContentPageBase>

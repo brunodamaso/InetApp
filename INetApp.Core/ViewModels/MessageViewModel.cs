@@ -176,9 +176,10 @@ namespace INetApp.ViewModels
             
                 if (await MessageService.ApproveMessagesAsync(messageModels))
                 {
+                    IsRowChecked = false;
                     await Sincroniza();
                     await DialogService.ShowAlertAsync(Literales.toast_approve_messages, "", Literales.btn_text_accept);
-                    IsInitialized = false;
+                    //IsInitialized = false;
                 }
                 else
                 {
@@ -198,8 +199,9 @@ namespace INetApp.ViewModels
                 if (await MessageService.RefuseMessagesAsync(messageModels, cause))
                 {
                     await Sincroniza();
+                    IsRowChecked = false;
                     await DialogService.ShowAlertAsync(Literales.toast_refuse_messages, "", Literales.btn_text_accept);
-                    IsInitialized = false;
+                    //IsInitialized = false;
                 }
                 else
                 {
