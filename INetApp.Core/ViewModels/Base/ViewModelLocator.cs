@@ -1,11 +1,11 @@
-﻿using System;
-using System.Globalization;
-using System.Reflection;
-using INetApp.APIWebServices;
+﻿using INetApp.APIWebServices;
 using INetApp.Services;
 using INetApp.Services.Dependency;
 using INetApp.Services.Identity;
 using INetApp.Services.Settings;
+using System;
+using System.Globalization;
+using System.Reflection;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels.Base
@@ -17,12 +17,12 @@ namespace INetApp.ViewModels.Base
 
         public static bool GetAutoWireViewModel(BindableObject bindable)
         {
-            return (bool)bindable.GetValue(ViewModelLocator.AutoWireViewModelProperty);
+            return (bool)bindable.GetValue(AutoWireViewModelProperty);
         }
 
         public static void SetAutoWireViewModel(BindableObject bindable, bool value)
         {
-            bindable.SetValue(ViewModelLocator.AutoWireViewModelProperty, value);
+            bindable.SetValue(AutoWireViewModelProperty, value);
         }
 
         static ViewModelLocator()
@@ -46,6 +46,7 @@ namespace INetApp.ViewModels.Base
             Xamarin.Forms.DependencyService.Register<MainViewModel>();
             Xamarin.Forms.DependencyService.Register<CategoryViewModel>();
             Xamarin.Forms.DependencyService.Register<MessageViewModel>();
+            Xamarin.Forms.DependencyService.Register<MessageFavoriteViewModel>();
             Xamarin.Forms.DependencyService.Register<MessageDetailsViewModel>();
         }
 

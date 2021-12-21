@@ -27,6 +27,10 @@ namespace INetApp.Services
         {
             return await dbService.Get<T>(codigo);
         }
+        public async Task<List<T>> GetAll<T>(bool withChildren = true) where T : new()
+        {
+            return await dbService.GetAll<T>();
+        }
         public async Task<List<T>> GetItemsWhere<T>(Expression<Func<T, bool>> whereClause, bool withChildren = true) where T : new()
         {
             return await dbService.GetItemsWhere<T>(whereClause);

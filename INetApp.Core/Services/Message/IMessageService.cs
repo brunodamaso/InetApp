@@ -9,6 +9,7 @@ namespace INetApp.Services
     public interface IMessageService
     {
         Task<MessagesDto> GetMessageAsync(int categoryId);
+        Task<List<MessageModel>> GetMessageLocalAsync();
         Task<MessageDto> GetMessageDetailsAsync(int categoryId, int messageId);
         //void MarkFavorite(int categoryId, ref List<MessageModel> messagesModelApi);
         Task<bool?> MarkMessageFavoriteAsync(MessageModel messageModel, bool IsFavorite);

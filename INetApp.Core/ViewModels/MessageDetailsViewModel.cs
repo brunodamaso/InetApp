@@ -108,7 +108,6 @@ namespace INetApp.ViewModels
                 else
                 {
                     await DialogService.ShowAlertAsync(Literales.toast_approve_message_error, "", Literales.btn_text_accept);
-
                 }
             }
             IsBusy = false;
@@ -117,7 +116,7 @@ namespace INetApp.ViewModels
         private async void OnRefuseMessage()
         {
             IsBusy = true;
-            if (await DialogService.ShowPromptAsync(Literales.dialog_refuse_message, Literales.dialog_refuse_title, Literales.dialog_refuse_positive, Literales.cancel) is string cause
+            if (await DialogService.ShowPromptAsync(Literales.dialog_refuse_message + "\n\r" + Literales.dialog_refuse_reason, Literales.dialog_refuse_title, Literales.dialog_refuse_positive, Literales.cancel) is string cause
                              && !string.IsNullOrEmpty(cause))
             {
                 if (await MessageService.RefuseMessageAsync(MessageModel, cause))

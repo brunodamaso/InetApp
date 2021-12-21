@@ -14,13 +14,11 @@ using Xamarin.Forms;
 
 namespace INetApp.ViewModels
 {
-    public class MessageViewModel : ViewModelBase
+    public class MessageFavoriteViewModel : ViewModelBase
     {
         private ObservableCollection<MessageModel> _MessageItems;
         private readonly IMessageService MessageService;
-        private int _selectecTab;
-        private bool _SelectAll, IsChangeTab;
-        private string _Title;
+        private bool _SelectAll;
         private int CategoryID;
         private bool _RowChecked = false;
         public List<MessageModel> MessageList;
@@ -36,15 +34,7 @@ namespace INetApp.ViewModels
                 RaisePropertyChanged(() => MessageItems);
             }
         }
-        public string Title
-        {
-            get => _Title;
-            set
-            {
-                _Title = value;
-                RaisePropertyChanged(() => Title);
-            }
-        }
+        
         public bool SelectAll
         {
             get => _SelectAll;
@@ -52,25 +42,7 @@ namespace INetApp.ViewModels
             {
                 _SelectAll = value;
                 RaisePropertyChanged(() => SelectAll);
-                if (!IsChangeTab)
-                {
-                    OnSelectAll(value);
-                }
-
-            }
-        }
-        public int SelectecTab
-        {
-            get => _selectecTab;
-            set
-            {
-                _selectecTab = value;
-                RaisePropertyChanged(() => SelectecTab);
-                OnSelectTab(value);
-                IsChangeTab = true;
-                SelectAll = MessageList.Count(a => a.checkeado) == MessageItems.Count;
-                IsChangeTab = false;
-
+                OnSelectAll(value);
             }
         }
         public bool IsRowChecked
@@ -88,31 +60,24 @@ namespace INetApp.ViewModels
         public ICommand SelectMessageCommand => new Command<MessageModel>(OnSelectMessage);
         public ICommand AproveCommand => new Command(OnAproveMessages);
         public ICommand RefuseCommand => new Command(OnRefuseMessages);
-        public ICommand IsCheckedChanged => new Command(OnCheckedChanged);
 
-        public MessageViewModel()
+        public MessageFavoriteViewModel()
         {
             MessageService = DependencyService.Get<IMessageService>();
         }
 
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
-            Title = Uri.UnescapeDataString(query["Name"]);
-            CategoryID = int.Parse(query["CategoryId"]);
-
             await Sincroniza();
-            //await base.InitializeAsync(query);
         }
 
         private async Task Sincroniza()
         {
             IsBusy = true;
 
-            MessagesDto messagesDto = await MessageService.GetMessageAsync(CategoryID);
+            MessageList = await MessageService.GetMessageLocalAsync();
 
-            MessageList = messagesDto.IsOk ? messagesDto.MessagesModel : new List<MessageModel>();
-
-            OnSelectTab(_selectecTab);
+            MessageItems = new ObservableCollection<MessageModel>(MessageList);
 
             Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
 
@@ -140,29 +105,17 @@ namespace INetApp.ViewModels
         private void OnSelectAll(bool TrueFalse)
         {
             IsBusy = true;
-            foreach (MessageModel item in MessageList.Where(a => _selectecTab != 1 || a.checkeado))
-            {
-                item.checkeado = TrueFalse;
-            }
-            OnSelectTab(_selectecTab);
+            MessageList.ForEach(a => a.checkeado = TrueFalse);
+            MessageItems = new ObservableCollection<MessageModel>(MessageList);
 
             IsRowChecked = TrueFalse;
             IsBusy = false;
         }
-        private void OnSelectTab(int selectedTab)
-        {
-            MessageItems = selectedTab == 0
-                ? new ObservableCollection<MessageModel>(MessageList)
-                : new ObservableCollection<MessageModel>(MessageList.Where(a => a.favorite));
-        }
 
         public bool IsRowSelect()
         {
-            IsChangeTab = true;
             int canti = MessageItems.Count(a => a.checkeado);
             SelectAll = MessageItems.Count == canti;
-            IsChangeTab = false;
-
             IsRowChecked = canti > 0;
             return IsRowChecked;
         }
@@ -179,7 +132,6 @@ namespace INetApp.ViewModels
                     IsRowChecked = false;
                     await Sincroniza();
                     await DialogService.ShowAlertAsync(Literales.toast_approve_messages, "", Literales.btn_text_accept);
-                    //IsInitialized = false;
                 }
                 else
                 {
@@ -188,7 +140,6 @@ namespace INetApp.ViewModels
             }
             IsBusy = false;
         }
-
         private async void OnRefuseMessages()
         {
             IsBusy = true;
@@ -201,7 +152,6 @@ namespace INetApp.ViewModels
                     await Sincroniza();
                     IsRowChecked = false;
                     await DialogService.ShowAlertAsync(Literales.toast_refuse_messages, "", Literales.btn_text_accept);
-                    //IsInitialized = false;
                 }
                 else
                 {
@@ -209,11 +159,6 @@ namespace INetApp.ViewModels
                 }
             }
             IsBusy = false;
-        }
-
-
-        private void OnCheckedChanged()
-        {
         }
     }
 }

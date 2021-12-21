@@ -95,6 +95,9 @@
     <Compile Update="Views\MessageDetailsView.xaml.cs">
       <DependentUpon>MessageDetailsView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\MessageFavoriteView.xaml.cs">
+      <DependentUpon>MessageFavoriteView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   
   <ItemGroup>

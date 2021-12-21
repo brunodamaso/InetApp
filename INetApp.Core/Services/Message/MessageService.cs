@@ -32,6 +32,13 @@ namespace INetApp.Services
             return messagesDto;
         }
 
+        public async Task<List<MessageModel>> GetMessageLocalAsync()
+        {
+            List<MessageModel> messages = await repositoryService.GetAll<MessageModel>();
+           
+            return messages;
+        }
+
         //public void MarkFavorite(int categoryId, ref List<MessageModel> _messagesModelApi)
         //{
         //    messageModelApi = _messagesModelApi;

@@ -11,6 +11,7 @@ namespace INetApp.Services
     public interface IRepositoryService
     {
         Task<T> Get<T>(object pk, bool withChildren = true) where T : new();
+        Task<List<T>> GetAll<T>(bool withChildren = true) where T : new();
         Task<List<T>> GetItemsWhere<T>(Expression<Func<T, bool>> whereClause, bool withChildren = true) where T : new();
         Task<bool> MarkMessageFavoriteAsync(MessageModel messageModel, bool IsFavorite);
 

@@ -93,7 +93,7 @@
         <ShellContent Route="Category" ContentTemplate="{DataTemplate views:CategoryView}" />
     </FlyoutItem>
     <FlyoutItem     Title="Solicitudes marcadas">
-        <ShellContent Route="Message" ContentTemplate="{DataTemplate views:MessageView}" />
+        <ShellContent Route="MessageFavorite" ContentTemplate="{DataTemplate views:MessageFavoriteView}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Opciones">

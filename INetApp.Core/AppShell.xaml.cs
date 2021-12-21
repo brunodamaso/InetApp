@@ -64,6 +64,7 @@ namespace INetApp
             Routing.RegisterRoute("Category", typeof(CategoryView));
             Routing.RegisterRoute("MainView", typeof(MainView));
             Routing.RegisterRoute("Message", typeof(MessageView));
+            Routing.RegisterRoute("MessageFavorite", typeof(MessageFavoriteView));
             Routing.RegisterRoute("MessageDetails", typeof(MessageDetailsView));
 
         }
