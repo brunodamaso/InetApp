@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace INetApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MessageFavoriteView : ContentPageBase
+    public partial class WebView : ContentPageBase
     {
-        public MessageFavoriteView()
+        public WebView()
         {
             InitializeComponent();
         }

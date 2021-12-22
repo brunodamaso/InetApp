@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using INetApp.APIWebServices;
+﻿using INetApp.APIWebServices;
 using INetApp.APIWebServices.Dtos;
 using INetApp.Models;
 using INetApp.Services.Identity;
-using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace INetApp.Services
 {
@@ -162,7 +160,6 @@ namespace INetApp.Services
                         foreach (Cabecera item in messageDto.MessageModel.fields.Cabecera)
                         {
                             Detail detail = new Detail();
-                            detail.Nombre = item.Nombre;
                             switch (campo)
                             {
                                 case 0:
@@ -180,9 +177,26 @@ namespace INetApp.Services
                                 case 4:
                                     detail.Campo = messageDto.MessageModel.fields.Datos[0].Campo5;
                                     break;
+                                case 5:
+                                    detail.Campo = messageDto.MessageModel.fields.Datos[0].Campo6;
+                                    break;
+                                case 6:
+                                    detail.Campo = messageDto.MessageModel.fields.Datos[0].Campo7;
+                                    break;
+                                case 7:
+                                    detail.Campo = messageDto.MessageModel.fields.Datos[0].Campo8;
+                                    break;
+                                case 8:
+                                    detail.Campo = messageDto.MessageModel.fields.Datos[0].Campo9;
+                                    break;
+                                case 9:
+                                    detail.Campo = messageDto.MessageModel.fields.Datos[0].Campo10;
+                                    break;
                                 default:
                                     break;
                             }
+                            detail.Nombre = item.Nombre;
+                            detail.IsURL = item.Nombre == MessageModel.URL_LABEL;
                             campo++;
                             messageDto.MessageModel.fields.Details.Add(detail);
                         }
@@ -203,7 +217,7 @@ namespace INetApp.Services
             return messageDto;
         }
 
-        public async Task<bool> ApproveMessage(MessageModel messageModel , bool isList = false)
+        public async Task<bool> ApproveMessage(MessageModel messageModel, bool isList = false)
         {
             bool resultado;
             try
@@ -241,7 +255,7 @@ namespace INetApp.Services
                 if (connectivityService.CheckConnectivity())
                 {
                     GetUser();
-                    foreach (var item in messageModels)
+                    foreach (MessageModel item in messageModels)
                     {
                         if (!await ApproveMessage(item, true))
                         {
@@ -300,7 +314,7 @@ namespace INetApp.Services
                 if (connectivityService.CheckConnectivity())
                 {
                     GetUser();
-                    foreach (var item in messageModels)
+                    foreach (MessageModel item in messageModels)
                     {
                         if (!await RefuseMessage(item, cause, true))
                         {

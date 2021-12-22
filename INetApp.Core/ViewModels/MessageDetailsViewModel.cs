@@ -55,7 +55,8 @@ namespace INetApp.ViewModels
         public ICommand SelectFavoriteCommand => new Command<bool>(OnSelectFavorite);
         public ICommand AproveCommand => new Command(OnAproveMessage);
         public ICommand RefuseCommand => new Command(OnRefuseMessage);
-
+        public ICommand ButtonUrlCommand => new Command<Detail>(OnButtonUrl);
+                
         public MessageDetailsViewModel()
         {
             MessageService = DependencyService.Get<IMessageService>();
@@ -131,6 +132,11 @@ namespace INetApp.ViewModels
                 }
             }
             IsBusy = true;
+        }
+
+        private async void OnButtonUrl(Detail detail)
+        {
+            await NavigationService.NavigateToAsync("WebView?" + detail.Campo);
         }
     }
 }

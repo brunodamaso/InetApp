@@ -7,6 +7,7 @@
     xmlns:models="clr-namespace:INetApp.Models;assembly=INetApp.Model" 
     xmlns:components="clr-namespace:INetApp.Views.Components"
     x:DataType="models:Detail"
+    xmlns:resources="clr-namespace:INetApp.Resources"
     x:Class="INetApp.Views.Components.MessageDetailsRow"
     x:Name="ViewMessageDetailsRow">
 
@@ -20,12 +21,13 @@
             <MultiBinding Converter="{StaticResource ThicknessConverter}">
                 <Binding Source="{StaticResource activity_horizontal_margin}" />
                 <Binding Source="{StaticResource splash_user_top_margin}" />
-                <Binding Source="{StaticResource activity_horizontal_margin}" />
+                <Binding Path="0" />
                 <Binding Path="0" />
             </MultiBinding>
         </Grid.Margin>
 
         <Label Grid.Row ="0" 
+               IsVisible="{Binding IsURL ,Converter={StaticResource ValueToBooleanConverter},ConverterParameter='not'}"
                VerticalTextAlignment="Start"
                VerticalOptions="StartAndExpand"
                HorizontalTextAlignment="Start"
@@ -49,6 +51,7 @@
         </Label>
 
         <Label Grid.Row ="1" 
+               IsVisible="{Binding IsURL ,Converter={StaticResource ValueToBooleanConverter},ConverterParameter='not'}"
                VerticalTextAlignment="Start"
                VerticalOptions="Start"
                HorizontalTextAlignment="Start"
@@ -63,16 +66,36 @@
                     <Binding Path="0" />
                 </MultiBinding>
             </Label.Padding>
-            <!--<Label.Padding>
-                <MultiBinding Converter="{StaticResource ThicknessConverter}">
-                    <Binding Source="{StaticResource splash_edit_text_left_padding}"/>
-                    <Binding Source="{StaticResource splash_vertical_margin}"/>
-                </MultiBinding>
-            </Label.Padding>-->
         </Label>
 
+        <Button Grid.Row ="0" 
+            IsVisible="{Binding IsURL}"
+            Style="{StaticResource ButtonDetail}"
+            Text="{Binding Source={x:Static resources:Literales.text_details}}" 
+            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MessageDetailsViewModel}}, Path=ButtonUrlCommand}"
+            CommandParameter="{Binding}"
+            FontSize="{Binding Source={StaticResource lv_row_text_size}, Converter={StaticResource StringToDoubleConverter}}" >
+            <Button.Margin>
+                <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                    <Binding Source="{StaticResource activity_horizontal_margin}" />
+                    <Binding Path="0" />
+                    <Binding Source="{StaticResource activity_horizontal_margin}" />
+                    <Binding Path="0" />
+                </MultiBinding>
+            </Button.Margin>
+            <Button.Padding>
+                <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                    <Binding Path="0" />
+                    <Binding Source="{StaticResource splash_edit_text_image_bottom_padding}" />
+                    <Binding Path="0" />
+                    <Binding Source="{StaticResource splash_edit_text_image_bottom_padding}" />
+                </MultiBinding>
+            </Button.Padding>
+            
+        </Button>
+        
         <BoxView Grid.Row ="2" 
-            Grid.Column="0"   
-            BackgroundColor="{StaticResource very_light_grey}" Margin="0,0" />
+                Grid.Column="0"   
+                BackgroundColor="{StaticResource very_light_grey}" Margin="0,0" />
     </Grid>
 </ContentView>
