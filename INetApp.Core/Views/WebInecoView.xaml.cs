@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace INetApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WebView : ContentPageBase
+    public partial class WebInecoView : ContentPageBase
     {
-        public WebView()
+        public WebInecoView()
         {
             InitializeComponent();
         }

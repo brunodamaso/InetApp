@@ -77,7 +77,6 @@ namespace INetApp.ViewModels
             MessageDto messageDto = await MessageService.GetMessageDetailsAsync(MessageModel.categoryId, MessageModel.messageId);
 
             MessageDetail = messageDto.IsOk ? messageDto.MessageModel.fields : new MessageDetails();
-            //Todo comportamiento para generar el boton que llama a una pagina de detalle
             Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
 
             IsBusy = false;
@@ -136,7 +135,7 @@ namespace INetApp.ViewModels
 
         private async void OnButtonUrl(Detail detail)
         {
-            await NavigationService.NavigateToAsync("WebView?" + detail.Campo);
+            await NavigationService.NavigateToAsync("WebView?Ruta=" + detail.Campo);
         }
     }
 }

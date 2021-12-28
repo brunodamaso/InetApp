@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using INetApp.APIWebServices.Dtos;
+﻿using INetApp.APIWebServices.Dtos;
 using INetApp.Models;
 using INetApp.ViewModels.Base;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace INetApp.Services
 {
@@ -35,7 +35,7 @@ namespace INetApp.Services
         public async Task<List<MessageModel>> GetMessageLocalAsync()
         {
             List<MessageModel> messages = await repositoryService.GetAll<MessageModel>();
-           
+
             return messages;
         }
 
@@ -89,7 +89,7 @@ namespace INetApp.Services
             bool retorno = await repositoryWebService.ApproveMessages(messageModels);
             if (retorno)
             {
-                foreach (var item in messageModels)
+                foreach (MessageModel item in messageModels)
                 {
                     await repositoryService.MarkMessageFavoriteAsync(item, false);
                 }
@@ -112,7 +112,7 @@ namespace INetApp.Services
             bool retorno = await repositoryWebService.RefuseMessages(messageModels, cause);
             if (retorno)
             {
-                foreach (var item in messageModels)
+                foreach (MessageModel item in messageModels)
                 {
                     await repositoryService.MarkMessageFavoriteAsync(item, false);
                 }

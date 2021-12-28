@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using IdentityModel.Client;
-using INetApp.APIWebServices.Dtos;
+﻿using INetApp.APIWebServices.Dtos;
 using INetApp.Extensions;
 using INetApp.Models;
 using INetApp.Resources;
 using INetApp.Services;
 using INetApp.Services.Identity;
-using INetApp.Services.Settings;
 using INetApp.Validations;
 using INetApp.ViewModels.Base;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels
@@ -24,7 +22,7 @@ namespace INetApp.ViewModels
         private string _authUrl;
 
         private readonly IIdentityService identityService;
-        private IUserService userService;
+        private readonly IUserService userService;
         private UserLoggedModel _UserLoggedModel;
 
         #region Properties
@@ -34,7 +32,7 @@ namespace INetApp.ViewModels
             set
             {
                 _userName = value;
-                RaisePropertyChanged(() => this.UserName);
+                RaisePropertyChanged(() => UserName);
             }
         }
 
@@ -44,7 +42,7 @@ namespace INetApp.ViewModels
             set
             {
                 _password = value;
-                RaisePropertyChanged(() => this.Password);
+                RaisePropertyChanged(() => Password);
             }
         }
 
@@ -64,7 +62,7 @@ namespace INetApp.ViewModels
             set
             {
                 _isValid = value;
-                RaisePropertyChanged(() => this.IsValid);
+                RaisePropertyChanged(() => IsValid);
             }
         }
 
@@ -74,7 +72,7 @@ namespace INetApp.ViewModels
             set
             {
                 _isLogin = value;
-                RaisePropertyChanged(() => this.IsLogin);
+                RaisePropertyChanged(() => IsLogin);
             }
         }
 
@@ -84,7 +82,7 @@ namespace INetApp.ViewModels
             set
             {
                 _authUrl = value;
-                RaisePropertyChanged(() => this.LoginUrl);
+                RaisePropertyChanged(() => LoginUrl);
             }
         }
 
@@ -111,13 +109,13 @@ namespace INetApp.ViewModels
         private void GetCredenciales()
         {
             KeyValuePair<string, object> credenciales = identityService.GetCredentialsFromPrefs();
-            this.UserName.Value = credenciales.Key.ToString();
+            UserName.Value = credenciales.Key.ToString();
         }
 
 
         public override Task InitializeAsync(IDictionary<string, string> query)
         {
-            var logout = query.GetValueAsBool("Logout");
+            (bool ContainsKeyAndValue, bool Value) logout = query.GetValueAsBool("Logout");
 
             if (logout.ContainsKeyAndValue && logout.Value)
             {
@@ -129,18 +127,17 @@ namespace INetApp.ViewModels
 
         private async void OnLoginClicked(object obj)
         {
-            this.IsBusy = true;
+            IsBusy = true;
             if (Validate())
             {
                 //todo progressbar en login
-                //todo progressbar en category
-                //todo progressbar en message
+                //todo progressbar en category sale gris
                 //boton reintentar login
 
-                UserLoggedDto userLoggedDto = await userService.GetUserLoggedDto(this.UserName.Value, this.Password.Value);
+                UserLoggedDto userLoggedDto = await userService.GetUserLoggedDto(UserName.Value, Password.Value);
                 if (userLoggedDto.IsOk) // && userLoggedDto.UserLoggedModel.permission)
                 {
-                    this.UserLoggedModel = userLoggedDto.UserLoggedModel;
+                    UserLoggedModel = userLoggedDto.UserLoggedModel;
                     await NavigationService.NavigateToAsync("//MainView");
                 }
                 else
@@ -159,12 +156,14 @@ namespace INetApp.ViewModels
                     }
                 }
             }
-            this.IsBusy = false;
-        }    
+            IsBusy = false;
+        }
 
         private void Logout()
         {
             settingsService.AuthAccessToken = "";
+            //todo borrar credenciales
+
 
             //string authIdToken = settingsService.AuthIdToken;
             //string logoutRequest = identityService.CreateLogoutRequest(authIdToken);
@@ -175,7 +174,7 @@ namespace INetApp.ViewModels
             //    this.LoginUrl = logoutRequest;
             //}
         }
-     
+
         private bool Validate()
         {
             bool isValidPassword = false;

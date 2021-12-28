@@ -66,6 +66,7 @@ namespace INetApp
             Routing.RegisterRoute("Message", typeof(MessageView));
             Routing.RegisterRoute("MessageFavorite", typeof(MessageFavoriteView));
             Routing.RegisterRoute("MessageDetails", typeof(MessageDetailsView));
+            Routing.RegisterRoute("WebView", typeof(WebInecoView));
 
         }
         private async void OnMenuItemClicked(object sender, EventArgs e)
