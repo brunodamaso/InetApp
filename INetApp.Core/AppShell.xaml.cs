@@ -61,12 +61,13 @@ namespace INetApp
 
         private void InitializeRouting()
         {
-            Routing.RegisterRoute("Category", typeof(CategoryView));
-            Routing.RegisterRoute("MainView", typeof(MainView));
+            Routing.RegisterRoute("//MainView", typeof(MainView));
+            Routing.RegisterRoute("//MainView/Category", typeof(CategoryView));
             Routing.RegisterRoute("Message", typeof(MessageView));
-            Routing.RegisterRoute("MessageFavorite", typeof(MessageFavoriteView));
+            Routing.RegisterRoute("//MainView/MessageFavorite", typeof(MessageFavoriteView));
             Routing.RegisterRoute("MessageDetails", typeof(MessageDetailsView));
-            Routing.RegisterRoute("WebView", typeof(WebInecoView));
+            Routing.RegisterRoute("MessageDetails/WebView", typeof(WebInecoView));
+            Routing.RegisterRoute("//MainView/Options", typeof(OptionsView));
 
         }
         private async void OnMenuItemClicked(object sender, EventArgs e)

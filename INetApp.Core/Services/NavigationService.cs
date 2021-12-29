@@ -1,10 +1,10 @@
-﻿using System;
+﻿using INetApp.Services.Settings;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using INetApp.Services.Settings;
 using Xamarin.Forms;
 
 namespace INetApp.Services

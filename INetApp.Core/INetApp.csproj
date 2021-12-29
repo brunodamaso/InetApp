@@ -98,6 +98,12 @@
     <Compile Update="Views\MessageFavoriteView.xaml.cs">
       <DependentUpon>MessageFavoriteView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\MessageView.xaml.cs">
+      <DependentUpon>MessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\OptionsView.xaml.cs">
+      <DependentUpon>OptionsView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\WebInecoView.xaml.cs">
       <DependentUpon>WebInecoView.xaml</DependentUpon>
     </Compile>
@@ -110,7 +116,7 @@
     <EmbeddedResource Update="Resources\INetAppDimens.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MessageView.xaml">
+    <EmbeddedResource Update="Views\OptionsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\WebInecoView.xaml">

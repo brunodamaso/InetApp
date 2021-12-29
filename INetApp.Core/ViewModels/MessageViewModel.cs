@@ -110,7 +110,7 @@ namespace INetApp.ViewModels
 
             MessagesDto messagesDto = await MessageService.GetMessageAsync(CategoryID);
 
-            MessageList = messagesDto.IsOk ? messagesDto.MessagesModel : new List<MessageModel>();
+            MessageList = messagesDto.IsOk ? messagesDto.MessagesModel.OrderBy(a => a.messageId).ToList() : new List<MessageModel>();
 
             OnSelectTab(_selectecTab);
 
@@ -146,7 +146,7 @@ namespace INetApp.ViewModels
             }
             OnSelectTab(_selectecTab);
 
-            IsRowChecked = TrueFalse;
+            IsRowChecked = TrueFalse && MessageList.Count(a => a.checkeado) > 0;
             IsBusy = false;
         }
         private void OnSelectTab(int selectedTab)

@@ -253,7 +253,20 @@ namespace INetApp.APIWebServices
         }
 
         #endregion
+        #region Options
+        public Task<bool> GetOptionsEntitiesFromApi(string Usuario, string Password)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                HttpResponse httpResponse = Get(API_URL_GET_OPTIONS_LIST , Usuario, Password).Result;
 
+                return httpResponse.IsOk;
+
+            });
+        }
+
+        
+        #endregion
         //public Task<CategoriasDto> ResetPassword(string Mail, string Usuario, string Password)
         //{
         //    RstPasswordRequest request = new RstPasswordRequest

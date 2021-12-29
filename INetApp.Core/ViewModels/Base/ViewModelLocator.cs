@@ -48,6 +48,7 @@ namespace INetApp.ViewModels.Base
             Xamarin.Forms.DependencyService.Register<MessageViewModel>();
             Xamarin.Forms.DependencyService.Register<MessageFavoriteViewModel>();
             Xamarin.Forms.DependencyService.Register<MessageDetailsViewModel>();
+            Xamarin.Forms.DependencyService.Register<OptionsViewModel>();
         }
 
         public static void UpdateDependencies()
@@ -59,6 +60,7 @@ namespace INetApp.ViewModels.Base
             Xamarin.Forms.DependencyService.RegisterSingleton<IUserService>(new UserService(repositoryWebService));
             Xamarin.Forms.DependencyService.RegisterSingleton<ICategoryService>(new CategoryService(repositoryWebService));
             Xamarin.Forms.DependencyService.RegisterSingleton<IMessageService>(new MessageService(repositoryWebService, repositoryService));
+            Xamarin.Forms.DependencyService.RegisterSingleton<IOptionsService>(new OptionsService(repositoryWebService, repositoryService));
 
         }
 

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using INetApp.Services;
+﻿using INetApp.Services;
 using INetApp.Services.Settings;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels.Base
@@ -22,7 +22,7 @@ namespace INetApp.ViewModels.Base
             set
             {
                 text_last_update = value;
-                RaisePropertyChanged(() => this.Text_last_update);
+                RaisePropertyChanged(() => Text_last_update);
             }
         }
 
@@ -34,7 +34,7 @@ namespace INetApp.ViewModels.Base
             set
             {
                 _isInitialized = value;
-                OnPropertyChanged(nameof(this.IsInitialized));
+                OnPropertyChanged(nameof(IsInitialized));
             }
         }
 
@@ -47,7 +47,7 @@ namespace INetApp.ViewModels.Base
             set
             {
                 _multipleInitialization = value;
-                OnPropertyChanged(nameof(this.MultipleInitialization));
+                OnPropertyChanged(nameof(MultipleInitialization));
             }
         }
 
@@ -60,7 +60,7 @@ namespace INetApp.ViewModels.Base
             set
             {
                 _isBusy = value;
-                OnPropertyChanged(nameof(this.IsBusy));
+                OnPropertyChanged(nameof(IsBusy));
             }
         }
 
@@ -81,9 +81,9 @@ namespace INetApp.ViewModels.Base
 
         public async void ApplyQueryAttributes(IDictionary<string, string> query)
         {
-            if (!this.IsInitialized)
+            if (!IsInitialized)
             {
-                this.IsInitialized = true;
+                IsInitialized = true;
                 await InitializeAsync(query);
             }
         }

@@ -30,8 +30,6 @@ namespace INetApp.ViewModels
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
             Ruta = Uri.UnescapeDataString(query["Ruta"]);
-
-            await base.InitializeAsync(query);
         }
     }
 }

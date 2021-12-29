@@ -97,7 +97,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Opciones">
-        <ShellContent  Route="Message" ContentTemplate="{DataTemplate views:MessageView}" />
+        <ShellContent  Route="Options" ContentTemplate="{DataTemplate views:OptionsView}" />
     </FlyoutItem>
     <FlyoutItem Title="Partes de trabajo" Icon="icon_feed.png">
         <ShellContent Route="Message" ContentTemplate="{DataTemplate views:MessageView}" />

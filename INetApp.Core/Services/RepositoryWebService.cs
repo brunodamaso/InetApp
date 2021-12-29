@@ -332,6 +332,28 @@ namespace INetApp.Services
         }
         #endregion
 
+        #region Options
+
+        public async Task<bool> GetOptions()
+        {
+            bool resultado = true;
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    GetUser();
+                    resultado = await RestApiImpl.GetOptionsEntitiesFromApi(userName, userPass);
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
+        }
+        #endregion
+
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()
         //{
         //    //BaseDto dto =new BaseDto(true, string.Empty, string.Empty, true);
