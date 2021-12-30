@@ -17,13 +17,13 @@ namespace INetApp.Models
 
         public OptionsModel(int optionsId)
         {
-            this.checkeado = false;
+            checkeado = false;
             this.optionsId = optionsId;
         }
 
-        private string name { get; set; }
-        private int optionsId { get; set; }
-        private bool checkeado { get; set; }
+        public string name { get; set; }
+        public int optionsId { get; set; }
+        public bool checkeado { get; set; }
 
         public int getOptionsId()
         {
@@ -51,15 +51,15 @@ namespace INetApp.Models
             this.checkeado = checkeado;
         }
 
-        override
-        public string ToString()
+        public
+        override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
 
             stringBuilder.Append("***** Message Model Options *****\n");
-            stringBuilder.Append("id=" + this.getOptionsId() + "\n");
-            stringBuilder.Append("name=" + this.getName() + "\n");
-            stringBuilder.Append("selected=" + ((this.isChecked()) ? "true" : "false") + "\n");
+            stringBuilder.Append("id=" + getOptionsId() + "\n");
+            stringBuilder.Append("name=" + getName() + "\n");
+            stringBuilder.Append("selected=" + ((isChecked()) ? "true" : "false") + "\n");
             stringBuilder.Append("*******************************");
 
             return stringBuilder.ToString();
