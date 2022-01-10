@@ -11,7 +11,6 @@ namespace INetApp.Services
     {
         private readonly IRepositoryWebService repositoryWebService;
         private protected readonly IUserService userService;
-        private List<OptionsModel> optionsModelApi;
 
         public OptionsService(IRepositoryWebService _repositoryWebService)
         {
@@ -21,9 +20,12 @@ namespace INetApp.Services
 
         public async Task<OptionsDto> GetOptionsAsync()
         {
-            OptionsDto retorno = await repositoryWebService.GetOptions();
-            return retorno;
+            return await repositoryWebService.GetOptions();            
         }
-        
+
+        public async Task<bool> MarkOptionsAsync(List<OptionsModel> optionsModels)
+        {
+            return await repositoryWebService.MarkOptions(optionsModels);
+        }
     }
 }

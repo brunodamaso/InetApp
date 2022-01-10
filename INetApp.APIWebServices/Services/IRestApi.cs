@@ -1,5 +1,7 @@
 ﻿using INetApp.APIWebServices.Dtos;
 using INetApp.APIWebServices.Responses;
+using INetApp.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace INetApp.APIWebServices
@@ -15,8 +17,9 @@ namespace INetApp.APIWebServices
         Task<bool> ApproveMessageFromApi(string Usuario, string Password, int CategoryId, int MessageId);
         Task<bool> RefuseMessageFromApi(string Usuario, string Password, int CategoryId, int MessageId, string cause);
         Task<OptionsDto> GetOptionsEntitiesFromApi(string Usuario, string Password);
+        Task<bool> MarkOptionsFromApi(string Usuario, string Password, string strOptionlist);
 
-        
+
         //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
 
     }

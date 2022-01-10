@@ -9,6 +9,7 @@ namespace INetApp.Services
     public interface IOptionsService
     {
         Task<OptionsDto> GetOptionsAsync();
-        
+        Task<bool> MarkOptionsAsync(List<OptionsModel> optionsModels);
+
     }
 }

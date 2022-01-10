@@ -21,6 +21,7 @@ namespace INetApp.Services
         Task<bool> RefuseMessage(MessageModel messageModel, string cause, bool isList = false);
         Task<bool> RefuseMessages(List<MessageModel> messageModels, string cause);
         Task<OptionsDto> GetOptions();
+        Task<bool> MarkOptions(List<OptionsModel> optionsModels);
 
         //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
 

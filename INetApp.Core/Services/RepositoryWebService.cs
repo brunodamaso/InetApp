@@ -336,7 +336,7 @@ namespace INetApp.Services
 
         public async Task<OptionsDto> GetOptions()
         {
-            OptionsDto optionsDto = new OptionsDto(); 
+            OptionsDto optionsDto = new OptionsDto();
             try
             {
                 if (connectivityService.CheckConnectivity())
@@ -361,7 +361,40 @@ namespace INetApp.Services
             return optionsDto;
         }
 
-        API_URL_SET_OPTIONS_LIST
+        public async Task<bool> MarkOptions(List<OptionsModel> optionList)
+        {
+            bool resultado = true;
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    string strOptionlist = "";
+                    foreach (OptionsModel optionId in optionList)
+                    {
+                        if (!strOptionlist.Equals(""))
+                        {
+                            strOptionlist += ",";
+                        }
+
+                        strOptionlist += optionId.optionsId.ToString();
+                    }
+
+                    GetUser();
+                    resultado = await RestApiImpl.MarkOptionsFromApi(userName, userPass, strOptionlist);
+
+                }
+                else
+                {
+                    resultado = false;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
+        }
         #endregion
 
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()

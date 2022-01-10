@@ -11,14 +11,12 @@ namespace INetApp.Services
     {
         private readonly IRepositoryWebService repositoryWebService;
         private readonly IRepositoryService repositoryService;
-        private protected readonly IUserService userService;
         private List<MessageModel> messageModelApi;
 
         public MessageService(IRepositoryWebService _repositoryWebService, IRepositoryService _repositoryService)
         {
             repositoryWebService = _repositoryWebService;
             repositoryService = _repositoryService;
-            userService = ViewModelLocator.Resolve<IUserService>();
         }
 
         public async Task<MessagesDto> GetMessageAsync(int categoryId)

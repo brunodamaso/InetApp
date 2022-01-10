@@ -6,6 +6,7 @@ using INetApp.APIWebServices.Entity;
 using INetApp.APIWebServices.Helpers;
 using INetApp.APIWebServices.Responses;
 using System.Web;
+using INetApp.Models;
 
 namespace INetApp.APIWebServices
 {
@@ -233,7 +234,7 @@ namespace INetApp.APIWebServices
             return Task.Factory.StartNew(() =>
             {
                 HttpResponse httpResponse = Get(API_URL_APPROVE_MESSAGE + CategoryId + "/" + MessageId, Usuario, Password).Result;
-                //todo existe la posibilidad de que el retorno sea distinto de 0?
+                //todo tomar solo la parte del resultado despues de :
                 return httpResponse.IsOk ? httpResponse.Resultado == "0" : httpResponse.IsOk;
 
             });
@@ -266,8 +267,18 @@ namespace INetApp.APIWebServices
                 return Mappers.ServiceMapper.ConvertToBusiness<OptionsDto, OptionsEntity>(response);
             });
         }
+        public Task<bool> MarkOptionsFromApi(string Usuario, string Password, string strOptionlist)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                HttpResponse httpResponse = Get(API_URL_SET_OPTIONS_LIST + strOptionlist, Usuario, Password).Result;
 
-        
+                return httpResponse.IsOk ? httpResponse.Resultado == "true" : httpResponse.IsOk;
+            });
+        }
+
+        //
+
         #endregion
         //public Task<CategoriasDto> ResetPassword(string Mail, string Usuario, string Password)
         //{

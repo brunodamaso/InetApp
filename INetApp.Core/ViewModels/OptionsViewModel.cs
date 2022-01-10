@@ -74,22 +74,8 @@ namespace INetApp.ViewModels
         {
             IsBusy = true;
 
-            //if (await DialogService.ShowAlertAsync(Literales.dialog_approve_messages, Literales.dialog_approve_title, Literales.dialog_approve_positive, Literales.cancel))
-            //{
-            //    List<MessageModel> messageModels = MessageItems.Where(a => a.checkeado).ToList();
-
-                if (await optionsService.MarkOptionsAsync(OptionsItems))
-            //    {
-            //        IsRowChecked = false;
-            //        await Sincroniza();
-            //        await DialogService.ShowAlertAsync(Literales.toast_approve_messages, "", Literales.btn_text_accept);
-            //        //IsInitialized = false;
-            //    }
-            //    else
-            //    {
-            //        await DialogService.ShowAlertAsync(Literales.toast_not_all_messages_approved, "", Literales.btn_text_accept);
-            //    }
-            //}
+            await optionsService.MarkOptionsAsync(OptionsItems.Where(a=>a.checkeado).ToList());
+            await Sincroniza();
             IsBusy = false;
         }
     }

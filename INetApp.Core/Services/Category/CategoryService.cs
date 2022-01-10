@@ -7,12 +7,10 @@ namespace INetApp.Services
     public class CategoryService : ICategoryService
     {
         private readonly IRepositoryWebService repositoryWebService;
-        private protected readonly IUserService userService;
 
         public CategoryService(IRepositoryWebService _repositoryWebService)
         {
             repositoryWebService = _repositoryWebService;
-            userService = ViewModelLocator.Resolve<IUserService>();
         }
 
         public async Task<CategorysDto> GetCategoryAsync()
