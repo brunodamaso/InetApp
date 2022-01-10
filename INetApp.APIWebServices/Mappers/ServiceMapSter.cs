@@ -54,6 +54,17 @@ namespace INetApp.APIWebServices.Mappers
                  .Map(dest => dest.date, src => DateTime.ParseExact(string.IsNullOrEmpty(src.date) ? DateTime.Now.ToString("yyyyMMdd") : src.date, "yyyyMMdd", CultureInfo.InvariantCulture))
                  .Map(dest => dest.fields, src => src.data == null ? null : JsonConvert.DeserializeObject<MessageDetails>(src.data));
 
+            TypeAdapterConfig<OptionsEntity, OptionsDto>
+                .NewConfig()
+                .EnableNonPublicMembers(true)
+                .Map(dest => dest.OptionsModel, src => src.OptionsEntities)
+                .IgnoreNullValues(true);
+
+            TypeAdapterConfig<OptionsEntity, OptionsModel>
+                .NewConfig()
+                .EnableNonPublicMembers(true)
+                .IgnoreNullValues(true);
+
         }
     }
 }

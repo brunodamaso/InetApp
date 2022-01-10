@@ -17,7 +17,7 @@ namespace INetApp.ViewModels
     public class MessageViewModel : ViewModelBase
     {
         private ObservableCollection<MessageModel> _MessageItems;
-        private readonly IMessageService MessageService;
+        private readonly IMessageService messageService;
         private int _selectecTab;
         private bool _SelectAll, IsChangeTab;
         private string _Title;
@@ -92,7 +92,7 @@ namespace INetApp.ViewModels
 
         public MessageViewModel()
         {
-            MessageService = DependencyService.Get<IMessageService>();
+            messageService = DependencyService.Get<IMessageService>();
         }
 
         public override async Task InitializeAsync(IDictionary<string, string> query)
@@ -108,7 +108,7 @@ namespace INetApp.ViewModels
         {
             IsBusy = true;
 
-            MessagesDto messagesDto = await MessageService.GetMessageAsync(CategoryID);
+            MessagesDto messagesDto = await messageService.GetMessageAsync(CategoryID);
 
             MessageList = messagesDto.IsOk ? messagesDto.MessagesModel.OrderBy(a => a.messageId).ToList() : new List<MessageModel>();
 
@@ -174,7 +174,7 @@ namespace INetApp.ViewModels
             {
                 List<MessageModel> messageModels = MessageItems.Where(a => a.checkeado).ToList();
             
-                if (await MessageService.ApproveMessagesAsync(messageModels))
+                if (await messageService.ApproveMessagesAsync(messageModels))
                 {
                     IsRowChecked = false;
                     await Sincroniza();
@@ -196,7 +196,7 @@ namespace INetApp.ViewModels
                     && !string.IsNullOrEmpty(cause))
             {
                 List<MessageModel> messageModels = MessageItems.Where(a => a.checkeado).ToList();
-                if (await MessageService.RefuseMessagesAsync(messageModels, cause))
+                if (await messageService.RefuseMessagesAsync(messageModels, cause))
                 {
                     await Sincroniza();
                     IsRowChecked = false;

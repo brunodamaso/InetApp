@@ -8,7 +8,7 @@ namespace INetApp.Services
 {
     public interface IOptionsService
     {
-        Task<bool> GetOptionsAsync();
+        Task<OptionsDto> GetOptionsAsync();
         
     }
 }

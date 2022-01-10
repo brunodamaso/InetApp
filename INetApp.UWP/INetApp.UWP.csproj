@@ -128,6 +128,12 @@
     <Content Include="..\INetApp.Droid\Resources\drawable-hdpi\mark_icon_yellow.png">
       <Link>Assets\mark_icon_yellow.png</Link>
     </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-hdpi\switch_off.png">
+      <Link>Assets\switch_off.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable-hdpi\switch_on.png">
+      <Link>Assets\switch_on.png</Link>
+    </Content>
     <Content Include="..\INetApp.Droid\Resources\drawable-xxhdpi\img_formacion.png">
       <Link>Assets\img_formacion.png</Link>
     </Content>

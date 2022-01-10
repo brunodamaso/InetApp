@@ -10,20 +10,18 @@ namespace INetApp.Services
     public class OptionsService : IOptionsService
     {
         private readonly IRepositoryWebService repositoryWebService;
-        private readonly IRepositoryService repositoryService;
         private protected readonly IUserService userService;
-        private List<MessageModel> messageModelApi;
+        private List<OptionsModel> optionsModelApi;
 
-        public OptionsService(IRepositoryWebService _repositoryWebService, IRepositoryService _repositoryService)
+        public OptionsService(IRepositoryWebService _repositoryWebService)
         {
             repositoryWebService = _repositoryWebService;
-            repositoryService = _repositoryService;
             userService = ViewModelLocator.Resolve<IUserService>();
         }
 
-        public async Task<bool> GetOptionsAsync()
+        public async Task<OptionsDto> GetOptionsAsync()
         {
-            bool retorno = await repositoryWebService.GetOptions();
+            OptionsDto retorno = await repositoryWebService.GetOptions();
             return retorno;
         }
         

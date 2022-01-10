@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"    
+    x:Class="INetApp.Views.Components.SwitchView"
+    xmlns:Components="clr-namespace:INetApp.Views.Components" 
+    x:DataType="Components:SwitchView"
+    x:Name="viewSwitch">
+
+    <ContentView.Resources>
+        <Style x:Key="SwitchView.Image.Toggled" TargetType="Image">
+            <Setter Property="Source" Value="switch_on.png" />
+            <Setter Property="Aspect" Value="AspectFit" />
+            <Setter Property="WidthRequest" Value="40" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+
+        <Style x:Key="SwitchView.Image.NotToggled" TargetType="Image"
+           BasedOn="{StaticResource SwitchView.Image.Toggled}">
+            <Setter Property="Source" Value="switch_off.png" />
+        </Style>
+    </ContentView.Resources>
+   
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <Image
+            x:Name="Imagen"
+            Grid.Row="0"
+            Grid.Column="0"
+            Style="{StaticResource SwitchView.Image.NotToggled}"
+            />
+        <!--<Label
+            x:Name="Label"
+            Grid.Row="0"
+            Grid.Column="2"
+            Text="{Binding Text, Source={Reference viewSwitch}}"
+            />-->
+        <Grid.GestureRecognizers>
+             <TapGestureRecognizer
+                Tapped="Handle_Tapped" />
+        </Grid.GestureRecognizers>
+    </Grid>
+</ContentView>

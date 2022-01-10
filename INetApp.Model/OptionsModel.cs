@@ -15,12 +15,6 @@ namespace INetApp.Models
         //private readonly string LABEL_EPI = "EPIs";
         //private readonly string LABEL_EMPLOYEE = "PortalEmpleado";
 
-        public OptionsModel(int optionsId)
-        {
-            checkeado = false;
-            this.optionsId = optionsId;
-        }
-
         public string name { get; set; }
         public int optionsId { get; set; }
         public bool checkeado { get; set; }

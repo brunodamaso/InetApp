@@ -11,26 +11,35 @@
     x:Class="INetApp.Views.OptionsView"
     xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
-    Title="{Binding Title}"
+    Title="{Binding Source={x:Static resources:Literales.options}}" 
     >
 
-    <Grid BackgroundColor="{StaticResource white}" RowSpacing="0">
+    <Grid BackgroundColor="{StaticResource white}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/> <!-- tabs-->
-            <RowDefinition Height="50"/> <!-- select all -->
+            <RowDefinition Height="auto"/> <!-- select all -->
             <RowDefinition Height="*"/> <!-- registros -->
             <RowDefinition Height="auto"/> <!-- acciones botones -->
             <RowDefinition Height="auto"/> <!-- progreso -->
             <RowDefinition Height="auto"/> <!-- reintentar -->
         </Grid.RowDefinitions>
-        
-        <components:Toolbar_main Grid.Row="0" SelectedIndex ="{Binding SelectecTab}"/>
-        <components:SelectAll Grid.Row="1" x:Name ="SelectAll" IsChecked="{Binding SelectAll}"/>
+        <Label Grid.Row="0" 
+               Margin="40,16,40,16"
+               TextColor="{StaticResource dark_grey}"
+               FontSize="16"
+               Text="{Binding Source={x:Static resources:Literales.options}}"
+               />
+        <Label Grid.Row="1" 
+               Margin="40,20"
+               FontSize="16"
+               TextColor="{StaticResource dark_grey}"
+               Text="{Binding Source={x:Static resources:Literales.text_options}}"
+               />
         <Grid Grid.Row="2" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
+            <Grid  Grid.Row="0" IsVisible="{Binding OptionsItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -40,23 +49,23 @@
                     SelectionMode="None"
                     SeparatorVisibility="None"
                     VerticalOptions="FillAndExpand"
-                    ItemsSource="{Binding MessageItems}">
+                    ItemsSource="{Binding OptionsItems}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                            <components:MessageRow/>
+                                <components:OptionsRow/>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                <ListView.Behaviors>
+                <!--<ListView.Behaviors>
                     <xct:EventToCommandBehavior
-                            Command="{Binding SelectMessageCommand}"
+                            Command="{Binding SelectOptionsCommand}"
                             EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
                             EventName="ItemTapped" />
-                </ListView.Behaviors>
+                </ListView.Behaviors>-->
             </ListView>
             </Grid>
-            <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
+            <Grid  Grid.Row="0" IsVisible="{Binding OptionsItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
                 <Label
                     HorizontalOptions="Center"
                     Text="{Binding Source={x:Static resources:Literales.empty_messages}}"
@@ -65,12 +74,11 @@
             </Grid>
         </Grid>
 
-        <components:View_Update Grid.Row="3"
-            IsVisible ="{Binding IsBusy, Converter={StaticResource ValueToBooleanConverter}, ConverterParameter='Not'}"
-            x:Name="tv_last_update" />
-
-      
-
+        <components:View_Accept Grid.Row="3"
+            Approve="{Binding AproveCommand}"
+            x:Name="tv_View_Actions" 
+            />
+        
         <BoxView Grid.Row="0"
             Grid.RowSpan="4"
             IsVisible="{Binding IsBusy}"

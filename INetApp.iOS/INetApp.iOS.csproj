@@ -76,13 +76,6 @@
     <Compile Include="Effects\CircleEffect.cs" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Icon-60%403x.png" />
-    <BundleResource Include="Resources\Icon-Small-40%403x.png" />
-    <BundleResource Include="Resources\Icon-Small%403x.png" />
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <BundleResource Include="Resources\eshop_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -96,21 +89,6 @@
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.7.0</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\fake_product_01.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\fake_product_03.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\fake_product_02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\fake_product_04.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\fake_product_05.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -163,67 +141,13 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Default.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\noimage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\default_product.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\banner.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default-568h%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default-Portrait.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default-Portrait%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-60%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-76.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-76%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-Small%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-Small-40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\fake_campaign_01.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\fake_campaign_02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\default_campaign.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\INetApp.Core\INetApp.csproj">
       <Project>{e80d4419-ae6c-437b-8970-d734f2059c8a}</Project>
       <Name>INetApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

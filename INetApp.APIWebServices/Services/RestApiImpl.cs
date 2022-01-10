@@ -234,7 +234,7 @@ namespace INetApp.APIWebServices
             {
                 HttpResponse httpResponse = Get(API_URL_APPROVE_MESSAGE + CategoryId + "/" + MessageId, Usuario, Password).Result;
                 //todo existe la posibilidad de que el retorno sea distinto de 0?
-                return httpResponse.IsOk;
+                return httpResponse.IsOk ? httpResponse.Resultado == "0" : httpResponse.IsOk;
 
             });
         }
@@ -247,21 +247,23 @@ namespace INetApp.APIWebServices
 
                 HttpResponse httpResponse = Get(API_URL_REFUSE_MESSAGE + CategoryId + "/" + MessageId +"/" + Cause, Usuario, Password).Result;
 
-                return httpResponse.IsOk;
-
+                return httpResponse.IsOk ? httpResponse.Resultado == "0" : httpResponse.IsOk;
             });
         }
 
         #endregion
         #region Options
-        public Task<bool> GetOptionsEntitiesFromApi(string Usuario, string Password)
+        public Task<OptionsDto> GetOptionsEntitiesFromApi(string Usuario, string Password)
         {
             return Task.Factory.StartNew(() =>
             {
                 HttpResponse httpResponse = Get(API_URL_GET_OPTIONS_LIST , Usuario, Password).Result;
 
-                return httpResponse.IsOk;
+                httpResponse.Resultado = $"{{OptionsEntities:{httpResponse.Resultado}}}";
 
+                ServiceResponse<OptionsEntity> response = ServiceHelper.CreateResponse<OptionsEntity>(httpResponse);
+
+                return Mappers.ServiceMapper.ConvertToBusiness<OptionsDto, OptionsEntity>(response);
             });
         }
 

@@ -16,85 +16,33 @@ namespace INetApp.ViewModels
 {
     public class OptionsViewModel : ViewModelBase
     {
-        private ObservableCollection<MessageModel> _MessageItems;
-        private readonly IOptionsService OptionsService;
-        private int _selectecTab;
-        private bool _SelectAll, IsChangeTab;
-        private string _Title;
-        private bool _RowChecked = false;
-        public List<MessageModel> MessageList;
-
+        private ObservableCollection<OptionsModel> _OptionsItems;
+        private readonly IOptionsService optionsService;
+        
         #region Properties
 
-        public ObservableCollection<MessageModel> MessageItems
+        public ObservableCollection<OptionsModel> OptionsItems
         {
-            get => _MessageItems;
+            get => _OptionsItems;
             set
             {
-                _MessageItems = value;
-                RaisePropertyChanged(() => MessageItems);
-            }
-        }
-        public string Title
-        {
-            get => _Title;
-            set
-            {
-                _Title = value;
-                RaisePropertyChanged(() => Title);
-            }
-        }
-        public bool SelectAll
-        {
-            get => _SelectAll;
-            set
-            {
-                _SelectAll = value;
-                RaisePropertyChanged(() => SelectAll);
-                if (!IsChangeTab)
-                {
-                    OnSelectAll(value);
-                }
-
-            }
-        }
-        public int SelectecTab
-        {
-            get => _selectecTab;
-            set
-            {
-                _selectecTab = value;
-                RaisePropertyChanged(() => SelectecTab);
-                OnSelectTab(value);
-                IsChangeTab = true;
-                SelectAll = MessageList.Count(a => a.checkeado) == MessageItems.Count;
-                IsChangeTab = false;
-
-            }
-        }
-        public bool IsRowChecked
-        {
-            get => _RowChecked;
-            set
-            {
-                _RowChecked = value;
-                RaisePropertyChanged(() => IsRowChecked);
+                _OptionsItems = value;
+                RaisePropertyChanged(() => OptionsItems);
             }
         }
 
         #endregion
 
-        public ICommand SelectMessageCommand => new Command<MessageModel>(OnSelectMessage);
+        //public ICommand SelectOptionsCommand => new Command<OptionsModel>(OnSelectMessage);
+        public ICommand AproveCommand => new Command(OnAproveOptions);
 
         public OptionsViewModel()
         {
-            OptionsService = DependencyService.Get<IOptionsService>();
+            optionsService = DependencyService.Get<IOptionsService>();
         }
 
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
-            Title = "";
-
             await Sincroniza();
             //await base.InitializeAsync(query);
         }
@@ -103,62 +51,46 @@ namespace INetApp.ViewModels
         {
             IsBusy = true;
 
-            bool messagesDto = await OptionsService.GetOptionsAsync();
+            OptionsDto optionsDto = await optionsService.GetOptionsAsync();
 
-            //MessageList = messagesDto.IsOk ? messagesDto.MessagesModel : new List<MessageModel>();
-
-            
-            Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            OptionsItems = optionsDto.IsOk ? new ObservableCollection<OptionsModel>(optionsDto.OptionsModel) : new ObservableCollection<OptionsModel>();
 
             IsBusy = false;
         }
 
-        private async void OnSelectMessage(MessageModel messageModel)
+        //private void OnSelectMessage(OptionsModel optionsModel)
+        //{
+        //    IsBusy = true;
+        //    foreach (OptionsModel item in OptionsItems.Where(a => a.name == optionsModel.name))
+        //    {
+        //        item.checkeado = !optionsModel.checkeado;
+        //    }
+
+        //    OptionsItems = new ObservableCollection<OptionsModel>(OptionsItems);
+        //    IsBusy = false;
+        //}
+
+        private async void OnAproveOptions()
         {
             IsBusy = true;
-            string StringParametro = JsonConvert.SerializeObject(messageModel);
 
-            Dictionary<string, string> Parametro = new Dictionary<string, string>
-                {
-                    { "MessageModel", StringParametro }
-                };
-            await NavigationService.NavigateToAsync("MessageDetails", Parametro);
-            //Todo obliga a refrescar la pantalla al regresar
-            //pudiera optimizarse llenando la tabla localmente y hacerle acciones a la misma
-            //borrar o cambiar favorite
-            //https://theconfuzedsourcecode.wordpress.com/2020/06/09/overriding-back-button-in-xamarin-forms-shell/
-            IsInitialized = false;
+            //if (await DialogService.ShowAlertAsync(Literales.dialog_approve_messages, Literales.dialog_approve_title, Literales.dialog_approve_positive, Literales.cancel))
+            //{
+            //    List<MessageModel> messageModels = MessageItems.Where(a => a.checkeado).ToList();
+
+                if (await optionsService.MarkOptionsAsync(OptionsItems))
+            //    {
+            //        IsRowChecked = false;
+            //        await Sincroniza();
+            //        await DialogService.ShowAlertAsync(Literales.toast_approve_messages, "", Literales.btn_text_accept);
+            //        //IsInitialized = false;
+            //    }
+            //    else
+            //    {
+            //        await DialogService.ShowAlertAsync(Literales.toast_not_all_messages_approved, "", Literales.btn_text_accept);
+            //    }
+            //}
             IsBusy = false;
         }
-
-        private void OnSelectAll(bool TrueFalse)
-        {
-            IsBusy = true;
-            foreach (MessageModel item in MessageList.Where(a => _selectecTab != 1 || a.checkeado))
-            {
-                item.checkeado = TrueFalse;
-            }
-            OnSelectTab(_selectecTab);
-
-            IsRowChecked = TrueFalse && MessageList.Count(a => a.checkeado) > 0;
-            IsBusy = false;
-        }
-        private void OnSelectTab(int selectedTab)
-        {
-            MessageItems = selectedTab == 0
-                ? new ObservableCollection<MessageModel>(MessageList)
-                : new ObservableCollection<MessageModel>(MessageList.Where(a => a.favorite));
-        }
-
-        public bool IsRowSelect()
-        {
-            IsChangeTab = true;
-            int canti = MessageItems.Count(a => a.checkeado);
-            SelectAll = MessageItems.Count == canti;
-            IsChangeTab = false;
-
-            IsRowChecked = canti > 0;
-            return IsRowChecked;
-        }        
     }
 }

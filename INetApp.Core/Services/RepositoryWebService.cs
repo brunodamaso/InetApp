@@ -334,24 +334,34 @@ namespace INetApp.Services
 
         #region Options
 
-        public async Task<bool> GetOptions()
+        public async Task<OptionsDto> GetOptions()
         {
-            bool resultado = true;
+            OptionsDto optionsDto = new OptionsDto(); 
             try
             {
                 if (connectivityService.CheckConnectivity())
                 {
                     GetUser();
-                    resultado = await RestApiImpl.GetOptionsEntitiesFromApi(userName, userPass);
+                    optionsDto = await RestApiImpl.GetOptionsEntitiesFromApi(userName, userPass);
+
+                    if (optionsDto.IsOk)
+                    { }
+                }
+                else
+                {
+                    optionsDto.IsOk = false;
+                    optionsDto.IsConnected = false;
                 }
             }
             catch (Exception)
             {
-                resultado = false;
+                optionsDto.IsOk = false;
             }
 
-            return resultado;
+            return optionsDto;
         }
+
+        API_URL_SET_OPTIONS_LIST
         #endregion
 
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()

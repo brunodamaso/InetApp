@@ -71,6 +71,9 @@
     <Compile Update="Views\CategoryView.xaml.cs">
       <DependentUpon>CategoryView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Components\OptionsRow.xaml.cs">
+      <DependentUpon>OptionsRow.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Components\MessageDetailsRow.xaml.cs">
       <DependentUpon>MessageDetailsRow.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,9 @@
     </Compile>
     <Compile Update="Views\Components\toolbar_main.xaml.cs">
       <DependentUpon>Toolbar_main.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Components\View_Accept.xaml.cs">
+      <DependentUpon>View_Accept.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Components\view_actions.xaml.cs">
       <DependentUpon>View_Actions.xaml</DependentUpon>

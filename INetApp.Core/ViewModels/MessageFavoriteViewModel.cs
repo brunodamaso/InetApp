@@ -17,7 +17,7 @@ namespace INetApp.ViewModels
     public class MessageFavoriteViewModel : ViewModelBase
     {
         private ObservableCollection<MessageModel> _MessageItems;
-        private readonly IMessageService MessageService;
+        private readonly IMessageService messageService;
         private bool _SelectAll;
         private bool _RowChecked = false;
         public List<MessageModel> MessageList;
@@ -62,7 +62,7 @@ namespace INetApp.ViewModels
 
         public MessageFavoriteViewModel()
         {
-            MessageService = DependencyService.Get<IMessageService>();
+            messageService = DependencyService.Get<IMessageService>();
         }
 
         public override async Task InitializeAsync(IDictionary<string, string> query)
@@ -74,7 +74,7 @@ namespace INetApp.ViewModels
         {
             IsBusy = true;
 
-            MessageList = await MessageService.GetMessageLocalAsync();
+            MessageList = await messageService.GetMessageLocalAsync();
 
             MessageItems = new ObservableCollection<MessageModel>(MessageList);
 
@@ -126,7 +126,7 @@ namespace INetApp.ViewModels
             {
                 List<MessageModel> messageModels = MessageItems.Where(a => a.checkeado).ToList();
             
-                if (await MessageService.ApproveMessagesAsync(messageModels))
+                if (await messageService.ApproveMessagesAsync(messageModels))
                 {
                     IsRowChecked = false;
                     await Sincroniza();
@@ -146,7 +146,7 @@ namespace INetApp.ViewModels
                     && !string.IsNullOrEmpty(cause))
             {
                 List<MessageModel> messageModels = MessageItems.Where(a => a.checkeado).ToList();
-                if (await MessageService.RefuseMessagesAsync(messageModels, cause))
+                if (await messageService.RefuseMessagesAsync(messageModels, cause))
                 {
                     await Sincroniza();
                     IsRowChecked = false;
