@@ -1,0 +1,47 @@
+﻿<views:ContentPageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:INetApp.Views" 
+    xmlns:viewmodels="clr-namespace:INetApp.ViewModels" 
+    x:DataType="viewmodels:InfoViewModel"
+    x:Class="INetApp.Views.InfoView"
+    xmlns:resources="clr-namespace:INetApp.Resources"
+    xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp" xmlns:components="clr-namespace:INetApp.Views.Components"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    Title="{Binding  Source={x:Static resources:Literales.app_name}}"
+    x:Name="ViewInfo">
+
+    <Grid BackgroundColor="{StaticResource white}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="auto"/>            
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" 
+               Margin="40,16,40,16"
+               TextColor="{StaticResource dark_grey}"
+               FontSize="16"
+               Text="{Binding Source={x:Static resources:Literales.info_inetapp}}"
+               />
+        <BoxView Grid.Row="1" 
+               Margin="32,0"
+                 BackgroundColor="{StaticResource darker_grey}"
+               />
+        <Label Grid.Row="2" 
+               Margin="40,20"
+               FontSize="16"
+               TextColor="{StaticResource dark_grey}"
+               Text="{Binding Source={x:Static resources:Literales.text_info}}"
+               />
+        <Image Grid.Row="3"
+               Margin="40,20"
+               Source="info_opciones.png"/>
+
+        <components:View_Accept Grid.Row="4"
+            Approve="{Binding AproveCommand}"
+            x:Name="tv_View_Actions" 
+            />
+    </Grid>
+</views:ContentPageBase>

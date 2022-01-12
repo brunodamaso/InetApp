@@ -110,6 +110,9 @@
     <Compile Update="Views\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\InfoView.xaml.cs">
+      <DependentUpon>InfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\WebInecoView.xaml.cs">
       <DependentUpon>WebInecoView.xaml</DependentUpon>
     </Compile>

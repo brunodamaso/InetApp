@@ -468,9 +468,11 @@
   </data>
   <data name="info_inetapp" xml:space="preserve">
     <value>Info InetApp</value>
+    <comment>bd</comment>
   </data>
   <data name="text_info" xml:space="preserve">
     <value>Puedes activar o desactivar las distintas bandejas de solicitudes a través del menú principal:</value>
+    <comment>bd</comment>
   </data>
   <data name="text_options" xml:space="preserve">
     <value>Estas son las Bandejas de solicitudes pendientes disponibles actualmente:</value>

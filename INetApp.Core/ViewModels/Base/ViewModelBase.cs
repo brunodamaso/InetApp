@@ -100,7 +100,7 @@ namespace INetApp.ViewModels.Base
         {
             IsBusy = true;
 
-            await NavigationService.NavigateToAsync("//InfoView");
+            await NavigationService.NavigateToAsync("InfoView");
 
             IsBusy = false;
         }

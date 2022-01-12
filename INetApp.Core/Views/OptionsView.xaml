@@ -17,9 +17,9 @@
     <Grid BackgroundColor="{StaticResource white}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/> <!-- tabs-->
-            <RowDefinition Height="auto"/> <!-- select all -->
-            <RowDefinition Height="*"/> <!-- registros -->
-            <RowDefinition Height="auto"/> <!-- acciones botones -->
+            <RowDefinition Height="2"/> <!-- select all -->
+            <RowDefinition Height="auto"/> <!-- registros -->
+            <RowDefinition Height="*"/> <!-- acciones botones -->
             <RowDefinition Height="auto"/> <!-- progreso -->
             <RowDefinition Height="auto"/> <!-- reintentar -->
         </Grid.RowDefinitions>
@@ -29,13 +29,17 @@
                FontSize="16"
                Text="{Binding Source={x:Static resources:Literales.options}}"
                />
-        <Label Grid.Row="1" 
+        <BoxView Grid.Row="1" 
+               Margin="32,0"
+                 BackgroundColor="{StaticResource darker_grey}"
+               />
+        <Label Grid.Row="2" 
                Margin="40,20"
                FontSize="16"
                TextColor="{StaticResource dark_grey}"
                Text="{Binding Source={x:Static resources:Literales.text_options}}"
                />
-        <Grid Grid.Row="2" >
+        <Grid Grid.Row="3" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -74,7 +78,7 @@
             </Grid>
         </Grid>
 
-        <components:View_Accept Grid.Row="3"
+        <components:View_Accept Grid.Row="4"
             Approve="{Binding AproveCommand}"
             x:Name="tv_View_Actions" 
             />
@@ -84,7 +88,7 @@
             IsVisible="{Binding IsBusy}"
             BackgroundColor="Black" 
             Opacity="0.3"/>
-        <ActivityIndicator Grid.Row="1" 
+        <ActivityIndicator Grid.Row="0" 
                            Grid.RowSpan="4"
                     HorizontalOptions="Center"
                     IsRunning="{Binding IsBusy}"
