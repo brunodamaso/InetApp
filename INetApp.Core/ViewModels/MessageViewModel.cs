@@ -88,7 +88,6 @@ namespace INetApp.ViewModels
         public ICommand SelectMessageCommand => new Command<MessageModel>(OnSelectMessage);
         public ICommand AproveCommand => new Command(OnAproveMessages);
         public ICommand RefuseCommand => new Command(OnRefuseMessages);
-        public ICommand IsCheckedChanged => new Command(OnCheckedChanged);
 
         public MessageViewModel()
         {
@@ -210,10 +209,9 @@ namespace INetApp.ViewModels
             }
             IsBusy = false;
         }
-
-
-        private void OnCheckedChanged()
+        public override async void OnInfoCommand()
         {
+            //Inhabilitar llamado a info en esta pantalla
         }
     }
 }

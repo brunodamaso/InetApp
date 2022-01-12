@@ -173,9 +173,11 @@
   </data>
   <data name="app_name" xml:space="preserve">
     <value>InetApp</value>
+    <comment>bd</comment>
   </data>
   <data name="btn_text_login" xml:space="preserve">
     <value>Entrar</value>
+    <comment>bd</comment>
   </data>
   <data name="btn_text_retry" xml:space="preserve">
     <value>Reintentar</value>
@@ -191,6 +193,7 @@
   </data>
   <data name="exception_message_no_connection" xml:space="preserve">
     <value>La conexión a internet parece estar desactivada</value>
+    <comment>bd</comment>
   </data>
   <data name="exception_message_user_not_found" xml:space="preserve">
     <value>No es posible obtener datos de usuario. Compruebe su conexión a internet</value>
@@ -200,15 +203,18 @@
   </data>
   <data name="exception_message_login" xml:space="preserve">
     <value>Usuario o contraseña incorrectos. Por favor inténtelo de nuevo.</value>
+    <comment>bd</comment>
   </data>
   <data name="hint_text_user" xml:space="preserve">
     <value>Usuario</value>
+    <comment>bd</comment>
   </data>
   <data name="hint_text_email" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="hint_text_password" xml:space="preserve">
     <value>Contraseña</value>
+    <comment>bd</comment>
   </data>
   <data name="string_content_description" xml:space="preserve">
     <value>Vista no accesible</value>
@@ -218,21 +224,25 @@
   </data>
   <data name="action_favorites" xml:space="preserve">
     <value>Solicitudes marcadas </value>
+    <comment>bd</comment>
   </data>
   <data name="action_messages" xml:space="preserve">
     <value>Bandeja de entrada</value>
+    <comment>bd</comment>
   </data>
   <data name="action_logout" xml:space="preserve">
     <value>Salir</value>
   </data>
   <data name="activity_title_message_category" xml:space="preserve">
     <value>Bandeja de entrada</value>
+    <comment>bd</comment>
   </data>
   <data name="activity_title_main" xml:space="preserve">
     <value>Principal</value>
   </data>
   <data name="activity_title_message_details" xml:space="preserve">
     <value>Detalle de solicitud</value>
+    <comment>bd</comment>
   </data>
   <data name="activity_title_message_list" xml:space="preserve">
     <value>Lista de solicitudes</value>
@@ -242,12 +252,15 @@
   </data>
   <data name="view_text_last_updated" xml:space="preserve">
     <value>ÚLTIMA ACTUALIZACIÓN: {0}</value>
+    <comment>bd</comment>
   </data>
   <data name="btn_text_refuse" xml:space="preserve">
     <value>RECHAZAR</value>
+    <comment>bd</comment>
   </data>
   <data name="btn_text_approve" xml:space="preserve">
     <value>APROBAR</value>
+    <comment>bd</comment>
   </data>
   <data name="hint_text_label" xml:space="preserve">
     <value>Etiqueta</value>
@@ -257,9 +270,11 @@
   </data>
   <data name="dialog_approve_title" xml:space="preserve">
     <value>Aprobar solicitud</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_approve_message" xml:space="preserve">
     <value>¿Desea aprobar la solicitud?</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_approve_install" xml:space="preserve">
     <value>Existe una nueva versión de la aplicación</value>
@@ -269,72 +284,95 @@
   </data>
   <data name="dialog_approve_positive" xml:space="preserve">
     <value>Aprobar</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_refuse_title" xml:space="preserve">
     <value>Rechazar solicitud</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_refuse_message" xml:space="preserve">
     <value>¿Desea rechazar la solicitud?</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_refuse_reason" xml:space="preserve">
     <value>Motivo</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_refuse_positive" xml:space="preserve">
     <value>Rechazar</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_approve_messages" xml:space="preserve">
     <value>Tiene algunas solicitudes marcadas. ¿Desea aprobarlas?</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_refuse_messages" xml:space="preserve">
     <value>Tiene algunas solicitudes marcadas. ¿Desea rechazarlas?</value>
+    <comment>bd</comment>
   </data>
   <data name="tab_text_all" xml:space="preserve">
     <value>TODAS</value>
+    <comment>bd</comment>
   </data>
   <data name="tab_text_marked" xml:space="preserve">
     <value>MARCADAS</value>
+    <comment>bd</comment>
   </data>
   <data name="toast_approve_message" xml:space="preserve">
     <value>Solicitud aprobada correctamente</value>
+    <comment>bd</comment>
   </data>
   <data name="toast_approve_message_error" xml:space="preserve">
     <value>No ha sido posible aprobar la solicitud</value>
+    <comment>bd</comment>
   </data>
   <data name="toast_refuse_message" xml:space="preserve">
     <value>Solicitud rechazada correctamente</value>
+    <comment>bd</comment>
   </data>
   <data name="toast_refuse_message_error" xml:space="preserve">
     <value>No ha sido posible rechazar la solicitud</value>
+    <comment>bd</comment>
   </data>
   <data name="toast_approve_messages" xml:space="preserve">
     <value>Solicitudes aprobadas correctamente</value>
+    <comment>bd</comment>
   </data>
   <data name="toast_refuse_messages" xml:space="preserve">
     <value>Solicitudes rechazadas correctamente</value>
+    <comment>bd</comment>
   </data>
   <data name="username_empty_error" xml:space="preserve">
     <value>Usuario vacio. Por favor inténtelo de nuevo</value>
+    <comment>bd</comment>
   </data>
   <data name="password_empty_error" xml:space="preserve">
     <value>Contraseña vacia. Por favor inténtelo de nuevo</value>
+    <comment>bd</comment>
   </data>
   <data name="toast_not_all_messages_approved" xml:space="preserve">
     <value>Algunos mensajes no han sido aprobados</value>
+    <comment>bd</comment>
   </data>
   <data name="toast_not_all_messages_refused" xml:space="preserve">
     <value>Algunos mensajes no han sido rechazados</value>
+    <comment>bd</comment>
   </data>
   <data name="empty_messages" xml:space="preserve">
     <value>No existen solicitudes</value>
+    <comment>bd</comment>
   </data>
   <data name="empty_categories" xml:space="preserve">
     <value>No hay elementos en la bandeja de entrada</value>
+    <comment>bd</comment>
   </data>
   <data name="text_details" xml:space="preserve">
     <value>DETALLES</value>
+    <comment>bd</comment>
   </data>
   <data name="seleccionartodos" xml:space="preserve">
     <value>Seleccionar todos</value>
+    <comment>bd</comment>
   </data>
   <data name="notification_title" xml:space="preserve">
     <value>No se pudo abrir la puerta.</value>
@@ -347,15 +385,18 @@
   </data>
   <data name="options" xml:space="preserve">
     <value>Opciones</value>
+    <comment>bd</comment>
   </data>
   <data name="action_parts" xml:space="preserve">
     <value>Partes de trabajo</value>
+    <comment>bd</comment>
   </data>
   <data name="action_search" xml:space="preserve">
     <value>Búsqueda</value>
   </data>
   <data name="btn_text_accept" xml:space="preserve">
     <value>Aceptar</value>
+    <comment>bd</comment>
   </data>
   <data name="btn_reintentar" xml:space="preserve">
     <value>Reintentar</value>
@@ -365,6 +406,7 @@
   </data>
   <data name="dialog_refuse_text" xml:space="preserve">
     <value>Debe informar el motivo de rechazo</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_approve_search" xml:space="preserve">
     <value>Introduzca mínimo 4 carácteres</value>
@@ -377,6 +419,7 @@
   </data>
   <data name="toast_approve_options" xml:space="preserve">
     <value>Opciones guardadas correctamente</value>
+    <comment>bd</comment>
   </data>
   <data name="toast_save_parts" xml:space="preserve">
     <value>Parte guardado correctamente</value>
@@ -431,6 +474,7 @@
   </data>
   <data name="text_options" xml:space="preserve">
     <value>Estas son las Bandejas de solicitudes pendientes disponibles actualmente:</value>
+    <comment>bd</comment>
   </data>
   <data name="text_combo" xml:space="preserve">
     <value>-SELECCIONA PROYECTO-</value>
@@ -443,6 +487,7 @@
   </data>
   <data name="action_qr" xml:space="preserve">
     <value>Control de acceso - Lector QR</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_correct_access" xml:space="preserve">
     <value>Acceso correcto.</value>
@@ -455,11 +500,14 @@
   </data>
   <data name="action_formation" xml:space="preserve">
     <value>Formación y Conocimiento</value>
+    <comment>bd</comment>
   </data>
   <data name="no_permissions" xml:space="preserve">
     <value>No dispone de permisos para acceder a este contenido</value>
+    <comment>bd</comment>
   </data>
   <data name="cancel" xml:space="preserve">
     <value>Cancelar</value>
+    <comment>bd</comment>
   </data>
 </root>

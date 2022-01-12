@@ -234,8 +234,7 @@ namespace INetApp.APIWebServices
             return Task.Factory.StartNew(() =>
             {
                 HttpResponse httpResponse = Get(API_URL_APPROVE_MESSAGE + CategoryId + "/" + MessageId, Usuario, Password).Result;
-                //todo tomar solo la parte del resultado despues de :
-                return httpResponse.IsOk ? httpResponse.Resultado == "0" : httpResponse.IsOk;
+                return httpResponse.IsOk ? httpResponse.Resultado.Contains("0") : httpResponse.IsOk;
 
             });
         }
@@ -248,7 +247,7 @@ namespace INetApp.APIWebServices
 
                 HttpResponse httpResponse = Get(API_URL_REFUSE_MESSAGE + CategoryId + "/" + MessageId +"/" + Cause, Usuario, Password).Result;
 
-                return httpResponse.IsOk ? httpResponse.Resultado == "0" : httpResponse.IsOk;
+                return httpResponse.IsOk ? httpResponse.Resultado.Contains("0") : httpResponse.IsOk;
             });
         }
 
@@ -273,7 +272,7 @@ namespace INetApp.APIWebServices
             {
                 HttpResponse httpResponse = Get(API_URL_SET_OPTIONS_LIST + strOptionlist, Usuario, Password).Result;
 
-                return httpResponse.IsOk ? httpResponse.Resultado == "true" : httpResponse.IsOk;
+                return httpResponse.IsOk ? httpResponse.Resultado.ToLower().Contains("true") : httpResponse.IsOk;
             });
         }
 

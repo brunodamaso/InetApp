@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using IdentityModel.Client;
 using INetApp.APIWebServices.Dtos;
 using INetApp.Models;
 using INetApp.Resources;
@@ -74,8 +75,12 @@ namespace INetApp.ViewModels
         {
             IsBusy = true;
 
-            await optionsService.MarkOptionsAsync(OptionsItems.Where(a=>a.checkeado).ToList());
-            await Sincroniza();
+            if (await optionsService.MarkOptionsAsync(OptionsItems.Where(a => a.checkeado).ToList()))
+            {
+                await DialogService.ShowAlertAsync(Literales.toast_approve_options, "", Literales.btn_text_accept);
+            }
+            await NavigationService.NavigateToAsync("//MainView");
+
             IsBusy = false;
         }
     }
