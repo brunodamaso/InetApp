@@ -25,7 +25,7 @@ namespace INetApp.Services
             if (messagesDto.IsOk)
             {
                 messageModelApi = messagesDto.MessagesModel;
-                await MarkFavoriteAsync(categoryId);
+                await GetFavoriteAsync(categoryId);
             }
             return messagesDto;
         }
@@ -33,8 +33,17 @@ namespace INetApp.Services
         public async Task<List<MessageModel>> GetMessageLocalAsync()
         {
             List<MessageModel> messages = await repositoryService.GetAll<MessageModel>();
+            foreach (var item in messages)
+            {
+                MessageDto messageDto = await repositoryWebService.GetMessageDetails(item.categoryId ,item.messageId);
+                if (!messageDto.IsOk)
+                {
+                    item.favorite = false;
+                    await repositoryService.DeleteItemsWhere<MessageModel>(a=>a.categoryId == item.categoryId && a.messageId == item.messageId);
+                }
+            }
 
-            return messages;
+            return messages.Where(a => a.favorite).ToList();
         }
 
         //public void MarkFavorite(int categoryId, ref List<MessageModel> _messagesModelApi)
@@ -42,7 +51,7 @@ namespace INetApp.Services
         //    messageModelApi = _messagesModelApi;
         //    MarkFavoriteAsync(categoryId);
         //}
-        public async Task MarkFavoriteAsync(int categoryId)
+        private async Task GetFavoriteAsync(int categoryId)
         {
             List<MessageModel> messagesModel = await repositoryService.GetItemsWhere<MessageModel>(a => a.categoryId == categoryId);
             if (messagesModel.Count > 0)

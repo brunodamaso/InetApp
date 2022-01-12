@@ -28,7 +28,7 @@ namespace INetApp.Services
 
         Task<bool> DeleteItem<T>(T item);
         Task<bool> DeleteItem<T>(object pk) where T : new();
-        //Task<bool> DeleteItemWhereId<T>(int id);
+        Task<bool> DeleteItemWhere<T>(Expression<Func<T, bool>> whereClause) where T : new();
         Task<bool> DeleteAll<T>();
 
         #endregion

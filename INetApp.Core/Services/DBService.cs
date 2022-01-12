@@ -260,6 +260,17 @@ namespace INetApp.Services
             return retorno;
         }
 
+        public async Task<bool> DeleteItemWhere<T>(Expression<Func<T, bool>> whereClause) where T : new()
+        {
+            bool retorno = true;
+            List<T> datos = await db.Table<T>().Where(whereClause).ToListAsync();
+            foreach (var item in datos)
+            {
+                retorno = (await db.DeleteAsync(item) > 0) && retorno;
+            }
+            return retorno;
+        }
+            
         //public async Task<int> DeleteItemWhereId<T>(int id)
         //{
         //    int deleted = await db.DeleteAsync<T>(id);

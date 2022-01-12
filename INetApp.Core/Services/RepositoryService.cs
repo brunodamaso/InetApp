@@ -35,7 +35,11 @@ namespace INetApp.Services
         {
             return await dbService.GetItemsWhere<T>(whereClause);
         }
-
+        public async Task<bool> DeleteItemsWhere<T>(Expression<Func<T, bool>> whereClause, bool withChildren = true) where T : new()
+        {
+            return await dbService.DeleteItemWhere(whereClause);
+        }
+        
         public async Task<bool> MarkMessageFavoriteAsync(MessageModel messageModel, bool IsFavorite)
         {
             bool retorno;
