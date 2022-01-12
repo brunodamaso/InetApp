@@ -97,6 +97,10 @@
 
             </Grid>
         </ScrollView>
-        <components:View_Update Grid.Row="1" x:Name="tv_last_update" VerticalOptions="End" />
+        <components:View_Update Grid.Row="1" x:Name="tv_last_update" VerticalOptions="End" >
+            <components:View_Update.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding InfoCommand}"/>
+            </components:View_Update.GestureRecognizers>
+        </components:View_Update>
     </Grid>
 </ContentPage>

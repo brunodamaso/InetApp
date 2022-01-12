@@ -76,8 +76,12 @@
                 </Grid>
 
             </ScrollView>
-            
-            <components:View_Update x:Name="tv_last_update" />
+
+            <components:View_Update x:Name="tv_last_update">
+                <components:View_Update.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding InfoCommand}"/>
+                </components:View_Update.GestureRecognizers>
+            </components:View_Update>
         </StackLayout>
     </RefreshView>
 </views:ContentPageBase>

@@ -1,6 +1,8 @@
-﻿using INetApp.Resources;
+﻿using INetApp.Models;
+using INetApp.Resources;
 using INetApp.Services;
 using INetApp.ViewModels.Base;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,7 +13,7 @@ namespace INetApp.ViewModels
 {
     public class InfoViewModel : ViewModelBase
     {
-
+        private string formulario;
         #region Properties
         public ICommand AproveCommand => new Command(OnAproveOptions);
 
@@ -24,12 +26,13 @@ namespace INetApp.ViewModels
 
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
+            formulario = Uri.UnescapeDataString(query["Formulario"]);
         }
         private async void OnAproveOptions()
         {
             IsBusy = true;
 
-            await NavigationService.NavigateToAsync("//MainView");
+            await NavigationService.NavigateToAsync(formulario);
 
             IsBusy = false;
         }

@@ -27,6 +27,7 @@ namespace INetApp.ViewModels
         public ICommand BandejaEntradaCommand => new Command(async () => await BandejaEntrada());
         public ICommand PartesCommand => new Command(async () => await Partes());
         public ICommand FormacionCommand => new Command(async () => await Formacion());
+        public ICommand InfoCommand => new Command(OnInfoCommand);
 
         public MainViewModel()
         {
@@ -62,6 +63,17 @@ namespace INetApp.ViewModels
         {
             await NavigationService.NavigateToAsync("Settings");
         }
+        private async void OnInfoCommand()
+        {
+            IsBusy = true;
+            Dictionary<string, string> Parametro = new Dictionary<string, string>
+                {
+                    { "Formulario", "//MainView"}
+                };
 
+            await NavigationService.NavigateToAsync("InfoView", Parametro);
+
+            IsBusy = false;
+        }
     }
 }

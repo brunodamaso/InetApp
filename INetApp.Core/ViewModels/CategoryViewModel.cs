@@ -41,6 +41,7 @@ namespace INetApp.ViewModels
 
         public ICommand RefreshCommand => new Command(async () => await OnRefreshCommand());
         public ICommand SelectCategoryCommand => new Command<CategoryModel>(OnSelectCategory);
+        public ICommand InfoCommand => new Command(OnInfoCommand);
 
         public CategoryViewModel()
         {
@@ -95,6 +96,18 @@ namespace INetApp.ViewModels
                 await NavigationService.NavigateToAsync("Message", Parametro);
                 IsBusy = false;
             }
+        }
+        private async void OnInfoCommand()
+        {
+            IsBusy = true;
+            Dictionary<string, string> Parametro = new Dictionary<string, string>
+                {
+                    { "Formulario", "//MainView/Category"}
+                };
+
+            await NavigationService.NavigateToAsync("InfoView", Parametro);
+
+            IsBusy = false;
         }
     }
 }

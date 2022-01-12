@@ -209,9 +209,5 @@ namespace INetApp.ViewModels
             }
             IsBusy = false;
         }
-        public override async void OnInfoCommand()
-        {
-            //Inhabilitar llamado a info en esta pantalla
-        }
     }
 }

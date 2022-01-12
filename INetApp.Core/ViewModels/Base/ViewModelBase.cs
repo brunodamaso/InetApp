@@ -66,8 +66,6 @@ namespace INetApp.ViewModels.Base
             }
         }
 
-        public ICommand InfoCommand => new Command(OnInfoCommand);
-
         public ViewModelBase()
         {
             DialogService = ViewModelLocator.Resolve<IDialogService>();
@@ -94,15 +92,6 @@ namespace INetApp.ViewModels.Base
         public virtual Task OnPageBack()
         {
             return Task.FromResult(true);
-        }
-
-        public virtual async void OnInfoCommand()
-        {
-            IsBusy = true;
-
-            await NavigationService.NavigateToAsync("InfoView");
-
-            IsBusy = false;
         }
     }
 }
