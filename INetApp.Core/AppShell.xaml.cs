@@ -62,6 +62,7 @@ namespace INetApp
         private void InitializeRouting()
         {
             Routing.RegisterRoute("//MainView", typeof(MainView));
+            Routing.RegisterRoute("//MainView/LectorQR", typeof(LectorQRView));
             Routing.RegisterRoute("//MainView/Category", typeof(CategoryView));
             Routing.RegisterRoute("Message", typeof(MessageView));
             Routing.RegisterRoute("//MainView/MessageFavorite", typeof(MessageFavoriteView));

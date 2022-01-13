@@ -86,7 +86,7 @@ namespace INetApp.Services
             catch (Exception ex)
             {
                 Console.WriteLine("error  " + ex.Message);
-                return default(T);
+                return default;
             }
         }
 
@@ -156,7 +156,7 @@ namespace INetApp.Services
             catch (Exception ex)
             {
                 Console.WriteLine("error  " + ex.Message);
-                return default(List<T>);
+                return default;
             }
         }
         #endregion

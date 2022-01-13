@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:INetApp.Views" 
     xmlns:inetapp="clr-namespace:INetApp" 
+    xmlns:resources="clr-namespace:INetApp.Resources"
     x:DataType="inetapp:AppShell"
     x:Class="INetApp.AppShell"
     FlyoutBackgroundColor="{AppThemeBinding Dark={StaticResource DarkForegroundColor}, Light={StaticResource LightForegroundColor}}" 
@@ -93,17 +94,6 @@
         </Grid>
     </Shell.FlyoutHeader>
 
-    <!-- 
-        When the Flyout is visible this defines the content to display in the flyout.
-        FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
-        https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
-        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage} />
-    <FlyoutItem>
-        <ShellContent  Route="PrincipalPage" ContentTemplate="{DataTemplate local:PrincipalPage}" />
-    </FlyoutItem>
-
-    -->
-
     <FlyoutItem Route="MainView" FlyoutItemIsVisible="False" StyleClass="FlyoutItemLayoutStyle" 
                 FlyoutDisplayOptions="AsMultipleItems" IsTabStop="False">
         <ShellContent Route="MainView"  
@@ -112,20 +102,23 @@
                   Title="Home" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Bandeja de entrada" Icon="icon_feed.png" >
+    <FlyoutItem Title="{Binding Source={x:Static resources:Literales.action_messages}}" 
+            Icon="icon_feed.png" >
         <ShellContent Route="Category" ContentTemplate="{DataTemplate views:CategoryView}" />
     </FlyoutItem>
-    <FlyoutItem     Title="Solicitudes marcadas">
+    <FlyoutItem     Title="{Binding Source={x:Static resources:Literales.action_favorites}}">
         <ShellContent Route="MessageFavorite" ContentTemplate="{DataTemplate views:MessageFavoriteView}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Opciones">
+    <FlyoutItem Title="{Binding Source={x:Static resources:Literales.options}}">
         <ShellContent  Route="Options" ContentTemplate="{DataTemplate views:OptionsView}" />
     </FlyoutItem>
-    <FlyoutItem Title="Partes de trabajo" Icon="icon_feed.png">
+    <FlyoutItem Title="{Binding Source={x:Static resources:Literales.action_parts}}"
+                Icon="icon_feed.png">
         <ShellContent Route="Message" ContentTemplate="{DataTemplate views:MessageView}" />
     </FlyoutItem>
-    <FlyoutItem Title="Control de acceso" Icon="icon_feed.png" >
+    <FlyoutItem Title="{Binding Source={x:Static resources:Literales.action_qr}}"
+                Icon="icon_feed.png" >
         <ShellContent Route="Message" ContentTemplate="{DataTemplate views:MessageView}" />
     </FlyoutItem>
 
@@ -141,17 +134,7 @@
         content you can do so by calling 
         await Shell.Current.GoToAsync("//LoginPage");
     -->
-    <TabBar>
+    <TabBar Title="{Binding Source={x:Static resources:Literales.action_logout}}">
         <ShellContent Route="Login" ContentTemplate="{DataTemplate views:LoginView}" />
     </TabBar>
-
-
-    <!--<FlyoutItem >
-        <ShellContent ContentTemplate="{DataTemplate views:LoginView}" Route="Login" />
-    </FlyoutItem>
-
-    <TabBar Route="Main">
-        <ShellContent Title="CATALOG" Route="Catalog" Icon="{StaticResource CatalogIconImageSource}" ContentTemplate="{DataTemplate views:CatalogView}" />
-        <ShellContent Title="PROFILE" Route="Profile" Icon="{StaticResource ProfileIconImageSource}" ContentTemplate="{DataTemplate views:ProfileView}" />
-    </TabBar>-->
 </Shell>

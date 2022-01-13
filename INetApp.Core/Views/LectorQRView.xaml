@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:ContentPageBase
+    xmlns:views="clr-namespace:INetApp.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:components="clr-namespace:INetApp.Views.Components" 
+    xmlns:viewmodels="clr-namespace:INetApp.ViewModels" 
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+    xmlns:resources="clr-namespace:INetApp.Resources"
+    x:DataType="viewmodels:LectorQRViewModel"
+    x:Class="INetApp.Views.LectorQRView"
+    xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    Title="{Binding Source={x:Static resources:Literales.action_qr}}" 
+    >
+
+    <Grid BackgroundColor="{StaticResource white}" ColumnSpacing="0" RowSpacing="0" Padding="0" Margin="0" > 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/> <!-- tabs-->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" 
+               Margin="40,16"
+               TextColor="{StaticResource dark_grey}"
+               FontSize="16"
+               Text="{Binding Source={x:Static resources:Literales.text_lector}}"
+               />
+
+        <BoxView Grid.Row="1"
+                 BackgroundColor="Black"
+                 Opacity="0.4"/>
+        <BoxView Grid.Row="3"
+                 BackgroundColor="Black"
+                 Opacity="0.4"/>
+        <Grid Grid.Row="2" ColumnSpacing="0" RowSpacing="0" Padding="0" Margin="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+
+            <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" 
+                 BackgroundColor="Black"
+                 Opacity="0.4"/>
+            <BoxView Grid.Column="6" Grid.Row="0" Grid.RowSpan="5"
+                 BackgroundColor="Black"
+                 Opacity="0.4"/>
+            <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                 BackgroundColor="Red"
+                 Opacity="0.2"/>
+            <BoxView Grid.Column="1" Grid.Row="3" Grid.RowSpan="2"
+                 BackgroundColor="Red"
+                 Opacity="0.2"/>
+            <BoxView Grid.Column="2" Grid.Row="0" 
+                 BackgroundColor="Red"
+                 Opacity="0.2"/>
+            <BoxView Grid.Column="2" Grid.Row="4" 
+                 BackgroundColor="Red"
+                 Opacity="0.2"/>
+            <BoxView Grid.Column="4" Grid.Row="0" 
+                 BackgroundColor="Red"
+                 Opacity="0.2"/>
+            <BoxView Grid.Column="4" Grid.Row="4" 
+                 BackgroundColor="Red"
+                 Opacity="0.2"/>
+            <BoxView Grid.Column="5" Grid.Row="0" Grid.RowSpan="2"
+                 BackgroundColor="Red"
+                 Opacity="0.2"/>
+            <BoxView Grid.Column="5" Grid.Row="3" Grid.RowSpan="2"
+                 BackgroundColor="Red"
+                 Opacity="0.2"/>
+        </Grid>
+        
+        <xct:CameraView Grid.Row="1" Grid.RowSpan="3"
+            MediaCaptured="CameraView_MediaCaptured"
+            /> 
+    </Grid>
+</views:ContentPageBase>

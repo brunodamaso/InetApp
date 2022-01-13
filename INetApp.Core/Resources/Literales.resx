@@ -232,6 +232,7 @@
   </data>
   <data name="action_logout" xml:space="preserve">
     <value>Salir</value>
+    <comment>bd</comment>
   </data>
   <data name="activity_title_message_category" xml:space="preserve">
     <value>Bandeja de entrada</value>
@@ -486,6 +487,7 @@
   </data>
   <data name="activity_title_lector" xml:space="preserve">
     <value>Control Accceso - Lector Qr</value>
+    <comment>bd</comment>
   </data>
   <data name="action_qr" xml:space="preserve">
     <value>Control de acceso - Lector QR</value>
@@ -496,6 +498,7 @@
   </data>
   <data name="text_lector" xml:space="preserve">
     <value>Situe el código QR en el centro del lector para verificar el acceso:</value>
+    <comment>bd</comment>
   </data>
   <data name="version" xml:space="preserve">
     <value>Versión InetApp Android:</value>

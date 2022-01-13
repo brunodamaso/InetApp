@@ -45,7 +45,7 @@ namespace INetApp.ViewModels
 
         private async Task ControlAcceso()
         {
-            await NavigationService.NavigateToAsync("Settings");
+            await NavigationService.NavigateToAsync("LectorQR");
         }
         private async Task BandejaEntrada()
         {

@@ -50,6 +50,7 @@ namespace INetApp.ViewModels.Base
             Xamarin.Forms.DependencyService.Register<MessageDetailsViewModel>();
             Xamarin.Forms.DependencyService.Register<OptionsViewModel>();
             Xamarin.Forms.DependencyService.Register<InfoViewModel>();
+            Xamarin.Forms.DependencyService.Register<LectorQRViewModel>();
         }
 
         public static void UpdateDependencies()
