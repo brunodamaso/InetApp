@@ -9,20 +9,9 @@ namespace INetApp.ViewModels
 {
     public class LectorQRViewModel : ViewModelBase
     {
-        private ObservableCollection<OptionsModel> _OptionsItems;
-        private readonly IOptionsService optionsService;
+        private readonly ILectorQRService lectorQRService;
 
         #region Properties
-
-        public ObservableCollection<OptionsModel> OptionsItems
-        {
-            get => _OptionsItems;
-            set
-            {
-                _OptionsItems = value;
-                RaisePropertyChanged(() => OptionsItems);
-            }
-        }
 
         #endregion
 
@@ -31,7 +20,7 @@ namespace INetApp.ViewModels
 
         public LectorQRViewModel()
         {
-            optionsService = DependencyService.Get<IOptionsService>();
+            lectorQRService = DependencyService.Get<ILectorQRService>();
         }
 
         private async void OnScanExecute(ZXing.Result result)
