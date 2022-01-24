@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using IdentityModel.Client;
-using INetApp.APIWebServices.Dtos;
 using INetApp.Models;
-using INetApp.Resources;
 using INetApp.Services;
 using INetApp.ViewModels.Base;
-using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels
@@ -19,7 +11,7 @@ namespace INetApp.ViewModels
     {
         private ObservableCollection<OptionsModel> _OptionsItems;
         private readonly IOptionsService optionsService;
-        
+
         #region Properties
 
         public ObservableCollection<OptionsModel> OptionsItems
@@ -42,22 +34,7 @@ namespace INetApp.ViewModels
             optionsService = DependencyService.Get<IOptionsService>();
         }
 
-        public override async Task InitializeAsync(IDictionary<string, string> query)
-        {
-            await Sincroniza();
-            //await base.InitializeAsync(query);
-        }
-
-        private async Task Sincroniza()
-        {
-            IsBusy = true;
-
-            IsBusy = false;
-       }
-
-        
-
-        private async void OnScanExecute (ZXing.Result result)
+        private async void OnScanExecute(ZXing.Result result)
         {
             IsBusy = true;
 

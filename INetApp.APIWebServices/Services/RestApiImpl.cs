@@ -252,6 +252,7 @@ namespace INetApp.APIWebServices
         }
 
         #endregion
+      
         #region Options
         public Task<OptionsDto> GetOptionsEntitiesFromApi(string Usuario, string Password)
         {
@@ -276,7 +277,18 @@ namespace INetApp.APIWebServices
             });
         }
 
-        //
+        #endregion
+
+        #region GetAccesoQRFromAPI
+        public Task<bool> GetAccesoQRFromAPI(string Usuario, string Password, string QR)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                HttpResponse httpResponse = Get(API_URL_GET_ACCESO + QR, Usuario, Password).Result;
+
+                return httpResponse.IsOk ? httpResponse.Resultado.ToLower().Contains("true") : httpResponse.IsOk;
+            });
+        }
 
         #endregion
         //public Task<CategoriasDto> ResetPassword(string Mail, string Usuario, string Password)

@@ -381,7 +381,6 @@ namespace INetApp.Services
 
                     GetUser();
                     resultado = await RestApiImpl.MarkOptionsFromApi(userName, userPass, strOptionlist);
-
                 }
                 else
                 {
@@ -397,6 +396,31 @@ namespace INetApp.Services
         }
         #endregion
 
+        #region AccesoQR
+        public async Task<bool> GetAccesoQR(string QR)
+        {
+            bool resultado = true;
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    GetUser();
+                    resultado = await RestApiImpl.GetAccesoQRFromAPI(userName, userPass, QR);
+                }
+                else
+                {
+                    resultado = false;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
+        }
+        #endregion
+        
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()
         //{
         //    //BaseDto dto =new BaseDto(true, string.Empty, string.Empty, true);

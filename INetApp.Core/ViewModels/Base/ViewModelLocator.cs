@@ -63,6 +63,7 @@ namespace INetApp.ViewModels.Base
             Xamarin.Forms.DependencyService.RegisterSingleton<ICategoryService>(new CategoryService(repositoryWebService));
             Xamarin.Forms.DependencyService.RegisterSingleton<IMessageService>(new MessageService(repositoryWebService, repositoryService));
             Xamarin.Forms.DependencyService.RegisterSingleton<IOptionsService>(new OptionsService(repositoryWebService));
+            Xamarin.Forms.DependencyService.RegisterSingleton<ILectorQRService>(new LectorQRService(repositoryWebService));
 
         }
 

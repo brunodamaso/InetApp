@@ -18,8 +18,9 @@ namespace INetApp.APIWebServices
         Task<bool> RefuseMessageFromApi(string Usuario, string Password, int CategoryId, int MessageId, string cause);
         Task<OptionsDto> GetOptionsEntitiesFromApi(string Usuario, string Password);
         Task<bool> MarkOptionsFromApi(string Usuario, string Password, string strOptionlist);
+        Task<bool> GetAccesoQRFromAPI(string Usuario, string Password, string QR);
 
-
+        
         //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
 
     }
