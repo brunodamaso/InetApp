@@ -14,6 +14,9 @@ namespace INetApp.UWP
 
             LoadApplication(new INetApp.App());
 
+            ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingScannerViewRenderer.Init();
+            ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingBarcodeImageViewRenderer.Init();
+
             NativeCustomize();
         }
 

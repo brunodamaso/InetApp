@@ -1,17 +1,14 @@
-﻿using Windows.Foundation;
-using Windows.UI.Core;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Foundation;
 using Windows.Graphics.Display;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace INetApp.UWP
 {
@@ -73,6 +70,14 @@ namespace INetApp.UWP
                     rootFrame.Content = extendedSplash;
                     Window.Current.Content = rootFrame;
                 }
+
+                Assembly[] rendererAssemblies = new[]
+                {
+                    typeof(ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingScannerViewRenderer).GetTypeInfo().Assembly,
+					//typeof(ZXing.Mobile.ZXingScannerControl).GetTypeInfo().Assembly,
+					typeof(ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingBarcodeImageViewRenderer).GetTypeInfo().Assembly,
+                    typeof(Windows.UI.Xaml.Controls.Image).GetTypeInfo().Assembly
+                };
 
                 global::Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental");
 

@@ -7,6 +7,7 @@ using Android.Views;
 using INetApp.Droid.Services;
 using INetApp.Services;
 using System;
+using System.Net.NetworkInformation;
 using Xamarin.Forms.Platform.Android;
 
 namespace INetApp.Droid.Activities
@@ -25,14 +26,14 @@ namespace INetApp.Droid.Activities
 
             base.OnCreate(bundle);
 
-            Xamarin.Essentials.Platform.Init (this, bundle);
+            Xamarin.Essentials.Platform.Init(this, bundle);
+            global::Xamarin.Forms.Forms.Init(this, bundle);
+            global::ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
             SupportActionBar.SetDisplayShowHomeEnabled(true); // Show or hide the default home button
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetDisplayShowCustomEnabled(true); // Enable overriding the default toolbar layout
             SupportActionBar.SetDisplayShowTitleEnabled(false);
-
-            global::Xamarin.Forms.Forms.Init(this, bundle);
 
             LoadApplication(new App());
             Xamarin.Forms.DependencyService.RegisterSingleton<IDeviceService>(new DeviceService(this));
@@ -56,7 +57,7 @@ namespace INetApp.Droid.Activities
         public override void OnRequestPermissionsResult (int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult (requestCode, permissions, grantResults);
-
+            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult (requestCode, permissions, grantResults);
         }
     }

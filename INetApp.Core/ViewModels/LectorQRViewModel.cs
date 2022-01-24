@@ -35,7 +35,7 @@ namespace INetApp.ViewModels
         #endregion
 
         //public ICommand SelectOptionsCommand => new Command<OptionsModel>(OnSelectMessage);
-        public ICommand AproveCommand => new Command(OnAproveOptions);
+        public ICommand ScanCommand => new Command<ZXing.Result>(OnScanExecute);
 
         public LectorQRViewModel()
         {
@@ -52,34 +52,16 @@ namespace INetApp.ViewModels
         {
             IsBusy = true;
 
-            OptionsDto optionsDto = await optionsService.GetOptionsAsync();
-
-            OptionsItems = optionsDto.IsOk ? new ObservableCollection<OptionsModel>(optionsDto.OptionsModel) : new ObservableCollection<OptionsModel>();
-
             IsBusy = false;
-        }
+       }
 
-        //private void OnSelectMessage(OptionsModel optionsModel)
-        //{
-        //    IsBusy = true;
-        //    foreach (OptionsModel item in OptionsItems.Where(a => a.name == optionsModel.name))
-        //    {
-        //        item.checkeado = !optionsModel.checkeado;
-        //    }
+        
 
-        //    OptionsItems = new ObservableCollection<OptionsModel>(OptionsItems);
-        //    IsBusy = false;
-        //}
-
-        private async void OnAproveOptions()
+        private async void OnScanExecute (ZXing.Result result)
         {
             IsBusy = true;
 
-            if (await optionsService.MarkOptionsAsync(OptionsItems.Where(a => a.checkeado).ToList()))
-            {
-                await DialogService.ShowAlertAsync(Literales.toast_approve_options, "", Literales.btn_text_accept);
-            }
-            await NavigationService.NavigateToAsync("//MainView");
+            //await NavigationService.NavigateToAsync("//MainView?scanresult="+ result.Text);
 
             IsBusy = false;
         }

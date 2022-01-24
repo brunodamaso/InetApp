@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using IdentityModel.Client;
 using INetApp.APIWebServices.Dtos;
 using INetApp.Models;
 using INetApp.Resources;
 using INetApp.Services;
 using INetApp.ViewModels.Base;
-using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels
@@ -19,7 +16,7 @@ namespace INetApp.ViewModels
     {
         private ObservableCollection<OptionsModel> _OptionsItems;
         private readonly IOptionsService optionsService;
-        
+
         #region Properties
 
         public ObservableCollection<OptionsModel> OptionsItems
@@ -34,7 +31,6 @@ namespace INetApp.ViewModels
 
         #endregion
 
-        //public ICommand SelectOptionsCommand => new Command<OptionsModel>(OnSelectMessage);
         public ICommand AproveCommand => new Command(OnAproveOptions);
 
         public OptionsViewModel()
@@ -58,18 +54,6 @@ namespace INetApp.ViewModels
 
             IsBusy = false;
         }
-
-        //private void OnSelectMessage(OptionsModel optionsModel)
-        //{
-        //    IsBusy = true;
-        //    foreach (OptionsModel item in OptionsItems.Where(a => a.name == optionsModel.name))
-        //    {
-        //        item.checkeado = !optionsModel.checkeado;
-        //    }
-
-        //    OptionsItems = new ObservableCollection<OptionsModel>(OptionsItems);
-        //    IsBusy = false;
-        //}
 
         private async void OnAproveOptions()
         {

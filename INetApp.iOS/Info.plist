@@ -24,7 +24,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>INetApp</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.INetApp</string>
+	<string>com.Ineco.INetApp</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -39,6 +39,8 @@
 	<string>Assets.xcassets/LaunchImage.launchimage</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need acces to location</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Esta aplicacion necesita acceso a la camara para leer los codigos QR.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

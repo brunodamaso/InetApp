@@ -9,7 +9,8 @@
     xmlns:resources="clr-namespace:INetApp.Resources"
     x:DataType="viewmodels:LectorQRViewModel"
     x:Class="INetApp.Views.LectorQRView"
-    xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
+    xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp" 
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
     Title="{Binding Source={x:Static resources:Literales.action_qr}}" 
     >
@@ -28,10 +29,21 @@
                Text="{Binding Source={x:Static resources:Literales.text_lector}}"
                />
 
-        <BoxView Grid.Row="1"
-                 BackgroundColor="Black"
-                 Opacity="0.4"/>
-        <BoxView Grid.Row="3"
+        <zxing:ZXingScannerView x:Name="Scanner"
+            Grid.Row="1" 
+            Grid.RowSpan="3" 
+            IsTorchOn="True"
+            OnScanResult="Scanner_OnScanResult"
+            ScanResultCommand="{Binding ScanCommand}" 
+            IsScanning="true"
+        />
+
+
+        <!--<xct:CameraView Grid.Row="1" Grid.RowSpan="3" 
+            CaptureMode="Photo"
+            CameraOptions="Back"
+            />-->
+        <!--<BoxView Grid.Row="1"
                  BackgroundColor="Black"
                  Opacity="0.4"/>
         <Grid Grid.Row="2" ColumnSpacing="0" RowSpacing="0" Padding="0" Margin="0" >
@@ -55,7 +67,7 @@
             <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" 
                  BackgroundColor="Black"
                  Opacity="0.4"/>
-            <BoxView Grid.Column="6" Grid.Row="0" Grid.RowSpan="5"
+            <BoxView Grid.Column="6" Grid.Row="0" Grid.RowSpan="5" 
                  BackgroundColor="Black"
                  Opacity="0.4"/>
             <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
@@ -83,9 +95,9 @@
                  BackgroundColor="Red"
                  Opacity="0.2"/>
         </Grid>
-        
-        <xct:CameraView Grid.Row="1" Grid.RowSpan="3"
-            MediaCaptured="CameraView_MediaCaptured"
-            /> 
+        <BoxView Grid.Row="3" Margin="0"
+                 BackgroundColor="Black"
+                 Opacity="0.4"/>-->
+
     </Grid>
 </views:ContentPageBase>
