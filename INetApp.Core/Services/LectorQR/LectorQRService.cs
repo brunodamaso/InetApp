@@ -16,13 +16,13 @@ namespace INetApp.Services
             repositoryWebService = _repositoryWebService;            
         }
 
-        public async Task<bool> GetAccesoAsync(string QR)
+        public async Task<UserAccessDto> GetAccesoAsync(string QR)
         {
-            bool retorno =await repositoryWebService.GetAccesoQR(QR);
-            if (retorno)
+            UserAccessDto userAccessDto = await repositoryWebService.GetAccesoQR(QR);
+            if (userAccessDto.IsOk)
             {
             }
-            return retorno;
+            return userAccessDto;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using INetApp.APIWebServices;
 using INetApp.APIWebServices.Dtos;
+using INetApp.APIWebServices.Entity;
 using INetApp.Models;
 using INetApp.Services.Identity;
 using System;
@@ -61,7 +62,6 @@ namespace INetApp.Services
                     }
                     else
                     {
-                        userLoggedDto.IsOk = false;
                     }
                 }
                 else
@@ -397,27 +397,37 @@ namespace INetApp.Services
         #endregion
 
         #region AccesoQR
-        public async Task<bool> GetAccesoQR(string QR)
+        public async Task<UserAccessDto> GetAccesoQR(string QR)
         {
-            bool resultado = true;
+            UserAccessDto userAccessDto = new UserAccessDto();
             try
             {
                 if (connectivityService.CheckConnectivity())
                 {
                     GetUser();
-                    resultado = await RestApiImpl.GetAccesoQRFromAPI(userName, userPass, QR);
+                    userAccessDto = await RestApiImpl.GetAccesoQRFromAPI(userName, userPass, QR);
+                    if (userAccessDto.IsOk)
+                    {
+                        if (!userAccessDto.UserAccessModel.respuesta)
+                        {
+                            userAccessDto.IsOk = false;
+                            userAccessDto.ErrorDescription = userAccessDto.UserAccessModel.mensaje;
+                        }
+                    }                 
                 }
                 else
                 {
-                    resultado = false;
+                    userAccessDto.IsOk = false;
+                    userAccessDto.IsConnected = false;
                 }
+
             }
             catch (Exception)
             {
-                resultado = false;
+                userAccessDto.IsOk = false;
             }
 
-            return resultado;
+            return userAccessDto;
         }
         #endregion
         

@@ -280,13 +280,15 @@ namespace INetApp.APIWebServices
         #endregion
 
         #region GetAccesoQRFromAPI
-        public Task<bool> GetAccesoQRFromAPI(string Usuario, string Password, string QR)
+        public Task<UserAccessDto> GetAccesoQRFromAPI(string Usuario, string Password, string QR)
         {
             return Task.Factory.StartNew(() =>
             {
                 HttpResponse httpResponse = Get(API_URL_GET_ACCESO + QR, Usuario, Password).Result;
 
-                return httpResponse.IsOk ? httpResponse.Resultado.ToLower().Contains("true") : httpResponse.IsOk;
+                ServiceResponse<UserAccessEntity> response = ServiceHelper.CreateResponse<UserAccessEntity>(httpResponse);
+
+                return Mappers.ServiceMapper.ConvertToBusiness<UserAccessDto, UserAccessEntity>(response);
             });
         }
 

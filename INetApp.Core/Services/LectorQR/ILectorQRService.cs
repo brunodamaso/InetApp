@@ -8,6 +8,6 @@ namespace INetApp.Services
 {
     public interface ILectorQRService
     {
-        Task<bool> GetAccesoAsync(string QR);        
+        Task<UserAccessDto> GetAccesoAsync(string QR);        
     }
 }

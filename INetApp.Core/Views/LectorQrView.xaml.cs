@@ -15,26 +15,14 @@ namespace INetApp.Views
         public LectorQRView()
         {
             InitializeComponent();
-            //var scan = new ZXingScannerPage();
-
-            //Navigation.PushModalAsync(scan);
-            //string aa;
-            //scan.OnScanResult += (result) =>
-            //{
-            //    Device.BeginInvokeOnMainThread(async () =>
-            //    {
-            //        await Navigation.PopModalAsync();
-            //        if (!string.IsNullOrEmpty(result.Text))
-            //            aa = result.Text;
-            //    });
-            //};
+            Scanner.IsTorchOn = true;
         }
 
-        private void Scanner_OnScanResult(ZXing.Result result)
-        {
-            Scanner.IsAnalyzing = false;
-            Scanner.IsScanning = false;
-            Scanner.IsEnabled = false;            
-        }
+        //private void Scanner_OnScanResult(ZXing.Result result)
+        //{
+        //    Scanner.IsAnalyzing = false;
+        //    Scanner.IsScanning = false;
+        //    Scanner.IsEnabled = false;
+        //}
     }
 }

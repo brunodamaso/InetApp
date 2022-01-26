@@ -22,7 +22,7 @@ namespace INetApp.Services
         Task<bool> RefuseMessages(List<MessageModel> messageModels, string cause);
         Task<OptionsDto> GetOptions();
         Task<bool> MarkOptions(List<OptionsModel> optionsModels);
-        Task<bool> GetAccesoQR(string QR);
+        Task<UserAccessDto> GetAccesoQR(string QR);
 
         //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
 

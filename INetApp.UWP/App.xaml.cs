@@ -74,7 +74,7 @@ namespace INetApp.UWP
                 Assembly[] rendererAssemblies = new[]
                 {
                     typeof(ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingScannerViewRenderer).GetTypeInfo().Assembly,
-					//typeof(ZXing.Mobile.ZXingScannerControl).GetTypeInfo().Assembly,
+					typeof(ZXing.Mobile.ZXingScannerControl).GetTypeInfo().Assembly,
 					typeof(ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingBarcodeImageViewRenderer).GetTypeInfo().Assembly,
                     typeof(Windows.UI.Xaml.Controls.Image).GetTypeInfo().Assembly
                 };

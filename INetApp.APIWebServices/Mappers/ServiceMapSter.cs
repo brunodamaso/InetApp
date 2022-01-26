@@ -22,11 +22,17 @@ namespace INetApp.APIWebServices.Mappers
                .Map(dest => dest.UserLoggedModel.lastNameInitial, src => string.IsNullOrEmpty(src.lastname) ? "" : $"{src.lastname.Substring(0, 1)}");
 
 
-            TypeAdapterConfig<CategorysEntity, CategorysDto>
+            TypeAdapterConfig<UserAccessEntity, UserAccessDto>
                .NewConfig()
                .EnableNonPublicMembers(true)
-               .Map(dest => dest.CategorysModel, src => src.CategorysEntities)
+               .Map(dest => dest.UserAccessModel, src => src)
                .IgnoreNullValues(true);
+
+            TypeAdapterConfig<CategorysEntity, CategorysDto>
+                .NewConfig()
+                .EnableNonPublicMembers(true)
+                .IgnoreNullValues(true)
+                .Map(dest => dest.CategorysModel, src => src.CategorysEntities);
 
             TypeAdapterConfig<CategoryEntity, CategoryModel>
                 .NewConfig()
@@ -64,7 +70,6 @@ namespace INetApp.APIWebServices.Mappers
                 .NewConfig()
                 .EnableNonPublicMembers(true)
                 .IgnoreNullValues(true);
-
         }
     }
 }

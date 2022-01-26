@@ -1,4 +1,5 @@
 using System.Text;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace INetApp.Models
@@ -7,7 +8,7 @@ namespace INetApp.Models
     /**
      * Class that represents a user logged in the presentation layer.
      */
-    public class UserAccessModel : BindableObject
+    public class UserAccessModel : ObservableObject
     {
 
 
