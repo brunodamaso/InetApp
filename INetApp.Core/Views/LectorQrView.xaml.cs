@@ -15,7 +15,6 @@ namespace INetApp.Views
         public LectorQRView()
         {
             InitializeComponent();
-            Scanner.IsTorchOn = true;
         }
 
         //private void Scanner_OnScanResult(ZXing.Result result)

@@ -38,7 +38,7 @@
             Grid.Row="1" 
             Grid.RowSpan="3" 
             Grid.ColumnSpan="3"
-            IsTorchOn="True"
+            IsTorchOn="False"
             Result="{Binding QR ,Mode=TwoWay}"
             ScanResultCommand="{Binding ScanCommand}" 
             IsScanning="{Binding IsScanning}" 

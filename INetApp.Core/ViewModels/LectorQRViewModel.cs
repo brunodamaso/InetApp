@@ -88,10 +88,15 @@ namespace INetApp.ViewModels
                         await DialogService.ShowAlertAsync(userAccessDto.ErrorDescription, "", Literales.btn_text_accept);
                     }
                 }
-            });
+                IsAnalyzing = true;
+                IsScanning = true;
 
-            IsAnalyzing = true;
-            IsScanning = true;
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    await NavigationService.NavigateToAsync("..");
+                }
+            });
+            
         }
     }
 }
