@@ -106,6 +106,10 @@
       <Project>{e80d4419-ae6c-437b-8970-d734f2059c8a}</Project>
       <Name>INetApp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\INetApp.NFC\INetApp.NFC.csproj">
+      <Project>{db6e750c-1774-433d-9daf-634d67f14ea6}</Project>
+      <Name>INetApp.NFC</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxhdpi\bck_launcher.png" />

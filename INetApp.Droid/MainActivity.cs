@@ -1,6 +1,7 @@
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Nfc;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -9,6 +10,7 @@ using INetApp.Services;
 using System;
 using System.Net.NetworkInformation;
 using Xamarin.Forms.Platform.Android;
+using INetApp.NFC;
 
 namespace INetApp.Droid.Activities
 {
@@ -17,6 +19,8 @@ namespace INetApp.Droid.Activities
         Icon = "@drawable/icon",
         Theme = "@style/MainTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+    [IntentFilter(new[] { NfcAdapter.ActionNdefDiscovered }, Categories = new[] { Intent.CategoryDefault }, DataMimeType = AppShell.MIME_TYPE)]
+
     public class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -26,10 +30,12 @@ namespace INetApp.Droid.Activities
 
             base.OnCreate(bundle);
 
+            CrossNFC.Init(this);
+
             Xamarin.Essentials.Platform.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             global::ZXing.Net.Mobile.Forms.Android.Platform.Init();
-
+            
             SupportActionBar.SetDisplayShowHomeEnabled(true); // Show or hide the default home button
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetDisplayShowCustomEnabled(true); // Enable overriding the default toolbar layout
@@ -59,6 +65,16 @@ namespace INetApp.Droid.Activities
             Xamarin.Essentials.Platform.OnRequestPermissionsResult (requestCode, permissions, grantResults);
             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult (requestCode, permissions, grantResults);
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+            CrossNFC.OnResume();
+        }
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+            CrossNFC.OnNewIntent(intent);
         }
     }
 }

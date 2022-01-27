@@ -41,7 +41,9 @@
 	<string>Need acces to location</string>
   <key>NSCameraUsageDescription</key>
   <string>Esta aplicacion necesita acceso a la camara para leer los codigos QR.</string>
-	<key>NSAppTransportSecurity</key>
+  <key>NFCReaderUsageDescription</key>
+  <string>NFC tag to read and write NDEF messages into the application NFC Sample</string>
+  <key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
