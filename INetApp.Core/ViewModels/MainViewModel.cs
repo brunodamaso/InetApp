@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using INetApp.Resources;
+using INetApp.Services.NFC;
 using INetApp.ViewModels.Base;
 using Xamarin.Forms;
 
@@ -36,10 +37,17 @@ namespace INetApp.ViewModels
         {
             IsBusy = true;
 
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await InetAppNFC.ActivateNFC();
+                await InetAppNFC.StartListeningIfNotiOS();
+            });
+
             //todo buscar fecha ult actualziacion
             Text_last_update = string.Format(Literales.view_text_last_updated, "xxx");
             IspermissionApp = settingsService.Permission;
 
+            IsBusy = false;
             return base.InitializeAsync(query);
         }
 
@@ -52,12 +60,10 @@ namespace INetApp.ViewModels
             await NavigationService.NavigateToAsync("Category");
         }
 
-
         private async Task Partes()
         {
             await NavigationService.NavigateToAsync("Settings");
         }
-
 
         private async Task Formacion()
         {

@@ -1,7 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using INetApp.Services.NFC;
 
 namespace INetApp.Views
 {
@@ -11,5 +12,12 @@ namespace INetApp.Views
         {
             InitializeComponent();
         }
+
+        //protected async override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    await InetAppNFC.ActivateNFC();
+        //}
+    
     }
 }

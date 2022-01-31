@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Text;
+using System;
+using System.Threading.Tasks;
 using INetApp.Services;
 using INetApp.Services.Theme;
 using INetApp.ViewModels.Base;
@@ -6,6 +8,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
+using INetApp.NFC;
 
 namespace INetApp
 {
@@ -49,9 +52,18 @@ namespace INetApp
 
         protected override void OnResume()
         {
+            base.OnResume();
             SetStatusBar();
+
             RequestedThemeChanged += App_RequestedThemeChanged;
         }
+        //protected override bool OnBackButtonPressed()
+        //{
+        //	UnsubscribeEvents();
+        //	CrossNFC.Current.StopListening();
+        //	return base.OnBackButtonPressed();
+        //}
+
 
         private void App_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
         {
@@ -87,5 +99,5 @@ namespace INetApp
                 }
             }
         }
-    }
+    }	
 }
