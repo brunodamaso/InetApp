@@ -293,26 +293,19 @@ namespace INetApp.APIWebServices
         }
 
         #endregion
-        //public Task<CategoriasDto> ResetPassword(string Mail, string Usuario, string Password)
-        //{
-        //    RstPasswordRequest request = new RstPasswordRequest
-        //    {
-        //        mail = Mail,
-        //        user = Usuario,
-        //        pass = Password
-        //    };
-        //    return Task.Factory.StartNew(() =>
-        //    {
-        //        string json = ServiceHelper.ToJson(request);
+        #region GetAccesoNFCFromAPI
+        public Task<UserAccessDto> GetAccesoNFCFromAPI(string Usuario, string Password, string NFC)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                HttpResponse httpResponse = Get(API_URL_GET_ACCESO_BY_NFC + NFC, Usuario, Password).Result;
 
-        //        HttpResponse httpResponse = Post(API_URL_GET_USER_LOGGED, json);
+                ServiceResponse<UserAccessEntity> response = ServiceHelper.CreateResponse<UserAccessEntity>(httpResponse);
 
-        //        // httpResponse.Content = $"{{Result:'{httpResponse.Content}'}}";
+                return Mappers.ServiceMapper.ConvertToBusiness<UserAccessDto, UserAccessEntity>(response);
+            });
+        }
 
-        //        ServiceResponse<RstPasswordResponse> response = ServiceHelper.CreateResponse<RstPasswordResponse>(httpResponse);
-
-        //        return Mappers.ServiceMapper.ConvertToBusiness(response);
-        //    });
-        //}              
+        #endregion        
     }
 }

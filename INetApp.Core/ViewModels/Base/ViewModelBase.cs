@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using INetApp.NFC;
+using INetApp.Resources;
 using INetApp.Services;
 using INetApp.Services.NFC;
 using INetApp.Services.Settings;
@@ -16,13 +17,12 @@ namespace INetApp.ViewModels.Base
         protected readonly IRepositoryService RepositoryService;
         protected readonly IDBService DBService;
         protected readonly ISettingsService settingsService;
-
+        protected readonly INFCService nfcService;
         private string LecturaNFC;
         private bool _isInitialized;
         private string text_last_update;
         private bool _isBusy;
         private bool _multipleInitialization;
-        private NFCService NFCService;
         
         public string Text_last_update
         {
@@ -72,16 +72,16 @@ namespace INetApp.ViewModels.Base
             DBService = ViewModelLocator.Resolve<IDBService>();
             RepositoryService = ViewModelLocator.Resolve<IRepositoryService>();
             settingsService = ViewModelLocator.Resolve<ISettingsService>();
+            nfcService = DependencyService.Get<INFCService>();
         }
 
         public virtual Task InitializeAsync(IDictionary<string, string> query)
         {
-            this.NFCService = new NFCService();
             Device.BeginInvokeOnMainThread(async () =>
             {
-                await this.NFCService.ActivateNFC();
+                await nfcService.ActivateNFC();
                 CrossNFC.Current.OnMessageReceived += VM_OnMessageReceived;
-                await this.NFCService.BeginListening();
+                await nfcService.BeginListening();
             });
 
             return Task.FromResult(false);
@@ -100,12 +100,33 @@ namespace INetApp.ViewModels.Base
             return Task.FromResult(true);
         }
 
-        private void VM_OnMessageReceived(ITagInfo tagInfo)
+        private async void VM_OnMessageReceived(ITagInfo tagInfo)
         {
-            LecturaNFC = this.NFCService.Current_OnMessageReceived(tagInfo);
+            LecturaNFC = nfcService.Current_OnMessageReceived(tagInfo);
+            //await DialogService.ShowAlertAsync(LecturaNFC, LecturaNFC ,"OK");
+            //LecturaNFC = "Tag [04:51:17:2A:5A:1E:80]";
             if (!string.IsNullOrEmpty(LecturaNFC))
             {
-                //RepositoryWebService.GetAccesoNFC(LecturaNFC);
+                APIWebServices.Dtos.UserAccessDto userAccessDto = await nfcService.GetAccesoAsync(LecturaNFC);
+                if (userAccessDto.IsOk)
+                {
+                    await DialogService.ShowAlertAsync(userAccessDto.UserAccessModel.mensaje, "", Literales.btn_text_accept);
+                }
+                else
+                {
+                    if (!userAccessDto.IsConnected)
+                    {
+                        await DialogService.ShowAlertAsync(Literales.exception_message_no_connection, "", Literales.btn_text_accept);
+                    }
+                    else if (userAccessDto.UserAccessModel == null)
+                    {
+                        await DialogService.ShowAlertAsync(Literales.exception_message_message_not_found, "", Literales.btn_text_accept);
+                    }
+                    else
+                    {
+                        await DialogService.ShowAlertAsync(userAccessDto.ErrorDescription, "", Literales.btn_text_accept);
+                    }
+                }
             }
         }
     }

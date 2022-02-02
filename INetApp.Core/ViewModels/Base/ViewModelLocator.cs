@@ -2,6 +2,7 @@
 using INetApp.Services;
 using INetApp.Services.Dependency;
 using INetApp.Services.Identity;
+using INetApp.Services.NFC;
 using INetApp.Services.Settings;
 using System;
 using System.Globalization;
@@ -64,7 +65,8 @@ namespace INetApp.ViewModels.Base
             Xamarin.Forms.DependencyService.RegisterSingleton<IMessageService>(new MessageService(repositoryWebService, repositoryService));
             Xamarin.Forms.DependencyService.RegisterSingleton<IOptionsService>(new OptionsService(repositoryWebService));
             Xamarin.Forms.DependencyService.RegisterSingleton<ILectorQRService>(new LectorQRService(repositoryWebService));
-
+            Xamarin.Forms.DependencyService.RegisterSingleton<ILectorQRService>(new LectorQRService(repositoryWebService));
+            Xamarin.Forms.DependencyService.RegisterSingleton<INFCService>(new NFCService(repositoryWebService));
         }
 
         public static T Resolve<T>() where T : class

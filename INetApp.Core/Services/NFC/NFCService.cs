@@ -5,50 +5,43 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using INetApp.NFC;
 using System.ComponentModel;
+using INetApp.APIWebServices.Dtos;
 
 namespace INetApp.Services.NFC
 {
-    public class NFCService
+    public class NFCService: INFCService
     {
-        #region NFC
-
         public const string ALERT_TITLE = "NFC";
         public const string MIME_TYPE = "application/com.Ineco.InetApp";
-        //private readonly NFCNdefTypeFormat _type;
+        private readonly IRepositoryWebService repositoryWebService;
 
-        //bool _makeReadOnly = false;
         private bool _eventsAlreadySubscribed = false;
         private bool _isDeviceiOS = false;
-
         public bool DeviceIsListening { get; set; }
-        //public bool DeviceIsListening
-        //{
-        //    get => _deviceIsListening;
-        //    set
-        //    {
-        //        _deviceIsListening = value;
-        //        OnPropertyChanged(nameof(DeviceIsListening));
-        //    }
-        //}
-        //private bool _deviceIsListening;
-
-        //private bool _nfcIsEnabled;
-
         public bool NfcIsEnabled { get; set; }
-        //public bool NfcIsEnabled
-        //{
-        //    get => _nfcIsEnabled;
-        //    set
-        //    {
-        //        _nfcIsEnabled = value;
-        //        OnPropertyChanged(nameof(NfcIsEnabled));
-        //        OnPropertyChanged(nameof(NfcIsDisabled));
-        //    }
-        //}
 
-        public bool NfcIsDisabled => !NfcIsEnabled;
+        public NFCService(IRepositoryWebService _repositoryWebService)
+        {
+            repositoryWebService = _repositoryWebService;
+        }
 
-
+        #region public
+        public async Task<UserAccessDto> GetAccesoAsync(string NFC)
+        {
+            NFC = NFC.Replace("Tag [", "").Replace("]", "");
+            string[] Split = NFC.Split(':');
+            StringBuilder stringNFC = new StringBuilder("");
+            for (int i = Split.Length -1; i >= 0; i--)
+            {
+                stringNFC.Append(Split[i] + " ");
+            }
+            NFC = stringNFC.ToString();
+            UserAccessDto userAccessDto = await repositoryWebService.GetAccesoNFC(NFC.Trim());
+            if (userAccessDto.IsOk)
+            {
+            }
+            return userAccessDto;
+        }
         public async Task ActivateNFC()
         {
             if (CrossNFC.IsSupported)
@@ -74,6 +67,89 @@ namespace INetApp.Services.NFC
                 //await StartListeningIfNotiOS();
             }
         }
+        
+        /// <summary>
+        /// Task to safely stop listening for NFC tags
+        /// </summary>
+        /// <returns>The task to be performed</returns>
+        public async Task StopListening()
+        {
+            try
+            {
+                CrossNFC.Current.StopListening();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        
+        /// <summary>
+        /// Task to start listening for NFC tags if the user's device platform is not iOS
+        /// </summary>
+        /// <returns>The task to be performed</returns>
+        public async Task StartListeningIfNotiOS()
+        {
+            if (_isDeviceiOS)
+            {
+                return;
+            }
+
+            await BeginListening();
+        }
+
+        /// <summary>
+        /// Task to safely start listening for NFC Tags
+        /// </summary>
+        /// <returns>The task to be performed</returns>
+        public async Task BeginListening()
+        {
+            try
+            {
+                CrossNFC.Current.StartListening();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        /// <summary>
+        /// Event raised when a NDEF message is received
+        /// </summary>
+        /// <param name="tagInfo">Received <see cref="ITagInfo"/></param>
+        public string Current_OnMessageReceived(ITagInfo tagInfo)
+        {
+            if (tagInfo == null)
+            {
+                Console.WriteLine("No tag found");
+                return "";
+            }
+
+            // Customized serial number
+            byte[] identifier = tagInfo.Identifier;
+            string serialNumber = NFCUtils.ByteArrayToHexString(identifier, ":");
+            string title = !string.IsNullOrWhiteSpace(serialNumber) ? $"Tag [{serialNumber}]" : "Tag Info";
+
+            if (!tagInfo.IsSupported)
+            {
+                Console.WriteLine("Unsupported tag (app)", title);
+                //await ShowAlert("Unsupported tag (app)", title);
+            }
+            else if (tagInfo.IsEmpty)
+            {
+                Console.WriteLine("Empty tag", title);
+            }
+            else
+            {
+                NFCNdefRecord first = tagInfo.Records[0];
+                ShowAlert(GetMessage(first), title);
+            }
+            return title;
+        }
+
+        #endregion
+
+        #region private
         private void SubscribeEvents()
         {
             if (_eventsAlreadySubscribed)
@@ -132,40 +208,6 @@ namespace INetApp.Services.NFC
         {
             NfcIsEnabled = isEnabled;
             Console.WriteLine($"NFC has been {(isEnabled ? "enabled" : "disabled")}");
-        }
-
-        /// <summary>
-        /// Event raised when a NDEF message is received
-        /// </summary>
-        /// <param name="tagInfo">Received <see cref="ITagInfo"/></param>
-        public string Current_OnMessageReceived(ITagInfo tagInfo)
-        {
-            if (tagInfo == null)
-            {
-                Console.WriteLine("No tag found");
-                return "";
-            }
-
-            // Customized serial number
-            byte[] identifier = tagInfo.Identifier;
-            string serialNumber = NFCUtils.ByteArrayToHexString(identifier, ":");
-            string title = !string.IsNullOrWhiteSpace(serialNumber) ? $"Tag [{serialNumber}]" : "Tag Info";
-
-            if (!tagInfo.IsSupported)
-            {
-                Console.WriteLine("Unsupported tag (app)", title);
-                //await ShowAlert("Unsupported tag (app)", title);
-            }
-            else if (tagInfo.IsEmpty)
-            {
-                Console.WriteLine("Empty tag", title);
-            }
-            else
-            {
-                NFCNdefRecord first = tagInfo.Records[0];
-                ShowAlert(GetMessage(first), title);
-            }
-            return title;
         }
 
         /// <summary>
@@ -336,51 +378,6 @@ namespace INetApp.Services.NFC
             //return DisplayAlert(string.IsNullOrWhiteSpace(title) ? ALERT_TITLE : title, message, "Cancel");
         }
 
-        /// <summary>
-        /// Task to start listening for NFC tags if the user's device platform is not iOS
-        /// </summary>
-        /// <returns>The task to be performed</returns>
-        public async Task StartListeningIfNotiOS()
-        {
-            if (_isDeviceiOS)
-            {
-                return;
-            }
-
-            await BeginListening();
-        }
-
-        /// <summary>
-        /// Task to safely start listening for NFC Tags
-        /// </summary>
-        /// <returns>The task to be performed</returns>
-        public async Task BeginListening()
-        {
-            try
-            {
-                CrossNFC.Current.StartListening();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Task to safely stop listening for NFC tags
-        /// </summary>
-        /// <returns>The task to be performed</returns>
-        public async Task StopListening()
-        {
-            try
-            {
-                CrossNFC.Current.StopListening();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
         #endregion
     }
 }

@@ -413,7 +413,7 @@ namespace INetApp.Services
                             userAccessDto.IsOk = false;
                             userAccessDto.ErrorDescription = userAccessDto.UserAccessModel.mensaje;
                         }
-                    }                 
+                    }
                 }
                 else
                 {
@@ -430,7 +430,43 @@ namespace INetApp.Services
             return userAccessDto;
         }
         #endregion
-        
+
+
+        #region AccesoNFC
+        public async Task<UserAccessDto> GetAccesoNFC(string NFC)
+        {
+            UserAccessDto userAccessDto = new UserAccessDto();
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    GetUser();
+                    userAccessDto = await RestApiImpl.GetAccesoNFCFromAPI(userName, userPass, NFC);
+                    if (userAccessDto.IsOk)
+                    {
+                        if (!userAccessDto.UserAccessModel.respuesta)
+                        {
+                            userAccessDto.IsOk = false;
+                            userAccessDto.ErrorDescription = userAccessDto.UserAccessModel.mensaje;
+                        }
+                    }
+                }
+                else
+                {
+                    userAccessDto.IsOk = false;
+                    userAccessDto.IsConnected = false;
+                }
+
+            }
+            catch (Exception)
+            {
+                userAccessDto.IsOk = false;
+            }
+
+            return userAccessDto;
+        }
+        #endregion
+
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()
         //{
         //    //BaseDto dto =new BaseDto(true, string.Empty, string.Empty, true);
