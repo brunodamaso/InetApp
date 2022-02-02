@@ -8,19 +8,20 @@ using System.ComponentModel;
 
 namespace INetApp.Services.NFC
 {
-    public static class InetAppNFC
+    public class NFCService
     {
         #region NFC
+
         public const string ALERT_TITLE = "NFC";
         public const string MIME_TYPE = "application/com.Ineco.InetApp";
-        private static readonly NFCNdefTypeFormat _type;
+        //private readonly NFCNdefTypeFormat _type;
 
         //bool _makeReadOnly = false;
-        private static bool _eventsAlreadySubscribed = false;
-        private static bool _isDeviceiOS = false;
+        private bool _eventsAlreadySubscribed = false;
+        private bool _isDeviceiOS = false;
 
-        public static bool DeviceIsListening { get; set; }
-        //public static bool DeviceIsListening
+        public bool DeviceIsListening { get; set; }
+        //public bool DeviceIsListening
         //{
         //    get => _deviceIsListening;
         //    set
@@ -29,12 +30,12 @@ namespace INetApp.Services.NFC
         //        OnPropertyChanged(nameof(DeviceIsListening));
         //    }
         //}
-        private static bool _deviceIsListening;
+        //private bool _deviceIsListening;
 
-        private static bool _nfcIsEnabled;
+        //private bool _nfcIsEnabled;
 
-        public static bool NfcIsEnabled { get; set; }
-        //public static bool NfcIsEnabled
+        public bool NfcIsEnabled { get; set; }
+        //public bool NfcIsEnabled
         //{
         //    get => _nfcIsEnabled;
         //    set
@@ -45,9 +46,10 @@ namespace INetApp.Services.NFC
         //    }
         //}
 
-        public static bool NfcIsDisabled => !NfcIsEnabled;
+        public bool NfcIsDisabled => !NfcIsEnabled;
 
-        public static async Task ActivateNFC()
+
+        public async Task ActivateNFC()
         {
             if (CrossNFC.IsSupported)
             {
@@ -72,8 +74,7 @@ namespace INetApp.Services.NFC
                 //await StartListeningIfNotiOS();
             }
         }
-
-        private static void SubscribeEvents()
+        private void SubscribeEvents()
         {
             if (_eventsAlreadySubscribed)
             {
@@ -82,11 +83,14 @@ namespace INetApp.Services.NFC
 
             _eventsAlreadySubscribed = true;
 
-            CrossNFC.Current.OnMessageReceived += Current_OnMessageReceived;
+            //CrossNFC.Current.OnMessageReceived += Current_OnMessageReceived;
             //CrossNFC.Current.OnMessagePublished += Current_OnMessagePublished;
-            CrossNFC.Current.OnTagDiscovered += Current_OnTagDiscovered;
-            CrossNFC.Current.OnNfcStatusChanged += Current_OnNfcStatusChanged;
+            //CrossNFC.Current.OnTagDiscovered += Current_OnTagDiscovered;
             CrossNFC.Current.OnTagListeningStatusChanged += Current_OnTagListeningStatusChanged;
+            //if (!_isDeviceiOS)
+            //{
+                CrossNFC.Current.OnNfcStatusChanged += Current_OnNfcStatusChanged;
+            //}
 
             if (_isDeviceiOS)
             {
@@ -97,11 +101,11 @@ namespace INetApp.Services.NFC
         /// <summary>
         /// Unsubscribe from the NFC events
         /// </summary>
-        private static void UnsubscribeEvents()
+        private void UnsubscribeEvents()
         {
-            CrossNFC.Current.OnMessageReceived -= Current_OnMessageReceived;
+            //CrossNFC.Current.OnMessageReceived -= Current_OnMessageReceived;
             //CrossNFC.Current.OnMessagePublished -= Current_OnMessagePublished;
-            CrossNFC.Current.OnTagDiscovered -= Current_OnTagDiscovered;
+            //CrossNFC.Current.OnTagDiscovered -= Current_OnTagDiscovered;
             CrossNFC.Current.OnNfcStatusChanged -= Current_OnNfcStatusChanged;
             CrossNFC.Current.OnTagListeningStatusChanged += Current_OnTagListeningStatusChanged;
 
@@ -115,7 +119,7 @@ namespace INetApp.Services.NFC
         /// Event raised when Listener Status has changed
         /// </summary>
         /// <param name="isListening"></param>
-        private static void Current_OnTagListeningStatusChanged(bool isListening)
+        private void Current_OnTagListeningStatusChanged(bool isListening)
         {
             DeviceIsListening = isListening;
         }
@@ -124,7 +128,7 @@ namespace INetApp.Services.NFC
         /// Event raised when NFC Status has changed
         /// </summary>
         /// <param name="isEnabled">NFC status</param>
-        private static async void Current_OnNfcStatusChanged(bool isEnabled)
+        private async void Current_OnNfcStatusChanged(bool isEnabled)
         {
             NfcIsEnabled = isEnabled;
             Console.WriteLine($"NFC has been {(isEnabled ? "enabled" : "disabled")}");
@@ -134,12 +138,12 @@ namespace INetApp.Services.NFC
         /// Event raised when a NDEF message is received
         /// </summary>
         /// <param name="tagInfo">Received <see cref="ITagInfo"/></param>
-        private static async void Current_OnMessageReceived(ITagInfo tagInfo)
+        public string Current_OnMessageReceived(ITagInfo tagInfo)
         {
             if (tagInfo == null)
             {
                 Console.WriteLine("No tag found");
-                return;
+                return "";
             }
 
             // Customized serial number
@@ -159,8 +163,9 @@ namespace INetApp.Services.NFC
             else
             {
                 NFCNdefRecord first = tagInfo.Records[0];
-                await ShowAlert(GetMessage(first), title);
+                ShowAlert(GetMessage(first), title);
             }
+            return title;
         }
 
         /// <summary>
@@ -168,7 +173,7 @@ namespace INetApp.Services.NFC
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void Current_OniOSReadingSessionCancelled(object sender, EventArgs e)
+        private void Current_OniOSReadingSessionCancelled(object sender, EventArgs e)
         {
             Debug("User has cancelled NFC Session");
         }
@@ -178,71 +183,71 @@ namespace INetApp.Services.NFC
         /// </summary>
         /// <param name="tagInfo"><see cref="ITagInfo"/> to be published</param>
         /// <param name="format">Format the tag</param>
-        static async void Current_OnTagDiscovered(ITagInfo tagInfo, bool format)
-        {
-            if (!CrossNFC.Current.IsWritingTagSupported)
-            {
-                Console.WriteLine("Writing tag is not supported on this device");
-                return;
-            }
+        //async void Current_OnTagDiscovered(ITagInfo tagInfo, bool format)
+        //{
+        //    if (!CrossNFC.Current.IsWritingTagSupported)
+        //    {
+        //        Console.WriteLine("Writing tag is not supported on this device");
+        //        return;
+        //    }
 
-            try
-            {
-                NFCNdefRecord record = null;
-                switch (_type)
-                {
-                    case NFCNdefTypeFormat.WellKnown:
-                        record = new NFCNdefRecord
-                        {
-                            TypeFormat = NFCNdefTypeFormat.WellKnown,
-                            MimeType = MIME_TYPE,
-                            Payload = NFCUtils.EncodeToByteArray("Plugin.NFC is awesome!"),
-                            LanguageCode = "en"
-                        };
-                        break;
-                    case NFCNdefTypeFormat.Uri:
-                        record = new NFCNdefRecord
-                        {
-                            TypeFormat = NFCNdefTypeFormat.Uri,
-                            Payload = NFCUtils.EncodeToByteArray("https://github.com/franckbour/Plugin.NFC")
-                        };
-                        break;
-                    case NFCNdefTypeFormat.Mime:
-                        record = new NFCNdefRecord
-                        {
-                            TypeFormat = NFCNdefTypeFormat.Mime,
-                            MimeType = MIME_TYPE,
-                            Payload = NFCUtils.EncodeToByteArray("Plugin.NFC is awesome!")
-                        };
-                        break;
-                    default:
-                        break;
-                }
+        //    try
+        //    {
+        //        NFCNdefRecord record = null;
+        //        switch (_type)
+        //        {
+        //            case NFCNdefTypeFormat.WellKnown:
+        //                record = new NFCNdefRecord
+        //                {
+        //                    TypeFormat = NFCNdefTypeFormat.WellKnown,
+        //                    MimeType = MIME_TYPE,
+        //                    Payload = NFCUtils.EncodeToByteArray("Plugin.NFC is awesome!"),
+        //                    LanguageCode = "en"
+        //                };
+        //                break;
+        //            case NFCNdefTypeFormat.Uri:
+        //                record = new NFCNdefRecord
+        //                {
+        //                    TypeFormat = NFCNdefTypeFormat.Uri,
+        //                    Payload = NFCUtils.EncodeToByteArray("https://github.com/franckbour/Plugin.NFC")
+        //                };
+        //                break;
+        //            case NFCNdefTypeFormat.Mime:
+        //                record = new NFCNdefRecord
+        //                {
+        //                    TypeFormat = NFCNdefTypeFormat.Mime,
+        //                    MimeType = MIME_TYPE,
+        //                    Payload = NFCUtils.EncodeToByteArray("Plugin.NFC is awesome!")
+        //                };
+        //                break;
+        //            default:
+        //                break;
+        //        }
 
-                if (!format && record == null)
-                    throw new Exception("Record can't be null.");
+        //        if (!format && record == null)
+        //            throw new Exception("Record can't be null.");
 
-                tagInfo.Records = new[] { record };
+        //        tagInfo.Records = new[] { record };
 
-                if (format)
-                    CrossNFC.Current.ClearMessage(tagInfo);
-                else
-                {
-                    //CrossNFC.Current.PublishMessage(tagInfo, _makeReadOnly);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
+        //        if (format)
+        //            CrossNFC.Current.ClearMessage(tagInfo);
+        //        else
+        //        {
+        //            //CrossNFC.Current.PublishMessage(tagInfo, _makeReadOnly);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    }
+        //}
 
         /// <summary>
         /// Start listening for NFC Tags when "READ TAG" button is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static async void Button_Clicked_StartListening(object sender, System.EventArgs e)
+        private async void Button_Clicked_StartListening(object sender, System.EventArgs e)
         {
             await BeginListening();
         }
@@ -252,7 +257,7 @@ namespace INetApp.Services.NFC
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static async void Button_Clicked_StopListening(object sender, System.EventArgs e)
+        private async void Button_Clicked_StopListening(object sender, System.EventArgs e)
         {
             await StopListening();
         }
@@ -293,7 +298,7 @@ namespace INetApp.Services.NFC
         /// </summary>
         /// <param name="record"><see cref="NFCNdefRecord"/></param>
         /// <returns>The tag information</returns>
-        private static string GetMessage(NFCNdefRecord record)
+        private string GetMessage(NFCNdefRecord record)
         {
             string message = $"Message: {record.Message}";
             message += Environment.NewLine;
@@ -314,7 +319,7 @@ namespace INetApp.Services.NFC
         /// Write a debug message in the debug console
         /// </summary>
         /// <param name="message">The message to be displayed</param>
-        private static void Debug(string message)
+        private void Debug(string message)
         {
             System.Diagnostics.Debug.WriteLine(message);
         }
@@ -325,7 +330,7 @@ namespace INetApp.Services.NFC
         /// <param name="message">Message to be displayed</param>
         /// <param name="title">Alert title</param>
         /// <returns>The task to be performed</returns>
-        private static Task ShowAlert(string message, string title = null)
+        private Task ShowAlert(string message, string title = null)
         {
             return null;
             //return DisplayAlert(string.IsNullOrWhiteSpace(title) ? ALERT_TITLE : title, message, "Cancel");
@@ -335,7 +340,7 @@ namespace INetApp.Services.NFC
         /// Task to start listening for NFC tags if the user's device platform is not iOS
         /// </summary>
         /// <returns>The task to be performed</returns>
-        public static async Task StartListeningIfNotiOS()
+        public async Task StartListeningIfNotiOS()
         {
             if (_isDeviceiOS)
             {
@@ -349,7 +354,7 @@ namespace INetApp.Services.NFC
         /// Task to safely start listening for NFC Tags
         /// </summary>
         /// <returns>The task to be performed</returns>
-        private static async Task BeginListening()
+        public async Task BeginListening()
         {
             try
             {
@@ -365,7 +370,7 @@ namespace INetApp.Services.NFC
         /// Task to safely stop listening for NFC tags
         /// </summary>
         /// <returns>The task to be performed</returns>
-        private static async Task StopListening()
+        public async Task StopListening()
         {
             try
             {

@@ -43,6 +43,13 @@
   <string>Esta aplicacion necesita acceso a la camara para leer los codigos QR.</string>
   <key>NFCReaderUsageDescription</key>
   <string>NFC tag to read and write NDEF messages into the application NFC Sample</string>
+  <key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+  <string>com.apple.developer.nfc.readersession.iso7816.select-identifiers</string>
+  <key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+  <array>
+    <string>com.apple.developer.nfc.readersession.iso7816.select-identifiers</string>
+    <string>D2760000850100</string>
+  </array>
   <key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

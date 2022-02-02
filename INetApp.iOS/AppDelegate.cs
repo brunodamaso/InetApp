@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using CoreNFC;
 using UIKit;
 
 namespace INetApp.iOS

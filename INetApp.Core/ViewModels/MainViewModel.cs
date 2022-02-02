@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using INetApp.Resources;
-using INetApp.Services.NFC;
 using INetApp.ViewModels.Base;
 using Xamarin.Forms;
 
@@ -36,13 +35,6 @@ namespace INetApp.ViewModels
         public override Task InitializeAsync(IDictionary<string, string> query)
         {
             IsBusy = true;
-
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                await InetAppNFC.ActivateNFC();
-                await InetAppNFC.StartListeningIfNotiOS();
-            });
-
             //todo buscar fecha ult actualziacion
             Text_last_update = string.Format(Literales.view_text_last_updated, "xxx");
             IspermissionApp = settingsService.Permission;

@@ -1,9 +1,9 @@
-﻿using INetApp.Resources;
-using INetApp.Services;
-using INetApp.Services.Settings;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using INetApp.NFC;
+using INetApp.Services;
+using INetApp.Services.NFC;
+using INetApp.Services.Settings;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels.Base
@@ -17,7 +17,13 @@ namespace INetApp.ViewModels.Base
         protected readonly IDBService DBService;
         protected readonly ISettingsService settingsService;
 
+        private string LecturaNFC;
+        private bool _isInitialized;
         private string text_last_update;
+        private bool _isBusy;
+        private bool _multipleInitialization;
+        private NFCService NFCService;
+        
         public string Text_last_update
         {
             get => text_last_update;
@@ -27,8 +33,6 @@ namespace INetApp.ViewModels.Base
                 RaisePropertyChanged(() => Text_last_update);
             }
         }
-
-        private bool _isInitialized;
         public bool IsInitialized
         {
             get => _isInitialized;
@@ -39,9 +43,6 @@ namespace INetApp.ViewModels.Base
                 OnPropertyChanged(nameof(IsInitialized));
             }
         }
-
-        private bool _multipleInitialization;
-
         public bool MultipleInitialization
         {
             get => _multipleInitialization;
@@ -52,9 +53,6 @@ namespace INetApp.ViewModels.Base
                 OnPropertyChanged(nameof(MultipleInitialization));
             }
         }
-
-        private bool _isBusy;
-
         public bool IsBusy
         {
             get => _isBusy;
@@ -78,6 +76,14 @@ namespace INetApp.ViewModels.Base
 
         public virtual Task InitializeAsync(IDictionary<string, string> query)
         {
+            this.NFCService = new NFCService();
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await this.NFCService.ActivateNFC();
+                CrossNFC.Current.OnMessageReceived += VM_OnMessageReceived;
+                await this.NFCService.BeginListening();
+            });
+
             return Task.FromResult(false);
         }
 
@@ -92,6 +98,15 @@ namespace INetApp.ViewModels.Base
         public virtual Task OnPageBack()
         {
             return Task.FromResult(true);
+        }
+
+        private void VM_OnMessageReceived(ITagInfo tagInfo)
+        {
+            LecturaNFC = this.NFCService.Current_OnMessageReceived(tagInfo);
+            if (!string.IsNullOrEmpty(LecturaNFC))
+            {
+                //RepositoryWebService.GetAccesoNFC(LecturaNFC);
+            }
         }
     }
 }
