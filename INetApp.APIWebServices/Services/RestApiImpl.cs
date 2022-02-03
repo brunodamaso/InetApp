@@ -7,6 +7,7 @@ using INetApp.APIWebServices.Helpers;
 using INetApp.APIWebServices.Responses;
 using System.Web;
 using INetApp.Models;
+using Xamarin.Forms;
 
 namespace INetApp.APIWebServices
 {
@@ -119,7 +120,7 @@ namespace INetApp.APIWebServices
         /**
          * Api url for getting version
          */
-        private readonly string API_URL_GET_VERSION = API_BASE_URL + "getversion/android";
+        private readonly string API_URL_GET_VERSION = API_BASE_URL + "getversion/";
         //FIN BIGAALCA-2018/05/02
 
         //BIGAALCA-2020/05/14
@@ -171,7 +172,7 @@ namespace INetApp.APIWebServices
         {
             return Task.Factory.StartNew(() =>
             {
-                HttpResponse httpResponse = Get(API_URL_GET_VERSION, Usuario, Password).Result;
+                HttpResponse httpResponse = Get(API_URL_GET_VERSION + Device.RuntimePlatform, Usuario, Password).Result;
 
                 ServiceResponse<UserLoggedEntity> response = ServiceHelper.CreateResponse<UserLoggedEntity>(httpResponse);
 

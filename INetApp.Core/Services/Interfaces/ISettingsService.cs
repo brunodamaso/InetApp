@@ -10,5 +10,8 @@ namespace INetApp.Services.Settings
         string NameInitial { get; set; }
         string NameFull { get; set; }
         bool Permission { get; set; }
+        string Version { get; set; }
+        bool Requerido { get; set; }
+        string Url { get; set; }
     }
 }

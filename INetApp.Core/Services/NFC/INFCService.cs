@@ -12,6 +12,7 @@ namespace INetApp.Services.NFC
     public interface INFCService
     {
         Task<UserAccessDto> GetAccesoAsync(string NFC);
+        bool NfcIsEnabled { get; set; }
         Task ActivateNFC();
 
         /// <summary>

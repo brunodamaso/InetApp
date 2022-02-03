@@ -44,6 +44,7 @@ namespace INetApp.Services.NFC
         }
         public async Task ActivateNFC()
         {
+            NfcIsEnabled = CrossNFC.IsSupported;
             if (CrossNFC.IsSupported)
             {
                 if (!CrossNFC.Current.IsAvailable)

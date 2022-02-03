@@ -44,14 +44,13 @@ namespace INetApp.Services
                         if (!userLoggedDto.UserLoggedModel.username.Equals(""))
                         {
                             //todo comparar version para pedir upgrade
-                            //todo nfc
                             string responseUserPermission = await RestApiImpl.GetUserLoggedPermission(Usuario, Password);
                             UserLoggedDto responseVersion = await RestApiImpl.GetVersion(Usuario, Password);
                             userLoggedDto.UserLoggedModel.permission = responseUserPermission == "true";
                             userLoggedDto.UserLoggedModel.version = responseVersion.UserLoggedModel.version;
                             userLoggedDto.UserLoggedModel.url = responseVersion.UserLoggedModel.url;
                             userLoggedDto.UserLoggedModel.requerido = responseVersion.UserLoggedModel.requerido;
-                            identityService.PutCredentialsFromPrefs(Usuario, Password);
+                            identityService.PutCredentialsFromPrefs(Usuario, Password , userLoggedDto.UserLoggedModel.version , userLoggedDto.UserLoggedModel.requerido , userLoggedDto.UserLoggedModel.url);
                         }
                         else
                         {

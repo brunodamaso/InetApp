@@ -80,8 +80,11 @@ namespace INetApp.ViewModels.Base
             Device.BeginInvokeOnMainThread(async () =>
             {
                 await nfcService.ActivateNFC();
-                CrossNFC.Current.OnMessageReceived += VM_OnMessageReceived;
-                await nfcService.BeginListening();
+                if (nfcService.NfcIsEnabled)
+                {
+                    CrossNFC.Current.OnMessageReceived += VM_OnMessageReceived;
+                    await nfcService.BeginListening();
+                }
             });
 
             return Task.FromResult(false);

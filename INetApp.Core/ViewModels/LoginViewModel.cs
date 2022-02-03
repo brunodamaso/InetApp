@@ -138,6 +138,10 @@ namespace INetApp.ViewModels
                 if (userLoggedDto.IsOk) // && userLoggedDto.UserLoggedModel.permission)
                 {
                     UserLoggedModel = userLoggedDto.UserLoggedModel;
+                    if (UserLoggedModel.version != settingsService.Version)
+                    {
+
+                    }
                     await NavigationService.NavigateToAsync("//MainView");
                 }
                 else

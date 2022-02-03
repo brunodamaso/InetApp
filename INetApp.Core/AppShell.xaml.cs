@@ -2,6 +2,7 @@
 using System.Text;
 using System.Threading.Tasks;
 using INetApp.APIWebServices.Dtos;
+using INetApp.Models;
 using INetApp.NFC;
 using INetApp.Services;
 using INetApp.Services.Settings;
@@ -67,11 +68,12 @@ namespace INetApp
             Routing.RegisterRoute("//MainView", typeof(MainView));
             Routing.RegisterRoute("//MainView/LectorQR", typeof(LectorQRView));
             Routing.RegisterRoute("//MainView/Category", typeof(CategoryView));
-            Routing.RegisterRoute("Message", typeof(MessageView));
             Routing.RegisterRoute("//MainView/MessageFavorite", typeof(MessageFavoriteView));
+            Routing.RegisterRoute("//MainView/Options", typeof(OptionsView));
+            Routing.RegisterRoute("Message", typeof(MessageView));
             Routing.RegisterRoute("MessageDetails", typeof(MessageDetailsView));
             Routing.RegisterRoute("MessageDetails/WebView", typeof(WebInecoView));
-            Routing.RegisterRoute("//MainView/Options", typeof(OptionsView));
+            Routing.RegisterRoute("WebView", typeof(WebInecoView));
             Routing.RegisterRoute("InfoView", typeof(InfoView));
 
         }

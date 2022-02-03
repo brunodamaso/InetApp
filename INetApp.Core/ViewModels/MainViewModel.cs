@@ -1,8 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using INetApp.APIWebServices.Dtos;
+using INetApp.Models;
 using INetApp.Resources;
+using INetApp.Services;
 using INetApp.ViewModels.Base;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels
@@ -10,7 +15,7 @@ namespace INetApp.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private bool ispermissionApp;
-
+        private readonly IUserService UserService;
         #region Properties
         public bool IspermissionApp
         {
@@ -31,16 +36,28 @@ namespace INetApp.ViewModels
 
         public MainViewModel()
         {
+            UserService = ViewModelLocator.Resolve<IUserService>();
         }
-        public override Task InitializeAsync(IDictionary<string, string> query)
+        public override async Task InitializeAsync(IDictionary<string, string> query)
         {
             IsBusy = true;
-            //todo buscar fecha ult actualziacion
-            Text_last_update = string.Format(Literales.view_text_last_updated, "xxx");
+            Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now);
             IspermissionApp = settingsService.Permission;
 
+            if (await UserService.CheckVersion())
+            {
+                try
+                {
+                    await Browser.OpenAsync(settingsService.Url, BrowserLaunchMode.External);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }                
+            }
+
             IsBusy = false;
-            return base.InitializeAsync(query);
+            //await base.InitializeAsync(query);
         }
 
         private async Task ControlAcceso()

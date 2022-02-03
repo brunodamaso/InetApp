@@ -4,6 +4,7 @@ using System.Text;
 using IdentityModel;
 using INetApp.Services.Settings;
 using PCLCrypto;
+using Xamarin.Essentials;
 using static PCLCrypto.WinRTCrypto;
 
 namespace INetApp.Services.Identity
@@ -45,7 +46,7 @@ namespace INetApp.Services.Identity
             }
         }
 
-        public void PutCredentialsFromPrefs(string user, string pass)
+        public void PutCredentialsFromPrefs(string user, string pass, string version, bool requerido, string url)
         {
 
             //ISharedPreferences prefs = context.GetSharedPreferences(APP_KEY, FileCreationMode.Private); // Context.MODE_PRIVATE
@@ -56,12 +57,15 @@ namespace INetApp.Services.Identity
                 settingsService.UserName = user;
 
                 string keyString = KEY_PREFIX + deviceService.DispositivoID;
-
                 byte[] key = getRawKey(Encoding.UTF8.GetBytes(keyString)); // .GetBytes("UTF8")
                 ISymmetricKeyAlgorithmProvider provider = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
                 ICryptographicKey sKeySpec = provider.CreateSymmetricKey(key);
                 byte[] passEncrypted = CryptographicEngine.Encrypt(sKeySpec, Encoding.UTF8.GetBytes(pass));
                 settingsService.UserPass = Base64Url.Encode(passEncrypted);
+
+                settingsService.Version = version ?? VersionTracking.CurrentVersion;
+                settingsService.Requerido = requerido;
+                settingsService.Url = url ?? "https://inet.ineco.es/dti02/conecta_t/IndexAndroid.html" ;
             }
             catch (Exception e)
             {

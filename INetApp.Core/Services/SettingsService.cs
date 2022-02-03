@@ -18,6 +18,9 @@ namespace INetApp.Services.Settings
         private const string nameInitial = "Iniciales";
         private const string nameUser = "FullName";
         private const string keyPermission = "isPermission";
+        private const string version = "Version";
+        private const string requerido = "Requerido";
+        private const string url = "Url";
 
         //private const string IdToken = "id_token";        
         //private const string IdIdentityBase = "url_base";
@@ -62,6 +65,21 @@ namespace INetApp.Services.Settings
             set => Preferences.Set(keyPermission, value);
         }
 
+        public string Version
+        {
+            get => Preferences.Get(version, "");
+            set => Preferences.Set(version, value);
+        }
+        public bool Requerido
+        {
+            get => Preferences.Get(requerido, false);
+            set => Preferences.Set(requerido, value);
+        }
+        public string Url
+        {
+            get => Preferences.Get(url, "");
+            set => Preferences.Set(url, value);
+        }
         #endregion
     }
 }

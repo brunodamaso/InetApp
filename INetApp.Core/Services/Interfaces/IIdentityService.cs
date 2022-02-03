@@ -6,6 +6,6 @@ namespace INetApp.Services.Identity
     public interface IIdentityService
     {
         KeyValuePair<string, object> GetCredentialsFromPrefs();
-        void PutCredentialsFromPrefs(string user, string pass);
+        void PutCredentialsFromPrefs(string user, string pass ,string version, bool requerido, string url);
     }
 }
