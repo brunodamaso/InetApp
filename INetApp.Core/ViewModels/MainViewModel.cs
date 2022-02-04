@@ -57,7 +57,7 @@ namespace INetApp.ViewModels
             }
 
             IsBusy = false;
-            //await base.InitializeAsync(query);
+            await base.InitializeAsync(query);
         }
 
         private async Task ControlAcceso()

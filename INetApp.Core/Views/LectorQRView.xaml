@@ -12,6 +12,7 @@
     xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp" 
     xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    x:Name="lectorQRView"
     Title="{Binding Source={x:Static resources:Literales.activity_title_lector}}" 
     >
 

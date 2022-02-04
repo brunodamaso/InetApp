@@ -190,6 +190,7 @@
   </data>
   <data name="exception_message_generic" xml:space="preserve">
     <value>Hubo un error en la aplicación</value>
+    <comment>bd</comment>
   </data>
   <data name="exception_message_no_connection" xml:space="preserve">
     <value>La conexión a internet parece estar desactivada</value>
@@ -200,6 +201,7 @@
   </data>
   <data name="exception_message_message_not_found" xml:space="preserve">
     <value>No es posible obtener datos de la solicitud. Compruebe su conexión a internet</value>
+    <comment>bd</comment>
   </data>
   <data name="exception_message_login" xml:space="preserve">
     <value>Usuario o contraseña incorrectos. Por favor inténtelo de nuevo.</value>
@@ -279,9 +281,11 @@
   </data>
   <data name="dialog_approve_install" xml:space="preserve">
     <value>Existe una nueva versión de la aplicación</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_approve_positive_install" xml:space="preserve">
     <value>Instalar</value>
+    <comment>bd</comment>
   </data>
   <data name="dialog_approve_positive" xml:space="preserve">
     <value>Aprobar</value>
@@ -495,6 +499,7 @@
   </data>
   <data name="dialog_correct_access" xml:space="preserve">
     <value>Acceso correcto.</value>
+    <comment>bd</comment>
   </data>
   <data name="text_lector" xml:space="preserve">
     <value>Situe el código QR en el centro del lector para verificar el acceso:</value>

@@ -13,7 +13,12 @@
             Shell.NavBarIsVisible="True"
             Shell.TabBarIsVisible="True"
             Title="{Binding  Source={x:Static resources:Literales.app_name}}" >
-    
+
+    <!--<Shell.ToolbarItems >
+        <ToolbarItem IconImageSource = "ineco.png" />
+
+    </ Shell.ToolbarItems >-->
+
     <Grid BackgroundColor="{StaticResource white}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

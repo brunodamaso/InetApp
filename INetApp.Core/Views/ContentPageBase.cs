@@ -1,4 +1,6 @@
-﻿using INetApp.ViewModels.Base;
+﻿using System;
+using INetApp.Services;
+using INetApp.ViewModels.Base;
 using Xamarin.Forms;
 
 namespace INetApp.Views
@@ -7,7 +9,23 @@ namespace INetApp.Views
     {
         public ContentPageBase()
         {
-            NavigationPage.SetBackButtonTitle(this, string.Empty);
+            if (!this.ToString().Contains("LectorQR"))
+            {
+                NavigationPage.SetBackButtonTitle(this, string.Empty);
+                ToolbarItem QR = new ToolbarItem
+                {
+                    IconImageSource = "ineco.png",
+                    Order = ToolbarItemOrder.Primary,
+                    Priority = 0
+                };
+                QR.Clicked += OnQRClicked;
+                ToolbarItems.Add(QR);
+            }
+        }
+
+        private async void OnQRClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("LectorQR");
         }
 
         protected override async void OnAppearing()
