@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 using INetApp.APIWebServices.Dtos;
 using INetApp.Models;
 using INetApp.NFC;
+using INetApp.Resources;
 using INetApp.Services;
 using INetApp.Services.Settings;
 using INetApp.ViewModels.Base;
 using INetApp.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace INetApp
@@ -21,7 +23,8 @@ namespace INetApp
             InitializeRouting();
             InitializeComponent();
             settingsService = ViewModelLocator.Resolve<ISettingsService>();
-
+            VersionApp.Text = string.Format("{0} {1}: {2}", Literales.version, DeviceInfo.Platform, VersionTracking.CurrentVersion);
+            //todo verificar si es la version de uwp o la solucion
             bool isLogin = Login().Result;
 
             if (!isLogin)
@@ -31,7 +34,6 @@ namespace INetApp
                 NameUser.Text = settingsService.NameFull;
             }
         }
-
 
         private Task<bool> Login()
         {

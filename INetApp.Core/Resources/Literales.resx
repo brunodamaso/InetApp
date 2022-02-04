@@ -506,7 +506,8 @@
     <comment>bd</comment>
   </data>
   <data name="version" xml:space="preserve">
-    <value>Versión InetApp Android:</value>
+    <value>Versión InetApp</value>
+    <comment>bd</comment>
   </data>
   <data name="action_formation" xml:space="preserve">
     <value>Formación y Conocimiento</value>

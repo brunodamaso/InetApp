@@ -1069,7 +1069,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Versión InetApp Android:.
+        ///   Busca una cadena traducida similar a Versión InetApp.
         /// </summary>
         internal static string version {
             get {

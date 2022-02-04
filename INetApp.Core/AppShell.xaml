@@ -145,5 +145,31 @@
     -->
     <TabBar Title="{Binding Source={x:Static resources:Literales.action_logout}}">
         <ShellContent Route="Login" ContentTemplate="{DataTemplate views:LoginView}" />
-    </TabBar>    
+    </TabBar>
+
+    <Shell.FlyoutFooter>
+        <Grid BackgroundColor="{x:StaticResource white}" >
+            <!--<Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS, Android" Value="0,0,0,0" />
+                    <On Platform="UWP, WinRT, WinPhone" Value="0,-40,0,0" />
+                </OnPlatform>
+            </Grid.Margin>
+            <Grid.Padding>
+                <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                    <Binding Source="{StaticResource activity_horizontal_margin}"/>
+                    <Binding Source="{StaticResource activity_vertical_margin}"/>
+                </MultiBinding>
+            </Grid.Padding>-->
+            <Label Grid.Row ="0" 
+               x:Name="VersionApp"
+               TextColor="{StaticResource medium_grey}"
+               FontSize="12" 
+               Padding="0,8,0,0"
+               HorizontalOptions="CenterAndExpand"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+        </Grid>
+    </Shell.FlyoutFooter>
+
 </Shell>
