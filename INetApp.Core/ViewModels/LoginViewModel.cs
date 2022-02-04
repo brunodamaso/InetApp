@@ -166,17 +166,10 @@ namespace INetApp.ViewModels
         private void Logout()
         {
             settingsService.AuthAccessToken = "";
-            //todo borrar credenciales
-
-
-            //string authIdToken = settingsService.AuthIdToken;
-            //string logoutRequest = identityService.CreateLogoutRequest(authIdToken);
-
-            //if (!string.IsNullOrEmpty(logoutRequest))
-            //{
-            //    // Logout
-            //    this.LoginUrl = logoutRequest;
-            //}
+            settingsService.UserName = "";
+            settingsService.NameFull = "";
+            settingsService.NameInitial = "";
+            settingsService.UserPass = "";            
         }
 
         private bool Validate()
