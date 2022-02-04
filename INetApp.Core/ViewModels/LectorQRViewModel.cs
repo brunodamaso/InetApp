@@ -6,6 +6,7 @@ using INetApp.Models;
 using INetApp.Resources;
 using INetApp.Services;
 using INetApp.ViewModels.Base;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using ZXing.QrCode.Internal;
 
@@ -66,36 +67,43 @@ namespace INetApp.ViewModels
             IsAnalyzing = false;
             IsScanning = false;
 
-            Device.BeginInvokeOnMainThread(async () =>
+            if (QR.Text.Contains("http") || QR.Text.Contains("www"))
             {
-                UserAccessDto userAccessDto = await lectorQRService.GetAccesoAsync(QR.Text); //result.ToString()
+                await Browser.OpenAsync(QR.Text , BrowserLaunchMode.External);
+            }
+            else
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    UserAccessDto userAccessDto = await lectorQRService.GetAccesoAsync(QR.Text); //result.ToString()
                 if (userAccessDto.IsOk)
-                {
-                    await DialogService.ShowAlertAsync(userAccessDto.UserAccessModel.mensaje, "" ,Literales.btn_text_accept);
-                }
-                else
-                {
-                    if (!userAccessDto.IsConnected)
                     {
-                        await DialogService.ShowAlertAsync(Literales.exception_message_no_connection, "", Literales.btn_text_accept);
-                    }
-                    else if (userAccessDto.UserAccessModel == null)
-                    {
-                        await DialogService.ShowAlertAsync(Literales.exception_message_message_not_found, "", Literales.btn_text_accept);
+                        await DialogService.ShowAlertAsync(userAccessDto.UserAccessModel.mensaje, "", Literales.btn_text_accept);
                     }
                     else
                     {
-                        await DialogService.ShowAlertAsync(userAccessDto.ErrorDescription, "", Literales.btn_text_accept);
+                        if (!userAccessDto.IsConnected)
+                        {
+                            await DialogService.ShowAlertAsync(Literales.exception_message_no_connection, "", Literales.btn_text_accept);
+                        }
+                        else if (userAccessDto.UserAccessModel == null)
+                        {
+                            await DialogService.ShowAlertAsync(Literales.exception_message_message_not_found, "", Literales.btn_text_accept);
+                        }
+                        else
+                        {
+                            await DialogService.ShowAlertAsync(userAccessDto.ErrorDescription, "", Literales.btn_text_accept);
+                        }
                     }
-                }
-                IsAnalyzing = true;
-                IsScanning = true;
+                    IsAnalyzing = true;
+                    IsScanning = true;
 
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    await NavigationService.NavigateToAsync("..");
-                }
-            });
+                    if (Device.RuntimePlatform != Device.UWP)
+                    {
+                        await NavigationService.NavigateToAsync("..");
+                    }
+                });
+            }
             
         }
     }
