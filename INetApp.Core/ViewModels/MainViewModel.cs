@@ -9,6 +9,7 @@ using INetApp.Services;
 using INetApp.ViewModels.Base;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static System.Net.WebRequestMethods;
 
 namespace INetApp.ViewModels
 {
@@ -73,10 +74,14 @@ namespace INetApp.ViewModels
         {
             await NavigationService.NavigateToAsync("Settings");
         }
-
         private async Task Formacion()
         {
-            await NavigationService.NavigateToAsync("Settings");
+            Dictionary<string, string> Parametro = new Dictionary<string, string>
+                {
+                    { "Ruta", "http://inet-pre.ineco.es/prod/prodEncuestas/paginaRanking.aspx" },
+                    { "Titulo", Literales.action_formation }
+                };
+            await NavigationService.NavigateToAsync("WebView", Parametro);
         }
         private async void OnInfoCommand()
         {

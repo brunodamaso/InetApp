@@ -100,7 +100,7 @@ namespace INetApp.ViewModels
             CategoryID = int.Parse(query["CategoryId"]);
 
             await Sincroniza();
-            //await base.InitializeAsync(query);
+            await base.InitializeAsync(query);
         }
 
         private async Task Sincroniza()

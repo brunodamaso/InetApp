@@ -5,10 +5,9 @@
     xmlns:viewmodels="clr-namespace:INetApp.ViewModels" 
     x:DataType="viewmodels:WebInecoViewModel"
     x:Class="INetApp.Views.WebInecoView"
-    xmlns:resources="clr-namespace:INetApp.Resources"
     xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
-    Title="{Binding  Source={x:Static resources:Literales.app_name}}"
+    Title="{Binding Title}"
     x:Name="ViewWebIneco">
     
     <WebView x:Name="webView" WidthRequest="1000" HeightRequest="1000" 
