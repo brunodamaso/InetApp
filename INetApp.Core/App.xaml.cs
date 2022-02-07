@@ -1,14 +1,12 @@
-﻿using System.Text;
-using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using INetApp.Services;
+using INetApp.Services.Push;
 using INetApp.Services.Theme;
 using INetApp.ViewModels.Base;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
-using INetApp.NFC;
 
 namespace INetApp
 {
@@ -22,7 +20,12 @@ namespace INetApp
 
             InitApp();
 
-            this.MainPage = new AppShell();
+            if (Device.RuntimePlatform != Device.UWP)
+            {
+                ServiceContainer.Resolve<IPushNotificationActionService>()
+                    .ActionTriggered += NotificationActionTriggered;
+            }
+            MainPage = new AppShell();
         }
 
         private void InitApp()
@@ -57,6 +60,7 @@ namespace INetApp
 
             RequestedThemeChanged += App_RequestedThemeChanged;
         }
+
         //protected override bool OnBackButtonPressed()
         //{
         //	UnsubscribeEvents();
@@ -64,6 +68,25 @@ namespace INetApp
         //	return base.OnBackButtonPressed();
         //}
 
+        private void NotificationActionTriggered(object sender, PushAction e)
+        {
+            ShowActionAlert(e);
+        }
+
+        private void ShowActionAlert(PushAction action)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+                MainPage?.DisplayAlert("Push: ", $"{action} action received", "OK")
+                    .ContinueWith((task) =>
+                    {
+                        if (task.IsFaulted)
+                        {
+                            throw task.Exception;
+                        }
+                    }
+                )
+            );
+        }
 
         private void App_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
         {
@@ -99,5 +122,5 @@ namespace INetApp
                 }
             }
         }
-    }	
+    }
 }

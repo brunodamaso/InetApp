@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "13164573839",
+    "firebase_url": "https://inetapppush.firebaseio.com",
+    "project_id": "inetapppush",
+    "storage_bucket": "inetapppush.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13164573839:android:bfc22b5474e7c3d0a5ecfa",
+        "android_client_info": {
+          "package_name": "com.ineco.inetapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13164573839-70j51fqk8u63uq9tf3j67mrosh4docgh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTCH6y69bkmGFBHuxlxjMnsWkwzNHVfZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13164573839-70j51fqk8u63uq9tf3j67mrosh4docgh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "13164573839-q34juvj564crn56uls2qlu41g01sc3rr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ineco.inetapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

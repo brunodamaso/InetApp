@@ -5,12 +5,12 @@
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
-		<integer>2</integer>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -19,12 +19,31 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>49e7b7c76c3578ad4fa7e19c2aa1f973fffc0ab8</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>MinimumOSVersion</key>
 	<string>14.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>INetApp</string>
+	<string>InetApp</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Ineco.INetApp</string>
+	<string>com.ineco.inetapp</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -33,27 +52,56 @@
 	<string></string>
 	<key>CFBundleName</key>
 	<string>INetApp</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Assets.xcassets/LaunchImage.launchimage</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need acces to location</string>
-  <key>NSCameraUsageDescription</key>
-  <string>Esta aplicacion necesita acceso a la camara para leer los codigos QR.</string>
-  <key>NFCReaderUsageDescription</key>
-  <string>NFC tag to read and write NDEF messages into the application NFC Sample</string>
-  <key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
-  <string>com.apple.developer.nfc.readersession.iso7816.select-identifiers</string>
-  <key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
-  <array>
-    <string>com.apple.developer.nfc.readersession.iso7816.select-identifiers</string>
-    <string>D2760000850100</string>
-  </array>
-  <key>NSAppTransportSecurity</key>
+	<key>NSCameraUsageDescription</key>
+	<string>Esta aplicacion necesita acceso a la camara para leer los codigos QR.</string>
+	<key>NFCReaderUsageDescription</key>
+	<string>NFC tag to read and write NDEF messages into the application NFC Sample</string>
+	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+	<array>
+		<string>com.apple.developer.nfc.readersession.iso7816.select-identifiers</string>
+		<string>D2760000850100</string>
+	</array>
+	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>settings.crashlytics.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIRequiresCertificateTransparency</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Calibri Bold Italic.ttf</string>
+		<string>Calibri Bold.ttf</string>
+		<string>Calibri Italic.ttf</string>
+		<string>Calibri.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

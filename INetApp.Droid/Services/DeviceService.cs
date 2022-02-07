@@ -27,7 +27,7 @@ namespace INetApp.Droid.Services
         /// </summary>
         /// <param name="context">Context.</param>
         public DeviceService(Context context)
-        {           
+        {
             this.context = context;
         }
 
@@ -113,13 +113,13 @@ namespace INetApp.Droid.Services
         /// <summary>
         /// If is device samsung !!!!
         /// </summary>
-        public bool IsSamsungDevice => this.Manufacturer.Contains(SAMSUNG_NAME, StringComparison.InvariantCultureIgnoreCase) || this.Model.Contains(SAMSUNG_NAME, StringComparison.InvariantCultureIgnoreCase);
+        public bool IsSamsungDevice => Manufacturer.Contains(SAMSUNG_NAME, StringComparison.InvariantCultureIgnoreCase) || Model.Contains(SAMSUNG_NAME, StringComparison.InvariantCultureIgnoreCase);
 
         /// <summary>
         /// Gets the name.
         /// </summary>
         /// <value>The name.</value>
-        public string Name => this.Manufacturer + " " + this.Model;
+        public string Name => Manufacturer + " " + Model;
 
         /// <summary>
         /// Gets the version so.
@@ -255,7 +255,7 @@ namespace INetApp.Droid.Services
         /// <returns>The debug data.</returns>
         public string GetDebugData()
         {
-            return $"Device Data: \n{{\nDispositivoID:{this.DispositivoID},\nAppVersion:{this.AppVersion},\nName:{this.Name},\nversionSO:{this.VersionSO},\nplatform:{this.Platform},\nAppName:{this.AppName},\nDensity:{this.Density},\n}}";
+            return $"Device Data: \n{{\nDispositivoID:{DispositivoID},\nAppVersion:{AppVersion},\nName:{Name},\nversionSO:{VersionSO},\nplatform:{Platform},\nAppName:{AppName},\nDensity:{Density},\n}}";
         }
 
         /// <summary>

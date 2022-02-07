@@ -12,7 +12,7 @@ namespace INetApp.Services.NFC
     public class NFCService: INFCService
     {
         public const string ALERT_TITLE = "NFC";
-        public const string MIME_TYPE = "application/com.Ineco.InetApp";
+        public const string MIME_TYPE = "application/com.ineco.inetapp";
         private readonly IRepositoryWebService repositoryWebService;
 
         private bool _eventsAlreadySubscribed = false;

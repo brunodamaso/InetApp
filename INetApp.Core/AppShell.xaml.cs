@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Text;
 using System.Threading.Tasks;
 using INetApp.APIWebServices.Dtos;
-using INetApp.Models;
-using INetApp.NFC;
 using INetApp.Resources;
 using INetApp.Services;
+using INetApp.Services.Push;
 using INetApp.Services.Settings;
 using INetApp.ViewModels.Base;
 using INetApp.Views;
@@ -18,11 +16,19 @@ namespace INetApp
     {
         public const string MIME_TYPE = "*/*";
         private readonly ISettingsService settingsService;
+        private readonly INotificationRegistrationService _notificationRegistrationService;
+
         public AppShell()
         {
             InitializeRouting();
             InitializeComponent();
             settingsService = ViewModelLocator.Resolve<ISettingsService>();
+
+            if (Device.RuntimePlatform != Device.UWP)
+            {
+                _notificationRegistrationService = ServiceContainer.Resolve<INotificationRegistrationService>();
+            }
+
             VersionApp.Text = string.Format("{0} {1}: {2}", Literales.version, DeviceInfo.Platform, VersionTracking.CurrentVersion);
             //todo verificar si es la version de uwp o la solucion
             bool isLogin = Login().Result;
@@ -33,6 +39,7 @@ namespace INetApp
                 NameInitial.Text = settingsService.NameInitial;
                 NameUser.Text = settingsService.NameFull;
             }
+
         }
 
         private Task<bool> Login()
@@ -79,6 +86,38 @@ namespace INetApp
             Routing.RegisterRoute("InfoView", typeof(InfoView));
 
         }
+        #region push
+        private void RegisterButtonClicked(object sender, EventArgs e)
+        {
+            _notificationRegistrationService.RegisterDeviceAsync().ContinueWith((task) =>
+            {
+                ShowAlert(task.IsFaulted ? task.Exception.Message : $"Device registered");
+            });
+        }
+
+        private void DeregisterButtonClicked(object sender, EventArgs e)
+        {
+            _notificationRegistrationService.DeregisterDeviceAsync().ContinueWith((task) =>
+            {
+                ShowAlert(task.IsFaulted ? task.Exception.Message : $"Device deregistered");
+            });
+        }
+        private void ShowAlert(string message)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+                DisplayAlert("Push", message, "OK")
+                    .ContinueWith((task) =>
+                    {
+                        if (task.IsFaulted)
+                        {
+                            throw task.Exception;
+                        }
+                    }
+                )
+            );
+        }
+        #endregion
+
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//Login?Logout=true");

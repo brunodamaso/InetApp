@@ -62,10 +62,15 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Effects\EntryLineColorEffect.cs" />
+    <Compile Include="Extensions\NSDataExtensions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\DeviceInstallationService.cs" />
     <Compile Include="Services\DeviceService.cs" />
     <Compile Include="Services\ThemeService.cs" />
     <None Include="Entitlements.plist" />
@@ -154,6 +159,10 @@
     <ProjectReference Include="..\INetApp.NFC\INetApp.NFC.csproj">
       <Project>{db6e750c-1774-433d-9daf-634d67f14ea6}</Project>
       <Name>INetApp.NFC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\INetApp.Push\INetApp.Push.csproj">
+      <Project>{af1ee7f2-cb98-4c8b-8580-43581dcca444}</Project>
+      <Name>INetApp.Push</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
