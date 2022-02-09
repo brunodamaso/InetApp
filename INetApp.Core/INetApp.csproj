@@ -53,7 +53,6 @@
     <ProjectReference Include="..\INetApp.APIWebServices\INetApp.APIWebServices.csproj" />
     <ProjectReference Include="..\INetApp.Model\INetApp.Model.csproj" />
     <ProjectReference Include="..\INetApp.NFC\INetApp.NFC.csproj" />
-    <ProjectReference Include="..\INetApp.Push\INetApp.Push.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\Components\View_Update.xaml">

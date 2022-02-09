@@ -272,10 +272,6 @@
       <Project>{e80d4419-ae6c-437b-8970-d734f2059c8a}</Project>
       <Name>INetApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\INetApp.Push\INetApp.Push.csproj">
-      <Project>{af1ee7f2-cb98-4c8b-8580-43581dcca444}</Project>
-      <Name>INetApp.Push</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using INetApp.Services;
-using INetApp.Services.Push;
 using INetApp.Services.Theme;
 using INetApp.ViewModels.Base;
 using Xamarin.Essentials;
@@ -20,11 +19,6 @@ namespace INetApp
 
             InitApp();
 
-            if (Device.RuntimePlatform != Device.UWP)
-            {
-                ServiceContainer.Resolve<IPushNotificationActionService>()
-                    .ActionTriggered += NotificationActionTriggered;
-            }
             MainPage = new AppShell();
         }
 
@@ -67,26 +61,6 @@ namespace INetApp
         //	CrossNFC.Current.StopListening();
         //	return base.OnBackButtonPressed();
         //}
-
-        private void NotificationActionTriggered(object sender, PushAction e)
-        {
-            ShowActionAlert(e);
-        }
-
-        private void ShowActionAlert(PushAction action)
-        {
-            MainThread.BeginInvokeOnMainThread(() =>
-                MainPage?.DisplayAlert("Push: ", $"{action} action received", "OK")
-                    .ContinueWith((task) =>
-                    {
-                        if (task.IsFaulted)
-                        {
-                            throw task.Exception;
-                        }
-                    }
-                )
-            );
-        }
 
         private void App_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
         {

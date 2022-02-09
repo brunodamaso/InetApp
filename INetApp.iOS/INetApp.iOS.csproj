@@ -76,7 +76,6 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <ITunesArtwork Include="iTunesArtwork@2x" />
     <Compile Include="Effects\CircleEffect.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -158,10 +157,6 @@
     <ProjectReference Include="..\INetApp.NFC\INetApp.NFC.csproj">
       <Project>{db6e750c-1774-433d-9daf-634d67f14ea6}</Project>
       <Name>INetApp.NFC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\INetApp.Push\INetApp.Push.csproj">
-      <Project>{af1ee7f2-cb98-4c8b-8580-43581dcca444}</Project>
-      <Name>INetApp.Push</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
