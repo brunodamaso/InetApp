@@ -50,7 +50,7 @@ namespace INetApp.Services
                             userLoggedDto.UserLoggedModel.version = responseVersion.UserLoggedModel.version;
                             userLoggedDto.UserLoggedModel.url = responseVersion.UserLoggedModel.url;
                             userLoggedDto.UserLoggedModel.requerido = responseVersion.UserLoggedModel.requerido;
-                            identityService.PutCredentialsFromPrefs(Usuario, Password , userLoggedDto.UserLoggedModel.version , userLoggedDto.UserLoggedModel.requerido , userLoggedDto.UserLoggedModel.url);
+                            identityService.PutCredentialsFromPrefs(Usuario, Password , userLoggedDto.UserLoggedModel);
                         }
                         else
                         {

@@ -6,9 +6,11 @@ using INetApp.Services;
 using INetApp.Services.Identity;
 using INetApp.Validations;
 using INetApp.ViewModels.Base;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels
@@ -138,9 +140,17 @@ namespace INetApp.ViewModels
                 if (userLoggedDto.IsOk) // && userLoggedDto.UserLoggedModel.permission)
                 {
                     UserLoggedModel = userLoggedDto.UserLoggedModel;
-                    if (UserLoggedModel.version != settingsService.Version)
+                    if (await userService.CheckVersion())
                     {
-
+                        try
+                        {
+                            await Browser.OpenAsync(settingsService.Url, BrowserLaunchMode.SystemPreferred);
+                            System.Diagnostics.Process.GetCurrentProcess().Kill();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                     }
                     await NavigationService.NavigateToAsync("//MainView");
                 }
@@ -170,6 +180,7 @@ namespace INetApp.ViewModels
             settingsService.NameFull = "";
             settingsService.NameInitial = "";
             settingsService.UserPass = "";            
+            //todo borrar token push con la api
         }
 
         private bool Validate()

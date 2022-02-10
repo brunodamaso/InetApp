@@ -96,7 +96,7 @@
             <Color x:Key="DarkBackgroundColor">#009cc4</Color>
             <Color x:Key="LightForegroundColor">#FFFFFF</Color>
             <Color x:Key="DarkForegroundColor">#FFFFFF</Color>
-            <Color x:Key="LightFontColor">#222222</Color>
+            <Color x:Key="LightFontColor">#4d4d4d</Color>
             <Color x:Key="DarkFontColor">#E7E7E7</Color>
             <Color x:Key="LightSeparatorColor">#222222</Color>
             <Color x:Key="DarkSeparatorColor">#E7E7E7</Color>

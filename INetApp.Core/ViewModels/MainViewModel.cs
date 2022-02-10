@@ -45,17 +45,17 @@ namespace INetApp.ViewModels
             Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now);
             IspermissionApp = settingsService.Permission;
 
-            if (await UserService.CheckVersion())
-            {
-                try
-                {
-                    await Browser.OpenAsync(settingsService.Url, BrowserLaunchMode.External);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }                
-            }
+            //if (await UserService.CheckVersion())
+            //{
+            //    try
+            //    {
+            //        await Browser.OpenAsync(settingsService.Url, BrowserLaunchMode.External);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine(ex.Message);
+            //    }                
+            //}
 
             IsBusy = false;
             await base.InitializeAsync(query);

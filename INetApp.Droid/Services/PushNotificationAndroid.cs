@@ -8,14 +8,15 @@ using Android.OS;
 using AndroidX.Core.App;
 using Firebase.Iid;
 using INetApp.Droid.Activities;
+using INetApp.Services;
+using Xamarin.Essentials;
 using AndroidApp = Android.App.Application;
 
 namespace INetApp.Droid.Services
 {
-    public class AndroidNotificationManager
+    public class PushNotificationAndroid : PushService, IPushNotification
     {
-        private const string channelId = "default";
-        private const string channelName = "Default";
+        private const string channelId = "10001";
         private const string channelDescription = "The default channel for notifications.";
         private const int pendingIntentId = 0;
 
@@ -24,41 +25,49 @@ namespace INetApp.Droid.Services
         private static bool channelInitialized = false;
         private int messageId = -1;
         private static NotificationManager manager;
-        
-        public static void Activate(SplashActivity splashActivity)
+        private readonly Context context;
+
+        public PushNotificationAndroid()
         {
-            IsPlayServicesAvailable(splashActivity);
+        }
+        public PushNotificationAndroid(Context _context)
+        {
+            this.context = _context;
+            Activate();
+        }
+        private void Activate()
+        {
+            IsPlayServicesAvailable(this.context);
             CreateNotificationChannel();
         }
 
-        public static string GetToken()
+        public string GetToken()
         {
-            try
-            {
-                return FirebaseInstanceId.Instance.Token;
-            }
-            catch (Exception)
-            {
-                return "No FireBase no esta inicializado";
-            }
+            return Preferences.Get("TokenFirebase", "FireBase no esta inicializado");
         }
+
         private static void CreateNotificationChannel()
         {
             manager = (NotificationManager)AndroidApp.Context.GetSystemService(AndroidApp.NotificationService);
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
-                Java.Lang.String channelNameJava = new Java.Lang.String(channelName);
-                NotificationChannel channel = new NotificationChannel(channelId, channelNameJava, NotificationImportance.Default)
+                //Java.Lang.String channelNameJava = new Java.Lang.String(channelName);
+                NotificationChannel channel = new NotificationChannel(channelId, "My Notifications", NotificationImportance.High)
                 {
-                    Description = channelDescription
+                    Description = channelDescription,
                 };
+                channel.EnableLights(true);
+                channel.LightColor =Color.Red;
+                channel.SetVibrationPattern(new long[] { 100, 250, 100, 250, 100, 250 });
+                channel.EnableVibration(true);
+
                 manager.CreateNotificationChannel(channel);
             }
 
             channelInitialized = true;
         }
-        private static bool IsPlayServicesAvailable(SplashActivity splashActivity)
+        private static bool IsPlayServicesAvailable(Context splashActivity)
         {
             int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(splashActivity);
             if (resultCode != ConnectionResult.Success)
@@ -81,9 +90,9 @@ namespace INetApp.Droid.Services
             }
         }
         
-        public int CrearNotificacionLocal(string pTitle, string pBody, int numerOrders)
+        public int CrearNotificacionLocal(string pTitle, string pBody, System.Collections.Generic.IDictionary<string, string> data)
         {
-
+            //todo NotificationsListenerService
             if (!channelInitialized)
             {
                 CreateNotificationChannel();
@@ -94,6 +103,7 @@ namespace INetApp.Droid.Services
             Intent intent = new Intent(AndroidApp.Context, typeof(MainActivity));
             intent.PutExtra(TitleKey, pTitle);
             intent.PutExtra(MessageKey, pBody);
+            //intent.PutExtra("data", data);
             intent.AddFlags(ActivityFlags.ClearTop);
 
             PendingIntent pendingIntent = PendingIntent.GetActivity(AndroidApp.Context, pendingIntentId, intent, PendingIntentFlags.UpdateCurrent);
@@ -107,7 +117,7 @@ namespace INetApp.Droid.Services
                 .SetSmallIcon(Resource.Drawable.ic_launcher)
                 .SetLights(Color.Blue ,500 ,500)
                 .SetVibrate(new long[] { 100, 250, 100, 250, 100, 250 })
-                .SetNumber(numerOrders)
+//                .SetNumber(numerOrders)
                 .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate);
 
             Notification notification = builder.Build();
@@ -115,5 +125,6 @@ namespace INetApp.Droid.Services
 
             return messageId;
         }
+
     }
 }

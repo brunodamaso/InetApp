@@ -12,8 +12,9 @@ namespace INetApp.Services
         Task<UserLoggedDto> GetUserLoggedDto();
 
         /// <summary>
-        /// Chequea version de la app vs la devuelta en el API Service
+        /// 
         /// </summary>
+        /// <returns>Devuelve false= si es la misma version o postpone la actualizacion, true= se va a actualizar la version</returns>
         Task<bool> CheckVersion();
     }
 }

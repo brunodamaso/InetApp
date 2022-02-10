@@ -65,8 +65,9 @@ namespace INetApp.ViewModels.Base
             Xamarin.Forms.DependencyService.RegisterSingleton<IMessageService>(new MessageService(repositoryWebService, repositoryService));
             Xamarin.Forms.DependencyService.RegisterSingleton<IOptionsService>(new OptionsService(repositoryWebService));
             Xamarin.Forms.DependencyService.RegisterSingleton<ILectorQRService>(new LectorQRService(repositoryWebService));
-            Xamarin.Forms.DependencyService.RegisterSingleton<ILectorQRService>(new LectorQRService(repositoryWebService));
             Xamarin.Forms.DependencyService.RegisterSingleton<INFCService>(new NFCService(repositoryWebService));
+            Xamarin.Forms.DependencyService.RegisterSingleton<IPushService>(new PushService(repositoryWebService));
+            //Xamarin.Forms.DependencyService.RegisterSingleton<IPushService>(new PushService());
         }
 
         public static T Resolve<T>() where T : class

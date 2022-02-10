@@ -12,7 +12,7 @@ namespace INetApp.Droid.Services
     public class MyFirebaseMessagingService : FirebaseMessagingService
     {
         private const string TAG = "MyFirebaseMsgService";
-        private readonly AndroidNotificationManager androidNotification = new AndroidNotificationManager();
+        private readonly PushNotificationAndroid androidNotification = new PushNotificationAndroid();
         public override void OnMessageReceived(RemoteMessage message)
         {
             Log.Debug(TAG, "From: " + message.From);
@@ -21,19 +21,15 @@ namespace INetApp.Droid.Services
             {
                 Log.Debug(TAG, "Notification Message Data: key " + item.Key +" Valor " +item.Value);
             }
-            androidNotification.CrearNotificacionLocal(message.GetNotification().Title, message.GetNotification().Body ,0);
+            androidNotification.CrearNotificacionLocal(message.GetNotification().Title, message.GetNotification().Body ,message.Data);
         }
         public override void OnNewToken(string token)
         {
-            Console.WriteLine("[Toookennn]:  " + token);
+            Console.WriteLine("[Token]:  " + token);
             base.OnNewToken(token);
 
-            Preferences.Set("TokenFirebase", token);
-            sedRegisterToken(token);
+            Preferences.Set("TokenRegsitration", token);
         }
-        public void sedRegisterToken(string token)
-        {
-            //Tu código para registrar el token a tu servidor y base de datos
-        }
+        
     }
 }

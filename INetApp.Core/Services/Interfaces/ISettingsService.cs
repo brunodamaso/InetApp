@@ -13,5 +13,6 @@ namespace INetApp.Services.Settings
         string Version { get; set; }
         bool Requerido { get; set; }
         string Url { get; set; }
+        string PushToken { get; set; }        
     }
 }

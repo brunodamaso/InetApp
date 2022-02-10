@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using IdentityModel;
+using INetApp.APIWebServices.Dtos;
+using INetApp.Extensions;
 using INetApp.Services.Settings;
 using PCLCrypto;
 using Xamarin.Essentials;
@@ -46,7 +48,7 @@ namespace INetApp.Services.Identity
             }
         }
 
-        public void PutCredentialsFromPrefs(string user, string pass, string version, bool requerido, string url)
+        public void PutCredentialsFromPrefs(string user, string pass, Models.UserLoggedModel userLoggedModel)
         {
 
             //ISharedPreferences prefs = context.GetSharedPreferences(APP_KEY, FileCreationMode.Private); // Context.MODE_PRIVATE
@@ -63,9 +65,14 @@ namespace INetApp.Services.Identity
                 byte[] passEncrypted = CryptographicEngine.Encrypt(sKeySpec, Encoding.UTF8.GetBytes(pass));
                 settingsService.UserPass = Base64Url.Encode(passEncrypted);
 
-                settingsService.Version = version ?? VersionTracking.CurrentVersion;
-                settingsService.Requerido = requerido;
-                settingsService.Url = url ?? "https://inet.ineco.es/dti02/conecta_t/IndexAndroid.html" ;
+                settingsService.Version = userLoggedModel.version.IsNullOrEmpty() ? VersionTracking.CurrentVersion : userLoggedModel.version;
+                settingsService.Requerido = userLoggedModel.requerido;
+                settingsService.Url = userLoggedModel.url.IsNullOrEmpty() ? "https://inet.ineco.es/dti02/conecta_t/IndexAndroid.html" : userLoggedModel.url;
+                
+                settingsService.AuthAccessToken = user;
+                settingsService.NameInitial = userLoggedModel.nameInitial + userLoggedModel.lastNameInitial;
+                settingsService.NameFull = userLoggedModel.fullName;
+                settingsService.Permission = userLoggedModel.permission;
             }
             catch (Exception e)
             {

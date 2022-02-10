@@ -21,6 +21,7 @@ namespace INetApp.Services.Settings
         private const string version = "Version";
         private const string requerido = "Requerido";
         private const string url = "Url";
+        private const string PushTokenId = "TokenRegsitration";
 
         //private const string IdToken = "id_token";        
         //private const string IdIdentityBase = "url_base";
@@ -79,6 +80,11 @@ namespace INetApp.Services.Settings
         {
             get => Preferences.Get(url, "");
             set => Preferences.Set(url, value);
+        }
+        public string PushToken
+        {
+            get => Preferences.Get(PushTokenId, "");
+            set => Preferences.Set(PushTokenId, value);
         }
         #endregion
     }

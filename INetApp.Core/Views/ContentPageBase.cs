@@ -14,12 +14,12 @@ namespace INetApp.Views
                 NavigationPage.SetBackButtonTitle(this, string.Empty);
                 ToolbarItem QR = new ToolbarItem
                 {
-                    IconImageSource = "ineco.png",
+                    IconImageSource = ImageSource.FromResource("ineco.png"),
                     Order = ToolbarItemOrder.Primary,
                     Priority = 0
                 };
                 QR.Clicked += OnQRClicked;
-                ToolbarItems.Add(QR);
+                //ToolbarItems.Add(QR);
             }
         }
 
