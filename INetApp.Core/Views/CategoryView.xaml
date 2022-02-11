@@ -13,10 +13,6 @@
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
     x:DataType="viewmodels:CategoryViewModel">
 
-    <views:ContentPageBase.ToolbarItems>
-        <ToolbarItem IconImageSource="ineco.png"  Order="Primary" Priority="2" />
-    </views:ContentPageBase.ToolbarItems>
-
     <RefreshView IsRefreshing="{Binding IsRefreshing ,Mode=OneWay}"
                     Command="{Binding RefreshCommand}">
         <StackLayout Orientation="Vertical" Spacing="0">
@@ -32,7 +28,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <ListView CachingStrategy="RecycleElement"
+                        <!--<ListView CachingStrategy="RecycleElement"
                             HasUnevenRows="True"
                             SeparatorVisibility="None"
                             VerticalOptions="FillAndExpand"
@@ -50,7 +46,7 @@
                                 EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
                                 EventName="ItemTapped" />
                             </ListView.Behaviors>
-                        </ListView>
+                        </ListView>-->
                     </Grid>
                     <Grid  Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNullOrEmptyConverter}, ConverterParameter='Not'}">
                         <Label

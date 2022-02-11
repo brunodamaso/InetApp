@@ -100,7 +100,7 @@ namespace INetApp.ViewModels
 
                     if (Device.RuntimePlatform != Device.UWP)
                     {
-                        await NavigationService.NavigateToAsync("..");
+                    //    await NavigationService.NavigateToAsync("..");
                     }
                 });
             }

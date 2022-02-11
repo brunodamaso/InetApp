@@ -13,7 +13,7 @@
 	<uses-permission android:name="android.permission.FLASHLIGHT" />
 	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
 	<meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/ic_launcher" />
-	<application android:label="InetApp" android:icon="@drawable/icon" android:largeHeap="true" android:networkSecurityConfig="@xml/network_security_config">
+	<application android:label="InetApp" android:icon="@drawable/notif_large_icon" android:largeHeap="true" android:networkSecurityConfig="@xml/network_security_config">
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
 			<intent-filter>

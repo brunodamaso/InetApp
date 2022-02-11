@@ -17,7 +17,7 @@ namespace INetApp.Droid.Activities
         //LaunchMode = LaunchMode.SingleTop,
     [Activity(
         Label = "INetApp",
-        Icon = "@drawable/icon",
+        Icon = "@drawable/notif_large_icon",
         Theme = "@style/MainTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     [IntentFilter(new[] { NfcAdapter.ActionNdefDiscovered }, Categories = new[] { Intent.CategoryDefault }, DataMimeType = "*/*")]

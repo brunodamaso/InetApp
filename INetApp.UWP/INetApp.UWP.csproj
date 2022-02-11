@@ -185,9 +185,6 @@
     <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\right_arrow.png">
       <Link>Assets\right_arrow.png</Link>
     </Content>
-    <Content Include="..\INetApp.Droid\Resources\drawable\icon.png">
-      <Link>Assets\icon.png</Link>
-    </Content>
     <Content Include="..\INetApp.Droid\Resources\drawable\icon_about.png">
       <Link>Assets\icon_about.png</Link>
     </Content>
@@ -211,6 +208,9 @@
     </Content>
     <Content Include="..\INetApp.Droid\Resources\drawable\info_opciones.png">
       <Link>Assets\info_opciones.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\qr.png">
+      <Link>Assets\qr.png</Link>
     </Content>
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-200.png" />
