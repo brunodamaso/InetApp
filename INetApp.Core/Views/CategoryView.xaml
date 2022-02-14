@@ -13,75 +13,76 @@
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
     x:DataType="viewmodels:CategoryViewModel">
 
-    <RefreshView IsRefreshing="{Binding IsRefreshing ,Mode=OneWay}"
-                    Command="{Binding RefreshCommand}">
-        <StackLayout Orientation="Vertical" Spacing="0">
-            <ScrollView Orientation="Vertical" Margin="0" Padding="0"
-                BackgroundColor="{StaticResource white}" 
-                VerticalOptions="FillAndExpand" 
-                HorizontalOptions="Fill" >
-                <Grid RowSpacing="0">
+    <Grid RowSpacing="0" Margin="0" Padding="0" BackgroundColor="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <!--<ScrollView Orientation="Vertical" Margin="0" Padding="0"
+            BackgroundColor="{StaticResource white}" 
+            VerticalOptions="FillAndExpand" 
+            HorizontalOptions="Fill" >-->
+                <Grid Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Grid  Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNotNullOrEmptyConverter}}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <!--<ListView CachingStrategy="RecycleElement"
-                            HasUnevenRows="True"
-                            SeparatorVisibility="None"
-                            VerticalOptions="FillAndExpand"
-                            ItemsSource="{Binding CategoryItems}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <components:CategoryRow/>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                            <ListView.Behaviors>
-                                <xct:EventToCommandBehavior
-                                Command="{Binding SelectCategoryCommand}"
-                                EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
-                                EventName="ItemTapped" />
-                            </ListView.Behaviors>
-                        </ListView>-->
-                    </Grid>
-                    <Grid  Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNullOrEmptyConverter}, ConverterParameter='Not'}">
-                        <Label
-                            HorizontalOptions="Center"
-                            Text="{Binding Source={x:Static resources:Literales.empty_categories}}"
-                            VerticalOptions="Center" 
-                            TextColor="{StaticResource dark_grey}"/>
-                    </Grid>
-        
-                    <BoxView Grid.Row="0"
-                        IsVisible="{Binding IsBusy}"
-                        BackgroundColor="Black" 
-                        Opacity="0.3"/>
-                    <ActivityIndicator Grid.Row="0" 
-                        HorizontalOptions="Center"
-                        IsRunning="{Binding IsBusy}"
-                        IsVisible="{Binding IsBusy}"
-                        VerticalOptions="Center"                  
-                        Color="{StaticResource app_Color}">
-                        <ActivityIndicator.WidthRequest>
-                            <OnPlatform x:TypeArguments="x:Double">
-                                <On Platform="iOS, Android" Value="100" />
-                                <On Platform="UWP, WinRT, WinPhone" Value="400" />
-                            </OnPlatform>
-                        </ActivityIndicator.WidthRequest>
-                    </ActivityIndicator>
+                    <ListView CachingStrategy="RecycleElement"
+                        IsPullToRefreshEnabled="True"
+                        RefreshCommand="{Binding RefreshCommand}"
+                        IsRefreshing="{Binding IsRefreshing ,Mode=OneWay}"
+                        HasUnevenRows="True"
+                        SeparatorVisibility="None"
+                        VerticalOptions="FillAndExpand"
+                        ItemsSource="{Binding CategoryItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <components:CategoryRow/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Behaviors>
+                            <xct:EventToCommandBehavior
+                            Command="{Binding SelectCategoryCommand}"
+                            EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
+                            EventName="ItemTapped" />
+                        </ListView.Behaviors>
+                    </ListView>
                 </Grid>
+                <Grid  Grid.Row="0" IsVisible="{Binding CategoryItems, Converter={StaticResource ListIsNullOrEmptyConverter}, ConverterParameter='Not'}">
+                    <Label
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding IsBusy, Converter={StaticResource ValueToBooleanConverter}, ConverterParameter='Not'}"
+                        Text="{Binding Source={x:Static resources:Literales.empty_categories}}"
+                        VerticalOptions="CenterAndExpand" 
+                        TextColor="{StaticResource dark_grey}"/>
+                </Grid>
+        
+                <!--<BoxView Grid.Row="0"
+                    IsVisible="{Binding IsBusy}"
+                    BackgroundColor="Black" 
+                    Opacity="0.3"/>-->
+                <ActivityIndicator Grid.Row="0" 
+                    HorizontalOptions="Center"
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}"
+                    VerticalOptions="Center" 
+                    BackgroundColor="White"
+                    Color="{StaticResource app_Color}">
+                    <ActivityIndicator.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS, Android" Value="100" />
+                            <On Platform="UWP, WinRT, WinPhone" Value="400" />
+                        </OnPlatform>
+                    </ActivityIndicator.WidthRequest>
+                </ActivityIndicator>
 
-            </ScrollView>
+        <!--</ScrollView>-->
 
-            <components:View_Update x:Name="tv_last_update">
-                <components:View_Update.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding InfoCommand}"/>
-                </components:View_Update.GestureRecognizers>
-            </components:View_Update>
-        </StackLayout>
-    </RefreshView>
+        <components:View_Update Grid.Row ="1" x:Name="tv_last_update">
+            <components:View_Update.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding InfoCommand}"/>
+            </components:View_Update.GestureRecognizers>
+        </components:View_Update>
+    </Grid>
 </views:ContentPageBase>

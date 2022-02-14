@@ -20,7 +20,8 @@ namespace INetApp.APIWebServices
         Task<bool> MarkOptionsFromApi(string Usuario, string Password, string strOptionlist);
         Task<UserAccessDto> GetAccesoQRFromAPI(string Usuario, string Password, string QR);
         Task<UserAccessDto> GetAccesoNFCFromAPI(string Usuario, string Password, string NFC);
-
+        Task<bool> RegisterToken(string Usuario, string Password, string Token);
+        Task<bool> UnRegisterToken(string Usuario, string Password);
 
         //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
 

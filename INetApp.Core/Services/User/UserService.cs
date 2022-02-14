@@ -70,5 +70,9 @@ namespace INetApp.Services
             }
             return actualiza;
         }
+        public async Task<bool> UnRegisterTokenPush()
+        {
+            return await repositoryWebService.UnRegisterTokenPush();
+        }
     }
 }

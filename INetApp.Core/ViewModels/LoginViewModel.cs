@@ -179,7 +179,9 @@ namespace INetApp.ViewModels
             settingsService.UserName = "";
             settingsService.NameFull = "";
             settingsService.NameInitial = "";
-            settingsService.UserPass = "";            
+            settingsService.UserPass = "";
+            settingsService.PushToken = "";
+            userService.UnRegisterTokenPush();
             //todo borrar token push con la api
         }
 

@@ -4,8 +4,10 @@ using INetApp.APIWebServices.Entity;
 using INetApp.Models;
 using INetApp.Services.Identity;
 using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ZXing.Aztec.Internal;
 
 namespace INetApp.Services
 {
@@ -430,7 +432,6 @@ namespace INetApp.Services
         }
         #endregion
 
-
         #region AccesoNFC
         public async Task<UserAccessDto> GetAccesoNFC(string NFC)
         {
@@ -466,6 +467,56 @@ namespace INetApp.Services
         }
         #endregion
 
+        #region TokenPush
+        public async Task<bool> RegisterTokenPush(string Token)
+        {
+            bool result = true;
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+{
+                    byte[] tokeb64 = System.Text.Encoding.UTF8.GetBytes(Token);
+                    string Token64 = Convert.ToBase64String(tokeb64,Base64FormattingOptions.None);
+
+                    result = await RestApiImpl.RegisterToken(userName, userPass, Token64);
+
+                    if (result)
+                    {
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        public async Task<bool> UnRegisterTokenPush()
+        {
+            bool result = true;
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    result = await RestApiImpl.UnRegisterToken(userName, userPass);
+
+                    if (result)
+                    {
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+        #endregion
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()
         //{
         //    //BaseDto dto =new BaseDto(true, string.Empty, string.Empty, true);

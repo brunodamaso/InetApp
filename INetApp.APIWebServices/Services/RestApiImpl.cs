@@ -294,6 +294,7 @@ namespace INetApp.APIWebServices
         }
 
         #endregion
+        
         #region GetAccesoNFCFromAPI
         public Task<UserAccessDto> GetAccesoNFCFromAPI(string Usuario, string Password, string NFC)
         {
@@ -307,6 +308,31 @@ namespace INetApp.APIWebServices
             });
         }
 
-        #endregion        
+        #endregion
+
+        #region TokenPush
+        public Task<bool> RegisterToken(string Usuario, string Password, string Token64)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                int isIos = Device.RuntimePlatform == Device.iOS ? 1 : 0;
+                
+                HttpResponse httpResponse = Get(API_URL_GET_REGISTERTOKEN +Token64 +"/" +isIos, Usuario, Password).Result;
+
+                return httpResponse.IsOk;
+
+            });
+        }
+        public Task<bool> UnRegisterToken(string Usuario, string Password)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                HttpResponse httpResponse = Get(API_URL_GET_UNREGISTERTOKEN, Usuario, Password).Result;
+
+                return httpResponse.IsOk;
+
+            });
+        }
+        #endregion
     }
 }

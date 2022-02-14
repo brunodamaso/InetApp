@@ -30,6 +30,5 @@ namespace INetApp.Droid.Services
 
             Preferences.Set("TokenRegsitration", token);
         }
-        
     }
 }

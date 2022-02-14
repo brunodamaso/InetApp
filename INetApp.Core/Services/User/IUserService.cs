@@ -10,11 +10,11 @@ namespace INetApp.Services
     {
         Task<UserLoggedDto> GetUserLoggedDto(string userName, string userPass);
         Task<UserLoggedDto> GetUserLoggedDto();
-
         /// <summary>
         /// 
         /// </summary>
         /// <returns>Devuelve false= si es la misma version o postpone la actualizacion, true= se va a actualizar la version</returns>
         Task<bool> CheckVersion();
+        Task<bool> UnRegisterTokenPush();
     }
 }

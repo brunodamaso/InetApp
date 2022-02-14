@@ -24,7 +24,8 @@ namespace INetApp.Services
         Task<bool> MarkOptions(List<OptionsModel> optionsModels);
         Task<UserAccessDto> GetAccesoQR(string QR);
         Task<UserAccessDto> GetAccesoNFC(string NFC);
-
+        Task<bool> RegisterTokenPush(string Token);
+        Task<bool> UnRegisterTokenPush();
         //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
 
     }

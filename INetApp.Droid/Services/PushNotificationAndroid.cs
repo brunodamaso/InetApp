@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Gms.Common;
@@ -6,7 +7,6 @@ using Android.Graphics;
 using Android.OS;
 //using Android.Support.V4.App;
 using AndroidX.Core.App;
-using Firebase.Iid;
 using INetApp.Droid.Activities;
 using INetApp.Services;
 using Xamarin.Essentials;
@@ -32,12 +32,12 @@ namespace INetApp.Droid.Services
         }
         public PushNotificationAndroid(Context _context)
         {
-            this.context = _context;
+            context = _context;
             Activate();
         }
         private void Activate()
         {
-            IsPlayServicesAvailable(this.context);
+            IsPlayServicesAvailable(context);
             CreateNotificationChannel();
         }
 
@@ -58,7 +58,7 @@ namespace INetApp.Droid.Services
                     Description = channelDescription,
                 };
                 channel.EnableLights(true);
-                channel.LightColor =Color.Red;
+                channel.LightColor = Color.Red;
                 channel.SetVibrationPattern(new long[] { 100, 250, 100, 250, 100, 250 });
                 channel.EnableVibration(true);
 
@@ -89,8 +89,8 @@ namespace INetApp.Droid.Services
                 return true;
             }
         }
-        
-        public int CrearNotificacionLocal(string pTitle, string pBody, System.Collections.Generic.IDictionary<string, string> data)
+
+        public int CrearNotificacionLocal(string pTitle, string pBody, IDictionary<string, string> data)
         {
             //todo NotificationsListenerService
             if (!channelInitialized)
@@ -103,7 +103,7 @@ namespace INetApp.Droid.Services
             Intent intent = new Intent(AndroidApp.Context, typeof(MainActivity));
             intent.PutExtra(TitleKey, pTitle);
             intent.PutExtra(MessageKey, pBody);
-            //intent.PutExtra("data", data);
+            intent.PutExtra("data", data);
             intent.AddFlags(ActivityFlags.ClearTop);
 
             PendingIntent pendingIntent = PendingIntent.GetActivity(AndroidApp.Context, pendingIntentId, intent, PendingIntentFlags.UpdateCurrent);
@@ -115,9 +115,9 @@ namespace INetApp.Droid.Services
                 .SetAutoCancel(true)
                 .SetLargeIcon(BitmapFactory.DecodeResource(AndroidApp.Context.Resources, Resource.Drawable.ic_launcher))
                 .SetSmallIcon(Resource.Drawable.ic_launcher)
-                .SetLights(Color.Blue ,500 ,500)
+                .SetLights(Color.Blue, 500, 500)
                 .SetVibrate(new long[] { 100, 250, 100, 250, 100, 250 })
-//                .SetNumber(numerOrders)
+                //                .SetNumber(numerOrders)
                 .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate);
 
             Notification notification = builder.Build();
