@@ -53,7 +53,7 @@ namespace INetApp.Droid.Services
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
                 //Java.Lang.String channelNameJava = new Java.Lang.String(channelName);
-                NotificationChannel channel = new NotificationChannel(channelId, "My Notifications", NotificationImportance.High)
+                NotificationChannel channel = new NotificationChannel(channelId, "Notificaciones generales", NotificationImportance.High)
                 {
                     Description = channelDescription,
                 };
@@ -103,7 +103,7 @@ namespace INetApp.Droid.Services
             Intent intent = new Intent(AndroidApp.Context, typeof(MainActivity));
             intent.PutExtra(TitleKey, pTitle);
             intent.PutExtra(MessageKey, pBody);
-            intent.PutExtra("data", data);
+            //intent.PutExtra("data", data.ToString());
             intent.AddFlags(ActivityFlags.ClearTop);
 
             PendingIntent pendingIntent = PendingIntent.GetActivity(AndroidApp.Context, pendingIntentId, intent, PendingIntentFlags.UpdateCurrent);
@@ -126,5 +126,9 @@ namespace INetApp.Droid.Services
             return messageId;
         }
 
+        public override bool OnPushAction(IDictionary<string, string> token)
+        {
+            return base.OnPushAction(token);
+        }
     }
 }

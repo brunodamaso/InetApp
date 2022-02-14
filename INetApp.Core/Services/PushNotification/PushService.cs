@@ -36,5 +36,9 @@ namespace INetApp.Services
         {
             return true;
         }
+        public virtual bool OnPushAction(IDictionary<string, string> token)
+        {
+            return true;
+        }
     }
 }

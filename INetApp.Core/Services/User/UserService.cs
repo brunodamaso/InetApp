@@ -32,6 +32,8 @@ namespace INetApp.Services
             UserLoggedDto userLoggedDto = await repositoryWebService.GetUserLogged(userName, userPass);
             if (userLoggedDto.IsOk)
             {
+                await repositoryWebService.RegisterTokenPush(settingsService.PushToken);
+
                 //settingsService.AuthAccessToken = userName;
                 //settingsService.NameInitial = userLoggedDto.UserLoggedModel.nameInitial + userLoggedDto.UserLoggedModel.lastNameInitial;
                 //settingsService.NameFull = userLoggedDto.UserLoggedModel.fullName;

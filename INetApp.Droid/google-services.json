@@ -1,41 +1,34 @@
 {
   "project_info": {
-    "project_number": "161374035475",
-    "project_id": "i4fuerzaventas",
-    "storage_bucket": "i4fuerzaventas.appspot.com"
+    "project_number": "696959426346",
+    "project_id": "inetapp-xamarin",
+    "storage_bucket": "inetapp-xamarin.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:161374035475:android:0c4d2eb162e16e54aba9e6",
+        "mobilesdk_app_id": "1:696959426346:android:5dd05efae8d93822d34853",
         "android_client_info": {
-          "package_name": "com.I4.I4FuerzaVentas"
+          "package_name": "com.ineco.inetapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "161374035475-dqjk5964fnof41jedig5gd782ru51f0d.apps.googleusercontent.com",
+          "client_id": "696959426346-i5u2gh0lqo3rjsc812e4blj2922s69gb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC1iU7BEY2EazCG-Y35IzzKLOWmzGO1kf8"
+          "current_key": "AIzaSyBYz5BtllqgZ2ou4QeibX-GqNE99pL53qw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "161374035475-dqjk5964fnof41jedig5gd782ru51f0d.apps.googleusercontent.com",
+              "client_id": "696959426346-i5u2gh0lqo3rjsc812e4blj2922s69gb.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "161374035475-uis8gk4sqe0e9aq7sg3fjkig3k723k1k.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.i4.I4FuerzaVentas"
-              }
             }
           ]
         }

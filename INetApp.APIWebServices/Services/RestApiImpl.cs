@@ -37,8 +37,12 @@ namespace INetApp.APIWebServices
         private readonly string API_URL_GET_USER_LOGGED = API_BASE_URL + "getuser/";
 
         /**
-         * Api url for getting messages by category: Remember to concatenate id'
+         * Api url for getting all options
          */
+        private readonly string API_URL_GET_USER_PERMISSION = API_BASE_URL + "tienepermisobandeja/";
+        /**
+                 * Api url for getting messages by category: Remember to concatenate id'
+                 */
         private readonly string API_URL_GET_MESSAGE_LIST_BY_CATEGORY = API_BASE_URL + "detalleBandejas/";
 
         /**
@@ -68,17 +72,32 @@ namespace INetApp.APIWebServices
 
         private readonly string API_URL_GET_UNREGISTERTOKEN = API_BASE_URL + "eliminartoken/";
 
-
-        //    PARTES
         /**
          * Api url for getting all options
          */
         private readonly string API_URL_GET_OPTIONS_LIST = API_BASE_URL + "GetAplicaciones/";
-
         /**
          * Api url for getting all options
          */
-        private readonly string API_URL_GET_USER_PERMISSION = API_BASE_URL + "tienepermisobandeja/";
+        private readonly string API_URL_SET_OPTIONS_LIST = API_BASE_URL + "SetAplicaciones/";
+        /**
+         * Api url for getting version
+         */
+        private readonly string API_URL_GET_VERSION = API_BASE_URL + "getversion/";
+
+        /**
+         * Api url for getting acceso
+         */
+        private readonly string API_URL_GET_ACCESO = API_BASE_URL + "getaccesopermitido/";
+
+        /**
+         * Api url for getting acceso by nfc
+         */
+        private readonly string API_URL_GET_ACCESO_BY_NFC = API_BASE_URL + "getaccesopermitidonfc/";
+
+
+        //    PARTES
+
 
         /**
          * Api url for getting all projects
@@ -89,11 +108,6 @@ namespace INetApp.APIWebServices
          * Api url for getting search projects
          */
         private readonly string API_URL_GET_SEARCH_PROJECTS = API_BASE_URL + "getproyectosbuscador/";
-
-        /**
-         * Api url for getting all options
-         */
-        private readonly string API_URL_SET_OPTIONS_LIST = API_BASE_URL + "SetAplicaciones/";
 
         /**
          * Api url for getting current part
@@ -115,33 +129,12 @@ namespace INetApp.APIWebServices
          */
         private readonly string API_URL_SAVE_PART = API_BASE_URL + "GuardarParte/";
 
-
-        //BIGAALCA-2018/05/02
-        /**
-         * Api url for getting version
-         */
-        private readonly string API_URL_GET_VERSION = API_BASE_URL + "getversion/";
-        //FIN BIGAALCA-2018/05/02
-
-        //BIGAALCA-2020/05/14
         /**
          * Api url for getting periodo activo
          */
         private readonly string API_URL_GET_PERIODO_ACTIVO = API_BASE_URL + "getperiodoactivo/";
-        //FIN BIGAALCA-2020/05/14
 
-        //BIGAALCA-2018/05/02
-        /**
-         * Api url for getting acceso
-         */
-        private readonly string API_URL_GET_ACCESO = API_BASE_URL + "getaccesopermitido/";
-        //FIN BIGAALCA-2018/05/02
-
-        /**
-         * Api url for getting acceso by nfc
-         */
-        private readonly string API_URL_GET_ACCESO_BY_NFC = API_BASE_URL + "getaccesopermitidonfc/";
-
+        
         #endregion
 
         #region user

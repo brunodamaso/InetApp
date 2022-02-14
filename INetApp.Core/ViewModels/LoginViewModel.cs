@@ -182,7 +182,6 @@ namespace INetApp.ViewModels
             settingsService.UserPass = "";
             settingsService.PushToken = "";
             userService.UnRegisterTokenPush();
-            //todo borrar token push con la api
         }
 
         private bool Validate()

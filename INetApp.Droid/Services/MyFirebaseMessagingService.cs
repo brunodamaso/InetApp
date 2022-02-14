@@ -11,7 +11,7 @@ namespace INetApp.Droid.Services
     [IntentFilter(new[] { "com.google.firebase.MESSAGING_EVENT" })]
     public class MyFirebaseMessagingService : FirebaseMessagingService
     {
-        private const string TAG = "MyFirebaseMsgService";
+        private const string TAG = "Notificaciones generales";
         private readonly PushNotificationAndroid androidNotification = new PushNotificationAndroid();
         public override void OnMessageReceived(RemoteMessage message)
         {

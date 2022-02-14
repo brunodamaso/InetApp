@@ -1,19 +1,14 @@
-using System;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Gms.Common;
-using Android.Nfc;
 using Android.OS;
 using Android.Util;
 using AndroidX.AppCompat.App;
 using INetApp.Droid.Services;
 using INetApp.Extensions;
 using INetApp.Services;
-using Firebase.Messaging;
-using Firebase.Iid;
-using Android.Media;
-using Firebase;
+using INetApp.Resources;
+using System.Collections.Generic;
 
 namespace INetApp.Droid.Activities
 {
@@ -30,23 +25,25 @@ namespace INetApp.Droid.Activities
         {
             base.OnCreate(bundle);
             //new PushNotificationAndroid(this);
-            //InvokeMainActivity();
-
+            Tasks.RunDelay(0, InvokeMainActivity);
         }
         protected override void OnResume()
         {
             base.OnResume();
+            PushNotificationAndroid pushNotificationAndroid = new PushNotificationAndroid(this);
             Xamarin.Forms.DependencyService.RegisterSingleton<IDeviceService>(new DeviceService(this));
-            Xamarin.Forms.DependencyService.RegisterSingleton<IPushNotification>(new PushNotificationAndroid(this));
+            Xamarin.Forms.DependencyService.RegisterSingleton<IPushNotification>(pushNotificationAndroid);
             if (Intent.Extras != null)
             {
+                IDictionary<string, string> data = new Dictionary<string, string>();
                 foreach (string key in Intent.Extras.KeySet())
                 {
                     object value = Intent.Extras.Get(key);
+                    data.Add(key, value.ToString());
                     Log.Debug("SplashActivity", "Key: {0} Value: {1}", key, value.ToString());
                 }
+                pushNotificationAndroid.OnPushAction(data);
             }
-            Tasks.RunDelay(0, InvokeMainActivity);
         }
 
         private void InvokeMainActivity()
