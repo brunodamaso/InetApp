@@ -103,7 +103,10 @@ namespace INetApp.Droid.Services
             Intent intent = new Intent(AndroidApp.Context, typeof(MainActivity));
             intent.PutExtra(TitleKey, pTitle);
             intent.PutExtra(MessageKey, pBody);
-            //intent.PutExtra("data", data.ToString());
+            foreach (var item in data)
+            {
+                intent.PutExtra(item.Key, item.Value.ToString());
+            }
             intent.AddFlags(ActivityFlags.ClearTop);
 
             PendingIntent pendingIntent = PendingIntent.GetActivity(AndroidApp.Context, pendingIntentId, intent, PendingIntentFlags.UpdateCurrent);
