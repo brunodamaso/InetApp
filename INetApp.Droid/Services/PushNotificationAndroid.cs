@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Gms.Common;
@@ -103,9 +104,14 @@ namespace INetApp.Droid.Services
             Intent intent = new Intent(AndroidApp.Context, typeof(MainActivity));
             intent.PutExtra(TitleKey, pTitle);
             intent.PutExtra(MessageKey, pBody);
+            int numerOrders = 1;
             foreach (var item in data)
             {
-                intent.PutExtra(item.Key, item.Value.ToString());
+                intent.PutExtra(item.Key, item.Value);
+                if (item.Key == "numsolicitudes")
+                {
+                    numerOrders = int.Parse(item.Value);
+                }
             }
             intent.AddFlags(ActivityFlags.ClearTop);
 
@@ -120,7 +126,7 @@ namespace INetApp.Droid.Services
                 .SetSmallIcon(Resource.Drawable.ic_launcher)
                 .SetLights(Color.Blue, 500, 500)
                 .SetVibrate(new long[] { 100, 250, 100, 250, 100, 250 })
-                //                .SetNumber(numerOrders)
+                .SetNumber(numerOrders)
                 .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate);
 
             Notification notification = builder.Build();
@@ -129,9 +135,9 @@ namespace INetApp.Droid.Services
             return messageId;
         }
 
-        public override bool OnPushAction(IDictionary<string, string> token)
+        public override async Task OnPushAction(IDictionary<string, string> token)
         {
-            return base.OnPushAction(token);
+            await base.OnPushAction(token);
         }
     }
 }

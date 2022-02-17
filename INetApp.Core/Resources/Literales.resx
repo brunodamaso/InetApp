@@ -149,24 +149,31 @@
   </data>
   <data name="keynoTipoMsg" xml:space="preserve">
     <value>notiExterna</value>
+    <comment>bd</comment>
   </data>
   <data name="keynoUrlMsg" xml:space="preserve">
     <value>url</value>
+    <comment>bd</comment>
   </data>
   <data name="keynottitle" xml:space="preserve">
     <value>title</value>
+    <comment>bd</comment>
   </data>
   <data name="keynotmessage" xml:space="preserve">
     <value>message</value>
+    <comment>bd</comment>
   </data>
   <data name="keynotidapplication" xml:space="preserve">
     <value>idApplication</value>
+    <comment>bd</comment>
   </data>
   <data name="keynotidsolicitud" xml:space="preserve">
     <value>idSolicitud</value>
+    <comment>bd</comment>
   </data>
   <data name="keynotnumsolicitudes" xml:space="preserve">
     <value>numSolicitudes</value>
+    <comment>bd</comment>
   </data>
   <data name="keycategoryname" xml:space="preserve">
     <value>categoryName</value>

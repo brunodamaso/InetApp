@@ -80,18 +80,18 @@ namespace INetApp.Models
         {
             this.urIcon = urIcon;
         }
-        override
-        public string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //override
+        //public string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("***** Message Model Category *****\n");
-            stringBuilder.Append("id=" + this.getCategoryId() + "\n");
-            stringBuilder.Append("name=" + this.getName() + "\n");
-            stringBuilder.Append("pending messages=" + this.getPendingMessages() + "\n");
-            stringBuilder.Append("*******************************");
+        //    stringBuilder.Append("***** Message Model Category *****\n");
+        //    stringBuilder.Append("id=" + this.getCategoryId() + "\n");
+        //    stringBuilder.Append("name=" + this.getName() + "\n");
+        //    stringBuilder.Append("pending messages=" + this.getPendingMessages() + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
     }
 }

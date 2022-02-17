@@ -27,15 +27,15 @@ namespace INetApp.Models
             this.periodoActivo = periodoActivo;
         }
 
-        override
-        public string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("***** Message Model Options *****\n");
-            stringBuilder.Append("id=" + this.getPeriodoActivo() + "\n");
-            stringBuilder.Append("*******************************");
+        //override
+        //public string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
+        //    stringBuilder.Append("***** Message Model Options *****\n");
+        //    stringBuilder.Append("id=" + this.getPeriodoActivo() + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
     }
 }

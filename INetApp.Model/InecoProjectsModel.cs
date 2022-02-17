@@ -22,17 +22,17 @@ namespace INetApp.Models
         private string tipo { get; set; }
 
 
-        override public string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //    override public string ToString()
+        //    {
+        //        StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("***** User Model Details *****\n");
-            stringBuilder.Append("pronumero=" + pronumero + "\n");
-            stringBuilder.Append("titulo=" + titulo + "\n");
-            stringBuilder.Append("fullname=" + tipo + "\n");
-            stringBuilder.Append("*******************************");
+        //        stringBuilder.Append("***** User Model Details *****\n");
+        //        stringBuilder.Append("pronumero=" + pronumero + "\n");
+        //        stringBuilder.Append("titulo=" + titulo + "\n");
+        //        stringBuilder.Append("fullname=" + tipo + "\n");
+        //        stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //        return stringBuilder.ToString();
+        //    }
     }
 }

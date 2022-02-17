@@ -4,10 +4,8 @@ using INetApp.APIWebServices.Entity;
 using INetApp.Models;
 using INetApp.Services.Identity;
 using System;
-using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ZXing.Aztec.Internal;
 
 namespace INetApp.Services
 {
