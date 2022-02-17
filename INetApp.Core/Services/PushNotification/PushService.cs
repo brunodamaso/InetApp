@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using INetApp.APIWebServices.Dtos;
@@ -121,23 +122,28 @@ namespace INetApp.Services
                     {
                         sNombreCategoria = categoryname;
                     }
-                    token.TryGetValue(Literales.keynotnumsolicitudes, out string numsolicitudes);
 
                     if (idApplication > 0 && idSolicitud > 0)
                     {
-                        MessageDto messageDto = await repositoryWebService.GetMessageDetails(idApplication, idSolicitud);
-                        if (messageDto.IsOk)
+                        MessagesDto messagesDto = await repositoryWebService.GetMessages(idApplication);
+                        if (messagesDto.IsOk)
                         {
-                            messageDto.MessageModel.categoryId = idApplication;
-                            messageDto.MessageModel.messageId = idSolicitud;
+                            MessageModel message = messagesDto.MessagesModel.FirstOrDefault(a => a.messageId == idSolicitud);
+                            MessageDto messageDto = await repositoryWebService.GetMessageDetails(idApplication, idSolicitud);
+                            if (messageDto.IsOk)
+                            {
+                                messageDto.MessageModel.categoryId = idApplication;
+                                messageDto.MessageModel.messageId = idSolicitud;
+                                messageDto.MessageModel.name = message.name;
+                                messageDto.MessageModel.date = message.date;
+                                string StringParametro = JsonConvert.SerializeObject(messageDto.MessageModel);
 
-                            string StringParametro = JsonConvert.SerializeObject(messageDto.MessageModel);
-
-                            Dictionary<string, string> Parametro = new Dictionary<string, string>
+                                Dictionary<string, string> Parametro = new Dictionary<string, string>
                             {
                                 { "MessageModel", StringParametro }
                             };
-                            await NavigationService.NavigateToAsync("MessageDetails", Parametro);
+                                await NavigationService.NavigateToAsync("MessageDetails", Parametro);
+                            }
                         }
                     }
                     else if (idApplication > 0)

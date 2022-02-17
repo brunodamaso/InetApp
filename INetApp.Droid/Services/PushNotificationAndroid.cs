@@ -15,7 +15,7 @@ using AndroidApp = Android.App.Application;
 
 namespace INetApp.Droid.Services
 {
-    public class PushNotificationAndroid : PushService, IPushNotification
+    public class PushNotificationAndroid : PushService
     {
         private const string channelId = "10001";
         private const string channelDescription = "The default channel for notifications.";

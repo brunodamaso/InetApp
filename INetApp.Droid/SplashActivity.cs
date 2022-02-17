@@ -34,7 +34,7 @@ namespace INetApp.Droid.Activities
             if (Intent.Extras != null)
             {
                 PushNotificationAndroid pushNotificationAndroid = new PushNotificationAndroid(this);
-                Xamarin.Forms.DependencyService.RegisterSingleton<IPushNotification>(pushNotificationAndroid);
+                Xamarin.Forms.DependencyService.RegisterSingleton<PushService>(pushNotificationAndroid);
                 IDictionary<string, string> data = new Dictionary<string, string>();
                 foreach (string key in Intent.Extras.KeySet())
                 {
