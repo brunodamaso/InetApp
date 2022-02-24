@@ -12,7 +12,7 @@ namespace INetApp.Droid.Services
     public class MyFirebaseMessagingService : FirebaseMessagingService
     {
         private const string TAG = "Notificaciones generales";
-        private readonly PushNotificationAndroid androidNotification = new PushNotificationAndroid();
+        private readonly PushNotificationAndroid pushNotification = new PushNotificationAndroid();
         public override void OnMessageReceived(RemoteMessage message)
         {
             Log.Debug(TAG, "From: " + message.From);
@@ -21,7 +21,7 @@ namespace INetApp.Droid.Services
             {
                 Log.Debug(TAG, "Notification Message Data: key " + item.Key +" Valor " +item.Value);
             }
-            androidNotification.CrearNotificacionLocal(message.GetNotification().Title, message.GetNotification().Body ,message.Data);
+            pushNotification.CrearNotificacionLocal(message.GetNotification().Title, message.GetNotification().Body ,message.Data);
         }
         public override void OnNewToken(string token)
         {
