@@ -44,16 +44,16 @@ namespace INetApp.Models
 
 
 
-        override
-        public string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //override
+        //public string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("***** User Entity Details *****\n");
-            stringBuilder.Append("username=" + this.getMensaje() + "\n");
-            stringBuilder.Append("*******************************");
+        //    stringBuilder.Append("***** User Entity Details *****\n");
+        //    stringBuilder.Append("username=" + this.getMensaje() + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
     }
 }

@@ -15,11 +15,6 @@ namespace INetApp.Models
 
     public class Detail
     {
-        //public Detail (string nombre, string campo)
-        //{
-        //    Nombre = nombre;
-        //    Campo = campo;
-        //}
         public string Nombre { get; set; }
         public string Campo { get; set; }
         public bool IsURL{ get; set; }

@@ -15,7 +15,7 @@ namespace INetApp
     {
         public const string MIME_TYPE = "*/*";
         private readonly ISettingsService settingsService;
-
+        public bool isLogin = false;
         public AppShell()
         {
             InitializeRouting();
@@ -24,7 +24,10 @@ namespace INetApp
                        
             VersionApp.Text = string.Format("{0} {1}: {2}", Literales.version, DeviceInfo.Platform, VersionTracking.CurrentVersion);
             //todo verificar si es la version de uwp o la solucion
-            bool isLogin = Login().Result;
+            IUserService userService = ViewModelLocator.Resolve<IUserService>();
+
+
+            isLogin = Login().Result;
 
             if (!isLogin)
             {
@@ -51,6 +54,22 @@ namespace INetApp
                     UserLoggedDto userLoggedDto = userService.GetUserLoggedDto().Result;
                     if (userLoggedDto.IsOk) // && userLoggedDto.UserLoggedModel.permission)
                     {
+                        //if (userService.CheckVersion().Result)
+                        //{
+                        //    try
+                        //    {
+                        //        this.DisplayAlert(Literales.dialog_approve_install,
+                        //            Literales.dialog_approve_title_search,
+                        //            Literales.dialog_approve_positive_install);
+
+                        //        Browser.OpenAsync(settingsService.Url, BrowserLaunchMode.SystemPreferred);
+                        //        System.Diagnostics.Process.GetCurrentProcess().Kill();
+                        //    }
+                        //    catch (Exception ex)
+                        //    {
+                        //        Console.WriteLine(ex.Message);
+                        //    }
+                        //}
                         islogin = true;
                         NameInitial.Text = settingsService.NameInitial;
                         NameUser.Text = settingsService.NameFull;

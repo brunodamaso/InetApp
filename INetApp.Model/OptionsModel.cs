@@ -45,18 +45,18 @@ namespace INetApp.Models
             this.checkeado = checkeado;
         }
 
-        public
-        override string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //public
+        //override string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("***** Message Model Options *****\n");
-            stringBuilder.Append("id=" + getOptionsId() + "\n");
-            stringBuilder.Append("name=" + getName() + "\n");
-            stringBuilder.Append("selected=" + ((isChecked()) ? "true" : "false") + "\n");
-            stringBuilder.Append("*******************************");
+        //    stringBuilder.Append("***** Message Model Options *****\n");
+        //    stringBuilder.Append("id=" + getOptionsId() + "\n");
+        //    stringBuilder.Append("name=" + getName() + "\n");
+        //    stringBuilder.Append("selected=" + ((isChecked()) ? "true" : "false") + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
     }
 }

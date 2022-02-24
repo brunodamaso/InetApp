@@ -30,11 +30,11 @@ namespace INetApp.Droid.Activities
         protected override void OnResume()
         {
             base.OnResume();
-            PushNotificationAndroid pushNotificationAndroid = new PushNotificationAndroid(this);
             Xamarin.Forms.DependencyService.RegisterSingleton<IDeviceService>(new DeviceService(this));
-            Xamarin.Forms.DependencyService.RegisterSingleton<IPushNotification>(pushNotificationAndroid);
             if (Intent.Extras != null)
             {
+                PushNotificationAndroid pushNotificationAndroid = new PushNotificationAndroid(this);
+                Xamarin.Forms.DependencyService.RegisterSingleton<PushService>(pushNotificationAndroid);
                 IDictionary<string, string> data = new Dictionary<string, string>();
                 foreach (string key in Intent.Extras.KeySet())
                 {
@@ -45,7 +45,6 @@ namespace INetApp.Droid.Activities
                 pushNotificationAndroid.OnPushAction(data);
             }
         }
-
         private void InvokeMainActivity()
         {
             StartActivity(new Intent(this, typeof(MainActivity)));

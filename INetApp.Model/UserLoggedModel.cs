@@ -100,19 +100,19 @@ namespace INetApp.Models
             this.requerido = requerido;
         }
 
-        override
-        public string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //override
+        //public string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("***** User Model Details *****\n");
-            stringBuilder.Append("username=" + this.getUsername() + "\n");
-            stringBuilder.Append("fullname=" + this.getFullName() + "\n");
-            stringBuilder.Append("nameInitial=" + this.getNameInitial() + "\n");
-            stringBuilder.Append("lastNameInitial=" + this.getLastNameInitial() + "\n");
-            stringBuilder.Append("*******************************");
+        //    stringBuilder.Append("***** User Model Details *****\n");
+        //    stringBuilder.Append("username=" + this.getUsername() + "\n");
+        //    stringBuilder.Append("fullname=" + this.getFullName() + "\n");
+        //    stringBuilder.Append("nameInitial=" + this.getNameInitial() + "\n");
+        //    stringBuilder.Append("lastNameInitial=" + this.getLastNameInitial() + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
     }
 }

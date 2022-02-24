@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,18 +12,18 @@ namespace INetApp.Views.Components
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class View_Actions : ContentView
     {
-        public static readonly BindableProperty RefuseProperty = BindableProperty.Create(nameof(Refuse), typeof(Command), typeof(Button), null);
+        public static readonly BindableProperty RefuseProperty = BindableProperty.Create(nameof(Refuse), typeof(ICommand), typeof(Button), null);
 
-        public Command Refuse
+        public ICommand Refuse
         {
-            get => (Command)GetValue(RefuseProperty);
+            get => (ICommand)GetValue(RefuseProperty);
             set => SetValue(RefuseProperty, value);
         }
-        public static readonly BindableProperty ApproveProperty = BindableProperty.Create(nameof(Approve), typeof(Command), typeof(Button), null);
+        public static readonly BindableProperty ApproveProperty = BindableProperty.Create(nameof(Approve), typeof(ICommand), typeof(Button), null);
 
-        public Command Approve
+        public ICommand Approve
         {
-            get => (Command)GetValue(ApproveProperty);
+            get => (ICommand)GetValue(ApproveProperty);
             set => SetValue(ApproveProperty, value);
         }
 

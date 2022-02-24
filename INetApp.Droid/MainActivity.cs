@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -69,8 +70,21 @@ namespace INetApp.Droid.Activities
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
         protected override void OnResume()
-        {
+        {          
+            if (Intent.Extras != null)
+            {
+                PushNotificationAndroid pushNotificationAndroid = new PushNotificationAndroid(this);
+                Xamarin.Forms.DependencyService.RegisterSingleton<PushService>(pushNotificationAndroid);
+                IDictionary<string, string> data = new Dictionary<string, string>();
+                foreach (string key in Intent.Extras.KeySet())
+                {
+                    object value = Intent.Extras.Get(key);
+                    data.Add(key, value.ToString());
+                }
+                pushNotificationAndroid.OnPushAction(data);
+            }
             base.OnResume();
+
             CrossNFC.OnResume();
         }
         protected override void OnNewIntent(Intent intent)

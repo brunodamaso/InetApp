@@ -3,12 +3,7 @@ using System.Text;
 using Xamarin.Forms;
 
 namespace INetApp.Models
-{
-    //using java.util.List;
-
-    //using com.ineco.inetapp.domain.HoraDia;
-    
-
+{ 
     /**
      * Class that represents a user in the presentation layer.
      */
@@ -201,16 +196,16 @@ namespace INetApp.Models
             this.horaDia = horaDia;
         }
 
-        override
-        public string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //override
+        //public string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("IdParte=" + this.getIdParte() + "\n");
-            stringBuilder.Append("*******************************");
+        //    stringBuilder.Append("IdParte=" + this.getIdParte() + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
 
 
         public List<LineasDetalle> getLineasDetalle()
