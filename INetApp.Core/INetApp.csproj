@@ -103,8 +103,8 @@
     <Compile Update="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\PartesView.xaml.cs">
-      <DependentUpon>PartesView.xaml</DependentUpon>
+    <Compile Update="Views\WorkPartsView.xaml.cs">
+      <DependentUpon>WorkPartsView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\MessageDetailsView.xaml.cs">
       <DependentUpon>MessageDetailsView.xaml</DependentUpon>

@@ -60,17 +60,17 @@ namespace INetApp.APIWebServices.Entity
             UrlIcono = urlIcono;
         }
 
-        public override string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //public override string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("***** Category Entity Details *****\n");
-            stringBuilder.Append("id=" + getCategoryId() + "\n");
-            stringBuilder.Append("name=" + getName() + "\n");
-            stringBuilder.Append("pending messages=" + getPendingMessages() + "\n");
-            stringBuilder.Append("*******************************");
+        //    stringBuilder.Append("***** Category Entity Details *****\n");
+        //    stringBuilder.Append("id=" + getCategoryId() + "\n");
+        //    stringBuilder.Append("name=" + getName() + "\n");
+        //    stringBuilder.Append("pending messages=" + getPendingMessages() + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
     }
 }

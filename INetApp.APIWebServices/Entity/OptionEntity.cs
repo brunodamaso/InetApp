@@ -60,18 +60,17 @@ namespace INetApp.APIWebServices.Entity
             UrlIcono = urlIcono;
         }
 
+        //public override string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-        public override string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //    stringBuilder.Append("***** Category Entity Details *****\n");
+        //    stringBuilder.Append("id=" + this.getOptionsId() + "\n");
+        //    stringBuilder.Append("name=" + this.getName() + "\n");
+        //    stringBuilder.Append("selected=" + ((this.isChecked()) ? "true" : "false") + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            stringBuilder.Append("***** Category Entity Details *****\n");
-            stringBuilder.Append("id=" + this.getOptionsId() + "\n");
-            stringBuilder.Append("name=" + this.getName() + "\n");
-            stringBuilder.Append("selected=" + ((this.isChecked()) ? "true" : "false") + "\n");
-            stringBuilder.Append("*******************************");
-
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
     }
 }

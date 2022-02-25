@@ -26,7 +26,7 @@ namespace INetApp.Services
         Task<UserAccessDto> GetAccesoNFC(string NFC);
         Task<bool> RegisterTokenPush(string Token);
         Task<bool> UnRegisterTokenPush();
-        //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
+        Task<WorkPartsDto> GetWorkParts(string fechaini = null, string fechafin = null, int? semanaid = null);
 
     }
 }

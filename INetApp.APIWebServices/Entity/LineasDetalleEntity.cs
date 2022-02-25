@@ -1,49 +1,46 @@
+using INetApp.APIWebServices.Responses;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace com.ineco.inetapp.data.entity
+namespace INetApp.APIWebServices.Entity
 {
-
-    //using com.google.gson.annotations.SerializedName;
-
-    /**
-     * Created by BISAMOER on 09/03/2018.
-     */
-
-    public class LineasDetalleEntity
+    public class LineasDetalleEntity : Response
     {
 
         [JsonProperty(PropertyName = "FechaImputacion")]
-        private string fechaImputacion;
+        public string fechaImputacion { get; set; }
 
         [JsonProperty(PropertyName = "PdLineaId")]
-        private int pdLineaId;
+        public int pdLineaId { get; set; }
 
         [JsonProperty(PropertyName = "PerParteId")]
-        private int perParteId;
+        public int perParteId { get; set; }
 
         [JsonProperty(PropertyName = "Procuenta")]
-        private double procuenta;
+        public double procuenta { get; set; }
 
 
         [JsonProperty(PropertyName = "Pronumero")]
-        private string pronumero;
+        public string pronumero { get; set; }
 
 
         [JsonProperty(PropertyName = "Protitulo")]
-        private string protitulo;
+        public string protitulo { get; set; }
 
         //BIGAALCA 13-05-2020
         [JsonProperty(PropertyName = "PdeStatus")]
-        private int pdeStatus;
+        public int pdeStatus { get; set; }
 
         [JsonProperty(PropertyName = "PrpCodigo")]
-        private int prpCodigo;
+        public int prpCodigo { get; set; }
 
         [JsonProperty(PropertyName = "PdelineaIDRechazo")]
-        private int pdelineaIDRechazo;
+        public int pdelineaIDRechazo { get; set; }
 
         [JsonProperty(PropertyName = "FechaFirma")]
-        private string fechaFirma;
+        public string fechaFirma { get; set; }
 
         public LineasDetalleEntity()
         {

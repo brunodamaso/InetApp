@@ -1,51 +1,49 @@
-using System.Text;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace com.ineco.inetapp.data.entity
+namespace INetApp.APIWebServices.Entity
 {
-
-    //using com.google.gson.annotations.SerializedName;
-
-    //using java.util.ArrayList;
-    //using java.util.List;
-
-    
-    /**
-     * Category Entity used in the data layer.
-     */
-    public class ActionWorkPartsEntity {
+    public class ActionWorkPartsEntity
+    {
 
         [JsonProperty(PropertyName = "accion")]
-        private int accion;
+        public int accion { get; set; }
 
         [JsonProperty(PropertyName = "parte")]
-        private WorkPartsEntity parte;
+        public WorkPartsEntity parte { get; set; }
 
 
-        public int getAccion() {
+        public int getAccion()
+        {
             return accion;
         }
 
-        public void setAccion(int accion) {
+        public void setAccion(int accion)
+        {
             this.accion = accion;
         }
 
-        public WorkPartsEntity getParte() {
+        public WorkPartsEntity getParte()
+        {
             return parte;
         }
 
-        public void setParte(WorkPartsEntity parte) {
+        public void setParte(WorkPartsEntity parte)
+        {
             this.parte = parte;
         }
 
-        override public string ToString() {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("***** Message Options *****\n");
-            stringBuilder.Append("accion=" + this.getAccion() + "\n");
-            stringBuilder.Append("parte=" + this.getParte() + "\n");
-            stringBuilder.Append("*******************************");
-            return stringBuilder.ToString();
-        }
+        //override public string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
+        //    stringBuilder.Append("***** Message Options *****\n");
+        //    stringBuilder.Append("accion=" + this.getAccion() + "\n");
+        //    stringBuilder.Append("parte=" + this.getParte() + "\n");
+        //    stringBuilder.Append("*******************************");
+        //    return stringBuilder.ToString();
+        //}
 
     }
 }

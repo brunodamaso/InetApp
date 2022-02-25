@@ -10,25 +10,25 @@ namespace INetApp.Models
     public class LineasDetalle : BindableObject
     {
 
-        private string fechaImputacion;
+        public string fechaImputacion { get; set; }
 
-        private int pdLineaId;
+        public int pdLineaId { get; set; }
 
-        private int perParteId;
+        public int perParteId { get; set; }
 
-        private double procuenta;
+        public double procuenta { get; set; }
 
-        private string pronumero;
+        public string pronumero { get; set; }
 
-        private string protitulo;
+        public string protitulo { get; set; }
 
-        private int pdeStatus;
+        public int pdeStatus { get; set; }
 
-        private int prpCodigo;
+        public int prpCodigo { get; set; }
 
-        private int pdelineaIDRechazo;
+        public int pdelineaIDRechazo { get; set; }
 
-        private string fechaFirma;
+        public string fechaFirma { get; set; }
 
         public LineasDetalle(int perParteId)
         {

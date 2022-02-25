@@ -1,19 +1,16 @@
-using System.Text;
+using INetApp.APIWebServices.Responses;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace com.ineco.inetapp.data.entity
+namespace INetApp.APIWebServices.Entity
 {
-
-    //using com.google.gson.annotations.SerializedName;
-
-    /**
-     * Category Entity used in the data layer.
-     */
-    public class PeriodoActivoEntity
+    public class PeriodoActivoEntity : Response
     {
 
         [JsonProperty(PropertyName = "PeriodoActivo")]
-        private int periodoActivo;
+        public int periodoActivo { get; set; }
 
         public PeriodoActivoEntity()
         {
@@ -31,15 +28,15 @@ namespace com.ineco.inetapp.data.entity
         }
 
 
-        override public string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //override public string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("***** Category Entity Details *****\n");
-            stringBuilder.Append("id=" + this.getPeriodoActivo() + "\n");
-            stringBuilder.Append("*******************************");
+        //    stringBuilder.Append("***** Category Entity Details *****\n");
+        //    stringBuilder.Append("id=" + this.getPeriodoActivo() + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
     }
 }

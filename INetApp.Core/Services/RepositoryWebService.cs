@@ -515,6 +515,37 @@ namespace INetApp.Services
             return result;
         }
         #endregion
+
+        #region WorkParts
+        public async Task<WorkPartsDto> GetWorkParts(string FechaIni = null, string FechaFin = null, int? IdSemana = null)
+        {
+            WorkPartsDto workPartsDto = new WorkPartsDto();
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    GetUser();
+                    workPartsDto = await RestApiImpl.GetWorkPartsEntitiesFromApi(userName, userPass, FechaIni, FechaFin, IdSemana);
+
+                    if (workPartsDto.IsOk)
+                    { }
+                }
+                else
+                {
+                    workPartsDto.IsOk = false;
+                    workPartsDto.IsConnected = false;
+                }
+            }
+            catch (Exception)
+            {
+                workPartsDto.IsOk = false;
+            }
+
+            return workPartsDto;
+        }
+
+        #endregion
+
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()
         //{
         //    //BaseDto dto =new BaseDto(true, string.Empty, string.Empty, true);

@@ -1,18 +1,16 @@
-using System.Text;
+using INetApp.APIWebServices.Responses;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace com.ineco.inetapp.data.entity
+namespace INetApp.APIWebServices.Entity
 {
-
-    //using com.google.gson.annotations.SerializedName;
-
-    /**
-     * Category Entity used in the data layer.
-     */
-    public class SaveWorkPartsEntity {
+    public class SaveWorkPartsEntity : Response
+    {
 
         [JsonProperty(PropertyName = "GuardarParteResult")]
-        private WorkPartsEntity guardarParteResult;
+        public WorkPartsEntity guardarParteResult { get; set; }
 
         public WorkPartsEntity getGuardarParteResult() {
             return guardarParteResult;
@@ -22,13 +20,13 @@ namespace com.ineco.inetapp.data.entity
             this.guardarParteResult = guardarParteResult;
         }
 
-        override public string ToString() {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("***** SaveWorkPartsEntity *****\n");
-            stringBuilder.Append("guardarParteResult=" + this.getGuardarParteResult() + "\n");
-            stringBuilder.Append("*******************************");
-            return stringBuilder.ToString();
-        }
+        //override public string ToString() {
+        //    StringBuilder stringBuilder = new StringBuilder();
+        //    stringBuilder.Append("***** SaveWorkPartsEntity *****\n");
+        //    stringBuilder.Append("guardarParteResult=" + this.getGuardarParteResult() + "\n");
+        //    stringBuilder.Append("*******************************");
+        //    return stringBuilder.ToString();
+        //}
 
     }
 }

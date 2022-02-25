@@ -1,92 +1,72 @@
-﻿using System;
+﻿using INetApp.APIWebServices.Responses;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace INetApp.APIWebServices.Entity
 {
-    class WorkPartsEntity
+    public class WorkPartsEntity : Response
     {
-    }
-}
-namespace com.ineco.inetapp.data.entity
-{
-    using System.Collections.Generic;
-    using System.Text;
-    //using com.google.gson.annotations.SerializedName;
-
-    //using java.util.ArrayList;
-
-    using com.ineco.inetapp.domain;
-    using Newtonsoft.Json;
-
-    //using com.ineco.inetapp.domain.LineasDetalle;
-
-    /**
-     * Category Entity used in the data layer.
-     */
-    public class WorkPartsEntity
-    {
-
         [JsonProperty(PropertyName = "Dedicacion")]
-        //[JsonProperty(PropertyName = "Dedicacion")
-        private double dedicacion;
+        public double dedicacion{ get; set; }
 
         [JsonProperty(PropertyName = "FechaFinSemana")]
-        private string fechaFinSemana;
+        public string fechaFinSemana { get; set; }
 
         [JsonProperty(PropertyName = "FechaFirma")]
-        private string fechaFirma;
+        public string fechaFirma { get; set; }
 
         [JsonProperty(PropertyName = "FechaInicioSemana")]
-        private string fechaInicioSemana;
+        public string fechaInicioSemana { get; set; }
 
         [JsonProperty(PropertyName = "FechaMaximaParte")]
-        private string fechaMaximaParte;
+        public string fechaMaximaParte { get; set; }
 
         [JsonProperty(PropertyName = "FechaMinimaParte")]
-        private string fechaMinimaParte;
+        public string fechaMinimaParte { get; set; }
 
         [JsonProperty(PropertyName = "FechaValidado")]
-        private string fechaValidado;
+        public string fechaValidado { get; set; }
 
         [JsonProperty(PropertyName = "Firmado")]
-        private string firmado;
+        public string firmado { get; set; }
 
         [JsonProperty(PropertyName = "HoraDia")]
-        private HoraDiaEntity horaDia;
+        public HoraDiaEntity horaDia { get; set; }
 
         [JsonProperty(PropertyName = "HorasSemana")]
-        private double horasSemana;
+        public double horasSemana { get; set; }
 
         [JsonProperty(PropertyName = "IdParte")]
-        private int idParte;
+        public int idParte { get; set; }
 
         [JsonProperty(PropertyName = "IdSemana")]
-        private int idSemana;
+        public int idSemana { get; set; }
 
         [JsonProperty(PropertyName = "IdSemanaAnterior")]
-        private int idSemanaAnterior;
+        public int idSemanaAnterior { get; set; }
 
         [JsonProperty(PropertyName = "IdSemanaPosterior")]
-        private int idSemanaPosterior;
+        public int idSemanaPosterior { get; set; }
 
         [JsonProperty(PropertyName = "LineasDetalle")]
-        private List<LineasDetalleEntity> lineasDetalleEntity;
+        public List<LineasDetalleEntity> lineasDetalleEntity { get; set; }
 
         [JsonProperty(PropertyName = "LineasDetalleIneco")]
-        private List<LineasDetalleEntity> lineasDetalleInecoEntity;
+        public List<LineasDetalleEntity> lineasDetalleInecoEntity { get; set; }
 
         [JsonProperty(PropertyName = "NombreSemana")]
-        private string nombreSemana;
+        public string nombreSemana { get; set; }
 
         [JsonProperty(PropertyName = "PerEstado")]
-        private int perEstado;
+        public int perEstado { get; set; }
 
         [JsonProperty(PropertyName = "Percodigo")]
-        private int percodigo;
+        public int percodigo { get; set; }
 
         [JsonProperty(PropertyName = "Validado")]
-        private string validado;
+        public string validado { get; set; }
 
 
 
@@ -236,30 +216,30 @@ namespace com.ineco.inetapp.data.entity
         }
 
 
-        public override string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //public override string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("***** Message Options *****\n");
-            stringBuilder.Append("dedicacion=" + this.getDedicacion() + "\n");
-            stringBuilder.Append("name=" + this.getFechaFinSemana() + "\n");
-            stringBuilder.Append("name=" + this.getFechaFirma() + "\n");
-            stringBuilder.Append("name=" + this.getFechaInicioSemana() + "\n");
-            stringBuilder.Append("name=" + this.getFechaValidado() + "\n");
-            stringBuilder.Append("name=" + this.getFirmado() + "\n");
-            stringBuilder.Append("name=" + this.getHorasSemana() + "\n");
-            stringBuilder.Append("name=" + this.getIdParte() + "\n");
-            stringBuilder.Append("name=" + this.getIdSemana() + "\n");
-            stringBuilder.Append("name=" + this.getLineasDetalleEntity() + "\n");
-            stringBuilder.Append("name=" + this.getLineasDetalleInecoEntity() + "\n");
-            stringBuilder.Append("name=" + this.getNombreSemana() + "\n");
-            stringBuilder.Append("name=" + this.getPerEstado() + "\n");
-            stringBuilder.Append("name=" + this.getPercodigo() + "\n");
-            stringBuilder.Append("name=" + this.getValidado() + "\n");
-            stringBuilder.Append("*******************************");
+        //    stringBuilder.Append("***** Message Options *****\n");
+        //    stringBuilder.Append("dedicacion=" + this.getDedicacion() + "\n");
+        //    stringBuilder.Append("name=" + this.getFechaFinSemana() + "\n");
+        //    stringBuilder.Append("name=" + this.getFechaFirma() + "\n");
+        //    stringBuilder.Append("name=" + this.getFechaInicioSemana() + "\n");
+        //    stringBuilder.Append("name=" + this.getFechaValidado() + "\n");
+        //    stringBuilder.Append("name=" + this.getFirmado() + "\n");
+        //    stringBuilder.Append("name=" + this.getHorasSemana() + "\n");
+        //    stringBuilder.Append("name=" + this.getIdParte() + "\n");
+        //    stringBuilder.Append("name=" + this.getIdSemana() + "\n");
+        //    stringBuilder.Append("name=" + this.getLineasDetalleEntity() + "\n");
+        //    stringBuilder.Append("name=" + this.getLineasDetalleInecoEntity() + "\n");
+        //    stringBuilder.Append("name=" + this.getNombreSemana() + "\n");
+        //    stringBuilder.Append("name=" + this.getPerEstado() + "\n");
+        //    stringBuilder.Append("name=" + this.getPercodigo() + "\n");
+        //    stringBuilder.Append("name=" + this.getValidado() + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
 
         public List<LineasDetalleEntity> getLineasDetalleEntity()
         {

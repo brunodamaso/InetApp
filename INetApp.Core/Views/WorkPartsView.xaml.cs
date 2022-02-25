@@ -9,9 +9,9 @@ using Xamarin.Forms.Xaml;
 
 namespace INetApp.Views
 {
-    public partial class PartesView : ContentPageBase
+    public partial class WorkPartsView : ContentPageBase
     {
-        public PartesView()
+        public WorkPartsView()
         {
             InitializeComponent();
         }

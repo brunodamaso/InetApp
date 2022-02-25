@@ -140,21 +140,21 @@ namespace INetApp.APIWebServices.Entity
             this.username = username;
         }
 
-        public override string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //public override string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("***** User Entity Details *****\n");
-            stringBuilder.Append("id=" + getMessageId() + "\n");
-            stringBuilder.Append("username=" + getUsername() + "\n");
-            stringBuilder.Append("category id=" + getCategoryId() + "\n");
-            stringBuilder.Append("name=" + getName() + "\n");
-            stringBuilder.Append("favorite=" + isFavorite() + "\n");
-            stringBuilder.Append("date=" + getDate() + "\n");
-            stringBuilder.Append("data=" + getData() + "\n");
-            stringBuilder.Append("*******************************");
+        //    stringBuilder.Append("***** User Entity Details *****\n");
+        //    stringBuilder.Append("id=" + getMessageId() + "\n");
+        //    stringBuilder.Append("username=" + getUsername() + "\n");
+        //    stringBuilder.Append("category id=" + getCategoryId() + "\n");
+        //    stringBuilder.Append("name=" + getName() + "\n");
+        //    stringBuilder.Append("favorite=" + isFavorite() + "\n");
+        //    stringBuilder.Append("date=" + getDate() + "\n");
+        //    stringBuilder.Append("data=" + getData() + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
     }
 }

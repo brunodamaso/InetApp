@@ -99,18 +99,18 @@ namespace INetApp.APIWebServices.Entity
             this.requerido = requerido;
         }
 
-        override public string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //override public string ToString()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("***** User Entity Details *****\n");
-            stringBuilder.Append("username=" + this.getUsername() + "\n");
-            stringBuilder.Append("name=" + this.getName() + "\n");
-            stringBuilder.Append("lastname=" + this.getLastname() + "\n");
-            stringBuilder.Append("*******************************");
+        //    stringBuilder.Append("***** User Entity Details *****\n");
+        //    stringBuilder.Append("username=" + this.getUsername() + "\n");
+        //    stringBuilder.Append("name=" + this.getName() + "\n");
+        //    stringBuilder.Append("lastname=" + this.getLastname() + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
 
         //public string usuarioIneco { get; set; }
         //public string nombre { get; set; }

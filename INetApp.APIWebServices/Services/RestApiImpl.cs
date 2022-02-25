@@ -327,5 +327,34 @@ namespace INetApp.APIWebServices
             });
         }
         #endregion
+
+        #region WorkParts
+        public Task<WorkPartsDto> GetWorkPartsEntitiesFromApi(string Usuario, string Password, string FechaIni = null, string FechaFin = null, int? IdSemana = null)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                HttpResponse httpResponse;
+                if (FechaIni != null)
+                {
+                    httpResponse = Get(API_URL_GET_CALENDAR_PART + FechaIni + "/" + FechaFin, Usuario, Password).Result;
+                }
+                else if (IdSemana != null)
+                {
+                    httpResponse = Get(API_URL_GET_WEEK_PART + IdSemana, Usuario, Password).Result;
+                }
+                else
+                {
+                    httpResponse = Get(API_URL_GET_CURRENT_PART, Usuario, Password).Result;
+                }
+
+                httpResponse.Resultado = $"{{WorkPartsEntities:{httpResponse.Resultado}}}";
+
+                ServiceResponse<WorkPartsEntity> response = ServiceHelper.CreateResponse<WorkPartsEntity>(httpResponse);
+
+                return Mappers.ServiceMapper.ConvertToBusiness<WorkPartsDto, WorkPartsEntity>(response);
+            });
+        }
+
+        #endregion
     }
 }

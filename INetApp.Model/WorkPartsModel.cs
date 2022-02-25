@@ -10,56 +10,56 @@ namespace INetApp.Models
     public class WorkPartsModel : BindableObject
     {
 
-        private int idParte { get; set; }
+        public int idParte { get; set; }
 
         public WorkPartsModel(int idParte)
         {
             this.idParte = idParte;
         }
 
-        private double dedicacion { get; set; }
+        public double dedicacion { get; set; }
 
-        private string fechaFinSemana { get; set; }
+        public string fechaFinSemana { get; set; }
 
-        private string fechaFirma { get; set; }
+        public string fechaFirma { get; set; }
 
-        private string fechaInicioSemana { get; set; }
+        public string fechaInicioSemana { get; set; }
 
-        private string fechaMaximaParte;
+        public string fechaMaximaParte;
 
-        private string fechaMinimaParte { get; set; }
+        public string fechaMinimaParte { get; set; }
 
-        private string fechaValidado { get; set; }
+        public string fechaValidado { get; set; }
 
-        private string firmado { get; set; }
+        public string firmado { get; set; }
 
-        private HoraDia horaDia { get; set; }
+        public HoraDia horaDia { get; set; }
 
-        private double horasSemana { get; set; }
+        public double horasSemana { get; set; }
 
-        private int idSemana { get; set; }
+        public int idSemana { get; set; }
 
-        private int idSemanaAnterior { get; set; }
+        public int idSemanaAnterior { get; set; }
 
-        private int idSemanaPosterior;
+        public int idSemanaPosterior;
 
-        private List<LineasDetalle> lineasDetalle { get; set; }
+        public List<LineasDetalle> lineasDetalle { get; set; }
 
-        private List<LineasDetalle> lineasDetalleIneco { get; set; }
+        public List<LineasDetalle> lineasDetalleIneco { get; set; }
 
-        private string nombreSemana { get; set; }
+        public string nombreSemana { get; set; }
 
-        private int perEstado { get; set; }
+        public int perEstado { get; set; }
 
-        private int percodigo { get; set; }
+        public int percodigo { get; set; }
 
-        private string validado { get; set; }
+        public string validado { get; set; }
 
-        private int pdeStatus { get; set; }
+        public int pdeStatus { get; set; }
 
-        private int prpCodigo;
+        public int prpCodigo;
 
-        private int pdelineaIDRechazo { get; set; }
+        public int pdelineaIDRechazo { get; set; }
 
         public int getIdParte()
         {

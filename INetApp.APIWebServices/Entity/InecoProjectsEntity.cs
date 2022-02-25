@@ -1,24 +1,22 @@
-using System.Text;
+using INetApp.APIWebServices.Responses;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace com.ineco.inetapp.data.entity
+namespace INetApp.APIWebServices.Entity
 {
-
-    //using com.google.gson.annotations.SerializedName;
-
-    /**
-     * Category Entity used in the data layer.
-     */
-    public class InecoProjectsEntity {
+    public class InecoProjectsEntity : Response
+    {
 
         [JsonProperty(PropertyName = "Pronumero")]
-        private string pronumero;
+        public string pronumero { get; set; }
 
         [JsonProperty(PropertyName = "Titulo")]
-        private string titulo;
+        public string titulo { get; set; }
 
         [JsonProperty(PropertyName = "Tipo")]
-        private string tipo;
+        public string tipo { get; set; }
 
         public InecoProjectsEntity() {
 
@@ -49,16 +47,16 @@ namespace com.ineco.inetapp.data.entity
             this.tipo = tipo;
         }
 
-        override public string ToString() {
-            StringBuilder stringBuilder = new StringBuilder();
+        //override public string ToString() {
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("***** Category Entity Details *****\n");
-            stringBuilder.Append("pronumero=" + this.getPronumero() + "\n");
-            stringBuilder.Append("titulo=" + this.getTitulo() + "\n");
-            stringBuilder.Append("tipo=" + this.getTipo() + "\n");
-            stringBuilder.Append("*******************************");
+        //    stringBuilder.Append("***** Category Entity Details *****\n");
+        //    stringBuilder.Append("pronumero=" + this.getPronumero() + "\n");
+        //    stringBuilder.Append("titulo=" + this.getTitulo() + "\n");
+        //    stringBuilder.Append("tipo=" + this.getTipo() + "\n");
+        //    stringBuilder.Append("*******************************");
 
-            return stringBuilder.ToString();
-        }
+        //    return stringBuilder.ToString();
+        //}
     }
 }

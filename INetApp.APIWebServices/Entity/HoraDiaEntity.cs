@@ -1,14 +1,10 @@
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace com.ineco.inetapp.data.entity
+namespace INetApp.APIWebServices.Entity
 {
-
-    //using com.google.gson.annotations.SerializedName;
-
-    /**
-     * Created by BISAMOER on 09/03/2018.
-     */
-
     public class HoraDiaEntity {
 
         [JsonProperty(PropertyName = "Lunes")]
