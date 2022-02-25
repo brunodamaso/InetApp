@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:ContentPageBase
+    xmlns:views="clr-namespace:INetApp.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:components="clr-namespace:INetApp.Views.Components" 
+    xmlns:viewmodels="clr-namespace:INetApp.ViewModels" 
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+    x:DataType="viewmodels:PartesViewModel"
+    x:Class="INetApp.Views.PartesView"
+    xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    xmlns:resources="clr-namespace:INetApp.Resources"
+    Title="{Binding Source={x:Static resources:Literales.activity_title_message_details}}" 
+    >
+
+    <Grid BackgroundColor="{StaticResource white}" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" /> <!-- tabs-->
+            <RowDefinition Height="*"/> <!-- registros -->
+            <RowDefinition Height="auto"/> <!-- acciones botones -->
+            <RowDefinition Height="auto"/> <!-- progreso -->
+            <RowDefinition Height="auto"/> <!-- reintentar -->
+        </Grid.RowDefinitions>
+        <BoxView Grid.Row="0" BackgroundColor="{StaticResource toolbar_Color}"/>
+        <Label Grid.Row="0" x:Name="tv_name"
+               Text="{Binding MessageModel.name}"
+               Style="{StaticResource TextViewHeader}">
+            <Label.Padding>
+                <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                    <Binding Source="{StaticResource activity_horizontal_margin}"/>
+                    <Binding Source="{StaticResource activity_vertical_margin}"/>
+                </MultiBinding>
+            </Label.Padding>
+        </Label>
+
+        <Grid Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="auto" />
+                <RowDefinition Height ="1" />
+                <RowDefinition Height ="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.15*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Padding>
+                    <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                        <Binding Source="{StaticResource activity_horizontal_margin}"/>
+                        <Binding Path ="0"/>
+                        <Binding Source="{StaticResource details_image_view_padding_right}"/>
+                        <Binding Path ="0"/>
+                    </MultiBinding>
+                </Grid.Padding>
+                <Label Grid.Column="0" Grid.Row="0"
+                    x:Name="tv_date"
+                    VerticalOptions="Center"
+                    Text="{Binding Date}"
+                    MaxLines="1"
+                    TextColor="{StaticResource dark_grey}"
+                    FontSize="{Binding Source={StaticResource lv_row_description_size},Converter={StaticResource StringToDoubleConverter}}">
+                    <Label.Padding>
+                        <MultiBinding Converter="{StaticResource ThicknessConverter}">
+                            <Binding Path ="0"/>
+                            <Binding Source="{StaticResource activity_vertical_margin}"/>
+                        </MultiBinding>
+                    </Label.Padding>
+                </Label>
+
+                <Image Grid.Column="1" Grid.Row="0"
+                    IsVisible="{Binding MessageModel.favorite}"
+                    Aspect="AspectFit"
+                    Source="mark_icon_yellow.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectFavoriteCommand}" CommandParameter="{Binding MessageModel.favorite}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image Grid.Column="1" Grid.Row="0"
+                    Aspect="AspectFit"
+                    IsVisible="{Binding MessageModel.favorite, Converter={StaticResource ValueToBooleanConverter} ,ConverterParameter='not'}"
+                    Source="mark_icon_white.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectFavoriteCommand}" CommandParameter="{Binding MessageModel.favorite}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+                
+            <BoxView Grid.Row ="1" 
+                Grid.Column="0"   
+                BackgroundColor="{StaticResource very_light_grey}" Margin="0,0" />
+                
+            <ListView Grid.Column="0" 
+                    Grid.Row="2"
+                    CachingStrategy="RetainElement"
+                    HasUnevenRows="True"
+                    SelectionMode="None"
+                    SeparatorVisibility="None"
+                    VerticalOptions="FillAndExpand"
+                    ItemsSource="{Binding MessageDetail.Details}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <components:MessageDetailsRow/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>              
+        </Grid>
+        
+        <ActivityIndicator Grid.Row="2"
+                    HorizontalOptions="Center"
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}"
+                    VerticalOptions="Center"
+                    Background="transparent"
+                    BackgroundColor="transparent"
+                    Color="{StaticResource app_Color}">
+            <ActivityIndicator.WidthRequest>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS, Android" Value="100" />
+                    <On Platform="UWP, WinRT, WinPhone" Value="400" />
+                </OnPlatform>
+            </ActivityIndicator.WidthRequest>
+        </ActivityIndicator>
+
+        <!--IsVisible="{Binding IsRowChecked}"-->
+        <components:View_Actions Grid.Row="2"
+            Approve="{Binding AproveCommand}"
+            Refuse="{Binding RefuseCommand}"
+            x:Name="tv_View_Actions" 
+            />
+
+    </Grid>
+</views:ContentPageBase>
