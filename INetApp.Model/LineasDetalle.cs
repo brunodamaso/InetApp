@@ -34,6 +34,7 @@ namespace INetApp.Models
         {
 
         }
+        public LineasDetalle()  { }
 
         public string getFechaFirma()
         {

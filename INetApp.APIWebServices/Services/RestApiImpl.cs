@@ -347,8 +347,6 @@ namespace INetApp.APIWebServices
                     httpResponse = Get(API_URL_GET_CURRENT_PART, Usuario, Password).Result;
                 }
 
-                httpResponse.Resultado = $"{{WorkPartsEntities:{httpResponse.Resultado}}}";
-
                 ServiceResponse<WorkPartsEntity> response = ServiceHelper.CreateResponse<WorkPartsEntity>(httpResponse);
 
                 return Mappers.ServiceMapper.ConvertToBusiness<WorkPartsDto, WorkPartsEntity>(response);

@@ -127,7 +127,7 @@
     </FlyoutItem>
     <FlyoutItem Title="{Binding Source={x:Static resources:Literales.action_parts}}"
                 Icon="icon_feed.png">
-        <ShellContent Route="Message" ContentTemplate="{DataTemplate views:MessageView}" />
+        <ShellContent Route="WorkParts" ContentTemplate="{DataTemplate views:WorkPartsView}" />
     </FlyoutItem>
     <FlyoutItem Title="{Binding Source={x:Static resources:Literales.action_qr}}"
                 Icon="icon_feed.png" >

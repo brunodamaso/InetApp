@@ -53,10 +53,22 @@ namespace INetApp.ViewModels
         #endregion
 
         //public ICommand SelectFavoriteCommand => new Command<bool>(OnSelectFavorite);
-        //public ICommand AproveCommand => new Command(OnAproveMessage);
-        //public ICommand RefuseCommand => new Command(OnRefuseMessage);
+        public ICommand AproveCommand => new Command(OnAproveMessage);
+
+        private void OnAproveMessage(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICommand RefuseCommand => new Command(OnRefuseMessage);
+
+        private void OnRefuseMessage(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
         //public ICommand ButtonUrlCommand => new Command<Detail>(OnButtonUrl);
-                
+
         public WorkPartsViewModel()
         {
             WorkPartsService = DependencyService.Get<IWorkPartsService>();
@@ -72,9 +84,6 @@ namespace INetApp.ViewModels
             IsBusy = true;
 
             WorkPartsDto workPartsDto = await WorkPartsService.GetWorkPartsAsync();
-
-            //MessageDetail = messageDto.IsOk ? messageDto.MessageModel.fields : new MessageDetails();
-            //Text_last_update = string.Format(Literales.view_text_last_updated, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
 
             IsBusy = false;
         }

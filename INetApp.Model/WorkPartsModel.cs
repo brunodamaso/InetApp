@@ -10,6 +10,8 @@ namespace INetApp.Models
     public class WorkPartsModel : BindableObject
     {
 
+        public WorkPartsModel() { }
+    
         public int idParte { get; set; }
 
         public WorkPartsModel(int idParte)

@@ -70,6 +70,30 @@ namespace INetApp.APIWebServices.Mappers
                 .NewConfig()
                 .EnableNonPublicMembers(true)
                 .IgnoreNullValues(true);
+
+            TypeAdapterConfig<WorkPartsEntity, WorkPartsDto>
+                .NewConfig()
+                .EnableNonPublicMembers(true)
+                .Map(dest => dest.WorkPartsModel, src => src)
+                .Map(dest => dest.WorkPartsModel.lineasDetalle, src => src.lineasDetalleEntity)
+                .Map(dest => dest.WorkPartsModel.lineasDetalleIneco, src => src.lineasDetalleInecoEntity)
+                .IgnoreNullValues(true);
+
+            //TypeAdapterConfig<WorkPartsEntity, WorkPartsModel>
+            //    .NewConfig()
+            //    .EnableNonPublicMembers(true)
+            //    .IgnoreNullValues(true);
+
+            TypeAdapterConfig<LineasDetalleEntity, LineasDetalle>
+                .NewConfig()
+                .EnableNonPublicMembers(true)
+                .IgnoreNullValues(true);
+
+            TypeAdapterConfig<HoraDiaEntity, HoraDia>
+                .NewConfig()
+                .EnableNonPublicMembers(true)
+                .IgnoreNullValues(true);
+
         }
     }
 }

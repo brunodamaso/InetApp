@@ -8,7 +8,7 @@ namespace INetApp.Models
     /**
      * Class that represents a user logged in the presentation layer.
      */
-    public class UserAccessModel : ObservableObject
+    public class UserAccessModel : BindableObject
     {
 
 

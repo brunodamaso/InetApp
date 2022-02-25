@@ -72,7 +72,7 @@ namespace INetApp.ViewModels
 
         private async Task Partes()
         {
-            await NavigationService.NavigateToAsync("Settings");
+            await NavigationService.NavigateToAsync("WorkParts");
         }
         private async Task Formacion()
         {

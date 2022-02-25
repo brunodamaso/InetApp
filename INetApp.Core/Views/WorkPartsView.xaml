@@ -34,7 +34,7 @@
             </Label.Padding>
         </Label>
 
-        <Grid Grid.Row="1" >
+        <!--<Grid Grid.Row="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height ="auto" />
                 <RowDefinition Height ="1" />
@@ -110,7 +110,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>              
-        </Grid>
+        </Grid>-->
         
         <ActivityIndicator Grid.Row="2"
                     HorizontalOptions="Center"
