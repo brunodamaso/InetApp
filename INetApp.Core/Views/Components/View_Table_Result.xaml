@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:resources="clr-namespace:INetApp.Resources"
+            x:Class="INetApp.Views.Components.View_Table_Result"
+            x:Name="ViewTableResult">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame" x:Key="bg_table_default_header">
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="#ffffff" />
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Padding" Value="1"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <ContentView.Content>
+        <Grid  ColumnSpacing="0" RowSpacing="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="42"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Frame Grid.Column="0" Grid.Row="0"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="{Binding Source={x:Static resources:Literales.total_hours}}" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="End"
+                        Padding="5,0"
+                        FontAttributes="Bold"/>
+            </Frame>
+            <Frame Grid.Column="1" Grid.Row="0"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="L" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+            </Frame>
+            <Frame Grid.Column="2" Grid.Row="0"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="M" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+            </Frame>
+            <Frame Grid.Column="3" Grid.Row="0"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="X" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+            </Frame>
+            <Frame Grid.Column="4" Grid.Row="0"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="J" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+            </Frame>
+            <Frame Grid.Column="5" Grid.Row="0"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="V" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+            </Frame>
+            <Frame Grid.Column="0" Grid.Row="1"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="{Binding Source={x:Static resources:Literales.pending_hours}}" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="End"
+                        Padding="5,0"
+                        FontAttributes="Bold"/>
+            </Frame>
+            <Frame Grid.Column="1" Grid.Row="1"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="L" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+            </Frame>
+            <Frame Grid.Column="2" Grid.Row="1"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="M" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+            </Frame>
+            <Frame Grid.Column="3" Grid.Row="1"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="X" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+            </Frame>
+            <Frame Grid.Column="4" Grid.Row="1"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="J" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+            </Frame>
+            <Frame Grid.Column="5" Grid.Row="1"
+                Style="{StaticResource bg_table_default_header}">
+                <Label 
+                        Text="V" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+            </Frame>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -185,6 +185,33 @@
     <Content Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\right_arrow.png">
       <Link>Assets\right_arrow.png</Link>
     </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\abajo.png">
+      <Link>Assets\abajo.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\anterior.png">
+      <Link>Assets\anterior.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\anterior_inactive.png">
+      <Link>Assets\anterior_inactive.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\arriba.png">
+      <Link>Assets\arriba.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\calendar.png">
+      <Link>Assets\calendar.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\firmar.png">
+      <Link>Assets\firmar.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\fnd.png">
+      <Link>Assets\fnd.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\fnd1.png">
+      <Link>Assets\fnd1.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\guardar.png">
+      <Link>Assets\guardar.png</Link>
+    </Content>
     <Content Include="..\INetApp.Droid\Resources\drawable\icon_about.png">
       <Link>Assets\icon_about.png</Link>
     </Content>
@@ -209,8 +236,17 @@
     <Content Include="..\INetApp.Droid\Resources\drawable\info_opciones.png">
       <Link>Assets\info_opciones.png</Link>
     </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\mas.png">
+      <Link>Assets\mas.png</Link>
+    </Content>
     <Content Include="..\INetApp.Droid\Resources\drawable\qr.png">
       <Link>Assets\qr.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\siguiente.png">
+      <Link>Assets\siguiente.png</Link>
+    </Content>
+    <Content Include="..\INetApp.Droid\Resources\drawable\siguiente_inactive.png">
+      <Link>Assets\siguiente_inactive.png</Link>
     </Content>
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-200.png" />

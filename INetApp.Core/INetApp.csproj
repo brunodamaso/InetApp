@@ -97,6 +97,9 @@
     <Compile Update="Views\Components\View_Accept.xaml.cs">
       <DependentUpon>View_Accept.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Components\View_Table_Result.xaml.cs">
+      <DependentUpon>View_Table_Result.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Components\view_actions.xaml.cs">
       <DependentUpon>View_Actions.xaml</DependentUpon>
     </Compile>

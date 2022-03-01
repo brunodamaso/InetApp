@@ -169,7 +169,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Imposible resgistrar el servicio de Notificciones.
+        ///   Busca una cadena traducida similar a Imposible resgistrar el servicio de Notificaciones.
         /// </summary>
         internal static string alrt_noregisternotificationservice {
             get {
@@ -268,7 +268,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca una cadena traducida similar a Copiar parte de la semana anterior.
         /// </summary>
         internal static string copy_last_week {
             get {
@@ -1042,7 +1042,7 @@ namespace INetApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Toral horas semana: {0}.
+        ///   Busca una cadena traducida similar a Total horas semana: {0}.
         /// </summary>
         internal static string total_week_hours {
             get {

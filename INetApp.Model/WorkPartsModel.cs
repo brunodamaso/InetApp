@@ -43,7 +43,7 @@ namespace INetApp.Models
 
         public int idSemanaAnterior { get; set; }
 
-        public int idSemanaPosterior;
+        public int idSemanaPosterior { get; set; }
 
         public List<LineasDetalle> lineasDetalle { get; set; }
 

@@ -11,108 +11,280 @@
     xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
     xmlns:resources="clr-namespace:INetApp.Resources"
-    Title="{Binding Source={x:Static resources:Literales.activity_title_message_details}}" 
+    Title="{Binding Source={x:Static resources:Literales.action_parts}}" 
     >
 
-    <Grid BackgroundColor="{StaticResource white}" RowSpacing="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" /> <!-- tabs-->
-            <RowDefinition Height="*"/> <!-- registros -->
-            <RowDefinition Height="auto"/> <!-- acciones botones -->
-            <RowDefinition Height="auto"/> <!-- progreso -->
-            <RowDefinition Height="auto"/> <!-- reintentar -->
-        </Grid.RowDefinitions>
-        <BoxView Grid.Row="0" BackgroundColor="{StaticResource toolbar_Color}"/>
-        <Label Grid.Row="0" x:Name="tv_name"
-               Text="{Binding MessageModel.name}"
-               Style="{StaticResource TextViewHeader}">
-            <Label.Padding>
-                <MultiBinding Converter="{StaticResource ThicknessConverter}">
-                    <Binding Source="{StaticResource activity_horizontal_margin}"/>
-                    <Binding Source="{StaticResource activity_vertical_margin}"/>
-                </MultiBinding>
-            </Label.Padding>
-        </Label>
+    <views:ContentPageBase.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame" x:Key="bg_table_header">
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="#ddd" />
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Padding" Value="1"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="bg_table_default">
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="#ffffff" />
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Padding" Value="1"/>
+            </Style>
+        </ResourceDictionary>
+    </views:ContentPageBase.Resources>
 
-        <!--<Grid Grid.Row="1" >
+    <Grid BackgroundColor="{StaticResource white}" RowSpacing="0" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Padding="0" Margin="0" RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height ="auto" />
-                <RowDefinition Height ="1" />
-                <RowDefinition Height ="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ImageButton Grid.Column="0" 
+                Source="anterior.png" 
+                IsVisible="{Binding HasPreviewWeek}"
+                Command="{Binding IrSemanaAnteriorCommand}"/>
+            <Label Grid.Column="2" 
+                Text="{Binding WorkParts.nombreSemana}" 
+                TextColor="{StaticResource dark_grey}"
+                HorizontalOptions="Center" 
+                FontSize="17"
+                HeightRequest="17" 
+                Margin="8,10,8,0"/>
+            <ImageButton Grid.Column="3" 
+                Source="calendar.png" 
+                Command="{Binding CalendarioCommand}" 
+                Padding="10" 
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"/>
+            <ImageButton Grid.Column="5" 
+                Source="siguiente.png" 
+                IsVisible="{Binding HasNextWeek}"
+                Command="{Binding IrSemanaSiguienteCommand}"/>
+
+            <Label Grid.Column="2" Grid.Row="1"
+                Text="{Binding Tv_date_2}" 
+                TextColor="{StaticResource dark_grey}"
+                HorizontalOptions="Center" 
+                Margin="8,0"/>
+            <Label Grid.Column="2" Grid.Row="2"
+                Text="{Binding Dedicacion}" 
+                TextColor="{StaticResource dark_grey}"
+                HorizontalOptions="Center" 
+                Margin="8,0"/>
+            <Label Grid.Column="2" Grid.Row="3"
+                Text="{Binding HorasSemana}" 
+                TextColor="{StaticResource dark_grey}"
+                HorizontalOptions="Center" 
+                Margin="8,0"/>
+        </Grid>
+
+        <Label Grid.Row="1" 
+            Text="{Binding Source={x:Static resources:Literales.copy_last_week}}" 
+            IsVisible="{Binding HasCopy}"
+            TextColor="{StaticResource app_Color}"
+            TextDecorations="Underline"
+            Margin="28,0"/>
+
+        <ScrollView Grid.Row="2" Grid.Column="0" Margin="0">
+            <Grid  Margin="0"
+                  Padding="25,10" ColumnSpacing="0" RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="42"/>
             </Grid.ColumnDefinitions>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="0.15*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.Padding>
-                    <MultiBinding Converter="{StaticResource ThicknessConverter}">
-                        <Binding Source="{StaticResource activity_horizontal_margin}"/>
-                        <Binding Path ="0"/>
-                        <Binding Source="{StaticResource details_image_view_padding_right}"/>
-                        <Binding Path ="0"/>
-                    </MultiBinding>
-                </Grid.Padding>
-                <Label Grid.Column="0" Grid.Row="0"
-                    x:Name="tv_date"
-                    VerticalOptions="Center"
-                    Text="{Binding Date}"
-                    MaxLines="1"
-                    TextColor="{StaticResource dark_grey}"
-                    FontSize="{Binding Source={StaticResource lv_row_description_size},Converter={StaticResource StringToDoubleConverter}}">
-                    <Label.Padding>
-                        <MultiBinding Converter="{StaticResource ThicknessConverter}">
-                            <Binding Path ="0"/>
-                            <Binding Source="{StaticResource activity_vertical_margin}"/>
-                        </MultiBinding>
-                    </Label.Padding>
-                </Label>
+            <!--#region table_project-->
+            <CollectionView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                        ItemsSource ="{Binding WorkParts.lineasDetalle}"
+                        EmptyView=""
+                    Footer="{Binding .}"
+                    HeightRequest="{Binding HeightProject}"
+                    ItemSizingStrategy ="MeasureFirstItem" >       
+                    
+                <!--#region titulos table_project-->
+                <CollectionView.Header>
+                        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" >
+                            <Grid ColumnSpacing="0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="42"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame Grid.Column="0" Grid.Row="0"
+                                Style="{StaticResource bg_table_header}">
+                                    <Label 
+                                Text="{Binding Source={x:Static resources:Literales.table_project}}" 
+                                TextColor="{StaticResource dark_grey}"
+                                Padding="5,0"
+                                FontAttributes="Bold"/>
+                                </Frame>
+                                <Frame Grid.Column="1" Grid.Row="0"
+                                Style="{StaticResource bg_table_header}">
+                                    <Label 
+                                    Text="L" 
+                                    TextColor="{StaticResource dark_grey}"
+                                    HorizontalOptions="Center" 
+                                    />
+                                </Frame>
+                                <Frame Grid.Column="2" Grid.Row="0"
+                                Style="{StaticResource bg_table_header}">
+                                    <Label 
+                                    Text="M" 
+                                    TextColor="{StaticResource dark_grey}"
+                                    HorizontalOptions="Center" 
+                                    />
+                                </Frame>
+                                <Frame Grid.Column="3" Grid.Row="0"
+                                Style="{StaticResource bg_table_header}">
+                                    <Label 
+                                    Text="X" 
+                                    TextColor="{StaticResource dark_grey}"
+                                    HorizontalOptions="Center" 
+                                    />
+                                </Frame>
+                                <Frame Grid.Column="4" Grid.Row="0"
+                                Style="{StaticResource bg_table_header}">
+                                    <Label 
+                                    Text="J" 
+                                    TextColor="{StaticResource dark_grey}"
+                                    HorizontalOptions="Center" 
+                                    />
+                                </Frame>
+                                <Frame Grid.Column="5" Grid.Row="0"
+                                Style="{StaticResource bg_table_header}">
+                                    <Label 
+                                    Text="V" 
+                                    TextColor="{StaticResource dark_grey}"
+                                    HorizontalOptions="Center" 
+                                    />
+                                </Frame>
 
-                <Image Grid.Column="1" Grid.Row="0"
-                    IsVisible="{Binding MessageModel.favorite}"
-                    Aspect="AspectFit"
-                    Source="mark_icon_yellow.png">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SelectFavoriteCommand}" CommandParameter="{Binding MessageModel.favorite}"/>
-                    </Image.GestureRecognizers>
-                </Image>
-
-                <Image Grid.Column="1" Grid.Row="0"
-                    Aspect="AspectFit"
-                    IsVisible="{Binding MessageModel.favorite, Converter={StaticResource ValueToBooleanConverter} ,ConverterParameter='not'}"
-                    Source="mark_icon_white.png">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SelectFavoriteCommand}" CommandParameter="{Binding MessageModel.favorite}"/>
-                    </Image.GestureRecognizers>
-                </Image>
-            </Grid>
-                
-            <BoxView Grid.Row ="1" 
-                Grid.Column="0"   
-                BackgroundColor="{StaticResource very_light_grey}" Margin="0,0" />
-                
-            <ListView Grid.Column="0" 
-                    Grid.Row="2"
-                    CachingStrategy="RetainElement"
-                    HasUnevenRows="True"
-                    SelectionMode="None"
-                    SeparatorVisibility="None"
-                    VerticalOptions="FillAndExpand"
-                    ItemsSource="{Binding MessageDetail.Details}">
-                <ListView.ItemTemplate>
+                                <!--#endregion-->
+                            </Grid>
+                        </Grid>
+                    </CollectionView.Header>
+                <CollectionView.FooterTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <components:MessageDetailsRow/>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>              
-        </Grid>-->
-        
-        <ActivityIndicator Grid.Row="2"
+                    <Grid ColumnSpacing="0" Margin="0" Padding="0" >
+                        <Grid.ColumnDefinitions> 
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="41.5"/>
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Column="0" Grid.Row="0" Margin="0" 
+                                Style="{StaticResource bg_table_default}">
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="42"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" 
+                                    Text="" 
+                                    TextColor="{StaticResource dark_grey}"
+                                    Padding="5,0"
+                                    FontAttributes="Bold"/>
+                                <ImageButton Grid.Column="1"
+                                    Source="fnd1.png"/>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                        </DataTemplate>
+                        <!--#endregion-->
+                </CollectionView.FooterTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                            <Frame Margin="0" 
+                                Style="{StaticResource bg_table_default}">
+                                <Label Text="Binding }"/>
+                            </Frame>
+                        </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <!--#endregion-->
+
+            
+            <!--#region table_project_management-->
+
+            <!--<Frame Grid.Column="0" Grid.Row="3"
+                    Style="{StaticResource bg_table_header}">
+                    <Label 
+                        Text="{Binding Source={x:Static resources:Literales.table_project_management}}" 
+                        TextColor="{StaticResource dark_grey}"
+                        Padding="5,0"
+                        FontAttributes="Bold"/>
+                </Frame>
+                <Frame Grid.Column="1" Grid.Row="3"
+                    Style="{StaticResource bg_table_header}">
+                    <Label 
+                        Text="L" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+                </Frame>
+                <Frame Grid.Column="2" Grid.Row="3"
+                    Style="{StaticResource bg_table_header}">
+                    <Label 
+                        Text="M" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+                </Frame>
+                <Frame Grid.Column="3" Grid.Row="3"
+                    Style="{StaticResource bg_table_header}">
+                    <Label 
+                        Text="X" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+                </Frame>
+                <Frame Grid.Column="4" Grid.Row="3"
+                    Style="{StaticResource bg_table_header}">
+                    <Label 
+                        Text="J" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+                </Frame>
+                <Frame Grid.Column="5" Grid.Row="3"
+                    Style="{StaticResource bg_table_header}">
+                    <Label 
+                        Text="V" 
+                        TextColor="{StaticResource dark_grey}"
+                        HorizontalOptions="Center" 
+                        />
+                </Frame>-->
+            <!--#endregion-->
+            <!--#region Totales-->
+            <components:View_Table_Result Grid.Row="3" Grid.Column="0" />
+            <!--#endregion-->
+            </Grid>
+        </ScrollView>
+        <ActivityIndicator Grid.Row="1"
                     HorizontalOptions="Center"
                     IsRunning="{Binding IsBusy}"
                     IsVisible="{Binding IsBusy}"
@@ -127,13 +299,6 @@
                 </OnPlatform>
             </ActivityIndicator.WidthRequest>
         </ActivityIndicator>
-
-        <!--IsVisible="{Binding IsRowChecked}"-->
-        <components:View_Actions Grid.Row="2"
-            Approve="{Binding AproveCommand}"
-            Refuse="{Binding RefuseCommand}"
-            x:Name="tv_View_Actions" 
-            />
 
     </Grid>
 </views:ContentPageBase>

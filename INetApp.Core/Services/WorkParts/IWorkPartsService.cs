@@ -9,6 +9,6 @@ namespace INetApp.Services
 {
     public interface IWorkPartsService
     {
-        Task<WorkPartsDto> GetWorkPartsAsync(string FechaIni = null, string FechaFin = null, int? IdSemana = null);      
+        Task<WorkPartsDto> GetWorkPartsAsync(string FechaIni = null, string FechaFin = null, int? IdSemana = null);
     }
 }

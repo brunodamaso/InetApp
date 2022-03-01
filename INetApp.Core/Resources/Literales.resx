@@ -388,12 +388,14 @@
   </data>
   <data name="notification_title" xml:space="preserve">
     <value>No se pudo abrir la puerta.</value>
+    <comment>db</comment>
   </data>
   <data name="notification_text" xml:space="preserve">
     <value>No se pudo abrir la puerta, inténtelo de nuevo más tarde.</value>
+    <comment>bd</comment>
   </data>
   <data name="alrt_noregisternotificationservice" xml:space="preserve">
-    <value>Imposible resgistrar el servicio de Notificciones</value>
+    <value>Imposible resgistrar el servicio de Notificaciones</value>
   </data>
   <data name="options" xml:space="preserve">
     <value>Opciones</value>
@@ -456,15 +458,18 @@
   </data>
   <data name="text_week" xml:space="preserve">
     <value>Semana {0}</value>
+    <comment>bd</comment>
   </data>
   <data name="text_dedication" xml:space="preserve">
     <value>Dedicación contrato: {0}</value>
   </data>
   <data name="copy_last_week" xml:space="preserve">
-    <value />
+    <value>Copiar parte de la semana anterior</value>
+    <comment>bd</comment>
   </data>
   <data name="total_week_hours" xml:space="preserve">
-    <value>Toral horas semana: {0}</value>
+    <value>Total horas semana: {0}</value>
+    <comment>bd</comment>
   </data>
   <data name="btn_save" xml:space="preserve">
     <value>Guardar</value>

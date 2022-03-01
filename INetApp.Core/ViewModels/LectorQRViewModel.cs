@@ -88,11 +88,11 @@ namespace INetApp.ViewModels
                         }
                         else if (userAccessDto.UserAccessModel == null)
                         {
-                            await DialogService.ShowAlertAsync(Literales.exception_message_message_not_found, "", Literales.btn_text_accept);
+                            await DialogService.ShowAlertAsync(Literales.notification_text, Literales.notification_title, Literales.btn_text_accept);
                         }
                         else
                         {
-                            await DialogService.ShowAlertAsync(userAccessDto.ErrorDescription, "", Literales.btn_text_accept);
+                            await DialogService.ShowAlertAsync(userAccessDto.ErrorDescription, Literales.notification_title, Literales.btn_text_accept);
                         }
                     }
                     IsAnalyzing = true;

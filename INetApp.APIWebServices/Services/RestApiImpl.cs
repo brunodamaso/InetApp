@@ -309,8 +309,8 @@ namespace INetApp.APIWebServices
             return Task.Factory.StartNew(() =>
             {
                 int isIos = Device.RuntimePlatform == Device.iOS ? 1 : 0;
-                
-                HttpResponse httpResponse = Get(API_URL_GET_REGISTERTOKEN +Token64 +"/" +isIos, Usuario, Password).Result;
+
+                HttpResponse httpResponse = Get(API_URL_GET_REGISTERTOKEN + Token64 + "/" + isIos, Usuario, Password).Result;
 
                 return httpResponse.IsOk;
 
