@@ -156,10 +156,15 @@ namespace INetApp.ViewModels
                 string fechaIni = WorkParts.fechaInicioSemana.Replace("/", "-");
                 string fechaFin = WorkParts.fechaFinSemana.Replace("/", "-");
                 Tv_date_2 = "(" + fechaIni + " / " + fechaFin + ")";
-                HeightProject = 43;
+                HeightProject = 45;
                 if (WorkParts.lineasDetalle != null)
                 {
-                    HeightProject += WorkParts.lineasDetalle.Count * 25;
+                    HeightProject += WorkParts.lineasDetalle.Count * 44;
+                }
+                HeightProjectGestion = 45;
+                if (WorkParts.lineasDetalleIneco != null)
+                {
+                    HeightProjectGestion += WorkParts.lineasDetalleIneco.Count * 44;
                 }
             }
 

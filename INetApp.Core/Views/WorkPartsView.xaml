@@ -20,13 +20,13 @@
                 <Setter Property="BorderColor" Value="Black"/>
                 <Setter Property="BackgroundColor" Value="#ddd" />
                 <Setter Property="CornerRadius" Value="0"/>
-                <Setter Property="Padding" Value="1"/>
+                <Setter Property="Padding" Value="1,2"/>
             </Style>
             <Style TargetType="Frame" x:Key="bg_table_default">
-                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BorderColor" Value="#999"/>
                 <Setter Property="BackgroundColor" Value="#ffffff" />
                 <Setter Property="CornerRadius" Value="0"/>
-                <Setter Property="Padding" Value="1"/>
+                <Setter Property="Padding" Value="5,1"/>
             </Style>
         </ResourceDictionary>
     </views:ContentPageBase.Resources>
@@ -36,11 +36,10 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Padding="0" Margin="0" RowSpacing="0">
+        <Grid Grid.Row="0" Padding="25,10" Margin="0" RowSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
@@ -105,132 +104,289 @@
         <ScrollView Grid.Row="2" Grid.Column="0" Margin="0">
             <Grid  Margin="0"
                   Padding="25,10" ColumnSpacing="0" RowSpacing="0" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="42"/>
-            </Grid.ColumnDefinitions>
-            <!--#region table_project-->
-            <CollectionView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
-                        ItemsSource ="{Binding WorkParts.lineasDetalle}"
-                        EmptyView=""
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="42"/>
+                </Grid.ColumnDefinitions>
+                <!--#region table_project-->
+                <CollectionView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
+                    ItemsSource ="{Binding WorkParts.lineasDetalle}"
+                    EmptyView=""
                     Footer="{Binding .}"
+                    ItemSizingStrategy="MeasureFirstItem"
                     HeightRequest="{Binding HeightProject}"
-                    ItemSizingStrategy ="MeasureFirstItem" >       
-                    
-                <!--#region titulos table_project-->
-                <CollectionView.Header>
-                        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" >
-                            <Grid ColumnSpacing="0" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="42"/>
-                                    <ColumnDefinition Width="42"/>
-                                    <ColumnDefinition Width="42"/>
-                                    <ColumnDefinition Width="42"/>
-                                    <ColumnDefinition Width="42"/>
-                                    <ColumnDefinition Width="42"/>
-                                </Grid.ColumnDefinitions>
-                                <Frame Grid.Column="0" Grid.Row="0"
-                                Style="{StaticResource bg_table_header}">
-                                    <Label 
-                                Text="{Binding Source={x:Static resources:Literales.table_project}}" 
+                    >
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="0"  />
+                    </CollectionView.ItemsLayout>
+                    <!--#region titulos table_project-->
+                    <CollectionView.Header>
+                        <Grid  ColumnSpacing="0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="42"/>
+                            </Grid.ColumnDefinitions>
+                            <Frame Grid.Column="0" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                            Text="{Binding Source={x:Static resources:Literales.table_project}}" 
+                            TextColor="{StaticResource dark_grey}"
+                            Padding="5,0"
+                            FontAttributes="Bold"/>
+                            </Frame>
+                            <Frame Grid.Column="1" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                                Text="L" 
                                 TextColor="{StaticResource dark_grey}"
-                                Padding="5,0"
-                                FontAttributes="Bold"/>
-                                </Frame>
-                                <Frame Grid.Column="1" Grid.Row="0"
-                                Style="{StaticResource bg_table_header}">
-                                    <Label 
-                                    Text="L" 
-                                    TextColor="{StaticResource dark_grey}"
-                                    HorizontalOptions="Center" 
-                                    />
-                                </Frame>
-                                <Frame Grid.Column="2" Grid.Row="0"
-                                Style="{StaticResource bg_table_header}">
-                                    <Label 
-                                    Text="M" 
-                                    TextColor="{StaticResource dark_grey}"
-                                    HorizontalOptions="Center" 
-                                    />
-                                </Frame>
-                                <Frame Grid.Column="3" Grid.Row="0"
-                                Style="{StaticResource bg_table_header}">
-                                    <Label 
-                                    Text="X" 
-                                    TextColor="{StaticResource dark_grey}"
-                                    HorizontalOptions="Center" 
-                                    />
-                                </Frame>
-                                <Frame Grid.Column="4" Grid.Row="0"
-                                Style="{StaticResource bg_table_header}">
-                                    <Label 
-                                    Text="J" 
-                                    TextColor="{StaticResource dark_grey}"
-                                    HorizontalOptions="Center" 
-                                    />
-                                </Frame>
-                                <Frame Grid.Column="5" Grid.Row="0"
-                                Style="{StaticResource bg_table_header}">
-                                    <Label 
-                                    Text="V" 
-                                    TextColor="{StaticResource dark_grey}"
-                                    HorizontalOptions="Center" 
-                                    />
-                                </Frame>
+                                HorizontalOptions="Center" 
+                                />
+                            </Frame>
+                            <Frame Grid.Column="2" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                                Text="M" 
+                                TextColor="{StaticResource dark_grey}"
+                                HorizontalOptions="Center" 
+                                />
+                            </Frame>
+                            <Frame Grid.Column="3" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                                Text="X" 
+                                TextColor="{StaticResource dark_grey}"
+                                HorizontalOptions="Center" 
+                                />
+                            </Frame>
+                            <Frame Grid.Column="4" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                                Text="J" 
+                                TextColor="{StaticResource dark_grey}"
+                                HorizontalOptions="Center" 
+                                />
+                            </Frame>
+                            <Frame Grid.Column="5" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                                Text="V" 
+                                TextColor="{StaticResource dark_grey}"
+                                HorizontalOptions="Center" 
+                                />
+                            </Frame>
 
-                                <!--#endregion-->
-                            </Grid>
+                            <!--#endregion-->
                         </Grid>
                     </CollectionView.Header>
-                <CollectionView.FooterTemplate>
-                    <DataTemplate>
-                    <Grid ColumnSpacing="0" Margin="0" Padding="0" >
-                        <Grid.ColumnDefinitions> 
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="41.5"/>
-                        </Grid.ColumnDefinitions>
-                        <Frame Grid.Column="0" Grid.Row="0" Margin="0" 
-                                Style="{StaticResource bg_table_default}">
-                            <Grid >
+                    <CollectionView.FooterTemplate>
+                        <DataTemplate>
+                            <Grid  Padding="0" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="35.5"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" 
+                                <Frame Grid.Column="0" Grid.Row="0" Margin="0" 
+                                Style="{StaticResource bg_table_default}">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="42"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Grid.Row="0" 
                                     Text="" 
                                     TextColor="{StaticResource dark_grey}"
                                     Padding="5,0"
                                     FontAttributes="Bold"/>
-                                <ImageButton Grid.Column="1"
+                                        <ImageButton Grid.Column="1"
                                     Source="fnd1.png"/>
+                                    </Grid>
+                                </Frame>
                             </Grid>
-                        </Frame>
-                    </Grid>
                         </DataTemplate>
                         <!--#endregion-->
-                </CollectionView.FooterTemplate>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                            <Frame Margin="0" 
-                                Style="{StaticResource bg_table_default}">
-                                <Label Text="Binding }"/>
-                            </Frame>
+                    </CollectionView.FooterTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnSpacing="0" RowSpacing="0" Padding="0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="42"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Margin="0,0,-0.5,0"
+                                       Style="{StaticResource bg_table_default}">
+                                    <Label Text="{Binding protitulo}" TextColor="{StaticResource dark_grey}"/>
+                                </Frame>
+                                <Frame Grid.Column="0" Grid.Row="1" Style="{StaticResource bg_table_default}">
+                                    <Label Text="{Binding pronumero}" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
+                                </Frame>
+                                <Frame Grid.Column="1" Grid.Row="1" Style="{StaticResource bg_table_default}">
+                                    <Label Text="-2.00" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
+                                </Frame>
+                                <Frame Grid.Column="2" Grid.Row="1" Style="{StaticResource bg_table_default}">
+                                    <Label Text="2.97" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
+                                </Frame>
+                                <Frame Grid.Column="3" Grid.Row="1" Style="{StaticResource bg_table_default}">
+                                    <Label Text="0.00" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
+                                </Frame>
+                                <Frame Grid.Column="4" Grid.Row="1" Style="{StaticResource bg_table_default}">
+                                    <Label Text="0.00" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
+                                </Frame>
+                                <Frame Grid.Column="5" Grid.Row="1" Style="{StaticResource bg_table_default}">
+                                    <Label Text="6.00" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
+                                </Frame>
+                            </Grid>
                         </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <!--#endregion-->
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <!--#endregion-->
 
-            
-            <!--#region table_project_management-->
+                <CollectionView Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" 
+                    ItemsSource ="{Binding WorkParts.lineasDetalleIneco}"
+                    EmptyView=""
+                    Footer="{Binding .}"
+                    ItemSizingStrategy="MeasureFirstItem"
+                    HeightRequest="{Binding HeightProjectGestion}"
+                    >
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="0"  />
+                    </CollectionView.ItemsLayout>
+                    <!--#region titulos table_project-->
+                    <CollectionView.Header>
+                        <Grid  ColumnSpacing="0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="42"/>
+                                <ColumnDefinition Width="42"/>
+                            </Grid.ColumnDefinitions>
+                            <Frame Grid.Column="0" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                            Text="{Binding Source={x:Static resources:Literales.table_project_management}}" 
+                            TextColor="{StaticResource dark_grey}"
+                            Padding="5,0"
+                            FontAttributes="Bold"/>
+                            </Frame>
+                            <Frame Grid.Column="1" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                                Text="L" 
+                                TextColor="{StaticResource dark_grey}"
+                                HorizontalOptions="Center" 
+                                />
+                            </Frame>
+                            <Frame Grid.Column="2" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                                Text="M" 
+                                TextColor="{StaticResource dark_grey}"
+                                HorizontalOptions="Center" 
+                                />
+                            </Frame>
+                            <Frame Grid.Column="3" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                                Text="X" 
+                                TextColor="{StaticResource dark_grey}"
+                                HorizontalOptions="Center" 
+                                />
+                            </Frame>
+                            <Frame Grid.Column="4" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                                Text="J" 
+                                TextColor="{StaticResource dark_grey}"
+                                HorizontalOptions="Center" 
+                                />
+                            </Frame>
+                            <Frame Grid.Column="5" Grid.Row="0"
+                            Style="{StaticResource bg_table_header}">
+                                <Label 
+                                Text="V" 
+                                TextColor="{StaticResource dark_grey}"
+                                HorizontalOptions="Center" 
+                                />
+                            </Frame>
 
-            <!--<Frame Grid.Column="0" Grid.Row="3"
+                            <!--#endregion-->
+                        </Grid>
+                    </CollectionView.Header>
+                    <CollectionView.FooterTemplate>
+                        <DataTemplate>
+                            <Grid  Padding="0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="35.5"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame Grid.Column="0" Grid.Row="0" Margin="0" 
+                                Style="{StaticResource bg_table_default}">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="42"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Grid.Row="0" 
+                                    Text="" 
+                                    TextColor="{StaticResource dark_grey}"
+                                    Padding="5,0"
+                                    FontAttributes="Bold"/>
+                                        <ImageButton Grid.Column="1"
+                                    Source="fnd1.png"/>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                        <!--#endregion-->
+                    </CollectionView.FooterTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnSpacing="0" RowSpacing="0" Padding="0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="41.5"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Frame Grid.Column="0" Grid.Row="0" Style="{StaticResource bg_table_default}">
+                                    <Label Text="Binding }"/>
+                                </Frame>
+                                <Frame Grid.Column="0" Grid.Row="1" Style="{StaticResource bg_table_default}">
+                                    <Label Text="dasfsfafsdf }"/>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <!--#region table_project_management-->
+
+                <!--<Frame Grid.Column="0" Grid.Row="3"
                     Style="{StaticResource bg_table_header}">
                     <Label 
                         Text="{Binding Source={x:Static resources:Literales.table_project_management}}" 
@@ -278,13 +434,13 @@
                         HorizontalOptions="Center" 
                         />
                 </Frame>-->
-            <!--#endregion-->
-            <!--#region Totales-->
-            <components:View_Table_Result Grid.Row="3" Grid.Column="0" />
-            <!--#endregion-->
+                <!--#endregion-->
+                <!--#region Totales-->
+                <components:View_Table_Result Grid.Row="5" Grid.Column="0" />
+                <!--#endregion-->
             </Grid>
         </ScrollView>
-        <ActivityIndicator Grid.Row="1"
+        <ActivityIndicator Grid.Row="0" Grid.RowSpan="5"
                     HorizontalOptions="Center"
                     IsRunning="{Binding IsBusy}"
                     IsVisible="{Binding IsBusy}"
