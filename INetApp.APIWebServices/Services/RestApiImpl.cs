@@ -352,7 +352,27 @@ namespace INetApp.APIWebServices
                 return Mappers.ServiceMapper.ConvertToBusiness<WorkPartsDto, WorkPartsEntity>(response);
             });
         }
+        public Task<InecoProjectsDto> GetInecoProjecsEntitiesFromApi(string Usuario, string Password, bool ineco, string pronumero, string titulo)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                HttpResponse httpResponse;
+                if (ineco)
+                {
+                    httpResponse = Get(API_URL_GET_INECO_PROJECTS_LIST, Usuario, Password).Result;
+                }
+                else
+                {
+                    httpResponse = Get(API_URL_GET_SEARCH_PROJECTS + "/" + pronumero + "/" + titulo, Usuario, Password).Result;
+                }
 
+                httpResponse.Resultado = $"{{InecoProjectsEntities:{httpResponse.Resultado}}}";
+
+                ServiceResponse<InecoProjectsEntity> response = ServiceHelper.CreateResponse<InecoProjectsEntity>(httpResponse);
+
+                return Mappers.ServiceMapper.ConvertToBusiness<InecoProjectsDto, InecoProjectsEntity>(response);
+            });
+        }
         #endregion
     }
 }

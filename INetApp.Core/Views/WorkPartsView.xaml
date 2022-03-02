@@ -14,23 +14,6 @@
     Title="{Binding Source={x:Static resources:Literales.action_parts}}" 
     >
 
-    <views:ContentPageBase.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Frame" x:Key="bg_table_header">
-                <Setter Property="BorderColor" Value="Black"/>
-                <Setter Property="BackgroundColor" Value="#ddd" />
-                <Setter Property="CornerRadius" Value="0"/>
-                <Setter Property="Padding" Value="1,2"/>
-            </Style>
-            <Style TargetType="Frame" x:Key="bg_table_default">
-                <Setter Property="BorderColor" Value="#999"/>
-                <Setter Property="BackgroundColor" Value="#ffffff" />
-                <Setter Property="CornerRadius" Value="0"/>
-                <Setter Property="Padding" Value="5,1"/>
-            </Style>
-        </ResourceDictionary>
-    </views:ContentPageBase.Resources>
-
     <Grid BackgroundColor="{StaticResource white}" RowSpacing="0" >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -220,43 +203,7 @@
                     </CollectionView.FooterTemplate>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid ColumnSpacing="0" RowSpacing="0" Padding="0" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="42"/>
-                                    <ColumnDefinition Width="42"/>
-                                    <ColumnDefinition Width="42"/>
-                                    <ColumnDefinition Width="42"/>
-                                    <ColumnDefinition Width="42"/>
-                                    <ColumnDefinition Width="42"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Margin="0,0,-0.5,0"
-                                       Style="{StaticResource bg_table_default}">
-                                    <Label Text="{Binding protitulo}" TextColor="{StaticResource dark_grey}"/>
-                                </Frame>
-                                <Frame Grid.Column="0" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                                    <Label Text="{Binding pronumero}" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
-                                </Frame>
-                                <Frame Grid.Column="1" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                                    <Label Text="-2.00" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
-                                </Frame>
-                                <Frame Grid.Column="2" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                                    <Label Text="2.97" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
-                                </Frame>
-                                <Frame Grid.Column="3" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                                    <Label Text="0.00" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
-                                </Frame>
-                                <Frame Grid.Column="4" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                                    <Label Text="0.00" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
-                                </Frame>
-                                <Frame Grid.Column="5" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                                    <Label Text="6.00" HorizontalOptions="Center" TextColor="{StaticResource dark_grey}"/>
-                                </Frame>
-                            </Grid>
+                            <components:ItemTableRow/>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -350,11 +297,12 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="42"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label Grid.Column="0" Grid.Row="0" 
-                                    Text="" 
-                                    TextColor="{StaticResource dark_grey}"
-                                    Padding="5,0"
-                                    FontAttributes="Bold"/>
+                                        <Entry x:Name ="et_search"
+                                            Grid.Column="0" Grid.Row="0" 
+                                            Text="" 
+                                            FontSize="14"
+                                            TextColor="{StaticResource dark_grey}"
+                                            FontAttributes="Bold"/>
                                         <ImageButton Grid.Column="1"
                                     Source="fnd1.png"/>
                                     </Grid>
@@ -365,22 +313,7 @@
                     </CollectionView.FooterTemplate>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid ColumnSpacing="0" RowSpacing="0" Padding="0" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="41.5"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Frame Grid.Column="0" Grid.Row="0" Style="{StaticResource bg_table_default}">
-                                    <Label Text="Binding }"/>
-                                </Frame>
-                                <Frame Grid.Column="0" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                                    <Label Text="dasfsfafsdf }"/>
-                                </Frame>
-                            </Grid>
+                            <components:ItemTableRow />
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -436,7 +369,7 @@
                 </Frame>-->
                 <!--#endregion-->
                 <!--#region Totales-->
-                <components:View_Table_Result Grid.Row="5" Grid.Column="0" />
+                <components:ViewTableResult Grid.Row="5" Grid.Column="0" />
                 <!--#endregion-->
             </Grid>
         </ScrollView>

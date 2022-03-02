@@ -10,16 +10,14 @@ namespace INetApp.Models
 
     public class InecoProjectsModel : BindableObject
     {
-
-        private string pronumero { get; set; }
-
         public InecoProjectsModel(string pronumero)
         {
             this.pronumero = pronumero;
         }
-
-        private string titulo { get; set; }
-        private string tipo { get; set; }
+        public InecoProjectsModel() { }
+        public string pronumero { get; set; }
+        public string titulo { get; set; }
+        public string tipo { get; set; }
 
 
         //    override public string ToString()

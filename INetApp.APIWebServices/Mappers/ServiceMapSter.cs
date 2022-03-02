@@ -38,7 +38,7 @@ namespace INetApp.APIWebServices.Mappers
                 .NewConfig()
                 .EnableNonPublicMembers(true)
                 .IgnoreNullValues(true)
-                 .Map(dest => dest.urIcon, src => src.UrlIcono);
+                .Map(dest => dest.urIcon, src => src.UrlIcono);
 
             TypeAdapterConfig<MessagesEntity, MessagesDto>
                .NewConfig()
@@ -77,6 +77,12 @@ namespace INetApp.APIWebServices.Mappers
                 .Map(dest => dest.WorkPartsModel, src => src)
                 .Map(dest => dest.WorkPartsModel.lineasDetalle, src => src.lineasDetalleEntity)
                 .Map(dest => dest.WorkPartsModel.lineasDetalleIneco, src => src.lineasDetalleInecoEntity)
+                .IgnoreNullValues(true);
+
+            TypeAdapterConfig<InecoProjectsEntity, InecoProjectsDto>
+                .NewConfig()
+                .EnableNonPublicMembers(true)
+                .Map(dest => dest.InecoProjectsModel, src => src.InecoProjectsEntities)
                 .IgnoreNullValues(true);
 
             //TypeAdapterConfig<WorkPartsEntity, WorkPartsModel>

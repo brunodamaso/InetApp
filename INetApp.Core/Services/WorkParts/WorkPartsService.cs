@@ -25,6 +25,19 @@ namespace INetApp.Services
 
             }
             return workPartsDto;
-        }        
+        }
+        public async Task<InecoProjectsDto> GetInecoProjectsAsync(bool ineco, string pronumero, string titulo)
+        {            
+            string pronumero2 = pronumero == null || pronumero.Equals("") ? "null" : pronumero;
+            string titulo2 = titulo == null || titulo.Equals("") ? "null" : titulo;
+            bool ineco2 = titulo == null && pronumero == null;
+            InecoProjectsDto workPartsDto = await repositoryWebService.GetInecoProjects(ineco2, pronumero2, titulo2);
+            if (workPartsDto.IsOk)
+            {
+
+            }
+            return workPartsDto;
+        }
+
     }
 }

@@ -27,6 +27,6 @@ namespace INetApp.Services
         Task<bool> RegisterTokenPush(string Token);
         Task<bool> UnRegisterTokenPush();
         Task<WorkPartsDto> GetWorkParts(string fechaini = null, string fechafin = null, int? semanaid = null);
-
+        Task<InecoProjectsDto> GetInecoProjects(bool ineco, string pronumero, string titulo);
     }
 }

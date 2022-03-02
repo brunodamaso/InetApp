@@ -2,19 +2,9 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:resources="clr-namespace:INetApp.Resources"
-            x:Class="INetApp.Views.Components.View_Table_Result"
-            x:Name="ViewTableResult">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Frame" x:Key="bg_table_default_header">
-                <Setter Property="BorderColor" Value="Black"/>
-                <Setter Property="BackgroundColor" Value="#ffffff" />
-                <Setter Property="CornerRadius" Value="0"/>
-                <Setter Property="Padding" Value="1"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentView.Resources>
-    
+            x:Class="INetApp.Views.Components.ViewTableResult"
+            x:Name="viewTableResult">
+       
     <ContentView.Content>
         <Grid  ColumnSpacing="0" RowSpacing="0" >
             <Grid.ColumnDefinitions>

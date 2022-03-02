@@ -8,26 +8,24 @@ namespace INetApp.Models
 
     public class ItemTableProjectModel : BindableObject
     {
-
-        private string protitulo { get; set; }
-        private string pronumero { get; set; }
-        private string fechaFirma { get; set; }
-        private int pdeStatus { get; set; }
-        private int prpCodigo { get; set; }
-        private int pdelineaIDRechazo { get; set; }
-        private int pdLineaIdLunes { get; set; }
-        private int pdLineaIdMartes { get; set; }
-        private int pdLineaIdMiercoles { get; set; }
-        private int pdLineaIdJueves { get; set; }
-        private int pdLineaIdViernes { get; set; }
-        private int perParteId { get; set; }
-        private bool editable = true;
-        private double procuentaLunes { get; set; }
-        private double procuentaMartes { get; set; }
-        private double procuentaMiercoles { get; set; }
-        private double procuentaJueves { get; set; }
-        private double procuentaViernes { get; set; }
-
+        public string protitulo { get; set; }
+        public string pronumero { get; set; }
+        public string fechaFirma { get; set; }
+        public int pdeStatus { get; set; }
+        public int prpCodigo { get; set; }
+        public int pdelineaIDRechazo { get; set; }
+        public int pdLineaIdLunes { get; set; }
+        public int pdLineaIdMartes { get; set; }
+        public int pdLineaIdMiercoles { get; set; }
+        public int pdLineaIdJueves { get; set; }
+        public int pdLineaIdViernes { get; set; }
+        public int perParteId { get; set; }
+        public bool editable { get; set; }
+        public double procuentaLunes { get; set; }
+        public double procuentaMartes { get; set; }
+        public double procuentaMiercoles { get; set; }
+        public double procuentaJueves { get; set; }
+        public double procuentaViernes { get; set; }
 
         public string getProtitulo()
         {

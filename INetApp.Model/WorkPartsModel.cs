@@ -11,56 +11,32 @@ namespace INetApp.Models
     {
 
         public WorkPartsModel() { }
-    
-        public int idParte { get; set; }
-
         public WorkPartsModel(int idParte)
         {
             this.idParte = idParte;
         }
-
+        public int idParte { get; set; }
         public double dedicacion { get; set; }
-
         public string fechaFinSemana { get; set; }
-
         public string fechaFirma { get; set; }
-
         public string fechaInicioSemana { get; set; }
-
-        public string fechaMaximaParte;
-
+        public string fechaMaximaParte { get; set; }
         public string fechaMinimaParte { get; set; }
-
         public string fechaValidado { get; set; }
-
         public string firmado { get; set; }
-
         public HoraDia horaDia { get; set; }
-
         public double horasSemana { get; set; }
-
         public int idSemana { get; set; }
-
         public int idSemanaAnterior { get; set; }
-
         public int idSemanaPosterior { get; set; }
-
         public List<LineasDetalle> lineasDetalle { get; set; }
-
         public List<LineasDetalle> lineasDetalleIneco { get; set; }
-
         public string nombreSemana { get; set; }
-
         public int perEstado { get; set; }
-
         public int percodigo { get; set; }
-
         public string validado { get; set; }
-
         public int pdeStatus { get; set; }
-
-        public int prpCodigo;
-
+        public int prpCodigo { get; set; }
         public int pdelineaIDRechazo { get; set; }
 
         public int getIdParte()

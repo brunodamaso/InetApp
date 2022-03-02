@@ -10,5 +10,6 @@ namespace INetApp.Services
     public interface IWorkPartsService
     {
         Task<WorkPartsDto> GetWorkPartsAsync(string FechaIni = null, string FechaFin = null, int? IdSemana = null);
+        Task<InecoProjectsDto> GetInecoProjectsAsync(bool ineco, string pronumero, string titulo);
     }
 }

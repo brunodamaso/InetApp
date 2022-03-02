@@ -23,7 +23,8 @@ namespace INetApp.APIWebServices
         Task<bool> RegisterToken(string Usuario, string Password, string Token);
         Task<bool> UnRegisterToken(string Usuario, string Password);
         Task<WorkPartsDto> GetWorkPartsEntitiesFromApi(string Usuario, string Password, string FechaIni = null, string FechaFin = null, int? IdSemana = null);
-        //Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new();
+        Task<InecoProjectsDto> GetInecoProjecsEntitiesFromApi(string Usuario, string Password, bool ineco, string pronumero, string titulo);
+        
 
     }
 }

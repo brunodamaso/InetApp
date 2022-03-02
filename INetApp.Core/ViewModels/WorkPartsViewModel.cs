@@ -25,6 +25,13 @@ namespace INetApp.ViewModels
         private string _HorasSemana;
         private int _HeightProject;
         private int _HeightProjectGestion;
+        //todo combo 1
+        //todo combo 2
+        //todo entry solo numerico
+        //todo entry selectall probar
+        //todo convertir lineas en ItemTableProjectModel
+        //todo convertir lineasineco en ItemTableProjectModel
+        //todo totales
         #region Properties
 
         public WorkPartsModel WorkParts
@@ -147,6 +154,10 @@ namespace INetApp.ViewModels
             if (workPartsDto.IsOk)
             {
                 WorkParts = workPartsDto.WorkPartsModel;
+                InecoProjectsDto inecoProjectsDto = await WorkPartsService.GetInecoProjectsAsync(true, null, null);
+                if (inecoProjectsDto.IsOk)
+                {
+                }
                 HasPreviewWeek = WorkParts.idSemanaAnterior != 0;
                 HasNextWeek = WorkParts.idSemanaPosterior != 0;
                 Editable = WorkParts.perEstado == 0 || WorkParts.perEstado == 1 || WorkParts.perEstado == 5 || WorkParts.perEstado == 6;
@@ -167,7 +178,6 @@ namespace INetApp.ViewModels
                     HeightProjectGestion += WorkParts.lineasDetalleIneco.Count * 44;
                 }
             }
-
             IsBusy = false;
         }
 

@@ -315,6 +315,26 @@
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
             </Style>
 
+            <Style TargetType="Frame" x:Key="bg_table_default_header">
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="#ffffff" />
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Padding" Value="1"/>
+            </Style>
+
+            <Style TargetType="Frame" x:Key="bg_table_header">
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="#ddd" />
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Padding" Value="1,2"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="bg_table_default">
+                <Setter Property="BorderColor" Value="#999"/>
+                <Setter Property="BackgroundColor" Value="#ffffff" />
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Padding" Value="5,1"/>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
