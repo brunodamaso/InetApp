@@ -2,7 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:resources="clr-namespace:INetApp.Resources"
-            xmlns:models="clr-namespace:INetApp.Models;assembly=INetApp.Model" 
+            xmlns:models="clr-namespace:INetApp.Models;assembly=INetApp.Model" xmlns:components="clr-namespace:INetApp.Views.Components"
             x:DataType="models:ItemTableProjectModel"
             x:Class="INetApp.Views.Components.ItemTableRow"
             x:Name="ViewItemTableRow">
@@ -19,10 +19,10 @@
                 <ColumnDefinition Width="42"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
-            <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Margin="0,0,-0.5,0"
+            <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Margin="0"
                     Style="{StaticResource bg_table_default}">
                 <Label Text="{Binding protitulo}" 
                        Padding="5"
@@ -35,40 +35,51 @@
                        HorizontalOptions="Center" 
                        TextColor="{StaticResource black}"/>
             </Frame>
-            <Frame Grid.Column="1" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                <Entry Text="{Binding procuentaLunes}" 
-                    HorizontalOptions="Center" 
-                    MaxLength="5"
-                    FontSize="14"
-                    TextColor="{StaticResource black}"/>
+            <Frame Grid.Column="1" Grid.Row="1" Style="{StaticResource bg_table_default}" >
+                <components:EntryView Text="{Binding procuentaLunes}" 
+                    CanDecimal="True"
+                    Maximum="10"
+                    Minimum="0"
+                                      Margin="0,0,2,2"
+                    Placeholder="0.00"
+                    Keyboard="Numeric"
+                    HorizontalOptions="Center" />
             </Frame>
             <Frame Grid.Column="2" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                <Entry Text="{Binding procuentaMartes}" 
-                    HorizontalOptions="Center" 
-                    MaxLength="5"
-                    FontSize="14"
-                    TextColor="{StaticResource black}"/>
+                <components:EntryView Text="{Binding procuentaMartes}" 
+                    CanDecimal="True"
+                    Maximum="10"
+                    Minimum="0"
+                    Placeholder="0.00"
+                    Keyboard="Numeric"
+                    HorizontalOptions="Center" />
             </Frame>
             <Frame Grid.Column="3" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                <Entry Text="{Binding procuentaMiercoles}" 
-                    HorizontalOptions="Center" 
-                    MaxLength="5"
-                    FontSize="14"
-                    TextColor="{StaticResource black}"/>
+                <components:EntryView Text="{Binding procuentaMiercoles}" 
+                    CanDecimal="True"
+                    Maximum="10"
+                    Minimum="0"
+                    Placeholder="0.00"
+                    Keyboard="Numeric"
+                    HorizontalOptions="Center" />
             </Frame>
             <Frame Grid.Column="4" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                <Entry Text="{Binding procuentaJueves}" 
-                    HorizontalOptions="Center" 
-                    MaxLength="5"
-                    FontSize="14"
-                    TextColor="{StaticResource black}"/>
+                <components:EntryView Text="{Binding procuentaJueves}" 
+                    CanDecimal="True"
+                    Maximum="10"
+                    Minimum="0"
+                    Placeholder="0.00"
+                    Keyboard="Numeric"
+                    HorizontalOptions="Center" />
             </Frame>
             <Frame Grid.Column="5" Grid.Row="1" Style="{StaticResource bg_table_default}">
-                <Entry Text="{Binding procuentaViernes}" 
-                    HorizontalOptions="Center" 
-                    MaxLength="5"
-                    FontSize="14"
-                    TextColor="{StaticResource black}"/>
+                <components:EntryView Text="{Binding procuentaViernes}" 
+                    CanDecimal="True"
+                    Maximum="10"
+                    Minimum="0"
+                    Placeholder="0.00"
+                    Keyboard="Numeric"
+                    HorizontalOptions="Center" />
             </Frame>
         </Grid>
     </ContentView.Content>

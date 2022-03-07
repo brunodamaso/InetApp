@@ -17,15 +17,15 @@ namespace INetApp.Views.Components
         {
             InitializeComponent();
         }
-        private void Label_Focused(object sender, FocusEventArgs e)
-        {
-            Dispatcher.BeginInvokeOnMainThread(() =>
-            {
-                Entry entry = (Entry)sender;
-                entry.CursorPosition = 0;
-                entry.SelectionLength = entry.Text != null ? entry.Text.Length : 0;
+        //private void Label_Focused(object sender, FocusEventArgs e)
+        //{
+        //    Dispatcher.BeginInvokeOnMainThread(() =>
+        //    {
+        //        Entry entry = (Entry)sender;
+        //        entry.CursorPosition = 0;
+        //        entry.SelectionLength = entry.Text != null ? entry.Text.Length : 0;
 
-            });
-        }
+        //    });
+        //}
     }
 }

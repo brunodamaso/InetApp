@@ -97,6 +97,7 @@
     <Compile Include="Controls\TabItem.xaml.cs">
       <DependentUpon>TabItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Effects\EntryEffects.cs" />
     <Compile Include="Effects\EntryLineColorEffect.cs" />
     <Compile Include="ExtendedSplash.xaml.cs">
       <DependentUpon>ExtendedSplash.xaml</DependentUpon>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="INetApp.Views.Components.EntryView"
+    xmlns:effects="clr-namespace:INetApp.Effects;assembly=INetApp" 
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="viewEntry">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EntryView.Placeholder.Normal" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="End" />
+                <Setter Property="FontSize">14</Setter>
+                <Setter Property="TextColor" Value="{StaticResource black}" />
+            </Style>
+
+            <Style x:Key="EntryView.Placeholder.Focused" TargetType="Label" BasedOn="{StaticResource EntryView.Placeholder.Normal}">
+                <Setter Property="TextColor" Value="{StaticResource black}" />
+            </Style>
+
+            <Style x:Key="EntryView.Placeholder.Error" TargetType="Label" BasedOn="{StaticResource EntryView.Placeholder.Normal}">
+                <Setter Property="TextColor" Value="DarkRed" />
+            </Style>
+
+            <Style x:Key="EntryView.Placeholder.Disabled" TargetType="Label" BasedOn="{StaticResource EntryView.Placeholder.Normal}">
+                <Setter Property="TextColor" Value="{StaticResource black}" />
+            </Style>
+
+            <!-- Entry -->
+
+            <Style x:Key="EntryView.Entry.Normal" TargetType="Entry">
+                <Setter Property="effects:EntryEffect.HasBorder" Value="False" />
+                <Setter Property="FontSize">14</Setter>
+                <Setter Property="BackgroundColor" Value="{StaticResource white}"  />
+                <Setter Property="TextColor" Value="{StaticResource black}"  />
+                <Setter Property="ReturnType">Next</Setter>
+                <Setter Property="Keyboard">Text</Setter>
+            </Style>
+
+            <Style x:Key="EntryView.Entry.Focused" TargetType="Entry" BasedOn="{StaticResource EntryView.Entry.Normal}">
+                <Setter Property="TextColor" Value="{StaticResource black}"  />
+            </Style>
+
+            <Style x:Key="EntryView.Entry.Error" TargetType="Entry" BasedOn="{StaticResource EntryView.Entry.Normal}">
+                <Setter Property="TextColor" Value="DarkRed" />
+            </Style>
+
+            <Style x:Key="EntryView.Entry.Disabled" TargetType="Entry" BasedOn="{StaticResource EntryView.Entry.Normal}">
+                <Setter Property="TextColor" Value="{StaticResource black}" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid  Margin="0" Padding="0">
+            <Entry 
+                x:Name="EntryElement"
+                Placeholder="{Binding Placeholder, Source={Reference viewEntry}}"
+                Margin="0"
+                VerticalTextAlignment="Start"
+                ReturnType="{Binding ReturnType, Source={Reference viewEntry}}"
+                TextChanged="OnEntryTextChanged"
+                Keyboard="{Binding Keyboard, Source={Reference viewEntry}}"
+                ClearButtonVisibility="WhileEditing"
+                MaxLength="{Binding MaxLength, Source={Reference viewEntry}}"
+                Style="{StaticResource EntryView.Entry.Normal}"
+                IsFocused="{Binding IsFocused, Source={Reference viewEntry}}"
+                Text="{Binding Text, Source={Reference viewEntry}, Mode=TwoWay}">
+                <Entry.Behaviors>
+                    <xct:EventToCommandBehavior
+                        Command="{Binding ReturnCommand, Source={Reference viewEntry}}" 
+                        EventName="Unfocused" />
+                </Entry.Behaviors>
+            </Entry>
+                
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer x:Name="TapEntryView" />
+            </Grid.GestureRecognizers>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

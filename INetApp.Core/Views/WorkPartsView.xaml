@@ -14,6 +14,7 @@
     Title="{Binding Source={x:Static resources:Literales.action_parts}}" 
     >
 
+    
     <Grid BackgroundColor="{StaticResource white}" RowSpacing="0" >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -123,12 +124,12 @@
                                 <ColumnDefinition Width="42"/>
                             </Grid.ColumnDefinitions>
                             <Frame Grid.Column="0" Grid.Row="0"
-                            Style="{StaticResource bg_table_header}">
+                                Style="{StaticResource bg_table_header}">
                                 <Label 
-                            Text="{Binding Source={x:Static resources:Literales.table_project}}" 
-                            TextColor="{StaticResource dark_grey}"
-                            Padding="5,0"
-                            FontAttributes="Bold"/>
+                                    Text="{Binding Source={x:Static resources:Literales.table_project}}" 
+                                    TextColor="{StaticResource dark_grey}"
+                                    Padding="5,0"
+                                    FontAttributes="Bold"/>
                             </Frame>
                             <Frame Grid.Column="1" Grid.Row="0"
                             Style="{StaticResource bg_table_header}">

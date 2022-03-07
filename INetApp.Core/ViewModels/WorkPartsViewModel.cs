@@ -171,6 +171,14 @@ namespace INetApp.ViewModels
                 if (WorkParts.lineasDetalle != null)
                 {
                     HeightProject += WorkParts.lineasDetalle.Count * 44;
+                    List<ItemTableProjectModel> TableProjects= new List<ItemTableProjectModel>();
+                    foreach (LineasDetalle item in WorkParts.lineasDetalle)
+                    {
+                        ItemTableProjectModel TableProject = new ItemTableProjectModel();
+                        DayOfWeek dia = DateTime.Parse(item.fechaImputacion).DayOfWeek;
+
+                        TableProject.
+                    }
                 }
                 HeightProjectGestion = 45;
                 if (WorkParts.lineasDetalleIneco != null)
