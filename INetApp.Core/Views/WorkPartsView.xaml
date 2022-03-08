@@ -102,7 +102,7 @@
                 </Grid.ColumnDefinitions>
                 <!--#region table_project-->
                 <CollectionView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
-                    ItemsSource ="{Binding WorkParts.lineasDetalle}"
+                    ItemsSource ="{Binding ItemTableProject}"
                     EmptyView=""
                     Footer="{Binding .}"
                     ItemSizingStrategy="MeasureFirstItem"

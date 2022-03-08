@@ -5,6 +5,7 @@
                 xmlns:viewModelBase="clr-namespace:INetApp.ViewModels.Base;assembly=INetApp"
                 xmlns:animations="clr-namespace:INetApp.Animations;assembly=INetApp"
                 xmlns:triggers="clr-namespace:INetApp.Triggers;assembly=INetApp"
+                xmlns:effects="clr-namespace:INetApp.Effects;assembly=INetApp" 
                 xmlns:behaviors="clr-namespace:INetApp.Behaviors;assembly=INetApp"
                 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                 xmlns:resources="clr-namespace:INetApp.Resources"

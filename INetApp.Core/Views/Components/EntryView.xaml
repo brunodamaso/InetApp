@@ -9,7 +9,7 @@
 
     <ContentView.Resources>
         <ResourceDictionary>
-            <Style x:Key="EntryView.Placeholder.Normal" TargetType="Label">
+            <!--<Style x:Key="EntryView.Placeholder.Normal" TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="End" />
                 <Setter Property="FontSize">14</Setter>
                 <Setter Property="TextColor" Value="{StaticResource black}" />
@@ -25,12 +25,12 @@
 
             <Style x:Key="EntryView.Placeholder.Disabled" TargetType="Label" BasedOn="{StaticResource EntryView.Placeholder.Normal}">
                 <Setter Property="TextColor" Value="{StaticResource black}" />
-            </Style>
+            </Style>-->
 
             <!-- Entry -->
+            <!--<Setter Property="effects:EntryEffect.HasBorder" Value="False" />-->
 
             <Style x:Key="EntryView.Entry.Normal" TargetType="Entry">
-                <Setter Property="effects:EntryEffect.HasBorder" Value="False" />
                 <Setter Property="FontSize">14</Setter>
                 <Setter Property="BackgroundColor" Value="{StaticResource white}"  />
                 <Setter Property="TextColor" Value="{StaticResource black}"  />
@@ -53,16 +53,19 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid  Margin="0" Padding="0">
+        <Grid  Margin="0" Padding="1">
+            
             <Entry 
+                effects:EntryEffect.HasBorder="False"
                 x:Name="EntryElement"
                 Placeholder="{Binding Placeholder, Source={Reference viewEntry}}"
                 Margin="0"
+                Background="white"
+                VerticalOptions="Start"
                 VerticalTextAlignment="Start"
                 ReturnType="{Binding ReturnType, Source={Reference viewEntry}}"
                 TextChanged="OnEntryTextChanged"
                 Keyboard="{Binding Keyboard, Source={Reference viewEntry}}"
-                ClearButtonVisibility="WhileEditing"
                 MaxLength="{Binding MaxLength, Source={Reference viewEntry}}"
                 Style="{StaticResource EntryView.Entry.Normal}"
                 IsFocused="{Binding IsFocused, Source={Reference viewEntry}}"
@@ -71,9 +74,15 @@
                     <xct:EventToCommandBehavior
                         Command="{Binding ReturnCommand, Source={Reference viewEntry}}" 
                         EventName="Unfocused" />
+                    <xct:NumericValidationBehavior InvalidStyle="{StaticResource EntryView.Entry.Error}"
+                            MinimumValue="-9.0"
+                            MaximumValue="9.99"
+                            MaximumDecimalPlaces="2"/>
+                    
                 </Entry.Behaviors>
             </Entry>
-                
+            <!--ClearButtonVisibility="WhileEditing"-->
+
             <Grid.GestureRecognizers>
                 <TapGestureRecognizer x:Name="TapEntryView" />
             </Grid.GestureRecognizers>

@@ -19,8 +19,8 @@
                 <ColumnDefinition Width="42"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="23"/>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="6"/>
+                <RowDefinition Height="46"/>
             </Grid.RowDefinitions>
             <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Margin="0"
                     Style="{StaticResource bg_table_default}">
@@ -33,14 +33,16 @@
             <Frame Grid.Column="0" Grid.Row="1" Style="{StaticResource bg_table_default}">
                 <Label Text="{Binding pronumero}" 
                        HorizontalOptions="Center" 
+                       VerticalOptions="End"
+                       FontSize="14"
                        TextColor="{StaticResource black}"/>
             </Frame>
             <Frame Grid.Column="1" Grid.Row="1" Style="{StaticResource bg_table_default}" >
-                <components:EntryView Text="{Binding procuentaLunes}" 
+                <components:EntryView Text="{Binding procuentaLunes ,Mode=TwoWay}" 
                     CanDecimal="True"
                     Maximum="10"
                     Minimum="0"
-                                      Margin="0,0,2,2"
+                    Padding="-5,0,-2,0"
                     Placeholder="0.00"
                     Keyboard="Numeric"
                     HorizontalOptions="Center" />
@@ -50,6 +52,7 @@
                     CanDecimal="True"
                     Maximum="10"
                     Minimum="0"
+                    Padding="-5,0,-2,0"
                     Placeholder="0.00"
                     Keyboard="Numeric"
                     HorizontalOptions="Center" />
@@ -59,6 +62,7 @@
                     CanDecimal="True"
                     Maximum="10"
                     Minimum="0"
+                    Padding="-5,0,-2,0"
                     Placeholder="0.00"
                     Keyboard="Numeric"
                     HorizontalOptions="Center" />
@@ -68,6 +72,7 @@
                     CanDecimal="True"
                     Maximum="10"
                     Minimum="0"
+                    Padding="-5,0,-2,0"
                     Placeholder="0.00"
                     Keyboard="Numeric"
                     HorizontalOptions="Center" />
@@ -77,6 +82,7 @@
                     CanDecimal="True"
                     Maximum="10"
                     Minimum="0"
+                    Padding="-5,0,-2,0"
                     Placeholder="0.00"
                     Keyboard="Numeric"
                     HorizontalOptions="Center" />

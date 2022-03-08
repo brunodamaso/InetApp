@@ -18,7 +18,7 @@ namespace INetApp.Views.Components
 
         public static new readonly BindableProperty IsFocusedProperty = BindableProperty.Create(nameof(IsFocused), typeof(bool), typeof(EntryView), false, BindingMode.TwoWay, null, UIPropertyChangedDelegate);
 
-        public new bool IsFocused
+        public bool IsFocused
         {
             get => (bool)GetValue(IsFocusedProperty);
             set => SetValue(IsFocusedProperty, value);
@@ -276,7 +276,7 @@ namespace INetApp.Views.Components
             {
                 Keyboard = Keyboard.Numeric;
                 IsNumeric = true;
-                EntryElement.HorizontalTextAlignment = TextAlignment.End;
+                //EntryElement.HorizontalTextAlignment = TextAlignment.End;
             }
             if (Keyboard == Keyboard.Numeric)
             {
