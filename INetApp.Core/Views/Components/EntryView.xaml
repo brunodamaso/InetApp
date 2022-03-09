@@ -34,32 +34,35 @@
                 <Setter Property="FontSize">14</Setter>
                 <Setter Property="BackgroundColor" Value="{StaticResource white}"  />
                 <Setter Property="TextColor" Value="{StaticResource black}"  />
+                <Setter Property="PlaceholderColor" Value="{StaticResource black}"  />
                 <Setter Property="ReturnType">Next</Setter>
                 <Setter Property="Keyboard">Text</Setter>
             </Style>
 
             <Style x:Key="EntryView.Entry.Focused" TargetType="Entry" BasedOn="{StaticResource EntryView.Entry.Normal}">
+                <Setter Property="BackgroundColor" Value="{StaticResource white}"  />
                 <Setter Property="TextColor" Value="{StaticResource black}"  />
             </Style>
 
             <Style x:Key="EntryView.Entry.Error" TargetType="Entry" BasedOn="{StaticResource EntryView.Entry.Normal}">
+                <Setter Property="BackgroundColor" Value="{StaticResource white}"  />
                 <Setter Property="TextColor" Value="DarkRed" />
             </Style>
 
             <Style x:Key="EntryView.Entry.Disabled" TargetType="Entry" BasedOn="{StaticResource EntryView.Entry.Normal}">
-                <Setter Property="TextColor" Value="{StaticResource black}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource white}"  />
+                <Setter Property="TextColor" Value="{StaticResource dark_grey}" />
             </Style>
 
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
         <Grid  Margin="0" Padding="1">
-            
             <Entry 
                 effects:EntryEffect.HasBorder="False"
                 x:Name="EntryElement"
                 Placeholder="{Binding Placeholder, Source={Reference viewEntry}}"
-                Margin="0"
+                Margin="1,-1,0,0"
                 Background="white"
                 VerticalOptions="Start"
                 VerticalTextAlignment="Start"
@@ -69,16 +72,15 @@
                 MaxLength="{Binding MaxLength, Source={Reference viewEntry}}"
                 Style="{StaticResource EntryView.Entry.Normal}"
                 IsFocused="{Binding IsFocused, Source={Reference viewEntry}}"
-                Text="{Binding Text, Source={Reference viewEntry}, Mode=TwoWay}">
+                Text="{Binding Text,  Source={Reference viewEntry}, Mode=TwoWay}">
                 <Entry.Behaviors>
                     <xct:EventToCommandBehavior
                         Command="{Binding ReturnCommand, Source={Reference viewEntry}}" 
                         EventName="Unfocused" />
                     <xct:NumericValidationBehavior InvalidStyle="{StaticResource EntryView.Entry.Error}"
-                            MinimumValue="-9.0"
-                            MaximumValue="9.99"
+                            MinimumValue="{Binding Minimum ,Source={Reference viewEntry}}"
+                            MaximumValue="{Binding Maximum ,Source={Reference viewEntry}}"
                             MaximumDecimalPlaces="2"/>
-                    
                 </Entry.Behaviors>
             </Entry>
             <!--ClearButtonVisibility="WhileEditing"-->

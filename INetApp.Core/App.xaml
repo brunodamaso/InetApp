@@ -56,7 +56,7 @@
             <Color x:Key="iOSDefaultButtonClassBorderColor">#007aff</Color>
             <Color x:Key="AndroidDefaultButtonClassTextColor">#FFFFFF</Color>
             <Color x:Key="iOSDefaultButtonClassTextColor">#007aff</Color>
-            <Color x:Key="AndroidEntryBackgroundColor">Transparent</Color>
+            <Color x:Key="AndroidEntryBackgroundColor">#FFFFFF</Color>
             <Color x:Key="iOSEntryBackgroundColor">#FFFFFF</Color>
             <Color x:Key="AndroidDefaultAccentColorColor">#009cc4</Color>
             <Color x:Key="AndroidListViewBackgroundColor">Transparent</Color>
@@ -92,14 +92,18 @@
             </OnPlatform>
 
             <!--  Theme Colors  -->
-            <Color x:Key="LightBackgroundColor">#009cc4</Color>
-            <Color x:Key="DarkBackgroundColor">#009cc4</Color>
-            <Color x:Key="LightForegroundColor">#FFFFFF</Color>
-            <Color x:Key="DarkForegroundColor">#FFFFFF</Color>
-            <Color x:Key="LightFontColor">#4d4d4d</Color>
-            <Color x:Key="DarkFontColor">#E7E7E7</Color>
-            <Color x:Key="LightSeparatorColor">#222222</Color>
-            <Color x:Key="DarkSeparatorColor">#E7E7E7</Color>
+            <Color x:Key="LightBackgroundColor">White</Color>
+            <Color x:Key="DarkBackgroundColor">#222222</Color>
+            <Color x:Key="LightBarColor">#009cc4</Color>
+            <Color x:Key="DarkBarColor">#E7E7E7</Color>
+            <Color x:Key="LightBarForeColor">white</Color>
+            <Color x:Key="DarkBarForeColor">#222222</Color>
+            <Color x:Key="LightForegroundColor">Black</Color>
+            <Color x:Key="DarkForegroundColor">#E7E7E7</Color>
+            <Color x:Key="LightFontColor">#E7E7E7</Color>
+            <Color x:Key="DarkFontColor">#222222</Color>
+            <Color x:Key="LightSeparatorColor">#E7E7E7</Color>
+            <Color x:Key="DarkSeparatorColor">#222222</Color>
             
             <!--  SIZES  -->
             <OnPlatform x:Key="BaseButtonBorderRadius" x:TypeArguments="x:Double">
@@ -116,8 +120,8 @@
             <x:String x:Key="SourceSansProRegular">SourceSansPro-Regular</x:String>
 
             <OnPlatform x:Key="BaseFontSize" x:TypeArguments="x:Double">
-                <On Platform="iOS" Value="16" />
-                <On Platform="Android" Value="15" />
+                <On Platform="iOS" Value="14" />
+                <On Platform="Android" Value="14" />
             </OnPlatform>
 
             <OnPlatform x:Key="BaseButtonFontSize" x:TypeArguments="x:Double">
@@ -252,7 +256,7 @@
                 ApplyToDerivedTypes="True"
                 CanCascade="True"
                 TargetType="Entry">
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource DarkFontColor}, Light={StaticResource LightFontColor}}" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource DarkForegroundColor}, Light={StaticResource LightForegroundColor}}" />
                 <Setter Property="PlaceholderColor" Value="{AppThemeBinding Dark={StaticResource DarkFontColor}, Light={StaticResource LightFontColor}}" />
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackgroundColor}, Light={StaticResource LightBackgroundColor}}" />
             </Style>
@@ -298,7 +302,8 @@
                 </Setter>
                 <Setter Property="Shell.TabBarUnselectedColor">
                     <OnPlatform x:TypeArguments="Color">
-                        <On Platform="UWP" Value="Gray" />
+                        <On Platform="UWP" Value="Black" />
+                        <On Platform="Android" Value="{StaticResource black}" />
                     </OnPlatform>
                 </Setter>
             </Style>
@@ -308,7 +313,7 @@
                 <Setter Property="NavigationPage.BackButtonTitle" Value="" />
                 <Setter Property="ios:Page.UseSafeArea" Value="True" />
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
-                <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Light={StaticResource LightForegroundColor}, Dark={StaticResource DarkForegroundColor}}" />
+                <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Light={StaticResource DarkBarForeColor}, Dark={StaticResource LightBarForeColor}}" />
             </Style>
 
             <Style ApplyToDerivedTypes="True" TargetType="xct:Popup">

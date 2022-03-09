@@ -4,6 +4,7 @@ using INetApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace INetApp.Services
@@ -38,6 +39,86 @@ namespace INetApp.Services
             }
             return workPartsDto;
         }
+        public List<ItemTableProjectModel> GetItemTableProjects(List<LineasDetalle> lineasDetalle, bool Editable, int periodoActivo)
+        {
+            List<ItemTableProjectModel> TableProjects = new List<ItemTableProjectModel>();
+            string pronum = "";
+            string fechaFirma = "";
+            foreach (LineasDetalle item in lineasDetalle)
+            {
+                DayOfWeek dia = DateTime.ParseExact(item.fechaImputacion, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture).DayOfWeek;
+                if (pronum != item.pronumero || fechaFirma != item.fechaFirma)
+                {
+                    ItemTableProjectModel TableProject = new ItemTableProjectModel();
+                    pronum = item.pronumero;
+                    fechaFirma = item.fechaFirma;
+                    TableProject.pronumero = pronum;
+                    TableProject.fechaFirma = fechaFirma;
+                    TableProject.protitulo = item.protitulo;
+                    TableProject.pdeStatus = item.pdeStatus;
+                    TableProject.prpCodigo = item.prpCodigo;
+                    TableProject.pdelineaIDRechazo = item.pdelineaIDRechazo;
+                    TableProject.perParteId = item.perParteId;
+                    TableProject.editable = CheckEditable(item, Editable, periodoActivo);
 
+                    TableProjects.Add(TableProject);
+                }
+                //else
+                //{
+                //    if (fechaFirma != item.fechaFirma)
+                //    {
+                //        ItemTableProjectModel TableProject = new ItemTableProjectModel();
+                //        pronum = item.pronumero;
+                //        fechaFirma = item.fechaFirma;
+                //        TableProject.pronumero = pronum;
+                //        TableProject.fechaFirma = fechaFirma;
+                //        TableProject.protitulo = item.protitulo;
+                //        TableProject.pdeStatus = item.pdeStatus;
+                //        TableProject.prpCodigo = item.prpCodigo;
+                //        TableProject.pdelineaIDRechazo = item.pdelineaIDRechazo;
+                //        TableProject.perParteId = item.perParteId;
+                //        TableProject.editable = CheckEditable(item, Editable, periodoActivo);
+
+                //        TableProjects.Add(TableProject);
+                //    }
+                //}
+                switch (dia)
+                {
+                    case DayOfWeek.Monday:
+                        TableProjects[TableProjects.Count - 1].procuentaLunes = item.procuenta;
+                        TableProjects[TableProjects.Count - 1].pdLineaIdLunes = item.pdLineaId;
+                        break;
+                    case DayOfWeek.Tuesday:
+                        TableProjects[TableProjects.Count - 1].procuentaMartes = item.procuenta;
+                        TableProjects[TableProjects.Count - 1].pdLineaIdMartes = item.pdLineaId;
+                        break;
+                    case DayOfWeek.Wednesday:
+                        TableProjects[TableProjects.Count - 1].procuentaMiercoles = item.procuenta;
+                        TableProjects[TableProjects.Count - 1].pdLineaIdMiercoles = item.pdLineaId;
+                        break;
+                    case DayOfWeek.Thursday:
+                        TableProjects[TableProjects.Count - 1].procuentaJueves = item.procuenta;
+                        TableProjects[TableProjects.Count - 1].pdLineaIdJueves = item.pdLineaId;
+                        break;
+                    case DayOfWeek.Friday:
+                        TableProjects[TableProjects.Count - 1].procuentaViernes = item.procuenta;
+                        TableProjects[TableProjects.Count - 1].pdLineaIdViernes = item.pdLineaId;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            TableProjects = TableProjects.OrderBy(a => a.fechaFirma).ThenBy(a => a.pronumero).ToList();
+            return TableProjects;
+        }
+        private bool CheckEditable(LineasDetalle lineasDetalle, bool Editable, int periodoActivo)
+        {
+            bool editLine = false;
+            if (Editable)
+            {
+                editLine = lineasDetalle.pdeStatus == 0 || (lineasDetalle.pdeStatus == 2 && lineasDetalle.prpCodigo == periodoActivo) || (lineasDetalle.pdeStatus == 3 && lineasDetalle.prpCodigo == periodoActivo && lineasDetalle.pdelineaIDRechazo == 0);
+            }
+            return editLine;
+        }
     }
 }

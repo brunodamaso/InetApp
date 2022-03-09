@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Linq;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace INetApp.Views.Components
@@ -247,7 +248,6 @@ namespace INetApp.Views.Components
             if (bindable is EntryView entryView)
             {
                 entryView.EntryElement.IsReadOnly = false;
-
                 if (resources != null)
                 {
                     if (!entryView.IsEnabled)
@@ -278,7 +278,7 @@ namespace INetApp.Views.Components
                 IsNumeric = true;
                 //EntryElement.HorizontalTextAlignment = TextAlignment.End;
             }
-            if (Keyboard == Keyboard.Numeric)
+            if (IsNumeric)
             {
                 if (string.IsNullOrEmpty(args.NewTextValue))
                 {
@@ -287,6 +287,22 @@ namespace INetApp.Views.Components
                 }
                 if (CanDecimal)
                 {
+                    if (args.NewTextValue.Contains(","))
+                    {
+                        int puntos = 0;
+                        foreach (var item in args.NewTextValue.ToArray().Where(a=>a.Equals(',') || a.Equals('.')))
+                        {
+                            puntos += 1;
+                        }
+                        if (puntos > 1)
+                        {
+                            ((Entry)sender).Text = args.OldTextValue;
+                        }
+                        else
+                        {
+                            ((Entry)sender).Text = args.NewTextValue.Replace(",", ".");
+                        }
+                    }
                     double _;
                     if (!double.TryParse(args.NewTextValue, out _))
                     {

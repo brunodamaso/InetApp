@@ -67,7 +67,8 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Text="{Binding UserName.Value, Mode=TwoWay}"
-                    TextColor="{StaticResource dark_grey}" BackgroundColor="{StaticResource white}" 
+                    TextColor="{StaticResource dark_grey}" 
+                    BackgroundColor="{StaticResource white}" 
                     Placeholder="{Binding Source={x:Static resources:Literales.hint_text_user}}" 
                     PlaceholderColor="{StaticResource dark_grey}">
                     <Entry.Margin>

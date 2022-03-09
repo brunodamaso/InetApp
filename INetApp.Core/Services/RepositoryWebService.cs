@@ -1,11 +1,11 @@
-﻿using INetApp.APIWebServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using INetApp.APIWebServices;
 using INetApp.APIWebServices.Dtos;
-using INetApp.APIWebServices.Entity;
 using INetApp.Models;
 using INetApp.Services.Identity;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace INetApp.Services
 {
@@ -50,7 +50,7 @@ namespace INetApp.Services
                             userLoggedDto.UserLoggedModel.version = responseVersion.UserLoggedModel.version;
                             userLoggedDto.UserLoggedModel.url = responseVersion.UserLoggedModel.url;
                             userLoggedDto.UserLoggedModel.requerido = responseVersion.UserLoggedModel.requerido;
-                            identityService.PutCredentialsFromPrefs(Usuario, Password , userLoggedDto.UserLoggedModel);
+                            identityService.PutCredentialsFromPrefs(Usuario, Password, userLoggedDto.UserLoggedModel);
                         }
                         else
                         {
@@ -367,19 +367,19 @@ namespace INetApp.Services
             {
                 if (connectivityService.CheckConnectivity())
                 {
-                    string strOptionlist = "";
+                    StringBuilder strOptionlist = new StringBuilder("");
                     foreach (OptionsModel optionId in optionList)
                     {
                         if (!strOptionlist.Equals(""))
                         {
-                            strOptionlist += ",";
+                            strOptionlist.Append(",");
                         }
 
-                        strOptionlist += optionId.optionsId.ToString();
+                        strOptionlist.Append(optionId.optionsId.ToString());
                     }
 
                     GetUser();
-                    resultado = await RestApiImpl.MarkOptionsFromApi(userName, userPass, strOptionlist);
+                    resultado = await RestApiImpl.MarkOptionsFromApi(userName, userPass, strOptionlist.ToString());
                 }
                 else
                 {
@@ -472,9 +472,9 @@ namespace INetApp.Services
             try
             {
                 if (connectivityService.CheckConnectivity())
-{
+                {
                     byte[] tokeb64 = System.Text.Encoding.UTF8.GetBytes(Token);
-                    string Token64 = Convert.ToBase64String(tokeb64,Base64FormattingOptions.None);
+                    string Token64 = Convert.ToBase64String(tokeb64, Base64FormattingOptions.None);
 
                     result = await RestApiImpl.RegisterToken(userName, userPass, Token64);
 

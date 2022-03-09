@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="25" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -182,20 +182,18 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="35.5"/>
                                 </Grid.ColumnDefinitions>
-                                <Frame Grid.Column="0" Grid.Row="0" Margin="0" 
-                                Style="{StaticResource bg_table_default}">
+                                <Frame Grid.Column="0" Grid.Row="0" Margin="0" Style="{StaticResource bg_table_default}">
                                     <Grid >
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="42"/>
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0" Grid.Row="0" 
-                                    Text="" 
-                                    TextColor="{StaticResource dark_grey}"
-                                    Padding="5,0"
-                                    FontAttributes="Bold"/>
-                                        <ImageButton Grid.Column="1"
-                                    Source="fnd1.png"/>
+                                            Text="" 
+                                            TextColor="{StaticResource dark_grey}"
+                                            Padding="5,5"
+                                            FontAttributes="Bold"/>
+                                        <ImageButton Grid.Column="1" Source="fnd1.png"/>
                                     </Grid>
                                 </Frame>
                             </Grid>
@@ -211,7 +209,7 @@
                 <!--#endregion-->
 
                 <CollectionView Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" 
-                    ItemsSource ="{Binding WorkParts.lineasDetalleIneco}"
+                    ItemsSource ="{Binding ItemTableProjectIneco}"
                     EmptyView=""
                     Footer="{Binding .}"
                     ItemSizingStrategy="MeasureFirstItem"
@@ -235,10 +233,10 @@
                             <Frame Grid.Column="0" Grid.Row="0"
                             Style="{StaticResource bg_table_header}">
                                 <Label 
-                            Text="{Binding Source={x:Static resources:Literales.table_project_management}}" 
-                            TextColor="{StaticResource dark_grey}"
-                            Padding="5,0"
-                            FontAttributes="Bold"/>
+                                    Text="{Binding Source={x:Static resources:Literales.table_project_management}}" 
+                                    TextColor="{StaticResource dark_grey}"
+                                    Padding="5,0"
+                                    FontAttributes="Bold"/>
                             </Frame>
                             <Frame Grid.Column="1" Grid.Row="0"
                             Style="{StaticResource bg_table_header}">
@@ -298,14 +296,14 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="42"/>
                                         </Grid.ColumnDefinitions>
-                                        <Entry x:Name ="et_search"
+                                        <Label x:Name ="et_search"
                                             Grid.Column="0" Grid.Row="0" 
+                                            Padding="5,5"
                                             Text="" 
                                             FontSize="14"
                                             TextColor="{StaticResource dark_grey}"
                                             FontAttributes="Bold"/>
-                                        <ImageButton Grid.Column="1"
-                                    Source="fnd1.png"/>
+                                        <ImageButton Grid.Column="1" Source="fnd1.png"/>
                                     </Grid>
                                 </Frame>
                             </Grid>
