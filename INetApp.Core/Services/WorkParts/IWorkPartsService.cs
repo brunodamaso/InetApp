@@ -11,6 +11,7 @@ namespace INetApp.Services
     {
         Task<WorkPartsDto> GetWorkPartsAsync(string FechaIni = null, string FechaFin = null, int? IdSemana = null);
         Task<InecoProjectsDto> GetInecoProjectsAsync(bool ineco, string pronumero, string titulo);
+        Task<PeriodoActivoDto> GetPeriodoActivoAsync();
         List<ItemTableProjectModel> GetItemTableProjects(List<LineasDetalle> lineasDetalle, bool Editable, int periodoActivo);
     }
 }

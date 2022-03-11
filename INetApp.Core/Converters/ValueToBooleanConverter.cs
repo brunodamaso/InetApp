@@ -63,7 +63,8 @@ namespace INetApp.Converters
         /// <param name="culture">Culture.</param>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            var a = "NOT".Equals(parameter?.ToString().ToUpper()) ? !(bool)value : (bool)value;
+            return a;
         }
 
         /// <summary>
@@ -80,7 +81,8 @@ namespace INetApp.Converters
 
         private object Converter(bool value, object parameter)
         {
-            return "NOT".Equals(parameter.ToString().ToUpper()) ? !value : (object)value;
+            var a = "NOT".Equals(parameter?.ToString().ToUpper()) ? !value : (object)value;
+            return a;
         }
 
         private bool GetBool(int valInt, object parameter)
@@ -89,29 +91,29 @@ namespace INetApp.Converters
             string str = $"{parameter?.ToString()}";
             if (int.TryParse(str, out int numero))
             {
-                valor = (valInt) == numero;
+                valor = valInt == numero;
             }
             else
             {
                 if (str == "0")
                 {
-                    valor = (valInt) == 0;
+                    valor = valInt == 0;
                 }
                 else if (str.Contains(">"))
                 {
-                    valor = (valInt) > int.Parse(str.Substring(1));
+                    valor = valInt > int.Parse(str.Substring(1));
                 }
                 else if (str.Contains("<"))
                 {
-                    valor = (valInt) < int.Parse(str.Substring(1));
+                    valor = valInt < int.Parse(str.Substring(1));
                 }
                 else if (str.Contains("!="))
                 {
-                    valor = (valInt) != int.Parse(str.Substring(2));
+                    valor = valInt != int.Parse(str.Substring(2));
                 }
                 else
                 {
-                    valor = (valInt) > 0;
+                    valor = valInt > 0;
                 }
             }
             return valor;

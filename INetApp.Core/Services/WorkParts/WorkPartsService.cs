@@ -39,6 +39,18 @@ namespace INetApp.Services
             }
             return workPartsDto;
         }
+
+        public async Task<PeriodoActivoDto> GetPeriodoActivoAsync()
+        {
+            PeriodoActivoDto periodoActivoDto = await repositoryWebService.GetPeriodoActivo();
+            if (periodoActivoDto.IsOk)
+            {
+
+            }
+            return periodoActivoDto;
+
+
+        }
         public List<ItemTableProjectModel> GetItemTableProjects(List<LineasDetalle> lineasDetalle, bool Editable, int periodoActivo)
         {
             List<ItemTableProjectModel> TableProjects = new List<ItemTableProjectModel>();

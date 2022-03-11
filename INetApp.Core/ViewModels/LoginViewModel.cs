@@ -181,6 +181,8 @@ namespace INetApp.ViewModels
             settingsService.UserPass = "";
             settingsService.PushToken = "";
             userService.UnRegisterTokenPush();
+            this.UserName.Value = "";
+            this.Password.Value = "";
         }
 
         private bool Validate()

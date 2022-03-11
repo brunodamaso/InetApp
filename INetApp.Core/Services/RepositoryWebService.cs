@@ -543,7 +543,6 @@ namespace INetApp.Services
 
             return workPartsDto;
         }
-
         public async Task<InecoProjectsDto> GetInecoProjects(bool ineco, string pronumero, string titulo)
         {
             InecoProjectsDto inecoProjectsDto = new InecoProjectsDto();
@@ -570,6 +569,34 @@ namespace INetApp.Services
 
             return inecoProjectsDto;
         }
+        public async Task<PeriodoActivoDto> GetPeriodoActivo()
+        {
+            PeriodoActivoDto periodoActivoDto = new PeriodoActivoDto();
+            try
+            {
+                if (connectivityService.CheckConnectivity())
+                {
+                    GetUser();
+                    periodoActivoDto = await RestApiImpl.GetPeriodoActivoFromApi(userName, userPass);
+
+                    if (periodoActivoDto.IsOk)
+                    { }
+                }
+                else
+                {
+                    periodoActivoDto.IsOk = false;
+                    periodoActivoDto.IsConnected = false;
+                }
+            }
+            catch (Exception)
+            {
+                periodoActivoDto.IsOk = false;
+            }
+
+            return periodoActivoDto;
+        }
+
+        
         #endregion
 
         //public async Task<TDto> GetDatos<TDto, TResponse>(string Tabla) where TResponse : Response where TDto : BaseDto, new()

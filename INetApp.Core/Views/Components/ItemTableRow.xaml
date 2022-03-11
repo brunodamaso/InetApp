@@ -2,7 +2,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:resources="clr-namespace:INetApp.Resources"
-            xmlns:models="clr-namespace:INetApp.Models;assembly=INetApp.Model" xmlns:components="clr-namespace:INetApp.Views.Components"
+            xmlns:models="clr-namespace:INetApp.Models;assembly=INetApp.Model" 
+             xmlns:components="clr-namespace:INetApp.Views.Components"
             x:DataType="models:ItemTableProjectModel"
             x:Class="INetApp.Views.Components.ItemTableRow"
             x:Name="ViewItemTableRow">

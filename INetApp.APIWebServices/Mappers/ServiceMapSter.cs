@@ -100,6 +100,10 @@ namespace INetApp.APIWebServices.Mappers
                 .EnableNonPublicMembers(true)
                 .IgnoreNullValues(true);
 
+            TypeAdapterConfig<PeriodoActivoEntity, PeriodoActivoModel>
+                .NewConfig()
+                .EnableNonPublicMembers(true)
+                .IgnoreNullValues(true);
         }
     }
 }
