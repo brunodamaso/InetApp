@@ -17,12 +17,14 @@ namespace INetApp.ViewModels
         private readonly IWorkPartsService WorkPartsService;
 
         private WorkPartsModel _WorkPartsModel;
-        private ObservableCollection<ItemTableProjectModel> _ItemTableProjectModel;
+        private ObservableCollection<ItemTableProjectModel> _ItemTableProject;
+        private ObservableCollection<ItemTableProjectModel> _ItemTableProjectIneco;
 
         private bool _HasNextWeek;
         private bool _HasPreviewWeek;
         private bool _HasCopy;
         private bool _Editable;
+        private bool _HasDatos;
         private string _tv_date_2;
         private string _Dedicacion;
         private string _HorasSemana;
@@ -30,15 +32,18 @@ namespace INetApp.ViewModels
         private int _HeightProjectGestion;
 
         private int periodoActivo;
+        //todo peridoactivo
+        //todo mostrar combo1
+        //todo mostrar combo2
         //todo combo 1
         //todo combo 2
-        //todo entry solo numerico
         //todo entry selectall probar
-        //todo convertir lineas en ItemTableProjectModel
-        //todo convertir lineasineco en ItemTableProjectModel
         //todo totales
+        //todo revisar editando
+        //todo firmar
+        //todo grabar
+        //todo eliminar
         #region Properties
-
         public WorkPartsModel WorkParts
         {
             get => _WorkPartsModel;
@@ -50,13 +55,32 @@ namespace INetApp.ViewModels
         }
         public ObservableCollection<ItemTableProjectModel> ItemTableProject
         {
-            get => _ItemTableProjectModel;
+            get => _ItemTableProject;
             set
             {
-                _ItemTableProjectModel = value;
+                _ItemTableProject = value;
                 RaisePropertyChanged(() => ItemTableProject);
             }
         }
+        public ObservableCollection<ItemTableProjectModel> ItemTableProjectIneco
+        {
+            get => _ItemTableProjectIneco;
+            set
+            {
+                _ItemTableProjectIneco = value;
+                RaisePropertyChanged(() => ItemTableProjectIneco);
+            }
+        }
+        public bool HasDatos
+        {
+            get => _HasDatos;
+            set
+            {
+                _HasDatos = value;
+                RaisePropertyChanged(() => HasDatos);
+            }
+        }
+
         public bool HasNextWeek
         {
             get => _HasNextWeek;
@@ -111,7 +135,7 @@ namespace INetApp.ViewModels
                 RaisePropertyChanged(() => HorasSemana);
             }
         }
-        
+
         public string Tv_date_2
         {
             get => _tv_date_2;
@@ -163,102 +187,45 @@ namespace INetApp.ViewModels
         private async Task Sincroniza(string FechaIni = null, string FechaFin = null, int? IdSemana = null)
         {
             IsBusy = true;
-
+            HasDatos = false;
             WorkPartsDto workPartsDto = await WorkPartsService.GetWorkPartsAsync(FechaIni, FechaFin, IdSemana);
             if (workPartsDto.IsOk)
             {
-                WorkParts = workPartsDto.WorkPartsModel;
+                _WorkPartsModel = workPartsDto.WorkPartsModel;
+
                 InecoProjectsDto inecoProjectsDto = await WorkPartsService.GetInecoProjectsAsync(true, null, null);
                 if (inecoProjectsDto.IsOk)
                 {
                 }
-                HasPreviewWeek = WorkParts.idSemanaAnterior != 0;
-                HasNextWeek = WorkParts.idSemanaPosterior != 0;
-                Editable = WorkParts.perEstado == 0 || WorkParts.perEstado == 1 || WorkParts.perEstado == 5 || WorkParts.perEstado == 6;
-                HasCopy = HasNextWeek && Editable;
-                Dedicacion = string.Format(Literales.text_dedication, WorkParts.dedicacion) + " %";
-                HorasSemana = string.Format(Literales.total_week_hours, WorkParts.horasSemana) + " h";
-                string fechaIni = WorkParts.fechaInicioSemana.Replace("/", "-");
-                string fechaFin = WorkParts.fechaFinSemana.Replace("/", "-");
-                Tv_date_2 = "(" + fechaIni + " / " + fechaFin + ")";
-                HeightProject = 45;
-                if (WorkParts.lineasDetalle != null)
+                PeriodoActivoDto periodoActivoDto = await WorkPartsService.GetPeriodoActivoAsync();
+                if (periodoActivoDto.IsOk)
                 {
-                    HeightProject += WorkParts.lineasDetalle.Count * 44;
-                    List<ItemTableProjectModel> TableProjects= new List<ItemTableProjectModel>();
-                    string pronum = "";
-                    string fechaFirma = "";
-                    foreach (LineasDetalle item in WorkParts.lineasDetalle)
-                    {
-                        DayOfWeek dia = DateTime.ParseExact(item.fechaImputacion ,"dd/MM/yyyy" , System.Globalization.CultureInfo.InvariantCulture).DayOfWeek;
-                        if (pronum != item.pronumero)
-                        {
-                            ItemTableProjectModel TableProject = new ItemTableProjectModel();
-                            pronum = item.pronumero;
-                            fechaFirma = item.fechaFirma;
-                            TableProject.pronumero = pronum;
-                            TableProject.fechaFirma = fechaFirma;
-                            TableProject.protitulo = item.protitulo;
-                            TableProject.pdeStatus = item.pdeStatus;
-                            TableProject.prpCodigo = item.prpCodigo;
-                            TableProject.pdelineaIDRechazo = item.pdelineaIDRechazo;
-                            TableProject.perParteId = item.perParteId;
-                            TableProject.editable = CheckEditable(item);
-
-                            TableProjects.Add(TableProject);
-                        }
-                        else
-                        {
-                            if (fechaFirma != item.fechaFirma)
-                            {
-                                ItemTableProjectModel TableProject = new ItemTableProjectModel();
-                                pronum = item.pronumero;
-                                fechaFirma = item.fechaFirma;
-                                TableProject.pronumero = pronum;
-                                TableProject.fechaFirma = fechaFirma;
-                                TableProject.protitulo = item.protitulo;
-                                TableProject.pdeStatus = item.pdeStatus;
-                                TableProject.prpCodigo = item.prpCodigo;
-                                TableProject.pdelineaIDRechazo = item.pdelineaIDRechazo;
-                                TableProject.perParteId = item.perParteId;
-                                TableProject.editable = CheckEditable(item);
-
-                                TableProjects.Add(TableProject);
-                            }
-                        }
-                        switch (dia)
-                        {
-                            case DayOfWeek.Monday:
-                                TableProjects[TableProjects.Count - 1].procuentaLunes = item.procuenta;
-                                TableProjects[TableProjects.Count - 1].pdLineaIdLunes = item.pdLineaId;
-                                break;
-                            case DayOfWeek.Tuesday:
-                                TableProjects[TableProjects.Count - 1].procuentaMartes = item.procuenta;
-                                TableProjects[TableProjects.Count - 1].pdLineaIdMartes = item.pdLineaId;
-                                break;
-                            case DayOfWeek.Wednesday:
-                                TableProjects[TableProjects.Count - 1].procuentaMiercoles = item.procuenta;
-                                TableProjects[TableProjects.Count - 1].pdLineaIdMiercoles = item.pdLineaId;
-                                break;
-                            case DayOfWeek.Thursday:
-                                TableProjects[TableProjects.Count - 1].procuentaJueves = item.procuenta;
-                                TableProjects[TableProjects.Count - 1].pdLineaIdJueves = item.pdLineaId;
-                                break;
-                            case DayOfWeek.Friday:
-                                TableProjects[TableProjects.Count - 1].procuentaViernes = item.procuenta;
-                                TableProjects[TableProjects.Count - 1].pdLineaIdViernes = item.pdLineaId;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    this.ItemTableProject = new ObservableCollection<ItemTableProjectModel>(TableProjects);
+                    this.periodoActivo = periodoActivoDto.PeriodoActivoModel.periodoActivo;
                 }
-                HeightProjectGestion = 45;
+                HasPreviewWeek = _WorkPartsModel.idSemanaAnterior != 0;
+                HasNextWeek = _WorkPartsModel.idSemanaPosterior != 0;
+                Editable = _WorkPartsModel.perEstado == 0 || _WorkPartsModel.perEstado == 1 || _WorkPartsModel.perEstado == 5 || _WorkPartsModel.perEstado == 6;
+                HasCopy = HasNextWeek && Editable;
+                Dedicacion = string.Format(Literales.text_dedication, _WorkPartsModel.dedicacion) + " %";
+                HorasSemana = string.Format(Literales.total_week_hours, _WorkPartsModel.horasSemana) + " h";
+                string fechaIni = _WorkPartsModel.fechaInicioSemana.Replace("/", "-");
+                string fechaFin = _WorkPartsModel.fechaFinSemana.Replace("/", "-");
+                Tv_date_2 = "(" + fechaIni + " / " + fechaFin + ")";
+                HeightProject = 55;
+                HeightProjectGestion = 55;
+
+                if (_WorkPartsModel.lineasDetalle != null)
+                {
+                    ItemTableProject = new ObservableCollection<ItemTableProjectModel>(WorkPartsService.GetItemTableProjects(_WorkPartsModel.lineasDetalle, Editable, periodoActivo));
+                    HeightProject += ItemTableProject.Count * 56;
+                }
                 if (WorkParts.lineasDetalleIneco != null)
                 {
-                    HeightProjectGestion += WorkParts.lineasDetalleIneco.Count * 44;
+                    ItemTableProjectIneco = new ObservableCollection<ItemTableProjectModel>(WorkPartsService.GetItemTableProjects(_WorkPartsModel.lineasDetalleIneco, Editable, periodoActivo));
+                    HeightProjectGestion += ItemTableProjectIneco.Count * 56;
                 }
+                WorkParts = _WorkPartsModel;
+                HasDatos = true;
             }
             IsBusy = false;
         }
@@ -290,16 +257,6 @@ namespace INetApp.ViewModels
         private void OnFirmar()
         {
             throw new NotImplementedException();
-        }
-
-        private bool CheckEditable(LineasDetalle lineasDetalle)
-        {
-            bool editLine = false;
-            if (this.Editable)
-            {
-                editLine = lineasDetalle.pdeStatus == 0 || (lineasDetalle.pdeStatus == 2 && lineasDetalle.prpCodigo == periodoActivo) || (lineasDetalle.pdeStatus == 3 && lineasDetalle.prpCodigo == periodoActivo && lineasDetalle.pdelineaIDRechazo == null);
-            }
-            return editLine;
         }
     }
 }

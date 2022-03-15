@@ -101,8 +101,8 @@
         <Setter Property="BackgroundColor" Value="{StaticResource app_Color}" />
         <Setter Property="BorderColor" Value="{StaticResource toolbar_Color}" />
         <Setter Property="TextColor" Value="{StaticResource white}" />
-        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
-        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+        <Setter Property="VerticalOptions" Value="Fill"/>
+        <Setter Property="HorizontalOptions" Value="Fill"/>
     </Style>
 
     <Style x:Key="BoxButtonApprove" TargetType="BoxView">

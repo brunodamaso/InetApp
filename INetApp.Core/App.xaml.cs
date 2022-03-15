@@ -75,6 +75,8 @@ namespace INetApp
             NavigationPage nav = Current.MainPage as NavigationPage;
 
             ITheme e = DependencyService.Get<ITheme>();
+            //todo quitar cuando se quiera usar temas
+            Current.UserAppTheme = OSAppTheme.Light;
             if (Current.RequestedTheme == OSAppTheme.Dark)
             {
                 //e?.SetStatusBarColor(Color.Black, false);

@@ -16,7 +16,6 @@ namespace INetApp.Models
 
         public int periodoActivo { get; set; }
 
-
         public int getPeriodoActivo()
         {
             return periodoActivo;

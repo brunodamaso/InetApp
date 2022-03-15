@@ -13,53 +13,58 @@
     xmlns:resources="clr-namespace:INetApp.Resources"
     Title="{Binding Source={x:Static resources:Literales.action_parts}}" 
     >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmpty" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-    
     <Grid BackgroundColor="{StaticResource white}" RowSpacing="0" >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Padding="25,10" Margin="0" RowSpacing="0">
+        <Grid Grid.Row="0" Padding="25,10" 
+              Margin="0" RowSpacing="0"
+              IsVisible="{Binding HasDatos, Converter={xct:BoolToObjectConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="25" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <ImageButton Grid.Column="0" 
+            <ImageButton Grid.Column="0" Grid.Row="0"
                 Source="anterior.png" 
                 IsVisible="{Binding HasPreviewWeek}"
                 Command="{Binding IrSemanaAnteriorCommand}"/>
-            <Label Grid.Column="2" 
+            <Label Grid.Column="2" Grid.Row="0"
                 Text="{Binding WorkParts.nombreSemana}" 
                 TextColor="{StaticResource dark_grey}"
                 HorizontalOptions="Center" 
-                FontSize="17"
-                HeightRequest="17" 
-                Margin="8,10,8,0"/>
-            <ImageButton Grid.Column="3" 
+                FontSize="17"                
+                />
+            <ImageButton Grid.Column="3" Grid.Row="0"
                 Source="calendar.png" 
                 Command="{Binding CalendarioCommand}" 
-                Padding="10" 
+                IsVisible="{Binding HasDatos}"
                 HorizontalOptions="Center" 
                 VerticalOptions="Center"/>
-            <ImageButton Grid.Column="5" 
+            <ImageButton Grid.Column="5" Grid.Row="0"
                 Source="siguiente.png" 
                 IsVisible="{Binding HasNextWeek}"
-                Command="{Binding IrSemanaSiguienteCommand}"/>
+                Command="{Binding IrSemanaSiguienteCommand}" />
 
             <Label Grid.Column="2" Grid.Row="1"
                 Text="{Binding Tv_date_2}" 
@@ -76,18 +81,20 @@
                 TextColor="{StaticResource dark_grey}"
                 HorizontalOptions="Center" 
                 Margin="8,0"/>
+            <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4"
+                Text="{Binding Source={x:Static resources:Literales.copy_last_week}}" 
+                IsVisible="{Binding HasCopy}"
+                TextColor="{StaticResource app_Color}"
+                TextDecorations="Underline"
+                />
         </Grid>
-
-        <Label Grid.Row="1" 
-            Text="{Binding Source={x:Static resources:Literales.copy_last_week}}" 
-            IsVisible="{Binding HasCopy}"
-            TextColor="{StaticResource app_Color}"
-            TextDecorations="Underline"
-            Margin="28,0"/>
 
         <ScrollView Grid.Row="2" Grid.Column="0" Margin="0">
             <Grid  Margin="0"
-                  Padding="25,10" ColumnSpacing="0" RowSpacing="0" >
+                Padding="25,10" 
+                ColumnSpacing="0" 
+                RowSpacing="0" 
+                IsVisible="{Binding HasDatos}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -182,20 +189,18 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="35.5"/>
                                 </Grid.ColumnDefinitions>
-                                <Frame Grid.Column="0" Grid.Row="0" Margin="0" 
-                                Style="{StaticResource bg_table_default}">
+                                <Frame Grid.Column="0" Grid.Row="0" Margin="0" Style="{StaticResource bg_table_default}">
                                     <Grid >
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="42"/>
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0" Grid.Row="0" 
-                                    Text="" 
-                                    TextColor="{StaticResource dark_grey}"
-                                    Padding="5,0"
-                                    FontAttributes="Bold"/>
-                                        <ImageButton Grid.Column="1"
-                                    Source="fnd1.png"/>
+                                            Text="" 
+                                            TextColor="{StaticResource dark_grey}"
+                                            Padding="5,5"
+                                            FontAttributes="Bold"/>
+                                        <ImageButton Grid.Column="1" Source="fnd1.png"/>
                                     </Grid>
                                 </Frame>
                             </Grid>
@@ -211,7 +216,7 @@
                 <!--#endregion-->
 
                 <CollectionView Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" 
-                    ItemsSource ="{Binding WorkParts.lineasDetalleIneco}"
+                    ItemsSource ="{Binding ItemTableProjectIneco}"
                     EmptyView=""
                     Footer="{Binding .}"
                     ItemSizingStrategy="MeasureFirstItem"
@@ -235,10 +240,10 @@
                             <Frame Grid.Column="0" Grid.Row="0"
                             Style="{StaticResource bg_table_header}">
                                 <Label 
-                            Text="{Binding Source={x:Static resources:Literales.table_project_management}}" 
-                            TextColor="{StaticResource dark_grey}"
-                            Padding="5,0"
-                            FontAttributes="Bold"/>
+                                    Text="{Binding Source={x:Static resources:Literales.table_project_management}}" 
+                                    TextColor="{StaticResource dark_grey}"
+                                    Padding="5,0"
+                                    FontAttributes="Bold"/>
                             </Frame>
                             <Frame Grid.Column="1" Grid.Row="0"
                             Style="{StaticResource bg_table_header}">
@@ -298,14 +303,14 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="42"/>
                                         </Grid.ColumnDefinitions>
-                                        <Entry x:Name ="et_search"
+                                        <Label x:Name ="et_search"
                                             Grid.Column="0" Grid.Row="0" 
+                                            Padding="5,5"
                                             Text="" 
                                             FontSize="14"
                                             TextColor="{StaticResource dark_grey}"
                                             FontAttributes="Bold"/>
-                                        <ImageButton Grid.Column="1"
-                                    Source="fnd1.png"/>
+                                        <ImageButton Grid.Column="1" Source="fnd1.png"/>
                                     </Grid>
                                 </Frame>
                             </Grid>
@@ -320,68 +325,20 @@
                 </CollectionView>
                 <!--#region table_project_management-->
 
-                <!--<Frame Grid.Column="0" Grid.Row="3"
-                    Style="{StaticResource bg_table_header}">
-                    <Label 
-                        Text="{Binding Source={x:Static resources:Literales.table_project_management}}" 
-                        TextColor="{StaticResource dark_grey}"
-                        Padding="5,0"
-                        FontAttributes="Bold"/>
-                </Frame>
-                <Frame Grid.Column="1" Grid.Row="3"
-                    Style="{StaticResource bg_table_header}">
-                    <Label 
-                        Text="L" 
-                        TextColor="{StaticResource dark_grey}"
-                        HorizontalOptions="Center" 
-                        />
-                </Frame>
-                <Frame Grid.Column="2" Grid.Row="3"
-                    Style="{StaticResource bg_table_header}">
-                    <Label 
-                        Text="M" 
-                        TextColor="{StaticResource dark_grey}"
-                        HorizontalOptions="Center" 
-                        />
-                </Frame>
-                <Frame Grid.Column="3" Grid.Row="3"
-                    Style="{StaticResource bg_table_header}">
-                    <Label 
-                        Text="X" 
-                        TextColor="{StaticResource dark_grey}"
-                        HorizontalOptions="Center" 
-                        />
-                </Frame>
-                <Frame Grid.Column="4" Grid.Row="3"
-                    Style="{StaticResource bg_table_header}">
-                    <Label 
-                        Text="J" 
-                        TextColor="{StaticResource dark_grey}"
-                        HorizontalOptions="Center" 
-                        />
-                </Frame>
-                <Frame Grid.Column="5" Grid.Row="3"
-                    Style="{StaticResource bg_table_header}">
-                    <Label 
-                        Text="V" 
-                        TextColor="{StaticResource dark_grey}"
-                        HorizontalOptions="Center" 
-                        />
-                </Frame>-->
-                <!--#endregion-->
-                <!--#region Totales-->
-                <components:ViewTableResult Grid.Row="5" Grid.Column="0" />
+                <!--#region Totales -->
+                <components:ViewTableResult Grid.Row="5" Grid.Column="0" 
+                    IsVisible="{Binding HasDatos}"/>
                 <!--#endregion-->
             </Grid>
         </ScrollView>
-        <ActivityIndicator Grid.Row="0" Grid.RowSpan="5"
-                    HorizontalOptions="Center"
-                    IsRunning="{Binding IsBusy}"
-                    IsVisible="{Binding IsBusy}"
-                    VerticalOptions="Center"
-                    Background="transparent"
-                    BackgroundColor="transparent"
-                    Color="{StaticResource app_Color}">
+        <ActivityIndicator Grid.Row="0" Grid.RowSpan="3"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center"
+            Background="transparent"
+            BackgroundColor="transparent"
+            Color="{StaticResource app_Color}">
             <ActivityIndicator.WidthRequest>
                 <OnPlatform x:TypeArguments="x:Double">
                     <On Platform="iOS, Android" Value="100" />
