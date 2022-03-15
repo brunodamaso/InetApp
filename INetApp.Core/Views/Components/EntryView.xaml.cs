@@ -24,6 +24,18 @@ namespace INetApp.Views.Components
             set => SetValue(IsFocusedProperty, value);
         }
 
+        #region SelectOnEntry Property
+
+        public static new readonly BindableProperty SelectOnEntryProperty = BindableProperty.Create(nameof(SelectOnEntry), typeof(bool), typeof(EntryView), false, BindingMode.TwoWay, null, UIPropertyChangedDelegate);
+
+        public bool SelectOnEntry
+        {
+            get => (bool)GetValue(SelectOnEntryProperty);
+            set => SetValue(SelectOnEntryProperty, value);
+        }
+
+        #endregion
+
         #endregion
 
         #region IsEnabled Property
@@ -227,8 +239,11 @@ namespace INetApp.Views.Components
                             Dispatcher.BeginInvokeOnMainThread(() =>
                             {
                                 _entry.Focus();
-                                _entry.CursorPosition = 0;
-                                _entry.SelectionLength = _entry.Text != null ? _entry.Text.Length : 0;
+                                if (SelectOnEntry)
+                                {
+                                    _entry.CursorPosition = 0;
+                                    _entry.SelectionLength = _entry.Text != null ? _entry.Text.Length : 0;
+                                }
                             });
                         }
                     };
