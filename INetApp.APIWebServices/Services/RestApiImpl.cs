@@ -182,7 +182,8 @@ namespace INetApp.APIWebServices
             {
                 HttpResponse httpResponse = Get(API_URL_GET_CATEGORY_LIST, Usuario, Password).Result;
 
-                httpResponse.Resultado = $"{{CategorysEntities:{httpResponse.Resultado}}}";
+                httpResponse.Resultado = string.Concat("{\"CategorysEntities\":", httpResponse.Resultado, "}");
+                //$@"{{"""CategorysEntities""":{httpResponse.Resultado}}}";
 
                 ServiceResponse<CategorysEntity> response = ServiceHelper.CreateResponse<CategorysEntity>(httpResponse);
 
@@ -199,7 +200,8 @@ namespace INetApp.APIWebServices
             {
                 HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_LIST_BY_CATEGORY + CategoryId, Usuario, Password).Result;
 
-                httpResponse.Resultado = $"{{MessagesEntities:{httpResponse.Resultado}}}";
+                httpResponse.Resultado = string.Concat("{\"MessagesEntities\":", httpResponse.Resultado, "}");
+                //httpResponse.Resultado = $"{{MessagesEntities:{httpResponse.Resultado}}}";
 
                 ServiceResponse<MessagesEntity> response = ServiceHelper.CreateResponse<MessagesEntity>(httpResponse);
 
@@ -214,7 +216,8 @@ namespace INetApp.APIWebServices
             {
                 HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_DETAILS + CategoryId + "/" + MessageId, Usuario, Password).Result;
 
-                httpResponse.Resultado = $"{{data:{httpResponse.Resultado}}}";
+                httpResponse.Resultado = string.Concat("{\"data\":", httpResponse.Resultado, "}");
+                //httpResponse.Resultado = $"{{data:{httpResponse.Resultado}}}";
 
                 ServiceResponse<MessageEntity> response = ServiceHelper.CreateResponse<MessageEntity>(httpResponse);
 
@@ -254,7 +257,8 @@ namespace INetApp.APIWebServices
             {
                 HttpResponse httpResponse = Get(API_URL_GET_OPTIONS_LIST , Usuario, Password).Result;
 
-                httpResponse.Resultado = $"{{OptionsEntities:{httpResponse.Resultado}}}";
+                httpResponse.Resultado = string.Concat("{\"OptionsEntities\":", httpResponse.Resultado, "}");
+                //httpResponse.Resultado = $"{{OptionsEntities:{httpResponse.Resultado}}}";
 
                 ServiceResponse<OptionsEntity> response = ServiceHelper.CreateResponse<OptionsEntity>(httpResponse);
 
@@ -366,7 +370,8 @@ namespace INetApp.APIWebServices
                     httpResponse = Get(API_URL_GET_SEARCH_PROJECTS + "/" + pronumero + "/" + titulo, Usuario, Password).Result;
                 }
 
-                httpResponse.Resultado = $"{{InecoProjectsEntities:{httpResponse.Resultado}}}";
+                httpResponse.Resultado = string.Concat("{\"InecoProjectsEntities\":", httpResponse.Resultado, "}");
+                //httpResponse.Resultado = $"{{InecoProjectsEntities:{httpResponse.Resultado}}}";
 
                 ServiceResponse<InecoProjectsEntity> response = ServiceHelper.CreateResponse<InecoProjectsEntity>(httpResponse);
 

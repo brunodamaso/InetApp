@@ -1,25 +1,26 @@
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace INetApp.APIWebServices.Entity
 {
-    public class HoraDiaEntity {
-
-        [JsonProperty(PropertyName = "Lunes")]
+    public class HoraDiaEntity 
+    {
+        [JsonPropertyName( "Lunes")]
         private string lunes;
 
-        [JsonProperty(PropertyName = "Martes")]
+        [JsonPropertyName( "Martes")]
         private string martes;
 
-        [JsonProperty(PropertyName = "Miercoles")]
+        [JsonPropertyName( "Miercoles")]
         private string miercoles;
 
-        [JsonProperty(PropertyName = "Jueves")]
+        [JsonPropertyName( "Jueves")]
         private string jueves;
 
-        [JsonProperty(PropertyName = "Viernes")]
+        [JsonPropertyName( "Viernes")]
         private string viernes;
 
 

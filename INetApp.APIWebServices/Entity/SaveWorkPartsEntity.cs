@@ -1,15 +1,16 @@
 using INetApp.APIWebServices.Responses;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace INetApp.APIWebServices.Entity
 {
     public class SaveWorkPartsEntity : Response
     {
 
-        [JsonProperty(PropertyName = "GuardarParteResult")]
+        [JsonPropertyName( "GuardarParteResult")]
         public WorkPartsEntity guardarParteResult { get; set; }
 
         public WorkPartsEntity getGuardarParteResult() {

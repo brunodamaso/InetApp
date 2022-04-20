@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using INetApp.APIWebServices.Responses;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace INetApp.APIWebServices.Entity
 {
@@ -25,30 +26,30 @@ namespace INetApp.APIWebServices.Entity
         public int id { get; set; }
 
         //@DatabaseField(columnName = ID)
-        [JsonProperty(PropertyName = "Codigo")]
+        [JsonPropertyName( "Codigo")]
         public int messageId { get; set; }
 
-        //[JsonProperty(PropertyName = USERNAME)]
+        //[JsonPropertyName( USERNAME)]
         //@DatabaseField(columnName = USERNAME)
-        [JsonProperty(PropertyName = "username")]
+        [JsonPropertyName( "username")]
         public string username { get; set; }
 
-        //[JsonProperty(PropertyName = "CATEGORY_ID")]
+        //[JsonPropertyName( "CATEGORY_ID")]
         //DatabaseField(columnName = CATEGORY_ID)
-        [JsonProperty(PropertyName = "category_id")]
+        [JsonPropertyName( "category_id")]
         public int categoryId { get; set; }
 
-        [JsonProperty(PropertyName = "Descripcion")]
+        [JsonPropertyName( "Descripcion")]
         //@DatabaseField(columnName = NAME)
         public string name { get; set; }
 
-        //[JsonProperty(PropertyName = FAVORITE)]
+        //[JsonPropertyName( FAVORITE)]
         //@DatabaseField(columnName = FAVORITE)
-        [JsonProperty(PropertyName = "favorite")]
+        [JsonPropertyName( "favorite")]
         public bool favorite { get; set; }
 
         //@DatabaseField(columnName = DATE)
-        [JsonProperty(PropertyName = "Fecha")]
+        [JsonPropertyName( "Fecha")]
         public string date { get; set; }
 
         //@DatabaseField(columnName = DATA)

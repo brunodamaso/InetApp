@@ -5,11 +5,12 @@ using INetApp.Resources;
 using INetApp.Services;
 using INetApp.Services.NFC;
 using INetApp.Services.Settings;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels.Base
 {
-    public abstract class ViewModelBase : ExtendedBindableObject, IQueryAttributable
+    public abstract class ViewModelBase : ObservableObject //ExtendedBindableObject, IQueryAttributable
     {
         protected readonly IDialogService DialogService;
         protected readonly INavigationService NavigationService;
@@ -30,7 +31,7 @@ namespace INetApp.ViewModels.Base
             set
             {
                 text_last_update = value;
-                RaisePropertyChanged(() => Text_last_update);
+                OnPropertyChanged(nameof(Text_last_update));
             }
         }
         public bool IsInitialized

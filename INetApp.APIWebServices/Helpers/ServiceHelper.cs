@@ -1,19 +1,27 @@
 ﻿using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Web;
-using Newtonsoft.Json;
-using INetApp.APIWebServices.Dtos;
-using INetApp.APIWebServices.Requests;
+//using Newtonsoft.Json;
 using INetApp.APIWebServices.Responses;
 
 namespace INetApp.APIWebServices.Helpers
 {
     public static class ServiceHelper
     {
+        private static readonly JsonSerializerOptions Settings = new JsonSerializerOptions()
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            IncludeFields = true,
+            NumberHandling = JsonNumberHandling.AllowReadingFromString,
+            PropertyNameCaseInsensitive = true, 
+        };
+
         public static ServiceResponse<T> CreateResponse<T>(HttpResponse response) where T : Response
         {
             ServiceResponse<T> result = null;
 
-            var dto = DeserializeJSON<T>(response, response.IsOk);
+            T dto = DeserializeJSON<T>(response, response.IsOk);
 
             if (response.IsOk && (dto != null || response.Resultado.ToLower().Equals("true")))
             {
@@ -29,40 +37,29 @@ namespace INetApp.APIWebServices.Helpers
             return result;
         }
 
-        private static T DeserializeJSON<T> (HttpResponse response, bool isOk) where T : Response
+        private static T DeserializeJSON<T>(HttpResponse response, bool isOk) where T : Response
         {
             try
             {
                 string json = string.Empty;
 
-                if (isOk)
-                {
-                    json = HttpUtility.HtmlDecode(response.Resultado);
-                }
-                else
-                {
-                    json = HttpUtility.HtmlDecode(response.Description);
-                }
-            
-                var value = JsonConvert.DeserializeObject<T>(json, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                json = isOk ? HttpUtility.HtmlDecode(response.Resultado) : HttpUtility.HtmlDecode(response.Description);
+
+                T value = JsonSerializer.Deserialize<T>(json, Settings);
 
                 return value;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("error al Deserializar " + ex.Message);
                 return null;
             }
-            
+
         }
 
         public static string ToJson<T>(T request, bool ignoreNull = false) where T : new()
         {
-            JsonSerializerSettings settings = null;
-
-            if (ignoreNull)
-                settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
-
-            var stringRequest = JsonConvert.SerializeObject(request, settings);
+            string stringRequest = JsonSerializer.Serialize(request, Settings);
 
             return stringRequest;
         }

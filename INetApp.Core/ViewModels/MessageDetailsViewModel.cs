@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using INetApp.APIWebServices.Dtos;
@@ -9,7 +10,7 @@ using INetApp.Models;
 using INetApp.Resources;
 using INetApp.Services;
 using INetApp.ViewModels.Base;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels
@@ -64,7 +65,7 @@ namespace INetApp.ViewModels
 
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
-            MessageModel = JsonConvert.DeserializeObject<MessageModel>(Uri.UnescapeDataString(query["MessageModel"]));
+            MessageModel = JsonSerializer.Deserialize<MessageModel>(Uri.UnescapeDataString(query["MessageModel"]));
             Date = MessageModel.date.Day + " de " + MessageModel.date.ToString("MMMM") + " de " + MessageModel.date.Year;
 
             await Sincroniza();

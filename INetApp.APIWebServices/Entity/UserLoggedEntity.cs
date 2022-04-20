@@ -1,32 +1,33 @@
 ﻿using INetApp.Models;
 using INetApp.APIWebServices.Responses;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace INetApp.APIWebServices.Entity
 {
     public class UserLoggedEntity : Response
     {
-        [JsonProperty(PropertyName = "usuarioIneco")]
+        [JsonPropertyName( "usuarioIneco")]
         public string username;
 
-        [JsonProperty(PropertyName = "nombre")]
+        [JsonPropertyName( "nombre")]
         public string name;
 
-        [JsonProperty(PropertyName = "apellidos")]
+        [JsonPropertyName( "apellidos")]
         public string lastname;
 
-        [JsonProperty(PropertyName = "permiso")]
+        [JsonPropertyName( "permiso")]
         public bool permission;
 
-        [JsonProperty(PropertyName = "VersionApp")]
+        [JsonPropertyName( "VersionApp")]
         public string version;
 
-        [JsonProperty(PropertyName = "URLDescarga")]
+        [JsonPropertyName( "URLDescarga")]
         public string url;
 
-        [JsonProperty(PropertyName = "Obligatorio")]
+        [JsonPropertyName( "Obligatorio")]
         public bool requerido;       
 
         public string getUsername()

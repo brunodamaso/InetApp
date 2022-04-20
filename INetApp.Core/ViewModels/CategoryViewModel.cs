@@ -25,7 +25,7 @@ namespace INetApp.ViewModels
             set
             {
                 _categoryItems = value;
-                RaisePropertyChanged(() => CategoryItems);
+                OnPropertyChanged(nameof(CategoryItems));
             }
         }
         public bool IsRefreshing
@@ -34,7 +34,7 @@ namespace INetApp.ViewModels
             set
             {
                 _IsRefreshing = value;
-                RaisePropertyChanged(() => IsRefreshing);
+                OnPropertyChanged(nameof(IsRefreshing));
             }
         }
         #endregion

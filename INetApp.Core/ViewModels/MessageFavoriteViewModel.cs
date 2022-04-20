@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
 using System.Windows.Input;
 using INetApp.APIWebServices.Dtos;
 using INetApp.Models;
 using INetApp.Resources;
 using INetApp.Services;
 using INetApp.ViewModels.Base;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace INetApp.ViewModels
@@ -86,7 +87,7 @@ namespace INetApp.ViewModels
         private async void OnSelectMessage(MessageModel messageModel)
         {
             IsBusy = true;
-            string StringParametro = JsonConvert.SerializeObject(messageModel);
+            string StringParametro = JsonSerializer.Serialize(messageModel);
 
             Dictionary<string, string> Parametro = new Dictionary<string, string>
                 {

@@ -1,71 +1,72 @@
 ﻿using INetApp.APIWebServices.Responses;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace INetApp.APIWebServices.Entity
 {
     public class WorkPartsEntity : Response
     {
-        [JsonProperty(PropertyName = "Dedicacion")]
+        [JsonPropertyName( "Dedicacion")]
         public double dedicacion{ get; set; }
 
-        [JsonProperty(PropertyName = "FechaFinSemana")]
+        [JsonPropertyName( "FechaFinSemana")]
         public string fechaFinSemana { get; set; }
 
-        [JsonProperty(PropertyName = "FechaFirma")]
+        [JsonPropertyName( "FechaFirma")]
         public string fechaFirma { get; set; }
 
-        [JsonProperty(PropertyName = "FechaInicioSemana")]
+        [JsonPropertyName( "FechaInicioSemana")]
         public string fechaInicioSemana { get; set; }
 
-        [JsonProperty(PropertyName = "FechaMaximaParte")]
+        [JsonPropertyName( "FechaMaximaParte")]
         public string fechaMaximaParte { get; set; }
 
-        [JsonProperty(PropertyName = "FechaMinimaParte")]
+        [JsonPropertyName( "FechaMinimaParte")]
         public string fechaMinimaParte { get; set; }
 
-        [JsonProperty(PropertyName = "FechaValidado")]
+        [JsonPropertyName( "FechaValidado")]
         public string fechaValidado { get; set; }
 
-        [JsonProperty(PropertyName = "Firmado")]
+        [JsonPropertyName( "Firmado")]
         public string firmado { get; set; }
 
-        [JsonProperty(PropertyName = "HoraDia")]
+        [JsonPropertyName( "HoraDia")]
         public HoraDiaEntity horaDia { get; set; }
 
-        [JsonProperty(PropertyName = "HorasSemana")]
+        [JsonPropertyName( "HorasSemana")]
         public double horasSemana { get; set; }
 
-        [JsonProperty(PropertyName = "IdParte")]
+        [JsonPropertyName( "IdParte")]
         public int idParte { get; set; }
 
-        [JsonProperty(PropertyName = "IdSemana")]
+        [JsonPropertyName( "IdSemana")]
         public int idSemana { get; set; }
 
-        [JsonProperty(PropertyName = "IdSemanaAnterior")]
+        [JsonPropertyName( "IdSemanaAnterior")]
         public int idSemanaAnterior { get; set; }
 
-        [JsonProperty(PropertyName = "IdSemanaPosterior")]
+        [JsonPropertyName( "IdSemanaPosterior")]
         public int idSemanaPosterior { get; set; }
 
-        [JsonProperty(PropertyName = "LineasDetalle")]
+        [JsonPropertyName( "LineasDetalle")]
         public List<LineasDetalleEntity> lineasDetalleEntity { get; set; }
 
-        [JsonProperty(PropertyName = "LineasDetalleIneco")]
+        [JsonPropertyName( "LineasDetalleIneco")]
         public List<LineasDetalleEntity> lineasDetalleInecoEntity { get; set; }
 
-        [JsonProperty(PropertyName = "NombreSemana")]
+        [JsonPropertyName( "NombreSemana")]
         public string nombreSemana { get; set; }
 
-        [JsonProperty(PropertyName = "PerEstado")]
+        [JsonPropertyName( "PerEstado")]
         public int perEstado { get; set; }
 
-        [JsonProperty(PropertyName = "Percodigo")]
+        [JsonPropertyName( "Percodigo")]
         public int percodigo { get; set; }
 
-        [JsonProperty(PropertyName = "Validado")]
+        [JsonPropertyName( "Validado")]
         public string validado { get; set; }
 
 

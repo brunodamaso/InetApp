@@ -199,7 +199,7 @@ namespace INetApp.Services
                             campo++;
                             messageDto.MessageModel.fields.Details.Add(detail);
                         }
-                        //messageDto.MessageModel.fields = JsonConvert.DeserializeObject<MessageDetails>(messageDto.MessageModel.data);
+                        //messageDto.MessageModel.fields = JsonSerializer.Deserialize<MessageDetails>(messageDto.MessageModel.data);
                     }
                 }
                 else

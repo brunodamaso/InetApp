@@ -1,17 +1,18 @@
-using Newtonsoft.Json;
+////using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace INetApp.APIWebServices.Entity
 {
     public class ActionWorkPartsEntity
     {
-
-        [JsonProperty(PropertyName = "accion")]
+        [JsonPropertyName("accion")]
         public int accion { get; set; }
 
-        [JsonProperty(PropertyName = "parte")]
+        [JsonPropertyName( "parte")]
         public WorkPartsEntity parte { get; set; }
 
 

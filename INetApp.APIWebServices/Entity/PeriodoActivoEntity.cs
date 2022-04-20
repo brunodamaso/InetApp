@@ -1,15 +1,16 @@
 using INetApp.APIWebServices.Responses;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace INetApp.APIWebServices.Entity
 {
     public class PeriodoActivoEntity : Response
     {
 
-        [JsonProperty(PropertyName = "PeriodoActivo")]
+        [JsonPropertyName( "PeriodoActivo")]
         public int periodoActivo { get; set; }
 
         public PeriodoActivoEntity()

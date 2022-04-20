@@ -10,7 +10,10 @@ using INetApp.Resources;
 using INetApp.Services.Identity;
 using INetApp.Services.Settings;
 using INetApp.ViewModels.Base;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+//using Newtonsoft.Json;
 
 namespace INetApp.Services
 {
@@ -136,7 +139,7 @@ namespace INetApp.Services
                                 messageDto.MessageModel.messageId = idSolicitud;
                                 messageDto.MessageModel.name = message.name;
                                 messageDto.MessageModel.date = message.date;
-                                string StringParametro = JsonConvert.SerializeObject(messageDto.MessageModel);
+                                string StringParametro = JsonSerializer.Serialize(messageDto.MessageModel);
 
                                 Dictionary<string, string> Parametro = new Dictionary<string, string>
                             {

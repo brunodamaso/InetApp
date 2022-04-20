@@ -7,9 +7,9 @@ namespace INetApp.Models
 {
     public class MessageDetails : BindableObject
     {
-        public List<Cabecera> Cabecera { get; set; }
-        public List<Datos> Datos { get; set; }
-        public List<Detail> Details { get; set; }
+        public IList<Cabecera> Cabecera { get; set; }
+        public IList<Datos> Datos { get; set; }
+        public IList<Detail> Details { get; set; }
     }
 
 
