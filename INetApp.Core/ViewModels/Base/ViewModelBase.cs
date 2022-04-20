@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace INetApp.ViewModels.Base
 {
-    public abstract class ViewModelBase : ObservableObject //ExtendedBindableObject, IQueryAttributable
+    public abstract class ViewModelBase : ObservableObject , IQueryAttributable //ExtendedBindableObject
     {
         protected readonly IDialogService DialogService;
         protected readonly INavigationService NavigationService;

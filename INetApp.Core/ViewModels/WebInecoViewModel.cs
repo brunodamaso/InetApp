@@ -18,7 +18,7 @@ namespace INetApp.ViewModels
             set
             {
                 _ruta = value;
-                RaisePropertyChanged(() => Ruta);
+                OnPropertyChanged(nameof(Ruta));
             }
         }
         public string Title
@@ -27,7 +27,7 @@ namespace INetApp.ViewModels
             set
             {
                 _Title = value;
-                RaisePropertyChanged(() => Title);
+                OnPropertyChanged(nameof(Title));
             }
         }
         #endregion

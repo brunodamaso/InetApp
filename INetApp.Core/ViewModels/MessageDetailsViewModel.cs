@@ -29,7 +29,7 @@ namespace INetApp.ViewModels
             set
             {
                 _MessageDetails = value;
-                RaisePropertyChanged(() => MessageDetail);
+                OnPropertyChanged(nameof(MessageDetail));
             }
         }
         public MessageModel MessageModel
@@ -38,7 +38,7 @@ namespace INetApp.ViewModels
             set
             {
                 _messageModel = value;
-                RaisePropertyChanged(() => MessageModel);
+                OnPropertyChanged(nameof(MessageModel));
             }
         }
         public string Date
@@ -47,7 +47,7 @@ namespace INetApp.ViewModels
             set
             {
                 _Date = value;
-                RaisePropertyChanged(() => Date);
+                OnPropertyChanged(nameof(Date));
             }
         }
 
@@ -90,7 +90,7 @@ namespace INetApp.ViewModels
             if (resultado != null)
             {
                 MessageModel.favorite = (bool)resultado;
-                RaisePropertyChanged(() => MessageModel);
+                OnPropertyChanged(nameof(MessageModel));
             }
             IsBusy = false;
         }

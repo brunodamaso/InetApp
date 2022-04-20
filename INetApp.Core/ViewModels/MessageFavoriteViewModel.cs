@@ -31,7 +31,7 @@ namespace INetApp.ViewModels
             set
             {
                 _MessageItems = value;
-                RaisePropertyChanged(() => MessageItems);
+                OnPropertyChanged(nameof(MessageItems));
             }
         }
         
@@ -41,7 +41,7 @@ namespace INetApp.ViewModels
             set
             {
                 _SelectAll = value;
-                RaisePropertyChanged(() => SelectAll);
+                OnPropertyChanged(nameof(SelectAll));
                 OnSelectAll(value);
             }
         }
@@ -51,7 +51,7 @@ namespace INetApp.ViewModels
             set
             {
                 _RowChecked = value;
-                RaisePropertyChanged(() => IsRowChecked);
+                OnPropertyChanged(nameof(IsRowChecked));
             }
         }
 

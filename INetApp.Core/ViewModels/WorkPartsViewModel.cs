@@ -50,7 +50,7 @@ namespace INetApp.ViewModels
             set
             {
                 _WorkPartsModel = value;
-                RaisePropertyChanged(() => WorkParts);
+                OnPropertyChanged(nameof(WorkParts));
             }
         }
         public ObservableCollection<ItemTableProjectModel> ItemTableProject
@@ -59,7 +59,7 @@ namespace INetApp.ViewModels
             set
             {
                 _ItemTableProject = value;
-                RaisePropertyChanged(() => ItemTableProject);
+                OnPropertyChanged(nameof(ItemTableProject));
             }
         }
         public ObservableCollection<ItemTableProjectModel> ItemTableProjectIneco
@@ -68,7 +68,7 @@ namespace INetApp.ViewModels
             set
             {
                 _ItemTableProjectIneco = value;
-                RaisePropertyChanged(() => ItemTableProjectIneco);
+                OnPropertyChanged(nameof(ItemTableProjectIneco));
             }
         }
         public bool HasDatos
@@ -77,7 +77,7 @@ namespace INetApp.ViewModels
             set
             {
                 _HasDatos = value;
-                RaisePropertyChanged(() => HasDatos);
+                OnPropertyChanged(nameof(HasDatos));
             }
         }
 
@@ -87,7 +87,7 @@ namespace INetApp.ViewModels
             set
             {
                 _HasNextWeek = value;
-                RaisePropertyChanged(() => HasNextWeek);
+                OnPropertyChanged(nameof(HasNextWeek));
             }
         }
         public bool HasPreviewWeek
@@ -96,7 +96,7 @@ namespace INetApp.ViewModels
             set
             {
                 _HasPreviewWeek = value;
-                RaisePropertyChanged(() => HasPreviewWeek);
+                OnPropertyChanged(nameof(HasPreviewWeek));
             }
         }
         public bool HasCopy
@@ -105,7 +105,7 @@ namespace INetApp.ViewModels
             set
             {
                 _HasCopy = value;
-                RaisePropertyChanged(() => HasCopy);
+                OnPropertyChanged(nameof(HasCopy));
             }
         }
         public bool Editable
@@ -114,7 +114,7 @@ namespace INetApp.ViewModels
             set
             {
                 _Editable = value;
-                RaisePropertyChanged(() => Editable);
+                OnPropertyChanged(nameof(Editable));
             }
         }
         public string Dedicacion
@@ -123,7 +123,7 @@ namespace INetApp.ViewModels
             set
             {
                 _Dedicacion = value;
-                RaisePropertyChanged(() => Dedicacion);
+                OnPropertyChanged(nameof(Dedicacion));
             }
         }
         public string HorasSemana
@@ -132,7 +132,7 @@ namespace INetApp.ViewModels
             set
             {
                 _HorasSemana = value;
-                RaisePropertyChanged(() => HorasSemana);
+                OnPropertyChanged(nameof(HorasSemana));
             }
         }
 
@@ -142,7 +142,7 @@ namespace INetApp.ViewModels
             set
             {
                 _tv_date_2 = value;
-                RaisePropertyChanged(() => Tv_date_2);
+                OnPropertyChanged(nameof(Tv_date_2));
             }
         }
 
@@ -152,7 +152,7 @@ namespace INetApp.ViewModels
             set
             {
                 _HeightProject = value;
-                RaisePropertyChanged(() => HeightProject);
+                OnPropertyChanged(nameof(HeightProject));
             }
         }
         public int HeightProjectGestion
@@ -161,7 +161,7 @@ namespace INetApp.ViewModels
             set
             {
                 _HeightProjectGestion = value;
-                RaisePropertyChanged(() => HeightProjectGestion);
+                OnPropertyChanged(nameof(HeightProjectGestion));
             }
         }
         #endregion

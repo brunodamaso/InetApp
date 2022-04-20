@@ -25,7 +25,7 @@ namespace INetApp.ViewModels
             set
             {
                 _OptionsItems = value;
-                RaisePropertyChanged(() => OptionsItems);
+                OnPropertyChanged(nameof(OptionsItems));
             }
         }
 

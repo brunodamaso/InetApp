@@ -35,7 +35,7 @@ namespace INetApp.ViewModels
             set
             {
                 _MessageItems = value;
-                RaisePropertyChanged(() => MessageItems);
+                OnPropertyChanged(nameof(MessageItems));
             }
         }
         public string Title
@@ -44,7 +44,7 @@ namespace INetApp.ViewModels
             set
             {
                 _Title = value;
-                RaisePropertyChanged(() => Title);
+                OnPropertyChanged(nameof(Title));
             }
         }
         public bool SelectAll
@@ -53,7 +53,7 @@ namespace INetApp.ViewModels
             set
             {
                 _SelectAll = value;
-                RaisePropertyChanged(() => SelectAll);
+                OnPropertyChanged(nameof(SelectAll));
                 if (!IsChangeTab)
                 {
                     OnSelectAll(value);
@@ -67,7 +67,7 @@ namespace INetApp.ViewModels
             set
             {
                 _selectecTab = value;
-                RaisePropertyChanged(() => SelectecTab);
+                OnPropertyChanged(nameof(SelectecTab));
                 OnSelectTab(value);
                 IsChangeTab = true;
                 SelectAll = MessageList.Count(a => a.checkeado) == MessageItems.Count;
@@ -81,7 +81,7 @@ namespace INetApp.ViewModels
             set
             {
                 _RowChecked = value;
-                RaisePropertyChanged(() => IsRowChecked);
+                OnPropertyChanged(nameof(IsRowChecked));
             }
         }
 

@@ -34,7 +34,7 @@ namespace INetApp.ViewModels
             set
             {
                 _userName = value;
-                RaisePropertyChanged(() => UserName);
+                OnPropertyChanged(nameof(UserName));
             }
         }
 
@@ -44,7 +44,7 @@ namespace INetApp.ViewModels
             set
             {
                 _password = value;
-                RaisePropertyChanged(() => Password);
+                OnPropertyChanged(nameof(Password));
             }
         }
 
@@ -54,7 +54,7 @@ namespace INetApp.ViewModels
             set
             {
                 _UserLoggedModel = value;
-                RaisePropertyChanged(() => _UserLoggedModel);
+                OnPropertyChanged(nameof(_UserLoggedModel));
             }
         }
 
@@ -64,7 +64,7 @@ namespace INetApp.ViewModels
             set
             {
                 _isValid = value;
-                RaisePropertyChanged(() => IsValid);
+                OnPropertyChanged(nameof(IsValid));
             }
         }
 
@@ -74,7 +74,7 @@ namespace INetApp.ViewModels
             set
             {
                 _isLogin = value;
-                RaisePropertyChanged(() => IsLogin);
+                OnPropertyChanged(nameof(IsLogin));
             }
         }
 
@@ -84,7 +84,7 @@ namespace INetApp.ViewModels
             set
             {
                 _authUrl = value;
-                RaisePropertyChanged(() => LoginUrl);
+                OnPropertyChanged(nameof(LoginUrl));
             }
         }
 

@@ -27,7 +27,7 @@ namespace INetApp.ViewModels
             set
             {
                 _isAnalyzing = value;
-                RaisePropertyChanged(() => _isAnalyzing);
+                OnPropertyChanged(nameof(_isAnalyzing));
             }
         }
 
@@ -37,7 +37,7 @@ namespace INetApp.ViewModels
             set
             {
                 _isScanning = value;
-                RaisePropertyChanged(() => IsScanning);
+                OnPropertyChanged(nameof(IsScanning));
             }
         }
 
@@ -47,7 +47,7 @@ namespace INetApp.ViewModels
             set
             {
                 _QR = value;
-                RaisePropertyChanged(() => QR);
+                OnPropertyChanged(nameof(QR));
             }
         }
         #endregion

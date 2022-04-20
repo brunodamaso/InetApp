@@ -24,7 +24,7 @@ namespace INetApp.ViewModels
             set
             {
                 ispermissionApp = value;
-                RaisePropertyChanged(() => IspermissionApp);
+                OnPropertyChanged(nameof(IspermissionApp));
             }
         }
 

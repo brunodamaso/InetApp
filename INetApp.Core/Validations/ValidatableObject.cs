@@ -21,7 +21,7 @@ namespace INetApp.Validations
             set
             {
                 _errors = value;
-                RaisePropertyChanged(() => this.Errors);
+                OnPropertyChanged(nameof(this.Errors));
             }
         }
         public string MsgErrors
@@ -30,7 +30,7 @@ namespace INetApp.Validations
             set
             {
                 _MsgErrors = value;
-                RaisePropertyChanged(() => this.MsgErrors);
+                OnPropertyChanged(nameof(this.MsgErrors));
             }
         }
 
@@ -40,7 +40,7 @@ namespace INetApp.Validations
             set
             {
                 _value = value;
-                RaisePropertyChanged(() => this.Value);
+                OnPropertyChanged(nameof(this.Value));
             }
         }
 
@@ -50,7 +50,7 @@ namespace INetApp.Validations
             set
             {
                 _isValid = value;
-                RaisePropertyChanged(() => this.IsValid);
+                OnPropertyChanged(nameof(this.IsValid));
             }
         }
 
