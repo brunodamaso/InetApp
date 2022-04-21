@@ -196,36 +196,36 @@ namespace INetApp.ViewModels
                 InecoProjectsDto inecoProjectsDto = await WorkPartsService.GetInecoProjectsAsync(true, null, null);
                 if (inecoProjectsDto.IsOk)
                 {
-                }
-                PeriodoActivoDto periodoActivoDto = await WorkPartsService.GetPeriodoActivoAsync();
-                if (periodoActivoDto.IsOk)
-                {
-                    this.periodoActivo = periodoActivoDto.PeriodoActivoModel.periodoActivo;
-                }
-                HasPreviewWeek = _WorkPartsModel.idSemanaAnterior != 0;
-                HasNextWeek = _WorkPartsModel.idSemanaPosterior != 0;
-                Editable = _WorkPartsModel.perEstado == 0 || _WorkPartsModel.perEstado == 1 || _WorkPartsModel.perEstado == 5 || _WorkPartsModel.perEstado == 6;
-                HasCopy = HasNextWeek && Editable;
-                Dedicacion = string.Format(Literales.text_dedication, _WorkPartsModel.dedicacion) + " %";
-                HorasSemana = string.Format(Literales.total_week_hours, _WorkPartsModel.horasSemana) + " h";
-                string fechaIni = _WorkPartsModel.fechaInicioSemana.Replace("/", "-");
-                string fechaFin = _WorkPartsModel.fechaFinSemana.Replace("/", "-");
-                Tv_date_2 = "(" + fechaIni + " / " + fechaFin + ")";
-                HeightProject = 55;
-                HeightProjectGestion = 55;
+                    PeriodoActivoDto periodoActivoDto = await WorkPartsService.GetPeriodoActivoAsync();
+                    if (periodoActivoDto.IsOk)
+                    {
+                        this.periodoActivo = periodoActivoDto.PeriodoActivoModel.periodoActivo;
+                    }
+                    HasPreviewWeek = _WorkPartsModel.idSemanaAnterior != 0;
+                    HasNextWeek = _WorkPartsModel.idSemanaPosterior != 0;
+                    Editable = _WorkPartsModel.perEstado == 0 || _WorkPartsModel.perEstado == 1 || _WorkPartsModel.perEstado == 5 || _WorkPartsModel.perEstado == 6;
+                    HasCopy = HasPreviewWeek && Editable;
+                    Dedicacion = string.Format(Literales.text_dedication, _WorkPartsModel.dedicacion) + " %";
+                    HorasSemana = string.Format(Literales.total_week_hours, _WorkPartsModel.horasSemana) + " h";
+                    string fechaIni = _WorkPartsModel.fechaInicioSemana.Replace("/", "-");
+                    string fechaFin = _WorkPartsModel.fechaFinSemana.Replace("/", "-");
+                    Tv_date_2 = "(" + fechaIni + " / " + fechaFin + ")";
+                    HeightProject = 55;
+                    HeightProjectGestion = 55;
 
-                if (_WorkPartsModel.lineasDetalle != null)
-                {
-                    ItemTableProject = new ObservableCollection<ItemTableProjectModel>(WorkPartsService.GetItemTableProjects(_WorkPartsModel.lineasDetalle, Editable, periodoActivo));
-                    HeightProject += ItemTableProject.Count * 56;
+                    if (_WorkPartsModel.lineasDetalle != null)
+                    {
+                        ItemTableProject = new ObservableCollection<ItemTableProjectModel>(WorkPartsService.GetItemTableProjects(_WorkPartsModel.lineasDetalle, Editable, periodoActivo));
+                        HeightProject += ItemTableProject.Count * 56;
+                    }
+                    if (WorkParts.lineasDetalleIneco != null)
+                    {
+                        ItemTableProjectIneco = new ObservableCollection<ItemTableProjectModel>(WorkPartsService.GetItemTableProjects(_WorkPartsModel.lineasDetalleIneco, Editable, periodoActivo));
+                        HeightProjectGestion += ItemTableProjectIneco.Count * 56;
+                    }
+                    WorkParts = _WorkPartsModel;
+                    HasDatos = true;
                 }
-                if (WorkParts.lineasDetalleIneco != null)
-                {
-                    ItemTableProjectIneco = new ObservableCollection<ItemTableProjectModel>(WorkPartsService.GetItemTableProjects(_WorkPartsModel.lineasDetalleIneco, Editable, periodoActivo));
-                    HeightProjectGestion += ItemTableProjectIneco.Count * 56;
-                }
-                WorkParts = _WorkPartsModel;
-                HasDatos = true;
             }
             IsBusy = false;
         }

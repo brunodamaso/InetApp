@@ -11,7 +11,10 @@ namespace INetApp.Models
 
         public PeriodoActivoModel()
         {
-
+        }
+        public PeriodoActivoModel(int _periodoActivo)
+        {
+            periodoActivo = _periodoActivo;
         }
 
         public int periodoActivo { get; set; }

@@ -378,15 +378,16 @@ namespace INetApp.APIWebServices
                 return Mappers.ServiceMapper.ConvertToBusiness<InecoProjectsDto, InecoProjectsEntity>(response);
             });
         }
-        public Task<PeriodoActivoDto> GetPeriodoActivoFromApi(string Usuario, string Password)
+        public Task<string> GetPeriodoActivoFromApi(string Usuario, string Password)
         {
             return Task.Factory.StartNew(() =>
             {
                 HttpResponse httpResponse = Get(API_URL_GET_PERIODO_ACTIVO, Usuario, Password).Result;
-                
-                ServiceResponse<PeriodoActivoEntity> response = ServiceHelper.CreateResponse<PeriodoActivoEntity>(httpResponse);
+                return httpResponse.IsOk ? httpResponse.Resultado : null;
 
-                return Mappers.ServiceMapper.ConvertToBusiness<PeriodoActivoDto, PeriodoActivoEntity>(response);
+                //ServiceResponse<PeriodoActivoEntity> response = ServiceHelper.CreateResponse<PeriodoActivoEntity>(httpResponse);
+
+                //return Mappers.ServiceMapper.ConvertToBusiness<PeriodoActivoDto, PeriodoActivoEntity>(response);
             });
         }
         #endregion

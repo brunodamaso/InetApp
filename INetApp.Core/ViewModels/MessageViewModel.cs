@@ -12,7 +12,7 @@ using INetApp.ViewModels.Base;
 //using Newtonsoft.Json;
 using Xamarin.Forms;
 using System.Text.Json;
-
+using INetApp.APIWebServices.Helpers;
 
 namespace INetApp.ViewModels
 {
@@ -123,7 +123,7 @@ namespace INetApp.ViewModels
         private async void OnSelectMessage(MessageModel messageModel)
         {
             IsBusy = true;
-            string StringParametro = JsonSerializer.Serialize(messageModel);
+            string StringParametro = JsonService.Serialize(messageModel);
 
             Dictionary<string, string> Parametro = new Dictionary<string, string>
                 {

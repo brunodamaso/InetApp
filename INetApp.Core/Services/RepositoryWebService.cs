@@ -577,7 +577,8 @@ namespace INetApp.Services
                 if (connectivityService.CheckConnectivity())
                 {
                     GetUser();
-                    periodoActivoDto = await RestApiImpl.GetPeriodoActivoFromApi(userName, userPass);
+                    string periodoActivo = await RestApiImpl.GetPeriodoActivoFromApi(userName, userPass);
+                    periodoActivoDto.PeriodoActivoModel = new PeriodoActivoModel(int.Parse(periodoActivo));
 
                     if (periodoActivoDto.IsOk)
                     { }

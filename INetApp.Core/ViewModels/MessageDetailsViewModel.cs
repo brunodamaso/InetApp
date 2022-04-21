@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using INetApp.APIWebServices.Dtos;
+using INetApp.APIWebServices.Helpers;
 using INetApp.Models;
 using INetApp.Resources;
 using INetApp.Services;
@@ -65,7 +66,7 @@ namespace INetApp.ViewModels
 
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
-            MessageModel = JsonSerializer.Deserialize<MessageModel>(Uri.UnescapeDataString(query["MessageModel"]));
+            MessageModel = JsonService.Deserialize<MessageModel>(Uri.UnescapeDataString(query["MessageModel"]));
             Date = MessageModel.date.Day + " de " + MessageModel.date.ToString("MMMM") + " de " + MessageModel.date.Year;
 
             await Sincroniza();

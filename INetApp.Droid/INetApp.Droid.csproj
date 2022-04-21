@@ -66,7 +66,6 @@
       <Version>122.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="PCLCrypto" Version="2.0.147" />
     <PackageReference Include="IdentityModel" Version="5.2.0" />
     <PackageReference Include="Xamarin.Essentials">

@@ -1,31 +1,24 @@
 ﻿using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Web;
-//using Newtonsoft.Json;
+using INetApp.APIWebServices;
 using INetApp.APIWebServices.Responses;
 
 namespace INetApp.APIWebServices.Helpers
 {
     public static class ServiceHelper
     {
-        private static readonly JsonSerializerOptions Settings = new JsonSerializerOptions()
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            IncludeFields = true,
-            NumberHandling = JsonNumberHandling.AllowReadingFromString,
-            PropertyNameCaseInsensitive = true, 
-        };
-
         public static ServiceResponse<T> CreateResponse<T>(HttpResponse response) where T : Response
         {
             ServiceResponse<T> result = null;
 
             T dto = DeserializeJSON<T>(response, response.IsOk);
 
-            if (response.IsOk && (dto != null || response.Resultado.ToLower().Equals("true")))
+            if (response.IsOk)                
             {
-                result = ServiceResponse<T>.CreateOk(dto);
+                if (dto != null || response.Resultado.ToLower().Equals("true"))
+                {
+                    result = ServiceResponse<T>.CreateOk(dto);
+                }
             }
             else
             {
@@ -45,13 +38,12 @@ namespace INetApp.APIWebServices.Helpers
 
                 json = isOk ? HttpUtility.HtmlDecode(response.Resultado) : HttpUtility.HtmlDecode(response.Description);
 
-                T value = JsonSerializer.Deserialize<T>(json, Settings);
+                T value = JsonService.Deserialize<T>(json);
 
                 return value;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("error al Deserializar " + ex.Message);
                 return null;
             }
 
@@ -59,7 +51,7 @@ namespace INetApp.APIWebServices.Helpers
 
         public static string ToJson<T>(T request, bool ignoreNull = false) where T : new()
         {
-            string stringRequest = JsonSerializer.Serialize(request, Settings);
+            string stringRequest = JsonService.Serialize(request);
 
             return stringRequest;
         }
