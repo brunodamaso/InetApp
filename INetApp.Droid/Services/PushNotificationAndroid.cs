@@ -93,7 +93,6 @@ namespace INetApp.Droid.Services
 
         public int CrearNotificacionLocal(string pTitle, string pBody, IDictionary<string, string> data)
         {
-            //todo NotificationsListenerService
             if (!channelInitialized)
             {
                 CreateNotificationChannel();

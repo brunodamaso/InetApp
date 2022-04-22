@@ -32,7 +32,6 @@ namespace INetApp.ViewModels
         private int _HeightProjectGestion;
 
         private int periodoActivo;
-        //todo peridoactivo
         //todo mostrar combo1
         //todo mostrar combo2
         //todo combo 1
