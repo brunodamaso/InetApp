@@ -24,7 +24,7 @@
                 <Binding Source="{StaticResource lv_row_padding}" />
                 <Binding Path="0" />
                 <Binding Path="0" />
-                <Binding Source="{StaticResource lv_row_padding}" />
+                <Binding Path="0" />
             </MultiBinding>
         </Grid.Padding>
         <!--IsCheckedChanged="{Binding IsCheckedChanged ,Source={Reference ViewMessageRow}}"-->

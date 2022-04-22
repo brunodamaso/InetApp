@@ -14,6 +14,24 @@
     Title="{Binding Title}"
     >
 
+    <ContentPage.Resources>
+        <Style TargetType="CollectionView">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="{StaticResource white}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    
     <Grid BackgroundColor="{StaticResource white}" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/> <!-- tabs-->
@@ -34,27 +52,24 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <ListView
-                    CachingStrategy="RetainElement"
-                    HasUnevenRows="True"
-                    SelectionMode="None"
-                    SeparatorVisibility="None"
-                    VerticalOptions="FillAndExpand"
+                <CollectionView x:Name="MessagesViews"
+                    SelectionMode="Single"
+                                EmptyView="{Binding Source={x:Static resources:Literales.empty_messages}}"
+                    SelectionChangedCommand="{Binding SelectMessageCommand}"
+                    SelectionChangedCommandParameter="{Binding SelectedItem , Source={Reference MessagesViews}}"
                     ItemsSource="{Binding MessageItems}">
-                    <ListView.ItemTemplate>
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
                             <components:MessageRow/>
-                            </ViewCell>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                <ListView.Behaviors>
+                    </CollectionView.ItemTemplate>
+                <!--<ListView.Behaviors>
                     <xct:EventToCommandBehavior
                             Command="{Binding SelectMessageCommand}"
                             EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
                             EventName="ItemTapped" />
-                </ListView.Behaviors>
-            </ListView>
+                </ListView.Behaviors>-->
+            </CollectionView>
             </Grid>
             <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">
                 <Label
