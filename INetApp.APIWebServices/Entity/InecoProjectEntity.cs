@@ -1,5 +1,5 @@
 using INetApp.APIWebServices.Responses;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,13 +9,13 @@ namespace INetApp.APIWebServices.Entity
 {
     public class InecoProjectEntity 
     {
-        [JsonPropertyName( "Pronumero")]
+        [JsonProperty(PropertyName = "Pronumero")]
         public string pronumero { get; set; }
 
-        [JsonPropertyName( "Titulo")]
+        [JsonProperty(PropertyName = "Titulo")]
         public string titulo { get; set; }
 
-        [JsonPropertyName( "Tipo")]
+        [JsonProperty(PropertyName = "Tipo")]
         public string tipo { get; set; }
 
         public InecoProjectEntity() { }

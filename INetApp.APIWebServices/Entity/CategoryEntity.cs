@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using INetApp.APIWebServices.Responses;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
 namespace INetApp.APIWebServices.Entity
@@ -9,16 +9,16 @@ namespace INetApp.APIWebServices.Entity
     {
         public CategoryEntity() { }
 
-        [JsonPropertyName( "IdAplicacion")]
+        [JsonProperty(PropertyName = "IdAplicacion")]
         public int categoryId;
 
-        [JsonPropertyName( "NombreBandeja")]
+        [JsonProperty(PropertyName = "NombreBandeja")]
         public string name;
 
-        [JsonPropertyName( "Pendientes")]
+        [JsonProperty(PropertyName = "Pendientes")]
         public int pendingMessages;
 
-        [JsonPropertyName( "UrlIcono")]
+        [JsonProperty(PropertyName = "UrlIcono")]
         public string UrlIcono;
 
         public int getCategoryId()

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using INetApp.APIWebServices.Responses;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
 namespace INetApp.APIWebServices.Entity
@@ -9,16 +9,16 @@ namespace INetApp.APIWebServices.Entity
     {
         public OptionEntity() { }
 
-        [JsonPropertyName( "IdAplicacion")]
+        [JsonProperty(PropertyName = "IdAplicacion")]
         public int optionsId;
 
-        [JsonPropertyName( "NombreBandeja")]
+        [JsonProperty(PropertyName = "NombreBandeja")]
         public string name;
 
-        [JsonPropertyName( "marcada")]
+        [JsonProperty(PropertyName = "marcada")]
         public bool checkeado; //bd
 
-        [JsonPropertyName( "UrlIcono")]
+        [JsonProperty(PropertyName = "UrlIcono")]
         public string UrlIcono;
 
         public int getOptionsId()

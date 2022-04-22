@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using INetApp.APIWebServices.Responses;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
 namespace INetApp.APIWebServices.Entity
@@ -11,10 +11,10 @@ namespace INetApp.APIWebServices.Entity
     {
         public UserAccessEntity() { }
 
-        [JsonPropertyName( "mensaje")]
+        [JsonProperty(PropertyName = "mensaje")]
         public string mensaje;
 
-        [JsonPropertyName( "respuesta")]
+        [JsonProperty(PropertyName = "respuesta")]
         public bool respuesta;
 
 

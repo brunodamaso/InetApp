@@ -49,7 +49,7 @@ namespace INetApp.APIWebServices.Helpers
 
         }
 
-        public static string ToJson<T>(T request, bool ignoreNull = false) where T : new()
+        public static string ToJson<T>(T request) where T : new()
         {
             string stringRequest = JsonService.Serialize(request);
 

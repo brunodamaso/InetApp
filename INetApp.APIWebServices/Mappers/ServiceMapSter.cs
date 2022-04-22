@@ -1,10 +1,8 @@
 ﻿using INetApp.APIWebServices.Dtos;
 using INetApp.APIWebServices.Entity;
 using INetApp.Models;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Mapster;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Globalization;
 using INetApp.APIWebServices.Helpers;
@@ -61,7 +59,8 @@ namespace INetApp.APIWebServices.Mappers
                 .EnableNonPublicMembers(true)
                 .IgnoreNullValues(true)
                 .Map(dest => dest.date, src => DateTime.ParseExact(string.IsNullOrEmpty(src.date) ? DateTime.Now.ToString("yyyyMMdd") : src.date, "yyyyMMdd", CultureInfo.InvariantCulture))
-                .Map(dest => dest.fields, src => src.data == null ? null : JsonService.Deserialize<MessageDetails>(src.data, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault }));
+                .Map(dest => dest.fields, src => src.data == null ? null : JsonConvert.DeserializeObject<MessageDetails>(src.data, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+                //.Map(dest => dest.fields, src => src.data == null ? null : JsonService.Deserialize<MessageDetails>(src.data, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault }));
 
             TypeAdapterConfig<OptionsEntity, OptionsDto>
                 .NewConfig()

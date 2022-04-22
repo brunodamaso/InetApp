@@ -1,5 +1,5 @@
 using INetApp.APIWebServices.Responses;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,37 +10,37 @@ namespace INetApp.APIWebServices.Entity
     public class LineasDetalleEntity : Response
     {
 
-        [JsonPropertyName( "FechaImputacion")]
+        [JsonProperty(PropertyName = "FechaImputacion")]
         public string fechaImputacion { get; set; }
 
-        [JsonPropertyName( "PdLineaId")]
+        [JsonProperty(PropertyName = "PdLineaId")]
         public int pdLineaId { get; set; }
 
-        [JsonPropertyName( "PerParteId")]
+        [JsonProperty(PropertyName = "PerParteId")]
         public int perParteId { get; set; }
 
-        [JsonPropertyName( "Procuenta")]
+        [JsonProperty(PropertyName = "Procuenta")]
         public double procuenta { get; set; }
 
 
-        [JsonPropertyName( "Pronumero")]
+        [JsonProperty(PropertyName = "Pronumero")]
         public string pronumero { get; set; }
 
 
-        [JsonPropertyName( "Protitulo")]
+        [JsonProperty(PropertyName = "Protitulo")]
         public string protitulo { get; set; }
 
         //BIGAALCA 13-05-2020
-        [JsonPropertyName( "PdeStatus")]
+        [JsonProperty(PropertyName = "PdeStatus")]
         public int pdeStatus { get; set; }
 
-        [JsonPropertyName( "PrpCodigo")]
+        [JsonProperty(PropertyName = "PrpCodigo")]
         public int prpCodigo { get; set; }
 
-        [JsonPropertyName( "PdelineaIDRechazo")]
+        [JsonProperty(PropertyName = "PdelineaIDRechazo")]
         public int pdelineaIDRechazo { get; set; }
 
-        [JsonPropertyName( "FechaFirma")]
+        [JsonProperty(PropertyName = "FechaFirma")]
         public string fechaFirma { get; set; }
 
         public LineasDetalleEntity()

@@ -1,4 +1,4 @@
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,19 +8,19 @@ namespace INetApp.APIWebServices.Entity
 {
     public class HoraDiaEntity 
     {
-        [JsonPropertyName( "Lunes")]
+        [JsonProperty(PropertyName = "Lunes")]
         private string lunes;
 
-        [JsonPropertyName( "Martes")]
+        [JsonProperty(PropertyName = "Martes")]
         private string martes;
 
-        [JsonPropertyName( "Miercoles")]
+        [JsonProperty(PropertyName = "Miercoles")]
         private string miercoles;
 
-        [JsonPropertyName( "Jueves")]
+        [JsonProperty(PropertyName = "Jueves")]
         private string jueves;
 
-        [JsonPropertyName( "Viernes")]
+        [JsonProperty(PropertyName = "Viernes")]
         private string viernes;
 
 
