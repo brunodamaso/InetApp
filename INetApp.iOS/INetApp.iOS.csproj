@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>InetApp.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>InetApp</AssemblyName>
+    <AssemblyName>InetApp.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <NuGetPackageImportStamp>
@@ -73,6 +73,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Services\DeviceInstallationService.cs" />
     <Compile Include="Services\DeviceService.cs" />
+    <Compile Include="Services\IDeviceInstallationService.cs" />
     <Compile Include="Services\ThemeService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
@@ -86,11 +87,11 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
     <PackageReference Include="PCLCrypto" Version="2.0.147" />
     <PackageReference Include="IdentityModel" Version="5.2.0" />
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.7.0</Version>
+      <Version>1.8.1</Version>
     </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>2.4.1</Version>

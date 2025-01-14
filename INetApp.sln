@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31321.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35506.116 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A857AD10-40FF-4303-BEC2-FF1C58D5735E}"
 EndProject
@@ -132,8 +132,6 @@ Global
 		{62DBB163-9CA9-4818-B48B-13233DF37C24}.AppStore|x86.Build.0 = Debug|Any CPU
 		{62DBB163-9CA9-4818-B48B-13233DF37C24}.AppStore|x86.Deploy.0 = Debug|Any CPU
 		{62DBB163-9CA9-4818-B48B-13233DF37C24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62DBB163-9CA9-4818-B48B-13233DF37C24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62DBB163-9CA9-4818-B48B-13233DF37C24}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{62DBB163-9CA9-4818-B48B-13233DF37C24}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{62DBB163-9CA9-4818-B48B-13233DF37C24}.Debug|ARM.Build.0 = Debug|Any CPU
 		{62DBB163-9CA9-4818-B48B-13233DF37C24}.Debug|ARM.Deploy.0 = Debug|Any CPU

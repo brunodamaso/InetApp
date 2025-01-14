@@ -2,8 +2,11 @@
 
   <PropertyGroup>
     <!--Work around so the conditions work below-->
-    <TargetFrameworks>netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81;MonoAndroid90;MonoAndroid10.0;</TargetFrameworks>
-    <!--<TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);uap10.0.16299</TargetFrameworks>-->
+    <TargetFrameworks>netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid13.0;</TargetFrameworks>
+	  
+    <!--MonoAndroid81;MonoAndroid90
+	
+	<TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);uap10.0.16299</TargetFrameworks>-->
     <!--Feel free to add as many targets as you need below
     netstandard1.0;netstandard2.0;MonoAndroid81;Xamarin.iOS10;uap10.0.16299;Xamarin.TVOS10;Xamarin.WatchOS10;Xamarin.Mac20;Tizen40
     For UWP update the version number with a version number you have installed.
@@ -98,6 +101,10 @@
     <Compile Remove="UWP\**" />
     <EmbeddedResource Remove="UWP\**" />
     <None Remove="UWP\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
   </ItemGroup>
 
 </Project>

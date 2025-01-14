@@ -17,7 +17,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
@@ -65,11 +65,11 @@
     <PackageReference Include="Xamarin.Firebase.Messaging">
       <Version>122.0.0.3</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
     <PackageReference Include="PCLCrypto" Version="2.0.147" />
     <PackageReference Include="IdentityModel" Version="5.2.0" />
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.7.0</Version>
+      <Version>1.8.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Base">
       <Version>117.6.0.3</Version>

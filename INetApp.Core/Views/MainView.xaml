@@ -64,7 +64,7 @@
                 </StackLayout>
 
 
-                <StackLayout Margin="8,8,8,0" Grid.Row="2">
+                <!--<StackLayout Margin="8,8,8,0" Grid.Row="2">
                     <Image Source="img_partes.png" VerticalOptions="Center"  WidthRequest="100" HeightRequest="100" />
                     <Label Text="{Binding Source={x:Static resources:Literales.action_parts}}" 
                         FontSize="18"
@@ -73,7 +73,7 @@
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PartesCommand}"/>
                     </StackLayout.GestureRecognizers>
-                </StackLayout>
+                </StackLayout>-->
 
                 <StackLayout Margin="8,8,8,0" Grid.Row="3">
                     <Image Source="img_formacion.png" VerticalOptions="Center"  WidthRequest="100" HeightRequest="100" />

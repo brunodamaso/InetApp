@@ -1,5 +1,6 @@
 ﻿using System;
-using INetApp.Services.Push;
+using InetApp.iOS.Services;
+//bd using INetApp.Services.Push;
 using UIKit;
 
 namespace INetApp.iOS.Services
@@ -19,29 +20,29 @@ namespace INetApp.iOS.Services
             return UIDevice.CurrentDevice.IdentifierForVendor.ToString();
         }
 
-        public DeviceInstallation GetDeviceInstallation(params string[] tags)
-        {
-            if (!NotificationsSupported)
-            {
-                throw new Exception(GetNotificationsSupportError());
-            }
+        //public DeviceInstallation GetDeviceInstallation(params string[] tags)
+        //{
+        //    if (!NotificationsSupported)
+        //    {
+        //        throw new Exception(GetNotificationsSupportError());
+        //    }
 
-            if (string.IsNullOrWhiteSpace(Token))
-            {
-                throw new Exception("Unable to resolve token for APNS");
-            }
+        //    if (string.IsNullOrWhiteSpace(Token))
+        //    {
+        //        throw new Exception("Unable to resolve token for APNS");
+        //    }
 
-            DeviceInstallation installation = new DeviceInstallation
-            {
-                InstallationId = GetDeviceId(),
-                Platform = "apns",
-                PushChannel = Token
-            };
+        //    DeviceInstallation installation = new DeviceInstallation
+        //    {
+        //        InstallationId = GetDeviceId(),
+        //        Platform = "apns",
+        //        PushChannel = Token
+        //    };
 
-            installation.Tags.AddRange(tags);
+        //    installation.Tags.AddRange(tags);
 
-            return installation;
-        }
+        //    return installation;
+        //}
 
         private string GetNotificationsSupportError()
         {
