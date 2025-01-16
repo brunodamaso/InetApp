@@ -12,14 +12,21 @@
             Shell.FlyoutBehavior="Flyout"
             Shell.NavBarIsVisible="True"
             Shell.TabBarIsVisible="True"
-            Title="{Binding  Source={x:Static resources:Literales.app_name}}" >
+            Title="{Binding  Source={x:Static resources:Literales.app_name}}" 
+			 >
 
     <!--<Shell.ToolbarItems >
         <ToolbarItem IconImageSource = "ineco.png" />
 
     </ Shell.ToolbarItems >-->
 
-    <Grid BackgroundColor="{StaticResource white}">
+	<NavigationPage.TitleView>
+		<StackLayout Orientation="Horizontal" VerticalOptions="End" Spacing="10" HorizontalOptions="End">
+			<Image Source="ineco.png"/>
+		</StackLayout>
+	</NavigationPage.TitleView>
+	
+	<Grid BackgroundColor="{StaticResource white}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
@@ -75,7 +82,7 @@
                     </StackLayout.GestureRecognizers>
                 </StackLayout>-->
 
-                <StackLayout Margin="8,8,8,0" Grid.Row="3">
+                <StackLayout Margin="8,8,8,0" Grid.Row="2">
                     <Image Source="img_formacion.png" VerticalOptions="Center"  WidthRequest="100" HeightRequest="100" />
                     <Label Text="{Binding Source={x:Static resources:Literales.action_formation}}" 
                        FontSize="18"

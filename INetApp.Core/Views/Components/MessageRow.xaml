@@ -16,42 +16,39 @@
             <RowDefinition Height="5" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.15*" />
-            <ColumnDefinition Width="0.85*" />
-        </Grid.ColumnDefinitions>
-        <Grid.Padding>
+            <ColumnDefinition Width="50" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="20" />
+		</Grid.ColumnDefinitions>
+        <!--<Grid.Padding>
             <MultiBinding Converter="{StaticResource ThicknessConverter}">
                 <Binding Source="{StaticResource lv_row_padding}" />
                 <Binding Path="0" />
                 <Binding Path="0" />
                 <Binding Path="0" />
             </MultiBinding>
-        </Grid.Padding>
-        <!--IsCheckedChanged="{Binding IsCheckedChanged ,Source={Reference ViewMessageRow}}"-->
+        </Grid.Padding>-->
 
-        <CheckBox x:DataType="models:MessageModel" Grid.Column="0" 
+        <CheckBox x:DataType="models:MessageModel" 
+				Grid.Column="0" 
                 Grid.Row ="0"
                 CheckedChanged="CheckBox_CheckedChanged"
                 IsChecked="{Binding checkeado ,Mode=TwoWay}"
                 HeightRequest="{Binding Source={StaticResource lv_row_icon_width}, Converter={StaticResource StringToDoubleConverter}}" 
                 Color="{StaticResource app_Color}"
                 HorizontalOptions="Center">
-            <!--                <CheckBox.Margin>
-                <MultiBinding Converter="{StaticResource ThicknessConverter}">
-                    <Binding Source="{StaticResource lv_row_padding}"/>
-                    <Binding Path="0"/>
-                </MultiBinding>
-            </CheckBox.Margin>-->
+       
         </CheckBox>
-        <Grid Grid.Column="1" HorizontalOptions="StartAndExpand"
+        <!--<Grid Grid.Column="1" 
                Grid.Row ="0"  >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.7*" />
-                <ColumnDefinition Width="0.25*" />
-                <ColumnDefinition Width="{Binding Source={StaticResource row_mark_width}, Converter={StaticResource StringToDoubleConverter}}"  />
-            </Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+                --><!--<ColumnDefinition Width="{Binding Source={StaticResource row_mark_width}, Converter={StaticResource StringToDoubleConverter}}"  />--><!--
+            </Grid.ColumnDefinitions>-->
 
-            <Label Grid.Column="0" 
+            <Label Grid.Column="1" 
                VerticalTextAlignment="Start"
                VerticalOptions="StartAndExpand"
                LineBreakMode="WordWrap"
@@ -61,7 +58,7 @@
                TextColor="{StaticResource black}"
                FontSize="{Binding Source={StaticResource lv_row_text_size}, Converter={StaticResource StringToDoubleConverter}}" />
 
-            <Label Grid.Column="1" 
+            <Label Grid.Column="2" 
                VerticalTextAlignment="Center"
                VerticalOptions="Center"
                HorizontalTextAlignment="End"
@@ -70,24 +67,26 @@
                Text="{Binding date ,StringFormat='{0:dd/MM/yyyy}'}"
                TextColor="{StaticResource app_Color}"
                FontSize="{Binding Source={StaticResource lv_row_description_size}, Converter={StaticResource StringToDoubleConverter}}" >
-                <Label.Padding>
+                <!--<Label.Padding>
                     <MultiBinding Converter="{StaticResource ThicknessConverter}">
                         <Binding Path="0"/>
                         <Binding Path="0"/>
                         <Binding Source="{StaticResource lv_row_padding}"/>
                         <Binding Path="0"/>
                     </MultiBinding>
-                </Label.Padding>
+                </Label.Padding>-->
             </Label>
-            <BoxView Grid.Column="2" 
+            <BoxView Grid.Column="3" 
                 x:DataType="models:MessageModel" 
                 IsVisible="{Binding favorite}"
                 BackgroundColor="{StaticResource favorite_Color}"/>
-        </Grid>
+        
+		
+		<!--</Grid>-->
 
         <BoxView Grid.Row ="1" 
             Grid.Column="0"   
-            Grid.ColumnSpan="2"     
+            Grid.ColumnSpan="4"
             BackgroundColor="{StaticResource very_light_grey}" Margin="0,0" />
     </Grid>
 </ContentView>

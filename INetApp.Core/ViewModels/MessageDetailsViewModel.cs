@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -67,9 +68,11 @@ namespace INetApp.ViewModels
         public override async Task InitializeAsync(IDictionary<string, string> query)
         {
             MessageModel = JsonService.Deserialize<MessageModel>(Uri.UnescapeDataString(query["MessageModel"]));
-            Date = MessageModel.date.Day + " de " + MessageModel.date.ToString("MMMM") + " de " + MessageModel.date.Year;
+            //DateTime dateTime = DateTime.ParseExact(MessageModel.date, "yyyyMMdd", CultureInfo.InvariantCulture);
+            //Date = dateTime.Day + " de " + dateTime.ToString("MMMM") + " de " + dateTime.Year;
+			Date = MessageModel.date.Day + " de " + MessageModel.date.ToString("MMMM") + " de " + MessageModel.date.Year;
 
-            await Sincroniza();
+			await Sincroniza();
             //await base.InitializeAsync(query);
         }
         private async Task Sincroniza()

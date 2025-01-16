@@ -48,13 +48,13 @@ namespace INetApp.APIWebServices.Mappers
                .IgnoreNullValues(true);
 
             TypeAdapterConfig<MessageEntity, MessageDto>
-               .NewConfig()
-               .EnableNonPublicMembers(true)
-               .Map(dest => dest.MessageModel, src => src)
-               .IgnoreNullValues(true);
+                .NewConfig()
+                .EnableNonPublicMembers(true)
+                .Map(dest => dest.MessageModel, src => src)
+                .IgnoreNullValues(true);
 
 
-            TypeAdapterConfig<MessageEntity, MessageModel>
+			TypeAdapterConfig<MessageEntity, MessageModel>
                 .NewConfig()
                 .EnableNonPublicMembers(true)
                 .IgnoreNullValues(true)

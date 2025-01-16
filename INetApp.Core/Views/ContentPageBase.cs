@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Xml;
 using INetApp.Services;
 using INetApp.ViewModels.Base;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace INetApp.Views
 {
@@ -11,18 +13,17 @@ namespace INetApp.Views
         {
             if (!this.ToString().Contains("LectorQR"))
             {
-                NavigationPage.SetBackButtonTitle(this, string.Empty);
+				NavigationPage.SetBackButtonTitle(this, string.Empty);
                 ToolbarItem QR = new ToolbarItem
                 {
                     IconImageSource = Device.RuntimePlatform != Device.UWP ? "qr.png" : "ineco.png",
-                    Order = ToolbarItemOrder.Primary,
+                    Order = ToolbarItemOrder.Default,
                     Priority = 0,
                 };
                 QR.Clicked += OnQRClicked;
-                
-                ToolbarItems.Add(QR);
-            }
-        }
+				ToolbarItems.Add(QR);
+			}
+		}
 
         private async void OnQRClicked(object sender, EventArgs e)
         {
