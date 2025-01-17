@@ -29,8 +29,9 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>Apple Development: Created via API (ITHP4IFCQ1R4)</CodesignKey>
-    <CodesignProvision>VS: com.ineco.inetappX Development</CodesignProvision>
+    <CodesignKey>iPhone Distribution: INGENIERIA Y ECONOMIA DEL TRANSPORTE S.M.E. M.P., SA</CodesignKey>
+    <CodesignProvision>
+    </CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
