@@ -9,17 +9,17 @@
     x:Name="ViewSelectAll">
 
     <Grid >
-        <Grid.Padding>
+        <!--<Grid.Padding>
             <MultiBinding Converter="{StaticResource ThicknessConverter}">
                 <Binding Source="{StaticResource lv_row_padding}"/>
                 <Binding Path="0"/>
                 <Binding Path="0"/>
                 <Binding Source="{StaticResource lv_row_padding}"/>
             </MultiBinding>
-        </Grid.Padding>
+        </Grid.Padding>-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.15*"/>
-            <ColumnDefinition Width="0.85*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!--  CheckedChanged="CheckBox_CheckedChanged"-->
         <CheckBox Grid.Column="0" 

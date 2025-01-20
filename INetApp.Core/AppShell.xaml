@@ -125,11 +125,7 @@
 
     <FlyoutItem Title="{Binding Source={x:Static resources:Literales.options}}">
         <ShellContent  Route="Options" ContentTemplate="{DataTemplate views:OptionsView}" />
-    </FlyoutItem>
-    <FlyoutItem Title="{Binding Source={x:Static resources:Literales.action_parts}}"
-                Icon="icon_feed.png">
-        <ShellContent Route="WorkParts" ContentTemplate="{DataTemplate views:WorkPartsView}" />
-    </FlyoutItem>
+    </FlyoutItem>   
     <FlyoutItem Title="{Binding Source={x:Static resources:Literales.action_qr}}"
                 Icon="icon_feed.png" >
         <ShellContent Route="LectorQR" ContentTemplate="{DataTemplate views:LectorQRView}" />

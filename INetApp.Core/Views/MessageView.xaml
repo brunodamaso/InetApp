@@ -53,8 +53,9 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <CollectionView x:Name="MessagesViews"
+								ItemSizingStrategy="MeasureFirstItem"
                     SelectionMode="Single"
-                                EmptyView="{Binding Source={x:Static resources:Literales.empty_messages}}"
+                    EmptyView="{Binding Source={x:Static resources:Literales.empty_messages}}"
                     SelectionChangedCommand="{Binding SelectMessageCommand}"
                     SelectionChangedCommandParameter="{Binding SelectedItem , Source={Reference MessagesViews}}"
                     ItemsSource="{Binding MessageItems}">
@@ -63,12 +64,7 @@
                             <components:MessageRow/>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                <!--<ListView.Behaviors>
-                    <xct:EventToCommandBehavior
-                            Command="{Binding SelectMessageCommand}"
-                            EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
-                            EventName="ItemTapped" />
-                </ListView.Behaviors>-->
+             
             </CollectionView>
             </Grid>
             <Grid  Grid.Row="0" IsVisible="{Binding MessageItems, Converter={StaticResource ListIsNullOrEmptyConverter}}">

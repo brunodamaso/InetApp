@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Xml;
 using INetApp.Services;
 using INetApp.ViewModels.Base;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace INetApp.Views
 {
@@ -15,11 +17,10 @@ namespace INetApp.Views
                 ToolbarItem QR = new ToolbarItem
                 {
                     IconImageSource = Device.RuntimePlatform != Device.UWP ? "qr.png" : "ineco.png",
-                    Order = ToolbarItemOrder.Primary,
+                    Order = ToolbarItemOrder.Default,
                     Priority = 0,
                 };
                 QR.Clicked += OnQRClicked;
-                
                 ToolbarItems.Add(QR);
             }
         }

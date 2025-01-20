@@ -34,7 +34,7 @@
     <RepositoryUrl></RepositoryUrl>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIconUrl>https://github.com/franckbour/INetApp.NFC/raw/master/art/nfc128.png</PackageIconUrl>
-		<PackageIcon>icon.png</PackageIcon>
+		
     <PackageTags></PackageTags>
     
     <Title>NFC Plugin for Xamarin</Title>
@@ -48,6 +48,7 @@
 		<!--When built in 2019 will remove extra references on pack for iOS in System.Drawing.Common-->
 		<DisableExtraReferences>false</DisableExtraReferences>
 		
+		<BuildWithMSBuildOnMono>true</BuildWithMSBuildOnMono>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
@@ -68,6 +69,16 @@
 		
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>BeforeBuild</type>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
 	<ItemGroup Condition=" '$(Configuration)'=='Release' ">
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
 	</ItemGroup>

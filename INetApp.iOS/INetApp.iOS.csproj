@@ -29,6 +29,9 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>Automático</CodesignProvision>
+    <CodesignKey>Apple Development: Cristina  Nevado Delgado (XXM67U67LA)</CodesignKey>
+    <CodesignEntitlements></CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -38,6 +41,8 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
+    <CodesignProvision></CodesignProvision>
+    <CodesignKey>iPhone Distribution: INGENIERIA Y ECONOMIA DEL TRANSPORTE S.M.E. M.P., SA</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,9 +53,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Created via API (ITHP4IFCQ1R4)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>VS: com.ineco.InetAppIOS Development</CodesignProvision>
+    <MtouchInterpreter>-all</MtouchInterpreter>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -59,8 +67,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution: INGENIERIA Y ECONOMIA DEL TRANSPORTE S.M.E. M.P., SA</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>InetAppIOS</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -79,6 +88,7 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Effects\CircleEffect.cs" />
+    <None Include=".DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -101,30 +111,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -149,19 +135,175 @@
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-1242%403x.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\.DS_Store" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_120 1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_120.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\INetApp.Core\INetApp.csproj">
       <Project>{e80d4419-ae6c-437b-8970-d734f2059c8a}</Project>
       <Name>INetApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\INetApp.NFC\INetApp.NFC.csproj">
-      <Project>{db6e750c-1774-433d-9daf-634d67f14ea6}</Project>
-      <Name>INetApp.NFC</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\info.png">
+      <Link>Resources\info.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\notif_large_icon.png">
+      <Link>Resources\notif_large_icon.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\menu_icon.png">
+      <Link>Resources\menu_icon.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\ineco.png">
+      <Link>Resources\ineco.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\icon_about.png">
+      <Link>Resources\icon_about.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\fnd.png">
+      <Link>Resources\fnd.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\anterior.png">
+      <Link>Resources\anterior.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\im_login_background.png">
+      <Link>Resources\im_login_background.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\guardar.png">
+      <Link>Resources\guardar.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\info_opciones.png">
+      <Link>Resources\info_opciones.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\switch_on.png">
+      <Link>Resources\switch_on.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\mas.png">
+      <Link>Resources\mas.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\arriba.png">
+      <Link>Resources\arriba.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\siguiente_inactive.png">
+      <Link>Resources\siguiente_inactive.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\switch_off.png">
+      <Link>Resources\switch_off.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\firmar.png">
+      <Link>Resources\firmar.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\abajo.png">
+      <Link>Resources\abajo.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\anterior_inactive.png">
+      <Link>Resources\anterior_inactive.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\siguiente.png">
+      <Link>Resources\siguiente.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\calendar.png">
+      <Link>Resources\calendar.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\fnd1.png">
+      <Link>Resources\fnd1.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\qr.png">
+      <Link>Resources\qr.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\img_bandeja_entrada.png">
+      <Link>Resources\img_bandeja_entrada.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\icon_feed.png">
+      <Link>Resources\icon_feed.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\img_partes.png">
+      <Link>Resources\img_partes.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable\notif_icon.png">
+      <Link>Resources\notif_icon.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\bck_launcher.png">
+      <Link>Resources\bck_launcher.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_action_lock.png">
+      <Link>Resources\ic_action_lock.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_action_turned_in_not.png">
+      <Link>Resources\ic_action_turned_in_not.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_action_turned_in.png">
+      <Link>Resources\ic_action_turned_in.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_action_user.png">
+      <Link>Resources\ic_action_user.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_bottom_splash.png">
+      <Link>Resources\ic_bottom_splash.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_editor_insert_comment.png">
+      <Link>Resources\ic_editor_insert_comment.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_employee.png">
+      <Link>Resources\ic_employee.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_epi.png">
+      <Link>Resources\ic_epi.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_ineco.png">
+      <Link>Resources\ic_ineco.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_launcher.png">
+      <Link>Resources\ic_launcher.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_message.png">
+      <Link>Resources\ic_message.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_octopush.png">
+      <Link>Resources\ic_octopush.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_plane.png">
+      <Link>Resources\ic_plane.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_profile.png">
+      <Link>Resources\ic_profile.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_social_person.png">
+      <Link>Resources\ic_social_person.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_windows.png">
+      <Link>Resources\ic_windows.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\mark_icon_white.png">
+      <Link>Resources\mark_icon_white.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\mark_icon_yellow.png">
+      <Link>Resources\mark_icon_yellow.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\right_arrow.png">
+      <Link>Resources\right_arrow.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-hdpi\app_settings.png">
+      <Link>Resources\app_settings.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxhdpi\img_formacion.png">
+      <Link>Resources\img_formacion.png</Link>
+    </BundleResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -91,7 +91,7 @@ namespace INetApp
             Routing.RegisterRoute("//MainView/Category", typeof(CategoryView));
             Routing.RegisterRoute("//MainView/MessageFavorite", typeof(MessageFavoriteView));
             Routing.RegisterRoute("//MainView/Options", typeof(OptionsView));
-            Routing.RegisterRoute("//MainView/WorkParts", typeof(WorkPartsView));
+            //Routing.RegisterRoute("//MainView/WorkParts", typeof(WorkPartsView));
             Routing.RegisterRoute("Message", typeof(MessageView));
             Routing.RegisterRoute("MessageDetails", typeof(MessageDetailsView));
             Routing.RegisterRoute("MessageDetails/WebView", typeof(WebInecoView));

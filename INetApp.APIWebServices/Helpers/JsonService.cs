@@ -19,6 +19,7 @@ namespace INetApp.APIWebServices.Helpers
             }
             catch (Exception ex)
             {
+                Console.Write(ex.Message);
                 return default;
             }
 
@@ -31,6 +32,7 @@ namespace INetApp.APIWebServices.Helpers
             }
             catch (Exception ex)
             {
+                Console.Write(ex.Message);
                 return null;
             }
         }

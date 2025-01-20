@@ -122,7 +122,7 @@
       <Name>INetApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\INetApp.NFC\INetApp.NFC.csproj">
-      <Project>{db6e750c-1774-433d-9daf-634d67f14ea6}</Project>
+      <Project>{4119ABE8-572D-4AFC-BFA5-42678AA663E3}</Project>
       <Name>INetApp.NFC</Name>
     </ProjectReference>
   </ItemGroup>

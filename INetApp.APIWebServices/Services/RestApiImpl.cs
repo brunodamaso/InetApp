@@ -134,7 +134,7 @@ namespace INetApp.APIWebServices
          */
         private readonly string API_URL_GET_PERIODO_ACTIVO = API_BASE_URL + "getperiodoactivo/";
 
-        
+
         #endregion
 
         #region user
@@ -204,8 +204,9 @@ namespace INetApp.APIWebServices
                 //httpResponse.Resultado = $"{{MessagesEntities:{httpResponse.Resultado}}}";
 
                 ServiceResponse<MessagesEntity> response = ServiceHelper.CreateResponse<MessagesEntity>(httpResponse);
+                return Mappers.ServiceMapper.ConvertToBusiness(response);
 
-                return Mappers.ServiceMapper.ConvertToBusiness<MessagesDto, MessagesEntity>(response);
+                //return Mappers.ServiceMapper.ConvertToBusiness<MessagesDto, MessagesEntity>(response);
 
             });
         }
@@ -221,7 +222,7 @@ namespace INetApp.APIWebServices
 
                 ServiceResponse<MessageEntity> response = ServiceHelper.CreateResponse<MessageEntity>(httpResponse);
 
-                return Mappers.ServiceMapper.ConvertToBusiness<MessageDto, MessageEntity>(response);
+                return Mappers.ServiceMapper.ConvertToBusiness(response);
 
             });
         }
@@ -235,27 +236,27 @@ namespace INetApp.APIWebServices
 
             });
         }
-        public Task<bool> RefuseMessageFromApi(string Usuario, string Password, int CategoryId, int MessageId ,string Cause)
+        public Task<bool> RefuseMessageFromApi(string Usuario, string Password, int CategoryId, int MessageId, string Cause)
         {
             return Task.Factory.StartNew(() =>
             {
-                string causeEncoded = HttpUtility.UrlEncode(Cause,System.Text.Encoding.UTF8);
+                string causeEncoded = HttpUtility.UrlEncode(Cause, System.Text.Encoding.UTF8);
                 causeEncoded = causeEncoded.Replace("+", "%20");
 
-                HttpResponse httpResponse = Get(API_URL_REFUSE_MESSAGE + CategoryId + "/" + MessageId +"/" + Cause, Usuario, Password).Result;
+                HttpResponse httpResponse = Get(API_URL_REFUSE_MESSAGE + CategoryId + "/" + MessageId + "/" + Cause, Usuario, Password).Result;
 
                 return httpResponse.IsOk ? httpResponse.Resultado.Contains("0") : httpResponse.IsOk;
             });
         }
 
         #endregion
-      
+
         #region Options
         public Task<OptionsDto> GetOptionsEntitiesFromApi(string Usuario, string Password)
         {
             return Task.Factory.StartNew(() =>
             {
-                HttpResponse httpResponse = Get(API_URL_GET_OPTIONS_LIST , Usuario, Password).Result;
+                HttpResponse httpResponse = Get(API_URL_GET_OPTIONS_LIST, Usuario, Password).Result;
 
                 httpResponse.Resultado = string.Concat("{\"OptionsEntities\":", httpResponse.Resultado, "}");
                 //httpResponse.Resultado = $"{{OptionsEntities:{httpResponse.Resultado}}}";
@@ -291,7 +292,7 @@ namespace INetApp.APIWebServices
         }
 
         #endregion
-        
+
         #region GetAccesoNFCFromAPI
         public Task<UserAccessDto> GetAccesoNFCFromAPI(string Usuario, string Password, string NFC)
         {
