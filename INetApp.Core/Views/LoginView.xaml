@@ -44,7 +44,7 @@
             <RowDefinition Height ="*"/>
             <RowDefinition Height ="{Binding Source={StaticResource button_login_height}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.RowDefinitions>
-        <!--<Image Grid.Row="0" Source="im_login_background.png"  Aspect="Fill" />-->
+        <Image Grid.Row="0" Source="im_login_background.png"  Aspect="Fill" />
         <BoxView Grid.Row="1" Grid.RowSpan="3" BackgroundColor ="{StaticResource white}"/>
         <Grid Grid.Row="2" >
             <Grid.Padding>

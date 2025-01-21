@@ -23,7 +23,7 @@
     <!-- Menu header -->
     <x:String x:Key="menu_header_vertical_margin">50</x:String>
     <x:String x:Key="menu_header_vertical_margin_bottom">10</x:String>
-    <x:String x:Key="menu_header_avatar_size">50</x:String>
+    <x:String x:Key="menu_header_avatar_size">76</x:String>
     <x:String x:Key="menu_header_text_vertical_margin">20</x:String>
     <x:String x:Key="menu_header_text_horizontal_margin">16</x:String>
     <x:String x:Key="menu_header_horizontal_margin">30</x:String>
@@ -33,7 +33,7 @@
     <x:String x:Key="header_text_size">24</x:String>
     <x:String x:Key="header_margin">5</x:String>
     <x:String x:Key="iv_cover_height">140</x:String>
-    <x:String x:Key="iv_splash_cover_height">180</x:String>
+    <x:String x:Key="iv_splash_cover_height">190</x:String>
     <x:String x:Key="iv_splash_cover_top">130</x:String>
     <x:String x:Key="iv_image_padding_bottom">15</x:String>
     <x:String x:Key="iv_image_padding_horizontal">50</x:String>

@@ -370,7 +370,7 @@ namespace INetApp.Services
                     StringBuilder strOptionlist = new StringBuilder("");
                     foreach (OptionsModel optionId in optionList)
                     {
-                        if (!strOptionlist.Equals(""))
+                        if (strOptionlist.Length >0)
                         {
                             strOptionlist.Append(",");
                         }

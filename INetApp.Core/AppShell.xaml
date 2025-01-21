@@ -76,10 +76,16 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <BoxView Grid.Row ="0" BackgroundColor="{StaticResource menu_header_avatar}" CornerRadius="50" 
+             <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <BoxView Grid.Row ="0"
+                     Margin="0,20,0,20"
+                     BackgroundColor="{StaticResource menu_header_avatar}" CornerRadius="20" 
                      WidthRequest="{Binding Source={StaticResource menu_header_avatar_size}, Converter={StaticResource GridLengthConverter}}" 
                      HeightRequest="{Binding Source={StaticResource menu_header_avatar_size}, Converter={StaticResource GridLengthConverter}}" 
-                     HorizontalOptions="Start" VerticalOptions="Center"/>
+                     HorizontalOptions="Center" VerticalOptions="Center"/>
             <Label Grid.Row ="0" 
                x:Name="NameInitial"
                TextColor="{StaticResource white}"
@@ -148,7 +154,7 @@
 
     <Shell.FlyoutFooter>
         <Grid BackgroundColor="{x:StaticResource white}" >
-            <!--<Grid.Margin>
+            <Grid.Margin>
                 <OnPlatform x:TypeArguments="Thickness">
                     <On Platform="iOS, Android" Value="0,0,0,0" />
                     <On Platform="UWP, WinRT, WinPhone" Value="0,-40,0,0" />
@@ -159,7 +165,7 @@
                     <Binding Source="{StaticResource activity_horizontal_margin}"/>
                     <Binding Source="{StaticResource activity_vertical_margin}"/>
                 </MultiBinding>
-            </Grid.Padding>-->
+            </Grid.Padding>
             <Label Grid.Row ="0" 
                x:Name="VersionApp"
                TextColor="{StaticResource medium_grey}"
