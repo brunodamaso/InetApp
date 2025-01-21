@@ -80,21 +80,21 @@ namespace INetApp
             if (Current.RequestedTheme == OSAppTheme.Dark)
             {
                 //e?.SetStatusBarColor(Color.Black, false);
-                e?.SetStatusBarColor(new Color(0, 156, 196), false);
+                e?.SetStatusBarColor(new Color(52,99,172), false);
                 if (nav != null)
                 {
-                    nav.BarBackgroundColor = new Color(0, 156, 196); ;// Color.Black;
-                    nav.BarTextColor = new Color(0, 156, 196);
+                    nav.BarBackgroundColor = new Color(52,99,172); ;// Color.Black;
+                    nav.BarTextColor = new Color(52,99,172);
                 }
             }
             else
             {
                 //e?.SetStatusBarColor(Color.White, true);
-                e?.SetStatusBarColor(new Color(0, 156, 196), true);
+                e?.SetStatusBarColor(new Color(52,99,172), true);
                 if (nav != null)
                 {
-                    nav.BarBackgroundColor = new Color(0, 156, 196);  //Color.White;
-                    nav.BarTextColor = new Color(0, 156, 196);
+                    nav.BarBackgroundColor = new Color(52,99,172);  //Color.White;
+                    nav.BarTextColor = new Color(52,99,172);
                 }
             }
         }

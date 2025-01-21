@@ -30,7 +30,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <CodesignProvision>Automático</CodesignProvision>
-    <CodesignKey>Apple Development: Cristina  Nevado Delgado (XXM67U67LA)</CodesignKey>
+    <CodesignKey>Apple Development: Created via API (ITHP4IFCQ1R4)</CodesignKey>
     <CodesignEntitlements></CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -53,10 +53,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: Created via API (ITHP4IFCQ1R4)</CodesignKey>
+    <CodesignKey>iPhone Distribution: INGENIERIA Y ECONOMIA DEL TRANSPORTE S.M.E. M.P., SA</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>VS: com.ineco.InetAppIOS Development</CodesignProvision>
+    <CodesignProvision>InetAppIOS</CodesignProvision>
     <MtouchInterpreter>-all</MtouchInterpreter>
     <MtouchLink>None</MtouchLink>
   </PropertyGroup>
@@ -110,44 +110,62 @@
       <Version>2.4.1</Version>
     </PackageReference>
   </ItemGroup>
+
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-568h%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Portrait.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Portrait%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-750%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-1242%403x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\.DS_Store" />
-    <ImageAsset Include="Assets.xcassets\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_40.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_80.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_120 1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_87.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_60.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_76.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_180.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_58.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon_120.png" />
-  </ItemGroup>
+<ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%402x.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76%402x.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%402x.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40%402x.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default%402x.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-568h%402x.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Portrait.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Portrait%402x.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-750%402x.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-1242%403x.png">
+<Visible>false</Visible>
+</ImageAsset>
+<ImageAsset Include="Assets.xcassets\.DS_Store" />
+<ImageAsset Include="Assets.xcassets\Contents.json" />
+<ImageAsset Include="Assets.xcassets\AppIcon.appiconset\.DS_Store" />
+</ItemGroup>
+ 
+
   <ItemGroup>
     <ProjectReference Include="..\INetApp.Core\INetApp.csproj">
       <Project>{e80d4419-ae6c-437b-8970-d734f2059c8a}</Project>
@@ -155,7 +173,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 
@@ -241,17 +258,11 @@
     <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\bck_launcher.png">
       <Link>Resources\bck_launcher.png</Link>
     </BundleResource>
-    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_action_lock.png">
-      <Link>Resources\ic_action_lock.png</Link>
-    </BundleResource>
     <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_action_turned_in_not.png">
       <Link>Resources\ic_action_turned_in_not.png</Link>
     </BundleResource>
     <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_action_turned_in.png">
       <Link>Resources\ic_action_turned_in.png</Link>
-    </BundleResource>
-    <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_action_user.png">
-      <Link>Resources\ic_action_user.png</Link>
     </BundleResource>
     <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxxhdpi\ic_bottom_splash.png">
       <Link>Resources\ic_bottom_splash.png</Link>
@@ -304,6 +315,13 @@
     <BundleResource Include="..\INetApp.Droid\Resources\drawable-xxhdpi\img_formacion.png">
       <Link>Resources\img_formacion.png</Link>
     </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-hdpi\ic_action_lock.png">
+      <Link>Resources\ic_action_lock.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\INetApp.Droid\Resources\drawable-hdpi\ic_action_user.png">
+      <Link>Resources\ic_action_user.png</Link>
+    </BundleResource>
   </ItemGroup>
+ 
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

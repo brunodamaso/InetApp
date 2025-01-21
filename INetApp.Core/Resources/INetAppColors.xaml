@@ -21,16 +21,15 @@
     <!--<Color x:Key="toolbar_Color">#006778</Color>-->
     <!--<Color x:Key="menu_header_avatar">#51626F</Color>-->
 
-
-    <Color x:Key="app_Color">#009cc4</Color>
-    <Color x:Key="ripple_Color">#009cc4</Color>
-    <Color x:Key="toolbar_Color">#009cc4</Color>
+    <Color x:Key="app_Color">#1A4488</Color>
+    <Color x:Key="ripple_Color">#1A4488</Color>
+    <Color x:Key="toolbar_Color">#1A4488</Color>
     <Color x:Key="menu_header_avatar">#51626F</Color>
-    <Color x:Key="Color_tab">#04657e</Color>
+    <Color x:Key="Color_tab">#CB1823</Color>
 
-    <Color x:Key="favorite_Color">#B19401</Color>
+    <Color x:Key="favorite_Color">#3463AC</Color>
     <Color x:Key="favorite_ripple_dark_Color">#776401</Color>
     <Color x:Key="favorite_ripple_light_Color">#ffdd00</Color>
-    <Color x:Key="qr_scanner">#c8009cc4</Color>
+    <Color x:Key="qr_scanner">#1A4488</Color>
 
 </ResourceDictionary>

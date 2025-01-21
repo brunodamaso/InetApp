@@ -18,6 +18,10 @@ namespace INetApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
+            UIView statusBar = new UIView(UIApplication.SharedApplication.StatusBarFrame);
+            statusBar.BackgroundColor = UIColor.FromRGB(34, 45, 50); // Cambia a tu color deseado
+            UIApplication.SharedApplication.KeyWindow?.AddSubview(statusBar);
+
             //PushBootstrap.Begin(() => new DeviceInstallationService());
             //if (DeviceInstallationService().NotificationsSupported)
             //{

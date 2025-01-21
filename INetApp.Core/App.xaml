@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application
     x:Class="INetApp.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -94,7 +94,7 @@
             <!--  Theme Colors  -->
             <Color x:Key="LightBackgroundColor">White</Color>
             <Color x:Key="DarkBackgroundColor">#222222</Color>
-            <Color x:Key="LightBarColor">#009cc4</Color>
+            <Color x:Key="LightBarColor">#3463AC</Color>
             <Color x:Key="DarkBarColor">#E7E7E7</Color>
             <Color x:Key="LightBarForeColor">white</Color>
             <Color x:Key="DarkBarForeColor">#222222</Color>
