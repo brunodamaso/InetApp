@@ -78,7 +78,7 @@ namespace INetApp.ViewModels
         {
             Dictionary<string, string> Parametro = new Dictionary<string, string>
                 {
-                    { "Ruta", "http://inet-pre.ineco.es/prod/prodEncuestas/paginaRanking.aspx" },
+                    { "Ruta", "http://inet.ineco.es/prod/prodEncuestas/paginaRanking.aspx" },
                     { "Titulo", Literales.action_formation }
                 };
             await NavigationService.NavigateToAsync("WebView", Parametro);
