@@ -67,9 +67,9 @@ namespace INetApp.Services.Identity
 
                 settingsService.Version = userLoggedModel.version.IsNullOrEmpty() ? VersionTracking.CurrentVersion : userLoggedModel.version;
                 settingsService.Requerido = userLoggedModel.requerido;
-                settingsService.Url = userLoggedModel.url.IsNullOrEmpty() ? "https://inet.ineco.es/dti02/conecta_t/IndexAndroid.html" : userLoggedModel.url;
-                
-                settingsService.AuthAccessToken = user;
+				settingsService.Url = userLoggedModel.url.IsNullOrEmpty() ? "https://inet-pre.ineco.es/dti02/conecta_t/IndexAndroid.html" : userLoggedModel.url;
+
+				settingsService.AuthAccessToken = user;
                 settingsService.NameInitial = userLoggedModel.nameInitial + userLoggedModel.lastNameInitial;
                 settingsService.NameFull = userLoggedModel.fullName;
                 settingsService.Permission = userLoggedModel.permission;

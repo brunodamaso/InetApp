@@ -22,10 +22,5 @@ namespace INetApp.APIWebServices
         Task<UserAccessDto> GetAccesoNFCFromAPI(string Usuario, string Password, string NFC);
         Task<bool> RegisterToken(string Usuario, string Password, string Token);
         Task<bool> UnRegisterToken(string Usuario, string Password);
-        Task<WorkPartsDto> GetWorkPartsEntitiesFromApi(string Usuario, string Password, string FechaIni = null, string FechaFin = null, int? IdSemana = null);
-        Task<InecoProjectsDto> GetInecoProjecsEntitiesFromApi(string Usuario, string Password, bool ineco, string pronumero, string titulo);
-        Task<string> GetPeriodoActivoFromApi(string Usuario, string Password);
-
-
     }
 }

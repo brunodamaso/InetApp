@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using INetApp.APIWebServices.Dtos;
 using INetApp.APIWebServices.Entity;
-//using INetApp.Models;
 using INetApp.APIWebServices.Helpers;
 using INetApp.APIWebServices.Responses;
 using System.Web;
@@ -22,12 +21,12 @@ namespace INetApp.APIWebServices
 
         private static readonly string https = "https://";
         //pre
-        private static readonly string restService = "inet.ineco.es/WS/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
-        //local
-        // string restService = "192.168.1.33/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
-        //private static readonly string restService = "localhost:62173/WSAppMovilAprobacion.svc/rest/";
+        private static readonly string restService = "inet-pre.ineco.es/WS/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
+        ///local
+        /// string restService = "192.168.1.33/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
+        ///private static readonly string restService = "localhost:62173/WSAppMovilAprobacion.svc/rest/";
         //pro
-        //private static readonly string restService = "inet.ineco.es/WebSvc/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
+        ///private static readonly string restService = "inet.ineco.es/WebSvc/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
 
         private static readonly string API_BASE_URL = https + restService;
 
@@ -95,55 +94,18 @@ namespace INetApp.APIWebServices
          */
         private readonly string API_URL_GET_ACCESO_BY_NFC = API_BASE_URL + "getaccesopermitidonfc/";
 
-
-        //    PARTES
-
-
         /**
-         * Api url for getting all projects
-         */
-        private readonly string API_URL_GET_INECO_PROJECTS_LIST = API_BASE_URL + "GetProyectosIneco/";
+	   * Delimitador
+	   */
+		private readonly string DELIMITER = "/";
 
-        /**
-         * Api url for getting search projects
-         */
-        private readonly string API_URL_GET_SEARCH_PROJECTS = API_BASE_URL + "getproyectosbuscador/";
+		#endregion
 
-        /**
-         * Api url for getting current part
-         */
-        private readonly string API_URL_GET_CURRENT_PART = API_BASE_URL + "getparteactual/";
-
-        /**
-         * Api url for getting calendar part
-         */
-        private readonly string API_URL_GET_CALENDAR_PART = API_BASE_URL + "GetPartePorFechas/";
-
-        /**
-         * Api url for getting week part
-         */
-        private readonly string API_URL_GET_WEEK_PART = API_BASE_URL + "GetParteIdSemana/";
-
-        /**
-         * Api url for save part
-         */
-        private readonly string API_URL_SAVE_PART = API_BASE_URL + "GuardarParte/";
-
-        /**
-         * Api url for getting periodo activo
-         */
-        private readonly string API_URL_GET_PERIODO_ACTIVO = API_BASE_URL + "getperiodoactivo/";
-
-
-        #endregion
-
-        #region user
-        public Task<UserLoggedDto> GetUserLoggedFromApi(string Usuario, string Password)
+		#region user
+		public Task<UserLoggedDto> GetUserLoggedFromApi(string Usuario, string Password)
         {
             return Task.Factory.StartNew(() =>
             {
-                //var json = ServiceHelper.ToJson(request);
-
                 HttpResponse httpResponse = Get(API_URL_GET_USER_LOGGED, Usuario, Password).Result;
 
                 ServiceResponse<UserLoggedEntity> response = ServiceHelper.CreateResponse<UserLoggedEntity>(httpResponse);
@@ -183,7 +145,6 @@ namespace INetApp.APIWebServices
                 HttpResponse httpResponse = Get(API_URL_GET_CATEGORY_LIST, Usuario, Password).Result;
 
                 httpResponse.Resultado = string.Concat("{\"CategorysEntities\":", httpResponse.Resultado, "}");
-                //$@"{{"""CategorysEntities""":{httpResponse.Resultado}}}";
 
                 ServiceResponse<CategorysEntity> response = ServiceHelper.CreateResponse<CategorysEntity>(httpResponse);
 
@@ -201,13 +162,9 @@ namespace INetApp.APIWebServices
                 HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_LIST_BY_CATEGORY + CategoryId, Usuario, Password).Result;
 
                 httpResponse.Resultado = string.Concat("{\"MessagesEntities\":", httpResponse.Resultado, "}");
-                //httpResponse.Resultado = $"{{MessagesEntities:{httpResponse.Resultado}}}";
 
                 ServiceResponse<MessagesEntity> response = ServiceHelper.CreateResponse<MessagesEntity>(httpResponse);
                 return Mappers.ServiceMapper.ConvertToBusiness(response);
-
-                //return Mappers.ServiceMapper.ConvertToBusiness<MessagesDto, MessagesEntity>(response);
-
             });
         }
 
@@ -215,10 +172,9 @@ namespace INetApp.APIWebServices
         {
             return Task.Factory.StartNew(() =>
             {
-                HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_DETAILS + CategoryId + "/" + MessageId, Usuario, Password).Result;
+                HttpResponse httpResponse = Get(API_URL_GET_MESSAGE_DETAILS + CategoryId + DELIMITER + MessageId, Usuario, Password).Result;
 
                 httpResponse.Resultado = string.Concat("{\"data\":", httpResponse.Resultado, "}");
-                //httpResponse.Resultado = $"{{data:{httpResponse.Resultado}}}";
 
                 ServiceResponse<MessageEntity> response = ServiceHelper.CreateResponse<MessageEntity>(httpResponse);
 
@@ -231,19 +187,19 @@ namespace INetApp.APIWebServices
         {
             return Task.Factory.StartNew(() =>
             {
-                HttpResponse httpResponse = Get(API_URL_APPROVE_MESSAGE + CategoryId + "/" + MessageId, Usuario, Password).Result;
+                HttpResponse httpResponse = Get(API_URL_APPROVE_MESSAGE + CategoryId + DELIMITER + MessageId, Usuario, Password).Result;
                 return httpResponse.IsOk ? httpResponse.Resultado.Contains("0") : httpResponse.IsOk;
 
             });
         }
-        public Task<bool> RefuseMessageFromApi(string Usuario, string Password, int CategoryId, int MessageId, string Cause)
+        public Task<bool> RefuseMessageFromApi(string Usuario, string Password, int CategoryId, int MessageId, string cause)
         {
             return Task.Factory.StartNew(() =>
             {
-                string causeEncoded = HttpUtility.UrlEncode(Cause, System.Text.Encoding.UTF8);
+                string causeEncoded = HttpUtility.UrlEncode(cause, System.Text.Encoding.UTF8);
                 causeEncoded = causeEncoded.Replace("+", "%20");
 
-                HttpResponse httpResponse = Get(API_URL_REFUSE_MESSAGE + CategoryId + "/" + MessageId + "/" + Cause, Usuario, Password).Result;
+                HttpResponse httpResponse = Get(API_URL_REFUSE_MESSAGE + CategoryId + DELIMITER + MessageId + DELIMITER + causeEncoded, Usuario, Password).Result;
 
                 return httpResponse.IsOk ? httpResponse.Resultado.Contains("0") : httpResponse.IsOk;
             });
@@ -259,7 +215,6 @@ namespace INetApp.APIWebServices
                 HttpResponse httpResponse = Get(API_URL_GET_OPTIONS_LIST, Usuario, Password).Result;
 
                 httpResponse.Resultado = string.Concat("{\"OptionsEntities\":", httpResponse.Resultado, "}");
-                //httpResponse.Resultado = $"{{OptionsEntities:{httpResponse.Resultado}}}";
 
                 ServiceResponse<OptionsEntity> response = ServiceHelper.CreateResponse<OptionsEntity>(httpResponse);
 
@@ -309,13 +264,13 @@ namespace INetApp.APIWebServices
         #endregion
 
         #region TokenPush
-        public Task<bool> RegisterToken(string Usuario, string Password, string Token64)
+        public Task<bool> RegisterToken(string Usuario, string Password, string Token)
         {
             return Task.Factory.StartNew(() =>
             {
                 int isIos = Device.RuntimePlatform == Device.iOS ? 1 : 0;
 
-                HttpResponse httpResponse = Get(API_URL_GET_REGISTERTOKEN + Token64 + "/" + isIos, Usuario, Password).Result;
+                HttpResponse httpResponse = Get(API_URL_GET_REGISTERTOKEN + Token + DELIMITER + isIos, Usuario, Password).Result;
 
                 return httpResponse.IsOk;
 
@@ -331,66 +286,6 @@ namespace INetApp.APIWebServices
 
             });
         }
-        #endregion
-
-        #region WorkParts
-        public Task<WorkPartsDto> GetWorkPartsEntitiesFromApi(string Usuario, string Password, string FechaIni = null, string FechaFin = null, int? IdSemana = null)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                HttpResponse httpResponse;
-                if (FechaIni != null)
-                {
-                    httpResponse = Get(API_URL_GET_CALENDAR_PART + FechaIni + "/" + FechaFin, Usuario, Password).Result;
-                }
-                else if (IdSemana != null)
-                {
-                    httpResponse = Get(API_URL_GET_WEEK_PART + IdSemana, Usuario, Password).Result;
-                }
-                else
-                {
-                    httpResponse = Get(API_URL_GET_CURRENT_PART, Usuario, Password).Result;
-                }
-
-                ServiceResponse<WorkPartsEntity> response = ServiceHelper.CreateResponse<WorkPartsEntity>(httpResponse);
-
-                return Mappers.ServiceMapper.ConvertToBusiness<WorkPartsDto, WorkPartsEntity>(response);
-            });
-        }
-        public Task<InecoProjectsDto> GetInecoProjecsEntitiesFromApi(string Usuario, string Password, bool ineco, string pronumero, string titulo)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                HttpResponse httpResponse;
-                if (ineco)
-                {
-                    httpResponse = Get(API_URL_GET_INECO_PROJECTS_LIST, Usuario, Password).Result;
-                }
-                else
-                {
-                    httpResponse = Get(API_URL_GET_SEARCH_PROJECTS + "/" + pronumero + "/" + titulo, Usuario, Password).Result;
-                }
-
-                httpResponse.Resultado = string.Concat("{\"InecoProjectsEntities\":", httpResponse.Resultado, "}");
-                //httpResponse.Resultado = $"{{InecoProjectsEntities:{httpResponse.Resultado}}}";
-
-                ServiceResponse<InecoProjectsEntity> response = ServiceHelper.CreateResponse<InecoProjectsEntity>(httpResponse);
-
-                return Mappers.ServiceMapper.ConvertToBusiness<InecoProjectsDto, InecoProjectsEntity>(response);
-            });
-        }
-        public Task<string> GetPeriodoActivoFromApi(string Usuario, string Password)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                HttpResponse httpResponse = Get(API_URL_GET_PERIODO_ACTIVO, Usuario, Password).Result;
-                return httpResponse.IsOk ? httpResponse.Resultado : null;
-
-                //ServiceResponse<PeriodoActivoEntity> response = ServiceHelper.CreateResponse<PeriodoActivoEntity>(httpResponse);
-
-                //return Mappers.ServiceMapper.ConvertToBusiness<PeriodoActivoDto, PeriodoActivoEntity>(response);
-            });
-        }
-        #endregion
+        #endregion        
     }
 }

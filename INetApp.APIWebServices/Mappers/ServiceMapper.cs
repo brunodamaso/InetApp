@@ -9,7 +9,6 @@ using INetApp.Models;
 using Mapster;
 using Newtonsoft.Json;
 using SQLite;
-//using INetApp.Models;
 
 namespace INetApp.APIWebServices.Mappers
 {
@@ -49,24 +48,24 @@ namespace INetApp.APIWebServices.Mappers
                 IsConnected = serviceResponse.IsConnected,
             };
 
-            //Console.WriteLine(serviceResponse.IsOk);
-            //Console.WriteLine((TEnti)serviceResponse.Resultado);
-
             if (serviceResponse.IsOk && serviceResponse.Resultado != null)
             {
                 try
                 {
                     var item = serviceResponse.Resultado;
-                    dto.MessageModel = new MessageModel()
+					if (!DateTime.TryParseExact(item.date, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+					{
+						parsedDate = DateTime.TryParseExact(item.date, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate) ? parsedDate : DateTime.Now;
+					}
+					dto.MessageModel = new MessageModel()
                     {
-                        date = DateTime.ParseExact(string.IsNullOrEmpty(item.date) ? DateTime.Now.ToString("yyyyMMdd") : item.date, "yyyyMMdd", CultureInfo.InvariantCulture),
+                        date = parsedDate,
                         fields = item.data == null ? null : JsonConvert.DeserializeObject<MessageDetails>(item.data, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
                         messageId = item.messageId,
                         name = item.name,
                         categoryId = item.categoryId,
                         favorite = item.favorite
                     };
-                    //dto = serviceResponse.Resultado.Adapt<MessagesDto>();
                 }
                 catch (Exception es)
                 {
@@ -88,18 +87,20 @@ namespace INetApp.APIWebServices.Mappers
                 MessagesModel = new List<MessageModel>()                
             };
 
-            //Console.WriteLine(serviceResponse.IsOk);
-            //Console.WriteLine((TEnti)serviceResponse.Resultado);
-
             if (serviceResponse.IsOk && serviceResponse.Resultado != null)
             {
                 try
                 {
                     foreach (var item in serviceResponse.Resultado.MessagesEntities)
                     {
-                        dto.MessagesModel.Add(new MessageModel()
+						if (!DateTime.TryParseExact(item.date, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+						{
+							parsedDate = DateTime.TryParseExact(item.date, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate) ? parsedDate : DateTime.Now;
+						}
+						dto.MessagesModel.Add(new MessageModel()
                         {
-                            date = DateTime.ParseExact(string.IsNullOrEmpty(item.date) ? DateTime.Now.ToString("yyyyMMdd") : item.date, "yyyyMMdd", CultureInfo.InvariantCulture),
+
+                            date = parsedDate,
                             fields = item.data == null ? null : JsonConvert.DeserializeObject<MessageDetails>(item.data, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
                             messageId = item.messageId,
                             name = item.name,
@@ -107,7 +108,6 @@ namespace INetApp.APIWebServices.Mappers
                             favorite = item.favorite
                         });
                     }
-                    //dto = serviceResponse.Resultado.Adapt<MessagesDto>();
                 }
                 catch (Exception es)
                 {
@@ -116,39 +116,6 @@ namespace INetApp.APIWebServices.Mappers
             }
             return dto;
         }
-
-
-        //public static CategoriasDto ConvertToBusiness(ServiceResponse<ChkLicenciaResponse> serviceResponse)
-        //{
-        //    CategoriasDto dto = new CategoriasDto(serviceResponse.IsOk, serviceResponse.ErrorCode, serviceResponse.Description, serviceResponse.IsConnected);
-
-        //    if (serviceResponse.IsOk && serviceResponse.Content != null)
-        //    {
-        //        //dto.Result = serviceResponse.Content.Result;
-        //        //dto.nombre = serviceResponse.Content.nombre;
-        //        //dto.usuario = serviceResponse.Content.usuario;
-        //        //dto.password = serviceResponse.Content.password;
-        //        //dto.serverFTP = serviceResponse.Content.serverFTP;
-        //        //dto.userFTP = serviceResponse.Content.userFTP;
-        //        //dto.passwordFTP = serviceResponse.Content.passwordFTP;
-        //        //dto.puertoFTP = serviceResponse.Content.puertoFTP;
-        //        //dto.carpetaFTP = serviceResponse.Content.carpetaFTP;
-        //        //dto.Email = serviceResponse.Content.Email;
-        //    }
-
-        //    return dto;
-        //}
-        //public static CategoriasDto ConvertToBusiness(ServiceResponse<RstPasswordResponse> serviceResponse)
-        //{
-        //    CategoriasDto dto = new CategoriasDto(serviceResponse.IsOk, serviceResponse.ErrorCode, serviceResponse.Description, serviceResponse.IsConnected);
-
-        //    if (serviceResponse.IsOk && serviceResponse.Content != null)
-        //    {
-        //       // dto.Result = serviceResponse.Content.Result;
-        //    }
-
-        //    return dto;
-        //}  
     }
 }
 
