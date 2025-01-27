@@ -257,3 +257,4 @@ paket-files/
 
 *.DS_Store
 /INetApp.iOS/.DS_Store
+/INetApp.iOS/INetApp.iOS.csproj
