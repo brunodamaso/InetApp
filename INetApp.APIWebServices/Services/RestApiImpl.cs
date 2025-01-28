@@ -21,12 +21,12 @@ namespace INetApp.APIWebServices
 
         private static readonly string https = "https://";
         //pre
-        private static readonly string restService = "inet-pre.ineco.es/WS/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
+        //private static readonly string restService = "inet-pre.ineco.es/WS/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
         ///local
         /// string restService = "192.168.1.33/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
         ///private static readonly string restService = "localhost:62173/WSAppMovilAprobacion.svc/rest/";
         //pro
-        ///private static readonly string restService = "inet.ineco.es/WebSvc/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
+        private static readonly string restService = "inet.ineco.es/WebSvc/WSAppMovilAprobacion/WSAppMovilAprobacion.svc/rest/";
 
         private static readonly string API_BASE_URL = https + restService;
 

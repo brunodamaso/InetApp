@@ -25,9 +25,6 @@ namespace INetApp.Services
         Task<UserAccessDto> GetAccesoQR(string QR);
         Task<UserAccessDto> GetAccesoNFC(string NFC);
         Task<bool> RegisterTokenPush(string Token);
-        Task<bool> UnRegisterTokenPush();
-        Task<WorkPartsDto> GetWorkParts(string fechaini = null, string fechafin = null, int? semanaid = null);
-        Task<InecoProjectsDto> GetInecoProjects(bool ineco, string pronumero, string titulo);
-        Task<PeriodoActivoDto> GetPeriodoActivo();
+        Task<bool> UnRegisterTokenPush();   
     }
 }
